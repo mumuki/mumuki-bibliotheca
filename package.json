@@ -7,5 +7,13 @@
     "test": "gulp test"
   },
   "author": "Federico Scarpa",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "del": "^2.2.2",
+    "gulp": "^3.9.1",
+    "gulp-load-plugins": "^1.3.0",
+    "gulp-pug": "^3.1.0",
+    "gulp-webserver": "^0.9.1",
+    "run-sequence": "^1.2.2"
+  }
 }
