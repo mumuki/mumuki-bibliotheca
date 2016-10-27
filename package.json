@@ -1,0 +1,11 @@
+{
+  "name": "mumuki-editor",
+  "version": "0.0.1",
+  "description": "Mumuki Editor",
+  "main": "index.js",
+  "scripts": {
+    "test": "gulp test"
+  },
+  "author": "Federico Scarpa",
+  "license": "ISC"
+}
