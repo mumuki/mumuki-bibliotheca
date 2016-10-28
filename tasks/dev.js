@@ -16,12 +16,14 @@ module.exports = (done) => {
 
 
 gulp.task('dev:build', (done) => {
-  runs('dev:clean', 'dev:styles', 'dev:views', done);
+  runs('dev:clean', 'dev:scripts', 'dev:styles', 'dev:views', done);
 });
 
 gulp.task('dev:watch', () => {
-  gulp.watch(`${srcFolder}/views/**/*`, ['dev:views']);
+  gulp.watch(`${srcFolder}/views/**/*`, ['dev:views:jade']);
+  gulp.watch(`${srcFolder}/index.jade`, ['dev:views:index']);
   gulp.watch(`${srcFolder}/styles/**/*`, ['dev:styles']);
+  gulp.watch(`${srcFolder}/scripts/**/*`, ['dev:scripts']);
 });
 
 gulp.task('dev:serve', () => {
@@ -39,6 +41,16 @@ gulp.task('dev:clean', (done) => {
   return del(`${outFolder}`, { force: true });
 });
 
+gulp.task('dev:scripts', function () {
+  return gulp.src(`${srcFolder}/scripts/**/*.js`)
+    .pipe($.sourcemaps.init())
+      .pipe($.babel({ presets: ['latest'] }))
+      .pipe($.ngAnnotate())
+      .pipe($.concat('main.js'))
+    .pipe($.sourcemaps.write('.'))
+    .pipe(gulp.dest(`${outFolder}/scripts`));
+});
+
 gulp.task('dev:styles', function () {
   return gulp.src(`${srcFolder}/styles/**/*.scss`)
     .pipe($.sass.sync())
@@ -52,5 +64,12 @@ gulp.task('dev:views', (done) => {
 gulp.task('dev:views:index', () => {
   return gulp.src(`${srcFolder}/index.jade`)
     .pipe($.pug({ pretty: true }))
+    .pipe($.wiredep())
+    .pipe($.usemin({
+      js: [],
+      css: [],
+      es6: [],
+      scss: []
+    }))
     .pipe(gulp.dest(`${outFolder}`));
 });

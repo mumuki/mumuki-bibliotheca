@@ -11,7 +11,13 @@ html.no-js(lang='es')
     link(rel='stylesheet', href='styles/main.css')
     // endbuild
 
-  body
+    // build:js scripts/vendor.js
+    // bower:js
+    //- javascript bower dependencies, generated automatically
+    // endbower
+    // endbuild
+
+  body(ng-app='editor')
 
     //if lt IE 10
       p.browserupgrade
@@ -21,4 +27,9 @@ html.no-js(lang='es')
         a(href='http://browsehappy.com/') upgrade your browser
         |  to improve your experience.
 
-    <div> HELLO WORLD!! </div>
+    <div ng-cloak> {{ ['HELLO', 'WORLD!!'].join(' ') }} </div>
+
+    // build:es6(build) scripts/main.js
+    script(type='text/javascript', src='scripts/main.js')
+    // endbuild
+

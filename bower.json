@@ -1,0 +1,14 @@
+{
+  "name": "mumuki-editor",
+  "description": "Mumuki Editor",
+  "main": "src/scripts/app.js",
+  "authors": [
+    "Federico Scarpa"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "private": true,
+  "dependencies": {
+    "angular": "^1.5.8"
+  }
+}
