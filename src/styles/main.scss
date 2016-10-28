@@ -1,0 +1,8 @@
+@import 'mixines';
+
+body {
+  @include display-flex;
+  margin: 0;
+  padding: 0;
+  background-color: #EEE;
+}
