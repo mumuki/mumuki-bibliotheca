@@ -20,10 +20,11 @@ gulp.task('dev:build', (done) => {
 });
 
 gulp.task('dev:watch', () => {
-  gulp.watch(`${srcFolder}/views/**/*`, ['dev:views:jade']);
   gulp.watch(`${srcFolder}/index.jade`, ['dev:views:index']);
+  gulp.watch(`${srcFolder}/views/**/*`, ['dev:views:jade']);
   gulp.watch(`${srcFolder}/styles/**/*`, ['dev:styles']);
   gulp.watch(`${srcFolder}/scripts/**/*`, ['dev:scripts']);
+  gulp.watch(`${srcFolder}/bower_components/**/*`, ['dev:views:index']);
 });
 
 gulp.task('dev:serve', () => {
