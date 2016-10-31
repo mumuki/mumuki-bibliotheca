@@ -1,0 +1,15 @@
+@import "../bower_components/bootswatch-scss/flatly/variables";
+@import "../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/mixins";
+@import "../bower_components/bootstrap-sass/assets/stylesheets/bootstrap";
+@import "../bower_components/bootswatch-scss/flatly/bootswatch";
+
+@import 'mixines';
+@import 'cloak';
+@import 'mu-font';
+
+body {
+  @include display-flex;
+  margin: 0;
+  padding: 0;
+  background-color: white;
+}
