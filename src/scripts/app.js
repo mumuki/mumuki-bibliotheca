@@ -1,4 +1,5 @@
 angular
   .module('editor', [
-    'ui.router'
+    'ui.router',
+    'pascalprecht.translate',
   ]);
