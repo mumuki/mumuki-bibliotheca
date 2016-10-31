@@ -3,4 +3,4 @@ ul.mu-breadcrumb-list
     a(href='#')
       i.mu-font.logo
   li.mu-breadcrumb-list-item(ng-repeat='crumb in breadcrumb.list()', ng-class='{ "last": $last }')
-    a(href='', ng-click='breadcrumb.go(crumb)') {{ crumb.name | translate }}
+    a(href='', ng-click='breadcrumb.go(crumb.state)') {{ crumb.name | translate }}

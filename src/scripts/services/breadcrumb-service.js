@@ -11,8 +11,8 @@ angular
       return this._list.filter((crumb) => $state.includes(crumb.state))
     }
 
-    this.go = (crumb) => {
-      $state.go(crumb.state);
+    this.go = (state) => {
+      $state.go(state);
     }
 
   });
