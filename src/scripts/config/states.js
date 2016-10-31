@@ -11,6 +11,7 @@ angular
           },
           'navbar@editor': {
             templateUrl: 'views/navbar/navbar.html',
+            controller: 'NavbarController'
           }
         }
       });
