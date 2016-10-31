@@ -27,7 +27,7 @@ html.no-js(lang='es')
         a(href='http://browsehappy.com/') upgrade your browser
         |  to improve your experience.
 
-    div.ng-cloak.container {{ ['HELLO', 'WORLD!!'].join(' ') }}
+    div.ng-cloak.container(ui-view)
 
     // build:es6(build) scripts/main.js
     script(type='text/javascript', src='scripts/main.js')

@@ -1,1 +1,4 @@
-angular.module('editor', []);
+angular
+  .module('editor', [
+    'ui.router'
+  ]);

@@ -61,17 +61,12 @@ gulp.task('dev:styles', function () {
 });
 
 gulp.task('dev:views', (done) => {
-  runs(['dev:views:index'], done);
+  runs(['dev:views:index', 'dev:views:jade'], done);
 });
 
 gulp.task('dev:fonts', function () {
   return gulp.src(`${srcFolder}/fonts/**/*`)
     .pipe(gulp.dest(`${outFolder}/fonts`));
-});
-
-gulp.task('dev:images', function () {
-  return gulp.src(`${srcFolder}/images/**/*`)
-    .pipe(gulp.dest(`${outFolder}/images`));
 });
 
 gulp.task('dev:views:index', () => {
@@ -85,4 +80,15 @@ gulp.task('dev:views:index', () => {
       scss: []
     }))
     .pipe(gulp.dest(`${outFolder}`));
+});
+
+gulp.task('dev:views:jade', () => {
+  return gulp.src(`${srcFolder}/views/**/*.jade`)
+    .pipe($.pug({ pretty: true }))
+    .pipe(gulp.dest(`${outFolder}/views`));
+});
+
+gulp.task('dev:images', function () {
+  return gulp.src(`${srcFolder}/images/**/*`)
+    .pipe(gulp.dest(`${outFolder}/images`));
 });
