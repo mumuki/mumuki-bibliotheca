@@ -24,5 +24,22 @@
     "gulp-webserver": "^0.9.1",
     "gulp-wiredep": "0.0.0",
     "run-sequence": "^1.2.2"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "karma": "^1.3.0",
+    "karma-babel-preprocessor": "^6.0.1",
+    "karma-chrome-launcher": "^2.0.0",
+    "karma-mocha": "^1.2.0",
+    "karma-phantomjs-launcher": "^1.0.2",
+    "karma-sinon-chai": "^1.2.4",
+    "karma-spec-reporter": "0.0.26",
+    "lolex": "^1.5.1",
+    "mocha": "^3.1.2",
+    "phantomjs": "^2.1.7",
+    "phantomjs-prebuilt": "^2.1.13",
+    "sinon": "^1.17.6",
+    "sinon-chai": "^2.8.0",
+    "wiredep": "^4.0.0"
   }
 }
