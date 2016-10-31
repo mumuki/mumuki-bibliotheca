@@ -27,6 +27,9 @@
     width: 1.28571429em;
     text-align: center;
   }
+  &.logo:before {
+    content: '\0031';
+  }
   &.gobstones:before {
     content: '\0041';
   }
