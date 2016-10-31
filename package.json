@@ -4,7 +4,8 @@
   "description": "Mumuki Editor",
   "main": "index.js",
   "scripts": {
-    "test": "gulp test"
+    "test": "node_modules/.bin/gulp test",
+    "start": "node_modules/.bin/gulp dev"
   },
   "author": "Federico Scarpa",
   "license": "ISC",
