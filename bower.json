@@ -15,7 +15,12 @@
     "bootswatch-scss": "^3.2.0",
     "lodash": "^4.16.4",
     "angular-ui-router": "^0.3.1",
-    "angular-translate": "^2.13.0"
+    "angular-translate": "^2.13.0",
+    "auth0-lock": "8.2.0",
+    "auth0.js": "6.8.0",
+    "auth0-angular": "4.1.0",
+    "a0-angular-storage": "0.0.13",
+    "angular-jwt": "0.0.9"
   },
   "devDependencies": {
     "angular-mocks": "^1.5.8"
