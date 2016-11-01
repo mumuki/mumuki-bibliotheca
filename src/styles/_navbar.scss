@@ -1,14 +1,10 @@
 $breadcrumb-separator-gap: 10px;
 $breadcrumb-color-disable: #AAAAAA;
 
+$avatar-size: 50px;
+
 .mu-navbar {
   @include display-flex(row, space-between, center);
-
-  ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-  }
 
   height: 80px;
   border: none;
@@ -18,6 +14,12 @@ $breadcrumb-color-disable: #AAAAAA;
   }
 
   .mu-navbar-breadcrumb {
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
 
     @include display-flex(row, flex-start, center);
 
@@ -55,6 +57,16 @@ $breadcrumb-color-disable: #AAAAAA;
           a { color: $breadcrumb-color-disable }
         }
       }
+    }
+  }
+
+  img {
+    &.mu-profile-avatar {
+      width: $avatar-size;
+      height: $avatar-size;
+      border-radius: 50%;
+      object-fit: cover;
+      cursor: pointer;
     }
   }
 }
