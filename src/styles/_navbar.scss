@@ -1,5 +1,4 @@
 $breadcrumb-separator-gap: 10px;
-$breadcrumb-color-disable: #AAAAAA;
 
 $avatar-size: 50px;
 
@@ -52,9 +51,8 @@ $avatar-size: 50px;
           }
         }
         &.last {
-          color: $breadcrumb-color-disable;
-          pointer-events: none;
-          a { color: $breadcrumb-color-disable }
+          @extend .mu-disabled;
+          a { color: $mu-color-disabled }
         }
       }
     }
