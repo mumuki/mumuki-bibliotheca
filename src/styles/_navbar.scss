@@ -38,16 +38,18 @@ $avatar-size: 50px;
           margin: 0 $breadcrumb-separator-gap;
         }
         &.brand {
-          font-size: 60px;
-          margin-right: -8px;
+          font-size: 44px;
           &:before {
             content: '';
             margin: 0;
           }
           a {
             color: $mu-color-primary;
-            &:hover { color: darken($mu-color-primary, 5%) }
             &:active { color: darken($mu-color-primary, 10%) }
+            &:hover {
+              color: darken($mu-color-primary, 5%);
+              text-decoration: none;
+            }
           }
         }
         &.last {

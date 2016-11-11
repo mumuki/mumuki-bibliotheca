@@ -16,7 +16,7 @@ editorTest('Breadcrumb Service', (mocks) => {
 
   });
 
-  context('on navigation it\'s called with correct arguments', () => {
+  context('on navigation it is called with correct arguments', () => {
 
     beforeEach(inject((_$state_) => {
       mocks.state = sinon.mock(_$state_);

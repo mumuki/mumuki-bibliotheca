@@ -36,7 +36,7 @@ gulp.task('dev:serve', () => {
     .pipe($.webserver({
       open: true,
       port: 8080,
-      host: 'localmumuki.io',
+      host: 'editor.localmumuki.io',
       livereload: true
     }));
 });
@@ -72,7 +72,7 @@ gulp.task('dev:views', (done) => {
 });
 
 gulp.task('dev:fonts', function () {
-  return gulp.src(`${srcFolder}/fonts/**/*`)
+  return gulp.src([`${srcFolder}/fonts/**/*`, `${srcFolder}/bower_components/dev-awesome/dist/fonts/**/*`])
     .pipe(gulp.dest(`${outFolder}/fonts`));
 });
 
