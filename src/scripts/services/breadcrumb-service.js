@@ -4,7 +4,7 @@ angular
                                   $stateParams) {
 
     this._list = [
-      { name: 'editor', state: 'editor' }
+      { name: () => 'editor', state: 'editor' }
     ];
 
     this.list = () => {
@@ -12,7 +12,7 @@ angular
     }
 
     this.go = (state) => {
-      $state.go(state);
+      $state.go(state, $stateParams);
     }
 
   });
