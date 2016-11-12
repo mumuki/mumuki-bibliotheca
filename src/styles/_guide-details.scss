@@ -20,6 +20,11 @@ section[ui-view='content'] {
 
     font-size: 44px;
     margin: 10px 0 15px;
+    input {
+      width: 100%;
+      border: none;
+      margin-right: 15px;
+    }
   }
 
   .guide-detail-main {

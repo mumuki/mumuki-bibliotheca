@@ -4,6 +4,7 @@ angular
 
     description_paceholder: '...Ingrese una descripción...',
     editor: 'Editor',
+    guide_name_paceholder: '...Nombre de la guía...',
     guides: 'Guías',
     login: 'Iniciar sesión',
     logout: 'Cerrar sesión',

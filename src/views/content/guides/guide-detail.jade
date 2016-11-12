@@ -1,7 +1,7 @@
 .mu-content
 
   h1.guide-detail-title
-    span {{ guide.fullName() }}
+    input(type='text', ng-model='guide.name', placeholder='{{ "guide_name_paceholder" | translate }}')
     i.da(class='{{ guide.icon() }}')
 
   main.guide-detail-main
