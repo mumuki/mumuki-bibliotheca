@@ -21,7 +21,8 @@
     "auth0-angular": "4.1.0",
     "a0-angular-storage": "0.0.13",
     "angular-jwt": "0.0.9",
-    "dev-awesome": "0.0.3"
+    "dev-awesome": "0.0.3",
+    "bluebird": "3.3.1"
   },
   "devDependencies": {
     "angular-mocks": "^1.5.8"
