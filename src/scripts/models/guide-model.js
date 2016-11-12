@@ -9,7 +9,7 @@ angular
       }
 
       icon() {
-        return this.language;
+        return `da-${this.language}`;
       }
 
       fullName() {

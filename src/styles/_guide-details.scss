@@ -1,0 +1,33 @@
+section[ui-view='content'] {
+  width: 100%;
+}
+
+.ace_editor {
+  height: 200px;
+}
+
+.markdown {
+  margin-top: 10px;
+}
+
+.mu-content {
+  @include display-flex(column, flex-start, flex-start);
+  width: 100%;
+
+  .guide-detail-title {
+    @include display-flex(row, space-between, center);
+    width: 100%;
+
+    font-size: 44px;
+    margin: 10px 0 15px;
+  }
+
+  .guide-detail-main {
+    width: 100%;
+  }
+
+}
+
+.tabbable {
+  width: 100%;
+}

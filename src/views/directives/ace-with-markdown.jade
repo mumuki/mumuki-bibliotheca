@@ -1,0 +1,12 @@
+.tabbable
+  ul.nav.nav-tabs
+    li(role='presentation', ng-click='active("write")', ng-class='{ "active": selectedTab === "write" }')
+      a(href='', data-toggle='tab') Write
+    li(role='presentation', ng-click='active("preview")', ng-class='{ "active": selectedTab === "preview" }')
+      a(href='', data-toggle='tab') Preview
+
+  .tab-content
+    .tab-pane(ng-class='{ "active": selectedTab === "write" }')
+      div.markdown(ui-ace='aceEditor', ng-model='content')
+    .tab-pane(ng-class='{ "active": selectedTab === "preview" }')
+      div(ng-bind-html='html()')

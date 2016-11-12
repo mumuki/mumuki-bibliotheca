@@ -1,1 +1,8 @@
-span HOLA
+.mu-content
+
+  h1.guide-detail-title
+    span {{ guide.fullName() }}
+    i.da(class='{{ guide.icon() }}')
+
+  main.guide-detail-main
+    ace-with-markdown(content='guide.description', placeholder='{{ "description_paceholder" | translate }}')

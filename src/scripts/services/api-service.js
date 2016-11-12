@@ -25,4 +25,10 @@ angular
         .then((res) => Guide.from(res.data));
     };
 
+    this.renderMarkdown = (markdown) => {
+      return HTTP
+        .call('post',`${API}/markdown`, { markdown }, defaultConfig())
+        .then((res) => res.data.markdown);
+    };
+
   });

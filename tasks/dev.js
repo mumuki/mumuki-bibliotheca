@@ -84,7 +84,7 @@ gulp.task('dev:fonts', function () {
 gulp.task('dev:views:index', () => {
   return gulp.src(`${srcFolder}/index.jade`)
     .pipe($.pug({ pretty: true }))
-    .pipe($.wiredep())
+    .pipe($.wiredep({ includeSelf: true }))
     .pipe($.usemin({
       js: [],
       css: [],
