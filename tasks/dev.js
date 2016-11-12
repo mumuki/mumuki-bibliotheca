@@ -7,6 +7,7 @@ const $ = glps();
 
 const srcFolder = 'src';
 const outFolder = 'build';
+const configFolder = 'config';
 
 
 module.exports = (done) => {
@@ -35,7 +36,7 @@ gulp.task('dev:serve', () => {
     .pipe($.webserver({
       open: true,
       port: 8080,
-      host: 'localmumuki.io',
+      host: 'editor.localmumuki.io',
       livereload: true
     }));
 });
@@ -44,7 +45,7 @@ gulp.task('dev:clean', (done) => {
   return del(`${outFolder}`, { force: true });
 });
 
-gulp.task('dev:scripts', function () {
+gulp.task('dev:scripts', ['dev:config'], function () {
   return gulp.src(`${srcFolder}/scripts/**/*.js`)
     .pipe($.sourcemaps.init())
       .pipe($.babel({ presets: ['latest'] }))
@@ -52,6 +53,12 @@ gulp.task('dev:scripts', function () {
       .pipe($.concat('main.js'))
     .pipe($.sourcemaps.write('.'))
     .pipe(gulp.dest(`${outFolder}/scripts`));
+});
+
+gulp.task('dev:config', function () {
+  return gulp.src(`${configFolder}/${process.env.NODE_ENV}.js`)
+    .pipe($.concat('config.js'))
+    .pipe(gulp.dest(`${srcFolder}/scripts/config`));
 });
 
 gulp.task('dev:styles', function () {
@@ -65,7 +72,7 @@ gulp.task('dev:views', (done) => {
 });
 
 gulp.task('dev:fonts', function () {
-  return gulp.src(`${srcFolder}/fonts/**/*`)
+  return gulp.src([`${srcFolder}/fonts/**/*`, `${srcFolder}/bower_components/dev-awesome/dist/fonts/**/*`])
     .pipe(gulp.dest(`${outFolder}/fonts`));
 });
 

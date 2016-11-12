@@ -1,4 +1,6 @@
 let spec;
+let afterSpec;
+let beforeSpec;
 
 function editorTest(message, callback) {
 
@@ -15,11 +17,16 @@ function editorTest(message, callback) {
 
     beforeEach(module('editor'));
 
-    let specCount = 0;
-
     spec = (test) => {
-      const [n2, n1] = `0${++specCount}`.split('').reverse();
-      it(`expectation ${n1}${n2}`, test);
+      it(`expectation`, inject(test));
+    }
+
+    afterSpec = (tearDown) => {
+      afterEach(inject(tearDown));
+    }
+
+    beforeSpec = (setUp) => {
+      beforeEach(inject(setUp));
     }
 
     callback.bind(this)(mocks);

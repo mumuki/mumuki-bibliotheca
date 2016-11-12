@@ -1,4 +1,8 @@
 angular
   .module('editor', [
-    'ui.router'
+    'ui.router',
+    'pascalprecht.translate',
+    'auth0',
+    'angular-storage',
+    'angular-jwt',
   ]);

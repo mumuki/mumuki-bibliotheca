@@ -1,0 +1,6 @@
+ul.mu-breadcrumb-list
+  li.mu-breadcrumb-list-item.brand
+    a(href='#')
+      i.da.da-mumuki
+  li.mu-breadcrumb-list-item(ng-repeat='crumb in breadcrumb.list()', ng-class='{ "last": $last }')
+    a(href='', ng-click='breadcrumb.go(crumb.state)') {{ crumb.name() | translate }}

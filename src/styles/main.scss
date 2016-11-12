@@ -5,10 +5,12 @@
 
 @import 'mixines';
 @import 'cloak';
+@import 'colors';
 @import 'mu-font';
+@import 'styles';
+@import 'navbar';
 
 body {
-  @include display-flex;
   margin: 0;
   padding: 0;
   background-color: white;

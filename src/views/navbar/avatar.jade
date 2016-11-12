@@ -1,0 +1,15 @@
+.mu-profile
+
+  a(href='', ng-click='login()', ng-if='!auth.isLoggedIn()') {{ 'login' | translate }}
+
+  .dropdown(ng-if='auth.isLoggedIn()')
+
+    img.mu-profile-avatar.dropdown-toggle(ng-src='{{ auth.profile().picture }}', data-toggle='dropdown')
+
+    ul.dropdown-menu.dropdown-menu-right
+      li
+        a {{ auth.profile().name }}
+      li
+        .divider(role='separator')
+      li
+        a(href='', ng-click='auth.signout()') {{ 'logout' | translate }}
