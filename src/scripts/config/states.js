@@ -12,6 +12,9 @@ angular
           'navbar@editor': {
             templateUrl: 'views/navbar/navbar.html',
             controller: 'NavbarController'
+          },
+          'footer@editor': {
+            templateUrl: 'views/footer/footer.html'
           }
         }
       })
