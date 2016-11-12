@@ -29,7 +29,13 @@ angular
         authenticated: true,
         views: {
           'content@editor': {
-            template: 'Authenticated',
+            templateUrl: 'views/content/home.html',
+            controller: 'GuidesController',
+            resolve: {
+              guides: (Api) => {
+                return Api.getGuides();
+              }
+            }
           }
         }
       });
