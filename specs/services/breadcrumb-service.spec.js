@@ -4,7 +4,7 @@ editorTest('Breadcrumb Service', (mocks) => {
   context('on start it has only one crumb', () => {
 
     beforeSpec((_$state_) => {
-      sinon.stub(_$state_, 'includes', (state) => state === 'editor');
+      sinon.stub(_$state_, 'includes', (state) => state === 'editor.home.guides');
     });
 
     spec((Breadcrumb) => Breadcrumb.list().length.should.be.eql(1));
