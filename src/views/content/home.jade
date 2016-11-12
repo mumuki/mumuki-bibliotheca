@@ -1,0 +1,5 @@
+main.list-group
+  a.list-group-item(ng-repeat='item in list | orderBy:Model.sortBy()')
+    i.mu-list-item-icon.da(class='da-{{ item.icon() }}')
+    span.divider-vertical
+    span.text-primary {{ item.fullName() }}
