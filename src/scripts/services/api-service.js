@@ -16,9 +16,13 @@ angular
       return HTTP
         .call('get',`${API}/guides`, defaultConfig())
         .then((res) => res.data.guides)
-        .map((guide) => {
-          return Guide.from(guide);
-        });
+        .map((guide) => Guide.from(guide));
+    };
+
+    this.getGuide = ({ org, repo }) => {
+      return HTTP
+        .call('get',`${API}/guides/${org}/${repo}`, defaultConfig())
+        .then((res) => Guide.from(res.data));
     };
 
   });
