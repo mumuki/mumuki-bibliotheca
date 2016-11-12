@@ -8,6 +8,11 @@ angular
         views: {
           '@': {
             templateUrl: 'views/layout.html',
+            resolve: {
+              languages: (Api, Languages) => {
+                Api.getLanguages().then(Languages.set);
+              }
+            }
           },
           'navbar@editor': {
             templateUrl: 'views/navbar/navbar.html',

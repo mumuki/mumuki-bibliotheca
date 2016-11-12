@@ -25,6 +25,19 @@ section[ui-view='content'] {
       border: none;
       margin-right: 15px;
     }
+    .locale, .language {
+      display: flex;
+      align-self: center;
+      margin: 0 10px;
+    }
+    .dropdown-menu {
+      a {
+        color: $mu-color-primary;
+        i { width: 30px  }
+        span { text-transform: capitalize }
+        &:hover { color: white }
+      }
+    }
   }
 
   .guide-detail-main {

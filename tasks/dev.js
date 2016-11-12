@@ -17,7 +17,7 @@ module.exports = (done) => {
 
 
 gulp.task('dev:build', (done) => {
-  runs('dev:clean', 'dev:scripts', 'dev:styles', 'dev:views', 'dev:fonts', 'dev:images', done);
+  runs('dev:clean', 'dev:scripts', 'dev:styles', 'dev:views', 'dev:fonts', 'dev:images', 'dev:flags', done);
 });
 
 gulp.task('dev:watch', () => {
@@ -79,6 +79,11 @@ gulp.task('dev:fonts', function () {
   ]
   return gulp.src(fonts)
     .pipe(gulp.dest(`${outFolder}/fonts`));
+});
+
+gulp.task('dev:flags', function () {
+  return gulp.src(`${srcFolder}/bower_components/flag-icon-css/flags/**/*`)
+    .pipe(gulp.dest(`${outFolder}/flags`));
 });
 
 gulp.task('dev:views:index', () => {

@@ -21,6 +21,14 @@ angular
         return { org, repo };
       }
 
+      setLocale(locale) {
+        this.locale = locale;
+      }
+
+      setLanguage(language) {
+        this.language = language;
+      }
+
       static from(guide = {}) {
         return new Guide(guide);
       }

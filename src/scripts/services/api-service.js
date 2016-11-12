@@ -25,6 +25,12 @@ angular
         .then((res) => Guide.from(res.data));
     };
 
+    this.getLanguages = () => {
+      return HTTP
+        .call('get',`${API}/languages`, defaultConfig())
+        .then((res) => res.data.languages);
+    };
+
     this.renderMarkdown = (markdown) => {
       return HTTP
         .call('post',`${API}/markdown`, { markdown }, defaultConfig())
