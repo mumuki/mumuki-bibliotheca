@@ -6,5 +6,6 @@ angular
     guides: 'Guides',
     login: 'Log in',
     logout: 'Log out',
+    search: 'Search',
 
   });

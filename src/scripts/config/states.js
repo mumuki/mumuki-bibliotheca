@@ -36,7 +36,7 @@ angular
         authenticated: true,
         views: {
           'content@editor': {
-            templateUrl: 'views/content/home.html',
+            templateUrl: 'views/content/guides/guides.html',
             controller: 'GuidesController',
             resolve: {
               guides: (Api) => {
