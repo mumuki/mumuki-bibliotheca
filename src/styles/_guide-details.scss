@@ -2,14 +2,6 @@ section[ui-view='content'] {
   width: 100%;
 }
 
-.ace_editor {
-  height: 200px;
-}
-
-.markdown {
-  margin-top: 10px;
-}
-
 .mu-content {
   @include display-flex(column, flex-start, flex-start);
   width: 100%;
@@ -44,8 +36,4 @@ section[ui-view='content'] {
     width: 100%;
   }
 
-}
-
-.tabbable {
-  width: 100%;
 }

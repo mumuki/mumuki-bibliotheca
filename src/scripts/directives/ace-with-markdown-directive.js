@@ -1,6 +1,7 @@
 angular
   .module('editor')
   .directive('aceWithMarkdown', function ($sce,
+                                          $filter,
                                           AceEditor,
                                           Api) {
 
@@ -9,68 +10,63 @@ angular
       restrict: 'E',
       templateUrl: 'views/directives/ace-with-markdown.html',
       scope: {
+        title: '@',
         content: '=',
         placeholder: '@'
       },
       controller: ($scope) => {
 
-        let _html;
-
-        const MU = 'ム';
-        const MU_PATTERN = ':mu:';
+        const translate = $filter('translate');
 
         const WRITE = 'write';
         const PREVIEW = 'preview';
 
-        const getCursorPosition = (content) => {
-          const linesBeforeMu = content.split(MU_PATTERN)[0].split('\n');
-          const row = linesBeforeMu.length - 1;
-          const column = linesBeforeMu[row].length + 1;
-          return { row, column };
-        }
-
-        const replaceMu = (editor, content) => {
-          if (_(content).includes(MU_PATTERN)) {
-            const cursorPosition = getCursorPosition(content);
-            editor.getSession().setValue(content.replace(MU_PATTERN, MU));
-            editor.selection.moveTo(cursorPosition.row, cursorPosition.column);
-          }
-        };
+        let _selectedTab = WRITE;
+        let _html;
 
         const renderMarkdown = () => {
           return Api.renderMarkdown($scope.content).then((markdown) => _html = markdown);
         };
 
+        const active = (tab) => {
+          _selectedTab = tab;
+        };
+
+        const update = () => {
+          AceEditor.update($scope.editor, translate($scope.placeholder));
+        }
+
         $scope.html = () => {
           return $sce.trustAsHtml(_html);
         }
 
-        $scope.active = (tab) => {
-          $scope.selectedTab = tab;
-        };
+        $scope.write = () => active(WRITE);
+        $scope.preview = () => active(PREVIEW);
+
+        $scope.activeWriteClass = () => ({ active: _selectedTab === WRITE });
+        $scope.activePreviewClass = () => ({ active: _selectedTab === PREVIEW });
 
         $scope.content = $scope.content || '';
-        $scope.selectedTab = WRITE;
 
         $scope.aceEditor = AceEditor.defaults({
           mode: 'markdown',
           showGutter: false,
           rendererOptions: { minLines: 1 },
+          onChange: () => update(),
           onLoad: (editor) => {
             $scope.editor = editor;
             AceEditor.onLoadDefault(editor);
+            update();
             editor.setHighlightGutterLine(false);
-            const watchDestroyer = $scope.$watch('content', (content) => replaceMu(editor, content));
-            $scope.$on('destroy', () => watchDestroyer);
-          },
-          onChange: () => AceEditor.update($scope.editor, $scope.placeholder)
-        });
-
-        $scope.$watch('selectedTab', (newVal) => {
-          if (newVal === PREVIEW) {
-            renderMarkdown().then(() => $scope.$apply());
           }
         });
+
+        $scope.$watch(() => _selectedTab, (newVal) => {
+          if (newVal === PREVIEW) {
+           renderMarkdown().then(() => $scope.$apply());
+          }
+        });
+
       }
 
     }
