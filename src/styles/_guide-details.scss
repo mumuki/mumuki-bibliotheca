@@ -1,3 +1,5 @@
+$list-columns: 200px 3;
+
 section[ui-view='content'] {
   width: 100%;
 }
@@ -34,6 +36,22 @@ section[ui-view='content'] {
 
   .guide-detail-main {
     width: 100%;
+
+
+    .guide-detail-exercises {
+      h3 {
+        text-transform: capitalize;
+      }
+      .progress-listing {
+        -webkit-columns: $list-columns;
+        -moz-columns: $list-columns;
+        columns: $list-columns;
+        list-style: none;
+        .fa-circle {
+          margin-right: 3px;
+        }
+      }
+    }
   }
 
 }

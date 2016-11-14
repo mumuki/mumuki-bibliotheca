@@ -1,8 +1,7 @@
 .tabbable
   ul.nav.nav-tabs
     li
-      h4
-        strong {{ title | translate }}
+      h3 {{ title | translate }}
     li(role='presentation', ng-click='write()', ng-class='activeWriteClass()')
       a(href='', data-toggle='tab') Write
     li(role='presentation', ng-click='preview()', ng-class='activePreviewClass()')

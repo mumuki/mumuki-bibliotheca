@@ -8,10 +8,9 @@
 
 .tabbable {
   width: 100%;
-  h4 {
-    font-size: 21px;
+  h3 {
     margin: 0;
-    padding: 10px 10px 0 0;
+    padding: 5.5px 10px 0 0;
   }
 }
 
@@ -30,12 +29,14 @@
 
 .markdown-rendered {
 
-  code {
-    padding: 2px 4px;
-    font-size: 90%;
-    color: $mu-color-code;
-    background-color: $mu-color-code-bg;
-    border-radius: 4px;
+  p {
+    code {
+      padding: 2px 4px;
+      font-size: 90%;
+      color: $mu-color-code;
+      background-color: $mu-color-code-bg;
+      border-radius: 4px;
+    }
   }
 
   blockquote {

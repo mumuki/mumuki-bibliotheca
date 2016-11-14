@@ -4,6 +4,7 @@ angular
 
     blockquote: 'Blockquote',
     code: 'Code',
+    content: 'Content',
     corollary: 'Corollary',
     corollary_paceholder: '...Enter the corollary...',
     description: 'Description',
@@ -19,6 +20,8 @@ angular
     logout: 'Log out',
     search: 'Search',
     spanish: 'Spanish',
+    teacher_info: 'Teacher information',
+    teacher_info_paceholder: '...Enter the teacher info...',
     text: 'Texto',
 
   });

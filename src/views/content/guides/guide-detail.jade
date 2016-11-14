@@ -26,4 +26,15 @@
   main.guide-detail-main
     ace-with-markdown(title='description' content='guide.description', placeholder='description_paceholder')
     br
+    .guide-detail-exercises
+      h3 {{ 'content' | translate }}
+      ul.progress-listing
+        li(ng-repeat='exercise in guide.exercises')
+          a(href='')
+            i.fa.fa-fw.fa-circle.text-muted
+            span {{ $index + 1 }}. {{ exercise.name }}
+
+    br
     ace-with-markdown(title='corollary', content='guide.corollary', placeholder='corollary_paceholder')
+    br
+    ace-with-markdown(title='teacher_info', content='guide.teacher_info', placeholder='teacher_info_paceholder')
