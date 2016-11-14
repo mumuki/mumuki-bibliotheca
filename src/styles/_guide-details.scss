@@ -1,5 +1,19 @@
 $list-columns: 200px 3;
 
+span[contenteditable='true'] {
+  display: inline;
+  cursor: text;
+  color: darken($mu-color-content-editable, 50%);
+  &:hover {
+    border: 2px solid $mu-color-content-editable;
+  }
+  &:empty:before {
+    color: darken($mu-color-content-editable, 25%);
+    content: attr(placeholder);
+    cursor: text;
+  }
+}
+
 section[ui-view='content'] {
   width: 100%;
 }
@@ -50,6 +64,13 @@ section[ui-view='content'] {
         .fa-circle {
           margin-right: 3px;
         }
+      }
+    }
+    .guide-detail-license {
+      input {
+        margin: 0;
+        padding: 0;
+        border: none;
       }
     }
   }

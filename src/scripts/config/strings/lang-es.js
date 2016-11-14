@@ -2,6 +2,8 @@ angular
   .module('editor')
   .constant('LANG_ES', {
 
+    authors: 'Autores',
+    authors_placeholder: '...Nombre Apellido...',
     blockquote: 'Cita',
     code: 'Código',
     content: 'Contenido',

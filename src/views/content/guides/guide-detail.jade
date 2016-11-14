@@ -38,3 +38,16 @@
     ace-with-markdown(title='corollary', content='guide.corollary', placeholder='corollary_paceholder')
     br
     ace-with-markdown(title='teacher_info', content='guide.teacher_info', placeholder='teacher_info_paceholder')
+    br
+    .guide-detail-license
+      h3 {{ 'authors' | translate }}
+      p
+        span Esta guía fue desarrollada por
+        span &nbsp;
+        span(contenteditable='true', ng-model='guide.authors', placeholder='{{ "authors_placeholder" | translate }}')
+        span &nbsp;
+        a(href='') y muchas personas más,
+        span &nbsp;
+        span bajo los términos de la
+        span &nbsp;
+        a(href='https://creativecommons.org/licenses/by-sa/4.0/') Licencia Creative Commons Compartir-Igual, 4.0.
