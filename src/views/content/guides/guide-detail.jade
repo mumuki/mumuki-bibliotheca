@@ -24,7 +24,7 @@
             span {{ language.name }}
 
   main.guide-detail-main
-    ace-with-markdown(title='description' content='guide.description', placeholder='description_paceholder')
+    ace-with-markdown(title='description' content='guide.description')
     br
     .guide-detail-exercises
       h3 {{ 'content' | translate }}
@@ -35,9 +35,11 @@
             span {{ $index + 1 }}. {{ exercise.name }}
 
     br
-    ace-with-markdown(title='corollary', content='guide.corollary', placeholder='corollary_paceholder')
+    ace-with-markdown(title='corollary', content='guide.corollary')
     br
-    ace-with-markdown(title='teacher_info', content='guide.teacher_info', placeholder='teacher_info_paceholder')
+    ace-with-markdown(title='teacher_info', content='guide.teacher_info')
+    br
+    ace-editor(content='guide.extra_code', mode='guide.language', title='extra_code')
     br
     .guide-detail-license
       h3 {{ 'authors' | translate }}

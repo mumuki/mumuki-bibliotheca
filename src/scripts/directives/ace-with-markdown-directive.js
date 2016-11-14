@@ -12,7 +12,6 @@ angular
       scope: {
         title: '@',
         content: '=',
-        placeholder: '@'
       },
       controller: ($scope) => {
 
@@ -33,7 +32,7 @@ angular
         };
 
         const update = () => {
-          AceEditor.update($scope.editor, translate($scope.placeholder));
+          AceEditor.update($scope.editor, $scope.placeholder);
         }
 
         $scope.html = () => {
@@ -47,6 +46,7 @@ angular
         $scope.activePreviewClass = () => ({ active: _selectedTab === PREVIEW });
 
         $scope.content = $scope.content || '';
+        $scope.placeholder = translate(`${$scope.title}_placeholder`);
 
         $scope.aceEditor = AceEditor.defaults({
           mode: 'markdown',
