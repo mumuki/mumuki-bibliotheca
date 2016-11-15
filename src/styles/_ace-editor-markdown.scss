@@ -1,9 +1,7 @@
 .ace_editor {
   padding-bottom: 30px;
-}
-
-.markdown {
-  margin-top: 10px;
+  border-radius: 5px;
+  border: 1px solid $mu-color-content-editable;
 }
 
 .tabbable {
@@ -18,7 +16,6 @@
   @include display-flex(row, space-around, center);
   padding: 2.5px 0 5px;
   margin: 5px 0;
-  border-bottom: 1px solid $mu-color-content-editable;
   font-size: 14px;
   a {
     color: lighten($mu-color-primary, 10%);

@@ -51,7 +51,7 @@ angular
         $scope.aceEditor = AceEditor.defaults({
           mode: 'markdown',
           showGutter: false,
-          rendererOptions: { minLines: 1 },
+          rendererOptions: { minLines: 10 },
           onChange: () => update(),
           onLoad: (editor) => {
             $scope.editor = editor;
