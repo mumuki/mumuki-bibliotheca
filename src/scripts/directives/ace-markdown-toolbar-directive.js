@@ -71,7 +71,7 @@ angular
           $scope.editor.selection.setSelectionRange(range);
         }
         $scope.quote = () => {
-          insertBefore(translate('quote'), '> ');
+          insertBefore(translate('blockquote'), '> ');
         }
         $scope.mumuki = () => {
           $scope.editor.insert(MU);

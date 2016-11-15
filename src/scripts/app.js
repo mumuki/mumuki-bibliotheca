@@ -7,5 +7,4 @@ angular
     'angular-jwt',
     'ui.ace',
     'ngSanitize',
-    'contenteditable',
   ]);
