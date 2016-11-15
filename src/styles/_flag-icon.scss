@@ -6,9 +6,14 @@
   display: inline-block;
   width: 1.33333333em;
   line-height: 1em;
+  &::before {
+    content: "\00a0";
+  }
 }
 
-@each $flag in jp kr cn us fr es it ru gb uk de {
+$flags: jp kr cn us fr es it ru gb uk de;
+
+@each $flag in $flags {
   .flag-icon-#{$flag} {
     background-image:url(../assets/emojis/#{$flag}.png)
   }
