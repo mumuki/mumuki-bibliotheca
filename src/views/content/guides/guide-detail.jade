@@ -24,6 +24,7 @@
             span {{ language.name }}
 
   main.guide-detail-main
+    br
     ace-with-markdown(title='description' content='guide.description')
     br
     .guide-detail-exercises
@@ -43,13 +44,9 @@
     br
     .guide-detail-license
       h3 {{ 'authors' | translate }}
-      p
-        span Esta guía fue desarrollada por
-        span &nbsp;
-        span(contenteditable='true', ng-model='guide.authors', placeholder='{{ "authors_placeholder" | translate }}')
-        span &nbsp;
-        a(href='') y muchas personas más,
-        span &nbsp;
-        span bajo los términos de la
-        span &nbsp;
-        a(href='https://creativecommons.org/licenses/by-sa/4.0/') Licencia Creative Commons Compartir-Igual, 4.0.
+      input(type='text', ng-model='guide.authors', placeholder='{{ "authors_placeholder" | translate }}')
+      br
+      h3 {{ 'collaborators' | translate }}
+      input(type='text', ng-model='guide.collaborators', placeholder='{{ "collaborators_placeholder" | translate }}')
+      br
+      .disclaimer(ng-bind-html='"license_disclaimer" | translate')
