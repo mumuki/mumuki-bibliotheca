@@ -3,7 +3,7 @@ angular
   .constant('CONFIG', {
 
     bibliotheca: {
-      url: 'localmumuki.io:9292'
+      url: 'http://bibliotheca.localmumuki.io:9292'
     },
 
     auth: {
