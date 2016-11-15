@@ -36,6 +36,7 @@ $avatar-size: 50px;
         &:before {
           content: '/';
           margin: 0 $breadcrumb-separator-gap;
+          color: $mu-color-disabled;
         }
         &.brand {
           font-size: 44px;
