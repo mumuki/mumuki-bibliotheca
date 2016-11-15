@@ -17,13 +17,14 @@ module.exports = (done) => {
 
 
 gulp.task('dev:build', (done) => {
-  runs('dev:clean', 'dev:scripts', 'dev:styles', 'dev:views', 'dev:fonts', 'dev:images', 'dev:flags', done);
+  runs('dev:clean', 'dev:scripts', 'dev:styles', 'dev:views', 'dev:fonts', 'dev:images', 'dev:assets', done);
 });
 
 gulp.task('dev:watch', () => {
   gulp.watch(`${srcFolder}/index.jade`, ['dev:views:index']);
   gulp.watch(`${srcFolder}/views/**/*`, ['dev:views:jade']);
   gulp.watch(`${srcFolder}/fonts/**/*`, ['dev:fonts']);
+  gulp.watch(`${srcFolder}/assets/**/*`, ['dev:assets']);
   gulp.watch(`${srcFolder}/images/**/*`, ['dev:images']);
   gulp.watch(`${srcFolder}/styles/**/*`, ['dev:styles']);
   gulp.watch(`${srcFolder}/scripts/**/*`, ['dev:scripts']);
@@ -81,9 +82,9 @@ gulp.task('dev:fonts', function () {
     .pipe(gulp.dest(`${outFolder}/fonts`));
 });
 
-gulp.task('dev:flags', function () {
-  return gulp.src(`${srcFolder}/bower_components/flag-icon-css/flags/**/*`)
-    .pipe(gulp.dest(`${outFolder}/flags`));
+gulp.task('dev:assets', function () {
+  return gulp.src(`${srcFolder}/assets/**/*`)
+    .pipe(gulp.dest(`${outFolder}/assets/`));
 });
 
 gulp.task('dev:views:index', () => {

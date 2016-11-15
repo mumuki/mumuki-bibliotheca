@@ -42,6 +42,7 @@ section[ui-view='content'] {
       a {
         color: $mu-color-primary;
         i { width: 30px  }
+        .flag-icon { margin: 0 7px 0 -7px }
         span { text-transform: capitalize }
         &:hover { color: white }
       }

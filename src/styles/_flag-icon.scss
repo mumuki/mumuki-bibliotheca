@@ -1,0 +1,15 @@
+.flag-icon {
+  background-size: contain;
+  background-position: 50%;
+  background-repeat: no-repeat;
+  position: relative;
+  display: inline-block;
+  width: 1.33333333em;
+  line-height: 1em;
+}
+
+@each $flag in jp kr cn us fr es it ru gb uk de {
+  .flag-icon-#{$flag} {
+    background-image:url(../assets/emojis/#{$flag}.png)
+  }
+}
