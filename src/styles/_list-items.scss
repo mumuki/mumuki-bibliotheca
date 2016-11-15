@@ -1,3 +1,21 @@
+$filter-width: 45px;
+$filter-height: 40px;
+
 .mu-list-item-icon {
   margin: 0 5px;
+}
+
+.input-group.filter {
+  @include display-flex(row, center, center);
+  margin-bottom: 20px;
+  width: 100%;
+
+  .input-group-addon {
+    width: $filter-width;
+    height: $filter-height;
+  }
+  .form-control {
+    width: calc(100% - $filter-width);
+    height: $filter-height;
+  }
 }

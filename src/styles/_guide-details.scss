@@ -1,0 +1,83 @@
+$list-columns: 200px 3;
+
+span[contenteditable='true'] {
+  display: inline;
+  cursor: text;
+  color: darken($mu-color-content-editable, 50%);
+  &:hover {
+    border: 2px solid $mu-color-content-editable;
+  }
+  &:empty:before {
+    color: darken($mu-color-content-editable, 25%);
+    content: attr(placeholder);
+    cursor: text;
+  }
+}
+
+section[ui-view='content'] {
+  width: 100%;
+}
+
+input {
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid $mu-color-content-editable;
+}
+
+.mu-content {
+  @include display-flex(column, flex-start, flex-start);
+  width: 100%;
+
+  .guide-detail-title {
+    @include display-flex(row, space-between, center);
+    width: 100%;
+
+    font-size: 44px;
+    margin: 10px 0 15px;
+    input {
+      margin-right: 15px;
+    }
+    .locale, .language {
+      display: flex;
+      align-self: center;
+      margin: 0 10px;
+    }
+    .dropdown-menu {
+      a {
+        color: $mu-color-primary;
+        i { width: 30px  }
+        .flag-icon { margin: 0 7px 0 -7px }
+        span { text-transform: capitalize }
+        &:hover { color: white }
+      }
+    }
+  }
+
+  .guide-detail-main {
+    width: 100%;
+
+
+    .guide-detail-exercises {
+      h3 {
+        text-transform: capitalize;
+      }
+      .progress-listing {
+        -webkit-columns: $list-columns;
+        -moz-columns: $list-columns;
+        columns: $list-columns;
+        list-style: none;
+        .fa-circle {
+          margin-right: 3px;
+        }
+      }
+    }
+    .guide-detail-license {
+      .disclaimer {
+        margin-top: 20px;
+      }
+      input {
+        padding: 0 5px;
+      }
+    }
+  }
+}

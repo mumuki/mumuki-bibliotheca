@@ -5,4 +5,6 @@ angular
     'auth0',
     'angular-storage',
     'angular-jwt',
+    'ui.ace',
+    'ngSanitize',
   ]);

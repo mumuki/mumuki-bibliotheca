@@ -9,7 +9,7 @@ angular
       }
 
       icon() {
-        return this.language;
+        return `da-${this.language}`;
       }
 
       fullName() {
@@ -19,6 +19,14 @@ angular
       params() {
         const [org, repo] = this.slug.split('/');
         return { org, repo };
+      }
+
+      setLocale(locale) {
+        this.locale = locale;
+      }
+
+      setLanguage(language) {
+        this.language = language;
       }
 
       static from(guide = {}) {
