@@ -72,7 +72,12 @@ gulp.task('dev:views', (done) => {
 });
 
 gulp.task('dev:fonts', function () {
-  return gulp.src([`${srcFolder}/fonts/**/*`, `${srcFolder}/bower_components/dev-awesome/dist/fonts/**/*`])
+  const fonts = [
+    `${srcFolder}/fonts/**/*`,
+    `${srcFolder}/bower_components/dev-awesome/dist/fonts/**/*`,
+    `${srcFolder}/bower_components/font-awesome/fonts/**/*`
+  ]
+  return gulp.src(fonts)
     .pipe(gulp.dest(`${outFolder}/fonts`));
 });
 

@@ -1,10 +1,15 @@
 angular
   .module('editor')
   .service('Breadcrumb', function($state,
-                                  $stateParams) {
+                                  $stateParams,
+                                  $filter,
+                                  CurrentGuide) {
+
+    const $translate = $filter('translate');
 
     this._list = [
-      { name: () => 'editor', state: 'editor' }
+      { name: () => $translate('guides'), state: 'editor.home.guides' },
+      { name: () => CurrentGuide.get().fullName(), state: 'editor.home.guides.detail' },
     ];
 
     this.list = () => {

@@ -2,6 +2,7 @@
 @import "../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/mixins";
 @import "../bower_components/bootstrap-sass/assets/stylesheets/bootstrap";
 @import "../bower_components/bootswatch-scss/flatly/bootswatch";
+@import "../bower_components/font-awesome/scss/font-awesome.scss";
 
 @import 'mixines';
 @import 'cloak';
@@ -10,9 +11,24 @@
 @import 'styles';
 @import 'navbar';
 @import 'list-items';
+@import 'footer';
 
-body {
+html, body {
+  height: 100%;
   margin: 0;
   padding: 0;
   background-color: white;
+  a {
+    color: $mu-color-link;
+    &:hover,
+    &:active,
+    &:focus {
+      color: $mu-color-link;
+    }
+  }
+}
+
+.mu-page {
+  position: relative;
+  min-height: 100%;
 }
