@@ -1,5 +1,7 @@
+$font-size: 17px;
+
 body {
   font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 17px;
+  font-size: $font-size;
   line-height: 1.8;
 }

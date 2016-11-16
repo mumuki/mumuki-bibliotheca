@@ -9,6 +9,11 @@
   h3 {
     margin: 0;
     padding: 5.5px 10px 0 0;
+    .fa {
+      margin-right: 5px;
+      font-size: $font-size;
+      vertical-align: center;
+    }
   }
 }
 
