@@ -72,12 +72,14 @@ input {
       }
     }
     .guide-detail-license {
-      .disclaimer {
-        margin-top: 20px;
+      h3 {
+        margin-top: 40px;
+        margin-bottom: 15px
       }
       input {
         padding: 0 5px;
       }
     }
   }
+
 }
