@@ -2,18 +2,21 @@ angular
   .module('editor')
   .directive('aceEditor', function ($sce,
                                     $filter,
-                                    AceEditor) {
+                                    AceEditor,
+                                    Foldable) {
 
     return {
 
       restrict: 'E',
       templateUrl: 'views/directives/ace-editor.html',
-      scope: {
+      scope: Foldable.scope({
         mode: '=',
         title: '@',
-        content: '=',
-      },
+        content: '='
+      }),
       controller: ($scope) => {
+
+        Foldable.from($scope);
 
         const translate = $filter('translate');
 

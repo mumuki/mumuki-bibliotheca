@@ -36,11 +36,11 @@
             span {{ $index + 1 }}. {{ exercise.name }}
 
     br
-    ace-with-markdown(title='corollary', content='guide.corollary')
+    ace-with-markdown(title='corollary', content='guide.corollary', foldable='true')
     br
-    ace-with-markdown(title='teacher_info', content='guide.teacher_info')
+    ace-with-markdown(title='teacher_info', content='guide.teacher_info', foldable='true')
     br
-    ace-editor(content='guide.extra_code', mode='guide.language', title='extra_code')
+    ace-editor(content='guide.extra_code', mode='guide.language', title='extra_code', foldable='true')
     br
     .guide-detail-license
       h3 {{ 'authors' | translate }}
