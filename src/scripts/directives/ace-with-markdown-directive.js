@@ -3,17 +3,20 @@ angular
   .directive('aceWithMarkdown', function ($sce,
                                           $filter,
                                           AceEditor,
-                                          Api) {
+                                          Api,
+                                          Foldable) {
 
     return {
 
       restrict: 'E',
       templateUrl: 'views/directives/ace-with-markdown.html',
-      scope: {
+      scope: Foldable.scope({
         title: '@',
         content: '=',
-      },
+      }),
       controller: ($scope) => {
+
+        Foldable.from($scope);
 
         const translate = $filter('translate');
 

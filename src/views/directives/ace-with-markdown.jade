@@ -1,13 +1,21 @@
 .tabbable
-  ul.nav.nav-tabs
+  ul.nav.nav-tabs(ng-class='{ "border-bottom-none": !showMinimized() }')
     li
-      h3 {{ title | translate }}
-    li(role='presentation', ng-click='write()', ng-class='activeWriteClass()')
+      h3
+        span {{ title | translate }}
+        i.pointer.fa.fa-fw(
+            ng-if='isFoldable',
+            ng-click='toggleMinimized()',
+            ng-class='{                             \
+              "fa-plus-square-o": isMinimized(),    \
+              "fa-minus-square-o": !isMinimized(),  \
+            }')
+    li(role='presentation', ng-click='write()', ng-class='activeWriteClass()', ng-show='showMinimized()')
       a(href='', data-toggle='tab') Write
-    li(role='presentation', ng-click='preview()', ng-class='activePreviewClass()')
+    li(role='presentation', ng-click='preview()', ng-class='activePreviewClass()', ng-show='showMinimized()')
       a(href='', data-toggle='tab') Preview
 
-  .tab-content
+  .tab-content(ng-show='showMinimized()')
     .tab-pane(ng-class='activeWriteClass()')
       ace-markdown-toolbar(editor='editor')
       .markdown(ui-ace='aceEditor', ng-model='content')

@@ -12,6 +12,25 @@
   }
 }
 
+h3 {
+  margin-bottom: 10px;
+  .fa-plus-square-o, .fa-minus-square-o {
+    margin-left: 5px;
+    font-size: $font-size;
+    vertical-align: center;
+  }
+}
+
+.border-bottom-none {
+  border-bottom: none;
+}
+
+ace-editor {
+  h3 {
+    margin-top: 10px;
+  }
+}
+
 .markdown-panel {
   @include display-flex(row, space-around, center);
   padding: 2.5px 0 5px;
