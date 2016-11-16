@@ -3,10 +3,7 @@ angular
   .controller('GuideDetailController', function($scope,
                                                 guide,
                                                 Locales,
-                                                Languages,
-                                                CurrentGuide) {
-
-    CurrentGuide.set(guide);
+                                                Languages) {
 
     $scope.guide = guide;
 

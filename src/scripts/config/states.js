@@ -59,8 +59,9 @@ angular
             templateUrl: 'views/content/guides/guide-detail.html',
             controller: 'GuideDetailController',
             resolve: {
-              guide: (Api, $stateParams) => {
-                return Api.getGuide($stateParams);
+              guide: (Api, CurrentGuide, $stateParams) => {
+                return Api.getGuide($stateParams)
+                          .tap((guide) => CurrentGuide.set(guide));
               }
             }
           }
@@ -75,7 +76,7 @@ angular
             controller: 'ExerciseDetailController',
             resolve: {
               exercise: (CurrentGuide, $stateParams) => {
-                return CurrentGuide.getExercise($stateParams.eid);
+                return CurrentGuide.get().getExercise($stateParams.eid);
               }
             }
           }

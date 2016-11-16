@@ -2,9 +2,10 @@ angular
   .module('editor')
   .controller('ExerciseDetailController', function ($scope,
                                                     exercise,
-                                                    CurrentGuide) {
+                                                    Languages) {
 
-    $scope.guide = CurrentGuide.get();
+    $scope.guide = exercise.guide();
     $scope.exercise = exercise;
+    $scope.languages = Languages;
 
   });

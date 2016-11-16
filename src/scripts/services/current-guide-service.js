@@ -1,6 +1,6 @@
 angular
   .module('editor')
-  .service('CurrentGuide', function (Exercise) {
+  .service('CurrentGuide', function () {
 
     let _guide;
 
@@ -9,12 +9,7 @@ angular
     }
 
     this.get = () => {
-      return _guide
-    }
-
-    this.getExercise = (id) => {
-      const exercise = _.chain(this.get()).get('exercises', []).find({ id }).value();
-      return Exercise.from(exercise);
+      return _guide;
     }
 
   });
