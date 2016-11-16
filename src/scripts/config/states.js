@@ -65,7 +65,23 @@ angular
             }
           }
         }
+      })
+      .state('editor.home.guides.detail.exercise', {
+        url: '/exercises/:eid',
+        authenticated: true,
+        views: {
+          'content@editor': {
+            templateUrl: 'views/content/guides/exercise-detail.html',
+            controller: 'ExerciseDetailController',
+            resolve: {
+              exercise: (CurrentGuide, $stateParams) => {
+                return CurrentGuide.getExercise($stateParams.eid);
+              }
+            }
+          }
+        }
       });
+
     $urlRouterProvider.otherwise(($injector) => {
       $injector.get('$state').go('editor.home.guides', {}, { reload: true, location: 'replace' });
     });

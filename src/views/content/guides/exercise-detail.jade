@@ -1,0 +1,20 @@
+.mu-content
+
+  h1.guide-detail-title
+    input(type='text', ng-model='exercise.name', placeholder='{{ "exercise_name_placeholder" | translate }}')
+
+    div.dropdown
+      i.pointer.language.da(class='{{ exercise.icon() }}', id='ddLanguage', data-toggle='dropdown', aria-expanded='true')
+      ul.dropdown-menu.dropdown-menu-right(aria-labelledby='ddLanguage')
+        li(ng-repeat='language in languages.get()', ng-click='exercise.setLanguage(language.name)')
+          a(href='')
+            i.da(class='{{ language.icon() }}')
+            span {{ language.name }}
+
+  main.guide-detail-main
+    br
+    ace-with-markdown(title='description' content='exercise.description')
+    br
+    ace-with-markdown(title='corollary', content='exercise.corollary', foldable='true')
+    br
+    ace-editor(content='exercise.extra_code', mode='exercise.language', title='extra_code', foldable='true')
