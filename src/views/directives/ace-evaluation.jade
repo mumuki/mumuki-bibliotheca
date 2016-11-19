@@ -1,5 +1,8 @@
 .tabbable
   ul.nav.nav-tabs
+    li.title
+      h3
+        span {{ 'evaluation' | translate }}
     li(role='presentation', ng-repeat='t in tabs', ng-click='selectTab(t)', ng-class='{ "active": t.selected }')
       a(href='', data-toggle='tab') {{ t.name | translate }}
 

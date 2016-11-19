@@ -1,3 +1,14 @@
+@mixin input-bottom {
+  @include display-flex(column, flex-start, flex-start);
+  .exercise-detail-area-text {
+    margin-right: 0;
+  }
+  .exercise-detail-area-editor {
+    margin-left: 0;
+    margin-top: 30px;
+  }
+}
+
 .margin-top {
   margin-top: 10px;
 }
@@ -30,14 +41,25 @@
   }
 
   &.input_bottom {
-    @include display-flex(column, flex-start, flex-start);
-    .exercise-detail-area-text {
-      margin-right: 0;
-    }
-    .exercise-detail-area-editor {
-      margin-left: 0;
-      margin-top: 30px;
-    }
+    @include input-bottom;
   }
 
+}
+
+@media (max-width: 991px) {
+  .exercise-detail-area {
+    &.input_right {
+      @include input-bottom;
+    }
+  }
+}
+
+@media (min-width: 992px) {
+  .exercise-detail-area {
+    &.input_right {
+      .exercise-detail-area-editor {
+        .title { display: none }
+      }
+    }
+  }
 }
