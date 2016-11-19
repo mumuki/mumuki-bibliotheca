@@ -17,6 +17,7 @@ angular
     editor: 'Editor',
     english: 'Inglés',
     evaluation: 'Evaluación',
+    exercise: 'Ejercicio',
     extra: 'Código extra',
     extra_code: 'Código extra',
     extra_code_placeholder: '...Ingrese el código extra...',

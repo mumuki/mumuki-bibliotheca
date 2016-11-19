@@ -31,6 +31,10 @@ angular
         return Layouts.from(this.layout);
       }
 
+      number() {
+        return _.indexOf(this.guide().exercises, this) + 1;
+      }
+
       toggleLayout() {
         this.layout = this.getLayout().next().type();
       }

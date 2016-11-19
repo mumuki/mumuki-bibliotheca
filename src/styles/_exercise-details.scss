@@ -13,6 +13,28 @@
   margin-top: 10px;
 }
 
+.exercise-title {
+  span {
+    margin-right: 10px;
+  }
+}
+
+
+.exercises-list {
+  @include display-flex(row, flex-start, center);
+  margin-bottom: 20px;
+  a {
+    background-color: $mu-color-content-editable;
+    border: 1px solid white;
+    width: 100%;
+    height: 10px;
+    &.active:after {
+      color: $mu-color-link;
+      content: '•';
+    }
+  }
+}
+
 .exercise-detail-area {
   @include display-flex(row, flex-start, flex-start);
 

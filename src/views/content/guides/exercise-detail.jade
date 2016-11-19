@@ -1,6 +1,7 @@
 .mu-content
 
-  h1.guide-detail-title
+  h1.guide-detail-title.exercise-title
+    span(style='white-space: nowrap') {{ 'exercise' | translate }} {{ exercise.number() }}:
     input(type='text', ng-model='exercise.name', placeholder='{{ "exercise_name_placeholder" | translate }}')
 
     small
@@ -15,7 +16,13 @@
             span {{ language.name }}
 
   main.guide-detail-main
-    br
+    .exercises-list
+      a.text-center(
+        title='{{ $index + 1 }}. {{ e.name }}',
+        ng-class='{ "active": e.id === exercise.id }',
+        ng-repeat='e in exercise.guide().exercises',
+        ui-sref='editor.home.guides.detail.exercise({ eid: e.id })')
+
     .exercise-detail-area(class='{{ exercise.getLayout().type() }}')
       .exercise-detail-area-text
         ace-with-markdown(title='description' content='exercise.description')

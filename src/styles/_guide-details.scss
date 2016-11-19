@@ -35,12 +35,15 @@ input {
     font-size: 44px;
     margin: 10px 0 15px;
     input {
-      margin-right: 15px;
+      margin-right: 10px;
     }
     .locale, .language {
       display: flex;
       align-self: center;
       margin: 0 10px;
+    }
+    .language {
+      margin-right: 0;
     }
     .dropdown-menu {
       a {
