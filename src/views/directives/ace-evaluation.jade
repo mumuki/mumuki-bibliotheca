@@ -1,0 +1,11 @@
+.tabbable
+  ul.nav.nav-tabs
+    li
+      h3
+        span {{ 'evaluation' | translate }}
+    li(role='presentation', ng-repeat='t in tabs', ng-click='selectTab(t)', ng-class='{ "active": t.selected }')
+      a(href='', data-toggle='tab') {{ t.name | translate }}
+
+  .tab-content.margin-top
+    .tab-pane(ng-repeat='t in tabs', ng-class='{ "active": t.selected }')
+      ace-editor(content='exercise[t.name]', mode='exercise.getLanguage()')

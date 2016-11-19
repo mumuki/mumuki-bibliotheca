@@ -22,9 +22,7 @@
         br
         ace-with-markdown(title='hint' content='exercise.hint', foldable='true')
       .exercise-detail-area-editor
-        ace-editor(content='exercise.code', mode='exercise.getLanguage()', title='code')
+        ace-evaluation(exercise='exercise')
 
     br
     ace-with-markdown(title='corollary', content='exercise.corollary', foldable='true')
-    br
-    ace-editor(content='exercise.extra_code', mode='exercise.getLanguage()', title='extra_code', foldable='true')
