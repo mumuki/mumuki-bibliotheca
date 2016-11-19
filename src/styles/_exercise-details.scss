@@ -1,0 +1,38 @@
+.exercise-detail-area {
+  @include display-flex(row, flex-start, flex-start);
+
+  width: 100%;
+
+  .exercise-detail-area-text {
+    @include display-flex(column, flex-start, flex-start);
+    width: 100%;
+
+    ace-with-markdown {
+      width: 100%
+    }
+  }
+  .exercise-detail-area-editor {
+    width: 100%;
+  }
+
+  &.input_right {
+    @include display-flex(row, flex-start, flex-start);
+    .exercise-detail-area-text {
+      margin-right: 15px;
+    }
+    .exercise-detail-area-editor {
+      margin-left: 15px;
+    }
+  }
+
+  &.input_bottom {
+    @include display-flex(column, flex-start, flex-start);
+    .exercise-detail-area-text {
+      margin-right: 0;
+    }
+    .exercise-detail-area-editor {
+      margin-left: 0;
+    }
+  }
+
+}

@@ -4,7 +4,7 @@
     input(type='text', ng-model='exercise.name', placeholder='{{ "exercise_name_placeholder" | translate }}')
 
     small
-      i.pointer.locale.da(class='{{ exercise.getLayout().icon() }}', ng-click='exercise.toggleLayout()')
+      i.pointer.locale.da(ng-click='exercise.toggleLayout()', class='{{ exercise.getLayout().icon() }}')
 
     div.dropdown
       i.pointer.language.da(class='{{ exercise.icon() }}', id='ddLanguage', data-toggle='dropdown', aria-expanded='true')
@@ -16,7 +16,14 @@
 
   main.guide-detail-main
     br
-    ace-with-markdown(title='description' content='exercise.description')
+    .exercise-detail-area(class='{{ exercise.getLayout().type() }}')
+      .exercise-detail-area-text
+        ace-with-markdown(title='description' content='exercise.description')
+        br
+        ace-with-markdown(title='hint' content='exercise.hint', foldable='true')
+      .exercise-detail-area-editor
+        ace-editor(content='exercise.code', mode='exercise.getLanguage()', title='code')
+
     br
     ace-with-markdown(title='corollary', content='exercise.corollary', foldable='true')
     br
