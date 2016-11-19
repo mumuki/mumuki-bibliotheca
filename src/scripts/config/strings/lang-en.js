@@ -38,7 +38,7 @@ angular
     teacher_info: 'Teacher information',
     teacher_info_placeholder: '...Enter teacher info...',
     test: 'Tests',
-    text: 'Texto',
+    text: 'Text',
     undefined_placeholder: '',
 
   });
