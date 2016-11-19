@@ -1,6 +1,6 @@
 angular
   .module('editor')
-  .factory('Exercise', function(CurrentGuide) {
+  .factory('Exercise', function(CurrentGuide, Layouts) {
 
     class Exercise {
 
@@ -25,6 +25,14 @@ angular
         if (this.language === this.guide().language) {
           delete this.language;
         }
+      }
+
+      getLayout() {
+        return Layouts.from(this.layout);
+      }
+
+      toggleLayout() {
+        this.layout = this.getLayout().next().type();
       }
 
       static from(exercise = {}) {

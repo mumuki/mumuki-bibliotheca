@@ -3,6 +3,9 @@
   h1.guide-detail-title
     input(type='text', ng-model='exercise.name', placeholder='{{ "exercise_name_placeholder" | translate }}')
 
+    small
+      i.pointer.locale.da(class='{{ exercise.getLayout().icon() }}', ng-click='exercise.toggleLayout()')
+
     div.dropdown
       i.pointer.language.da(class='{{ exercise.icon() }}', id='ddLanguage', data-toggle='dropdown', aria-expanded='true')
       ul.dropdown-menu.dropdown-menu-right(aria-labelledby='ddLanguage')
