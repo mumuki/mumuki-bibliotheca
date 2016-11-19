@@ -24,6 +24,7 @@ angular
     guide_name_placeholder: '...Guide name...',
     guides: 'Guides',
     hint: 'Hint',
+    hint_placeholder: '...Enter hint...',
     item: 'Item',
     language: 'Language',
     license_disclaimer: 'This guide will be published under <a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode">Creative Commons Attribution-ShareAlike 4.0 International Public License</a>. To learn more about Creative Commons Licenses visit <a href="https://creativecommons.org/share-your-work">https://creativecommons.org/share-your-work</a>.',
