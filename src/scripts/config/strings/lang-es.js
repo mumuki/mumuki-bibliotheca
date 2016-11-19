@@ -31,6 +31,8 @@ angular
     logout: 'Cerrar sesión',
     search: 'Buscar',
     spanish: 'Español',
+    solution: 'Solución',
+    submit: 'Enviar',
     teacher_info: 'Información del docente',
     teacher_info_placeholder: '...Ingrese la información del docente...',
     test: 'Pruebas',

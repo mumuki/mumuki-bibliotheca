@@ -31,6 +31,8 @@ angular
     logout: 'Log out',
     search: 'Search',
     spanish: 'Spanish',
+    solution: 'Solution',
+    submit: 'Submit',
     teacher_info: 'Teacher information',
     teacher_info_placeholder: '...Enter teacher info...',
     test: 'Tests',
