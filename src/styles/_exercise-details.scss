@@ -17,6 +17,11 @@
   span {
     margin-right: 10px;
   }
+  .editor, .layout {
+    display: flex;
+    align-self: center;
+    margin: 0 5px;
+  }
 }
 
 

@@ -1,12 +1,12 @@
 .mu-content
 
-  h1.guide-detail-title.exercise-title
+  h1.detail-title.exercise-title
     span(style='white-space: nowrap') {{ 'exercise' | translate }} {{ exercise.number() }}:
     input(type='text', ng-model='exercise.name', placeholder='{{ "exercise_name_placeholder" | translate }}')
 
     div.dropdown
       small(id='ddEditor', data-toggle='dropdown', aria-expanded='true')
-        i.pointer.locale.fa.fa-fw(class='{{ exercise.getEditor().icon() }}')
+        i.pointer.editor.fa.fa-fw(class='{{ exercise.getEditor().icon() }}')
       ul.dropdown-menu.dropdown-menu-right(aria-labelledby='ddEditor')
         li(ng-repeat='editor in Editor.types() | orderBy:key', ng-click='exercise.setEditor(editor)')
           a(href='')
@@ -14,7 +14,7 @@
             span {{ editor }}
 
     small
-      i.pointer.locale.da(ng-click='exercise.toggleLayout()', class='{{ exercise.getLayout().icon() }}')
+      i.pointer.layout.da(ng-click='exercise.toggleLayout()', class='{{ exercise.getLayout().icon() }}')
 
     div.dropdown
       i.pointer.language.da(class='{{ exercise.icon() }}', id='ddLanguage', data-toggle='dropdown', aria-expanded='true')
@@ -24,7 +24,7 @@
             i.da(class='{{ language.icon() }}')
             span {{ language.name }}
 
-  main.guide-detail-main
+  main.detail-main
     .exercises-list
       a.text-center(
         title='{{ $index + 1 }}. {{ e.name }}',

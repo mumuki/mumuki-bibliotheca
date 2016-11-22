@@ -28,7 +28,7 @@ input {
   @include display-flex(column, flex-start, flex-start);
   width: 100%;
 
-  .guide-detail-title {
+  .detail-title {
     @include display-flex(row, space-between, center);
     width: 100%;
 
@@ -56,11 +56,11 @@ input {
     }
   }
 
-  .guide-detail-main {
+  .detail-main {
     width: 100%;
 
 
-    .guide-detail-exercises {
+    .detail-exercises {
       h3 {
         text-transform: capitalize;
       }
@@ -74,7 +74,7 @@ input {
         }
       }
     }
-    .guide-detail-license {
+    .detail-license {
       h3 {
         margin-top: 40px;
         margin-bottom: 15px
