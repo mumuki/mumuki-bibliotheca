@@ -1,3 +1,5 @@
+@import 'colors';
+
 @import "../bower_components/bootswatch-scss/flatly/variables";
 @import "../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/mixins";
 @import "../bower_components/bootstrap-sass/assets/stylesheets/bootstrap";
@@ -6,7 +8,6 @@
 
 @import 'mixines';
 @import 'cloak';
-@import 'colors';
 @import 'mu-font';
 @import 'styles';
 @import 'navbar';
