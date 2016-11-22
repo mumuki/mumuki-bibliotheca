@@ -24,6 +24,25 @@ input {
   border: 1px solid $mu-color-content-editable;
 }
 
+ul[dnd-list], ul[dnd-list] > li {
+  position: relative;
+}
+
+ul[dnd-list] .dndDraggingSource {
+  display: none;
+}
+
+ul[dnd-list] .dndPlaceholder {
+  display: block;
+  background-color: #ddd;
+  min-height: 30px;
+}
+
+ul[dnd-list] li {
+  background-color: #fff;
+  display: block;
+}
+
 .mu-content {
   @include display-flex(column, flex-start, flex-start);
   width: 100%;

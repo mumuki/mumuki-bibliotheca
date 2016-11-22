@@ -29,8 +29,12 @@
     br
     .detail-exercises
       h3 {{ 'content' | translate }}
-      ul.progress-listing
-        li(ng-repeat='exercise in guide.exercises')
+      ul.progress-listing(dnd-list='guide.exercises')
+        li(
+            ng-repeat='exercise in guide.exercises',
+            dnd-draggable='exercise',
+            dnd-effect-allowed='copyMove',
+            dnd-moved='guide.exercises.splice($index, 1)')
           a(ui-sref='editor.home.guides.detail.exercise({ eid: exercise.id })')
             i.fa.fa-fw.fa-circle.text-muted
             span {{ $index + 1 }}. {{ exercise.name }}

@@ -7,4 +7,5 @@ angular
     'angular-jwt',
     'ui.ace',
     'ngSanitize',
+    'dndLists',
   ]);
