@@ -1,1 +1,13 @@
-span HELLO
+.expectations
+  .new-expectations
+    input(type='checkbox', ng-model='exercise.new_expectations')
+    span {{ exercise.new_expectations ? 'Advanced' : 'Basic' }}
+
+  .basic(ng-repeat='expectation in exercise.expectations', ng-if='!exercise.new_expectations')
+    .binding
+      span Binding:
+      input(type='text', ng-model='expectation.binding', placeholder='binding')
+    .inspection
+      span Inspection:
+      input(type='text', ng-model='expectation.inspection', placeholder='inspection')
+

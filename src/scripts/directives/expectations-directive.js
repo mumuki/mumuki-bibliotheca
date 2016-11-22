@@ -7,9 +7,11 @@ angular
       restrict: 'E',
       templateUrl: 'views/directives/expectations.html',
       scope: {
-        expectations: '='
+        exercise: '='
       },
       controller: ($scope) => {
+
+        $scope.expectations = $scope.exercise.expectations
 
       }
 

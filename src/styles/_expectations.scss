@@ -1,0 +1,33 @@
+.expectations {
+  @include display-flex(column, flex-start, flex-start);
+
+  .new-expectations {
+    @include display-flex(row, flex-start, center);
+    input {
+      width: auto;
+      margin: 0;
+    }
+    span {
+      margin-left: 5px;
+    }
+  }
+
+  .basic {
+    @include display-flex(row, flex-start, center);
+    width: 100%;
+    .binding, .inspection {
+      @include display-flex(row, flex-start, center);
+      width: 50%;
+      margin: 5px 0;
+      span {
+        margin-right: 10px;
+      }
+      input {
+        width: 100%;
+      }
+    }
+    .binding { margin-right: 5px }
+    .inspection { margin-left: 5px }
+  }
+
+}
