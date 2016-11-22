@@ -4,6 +4,15 @@
     span(style='white-space: nowrap') {{ 'exercise' | translate }} {{ exercise.number() }}:
     input(type='text', ng-model='exercise.name', placeholder='{{ "exercise_name_placeholder" | translate }}')
 
+    div.dropdown
+      small(id='ddEditor', data-toggle='dropdown', aria-expanded='true')
+        i.pointer.locale.fa.fa-fw(class='{{ exercise.getEditor().icon() }}')
+      ul.dropdown-menu.dropdown-menu-right(aria-labelledby='ddEditor')
+        li(ng-repeat='editor in Editor.types() | orderBy:key', ng-click='exercise.setEditor(editor)')
+          a(href='')
+            i.fa(class='{{ Editor.from(editor).icon() }}')
+            span {{ editor }}
+
     small
       i.pointer.locale.da(ng-click='exercise.toggleLayout()', class='{{ exercise.getLayout().icon() }}')
 
