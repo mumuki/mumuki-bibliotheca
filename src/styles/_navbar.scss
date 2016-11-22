@@ -1,6 +1,6 @@
-$breadcrumb-separator-gap: 10px;
+$breadcrumb-separator-gap: 8px;
 
-$avatar-size: 50px;
+$avatar-size: 40px;
 
 .mu-navbar {
   @include display-flex(row, space-between, center);
@@ -33,13 +33,16 @@ $avatar-size: 50px;
       @include display-flex(row, flex-start, center);
 
       .mu-breadcrumb-list-item {
+        padding-top: 19px;
         &:before {
           content: '/';
           margin: 0 $breadcrumb-separator-gap;
           color: $mu-color-disabled;
         }
         &.brand {
-          font-size: 44px;
+          padding-top: 2px;
+          padding-left: 3px;
+          font-size: 38px;
           &:before {
             content: '';
             margin: 0;
