@@ -20,8 +20,8 @@ angular
         name: () => safeFullName(CurrentGuide.get()),
         state: 'editor.home.guides.detail'
       }, {
-        name: () => safeFullName(CurrentGuide.getExercise($stateParams.eid)),
-        state: `editor.home.guides.detail.exercise({ eid: ${$stateParams.eid} })`
+        name: () => safeFullName(CurrentGuide.get().getExercise($stateParams.eid)),
+        state: `editor.home.guides.detail.exercise`
       },
     ];
 

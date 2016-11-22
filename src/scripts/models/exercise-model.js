@@ -18,6 +18,10 @@ angular
         return `da-${this.getLanguage()}`;
       }
 
+      fullName() {
+        return `${this.number()}. ${this.name}`;
+      }
+
       getLanguage() {
         return this.language || this.guide().language;
       }
