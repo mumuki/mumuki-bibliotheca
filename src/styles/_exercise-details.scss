@@ -24,6 +24,36 @@
   }
 }
 
+$scroll-height: 2px;
+
+#style-3::-webkit-scrollbar-track {
+  background-color: $mu-color-content-editable;
+}
+
+#style-3::-webkit-scrollbar {
+  height: $scroll-height;
+}
+
+#style-3::-webkit-scrollbar-thumb {
+  background-color: $mu-color-complementary;
+}
+
+
+ace-evaluation {
+  .nav-tabs {
+    overflow-x: auto;
+    overflow-y: auto;
+    display: -webkit-box;
+    display: -moz-box;
+
+  }
+
+  .nav-tabs > li {
+    float:none;
+    margin: $scroll-height 0 0;
+  }
+
+}
 
 .exercises-list {
   @include display-flex(row, flex-start, center);
@@ -110,3 +140,4 @@
     }
   }
 }
+

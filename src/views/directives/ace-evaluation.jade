@@ -1,5 +1,5 @@
 .tabbable
-  ul.nav.nav-tabs
+  ul#style-3.nav.nav-tabs
     li.title
       h3
         span {{ 'evaluation' | translate }}
@@ -8,5 +8,6 @@
 
   .tab-content.margin-top
     .tab-pane(ng-repeat='t in tabs', ng-class='{ "active": t.selected }')
+      ace-editor(content='exercise[t.name]', mode='exercise.getLanguage()', ng-if='!$last && t.name !== "expectations"')
+      expectations(expectations='exercise.expectations', ng-if='!$last && t.name === "expectations"')
       solution(exercise='exercise', ng-if='$last')
-      ace-editor(content='exercise[t.name]', mode='exercise.getLanguage()', ng-if='!$last')

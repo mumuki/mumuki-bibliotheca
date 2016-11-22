@@ -13,6 +13,7 @@ angular
 
         $scope.tabs = [
           { name: 'test', selected: true },
+          { name: 'expectations', selected: false },
           { name: 'extra', selected: false },
           { name: 'default_code', selected: false },
           { name: 'solution', selected: false },
