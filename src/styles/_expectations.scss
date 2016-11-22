@@ -35,10 +35,14 @@
     margin-top: 5px;
     .sentence {
       @include display-flex(row, space-between, center);
-      input {
-        width: 100%;
-        border: none;
-        border-bottom: 1px solid $mu-color-content-editable;
+      width: 100%;
+      .subject, .verb, .object {
+        width: 33.33%;
+        input {
+          width: 100%;
+          border: none;
+          border-bottom: 1px solid $mu-color-content-editable;
+        }
       }
       .subject, .verb { margin-right: 5px }
       .verb, .object { margin-left: 5px }
@@ -51,9 +55,15 @@
       .transitive, .negated, .remove {
         width: 33.33%;
         @include display-flex(row, flex-start, center);
-        input { width: auto }
+        .fa { margin: 0 }
         span { margin-left: 5px }
+        input {
+          width: auto;
+          margin: 0;
+        }
       }
+      .transitive, .negated { margin-right: 5px }
+      .negated, .remove { margin-left: 5px }
     }
   }
 

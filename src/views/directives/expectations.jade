@@ -5,26 +5,26 @@
 
   .basic(ng-repeat='expectation in exercise.expectations', ng-if='!exercise.new_expectations')
     .binding
-      input(type='text', ng-model='expectation.binding', placeholder='binding')
+      input(type='text', ng-model='expectation.binding', placeholder='{{ "binding" | translate }}')
     .inspection
-      input(type='text', ng-model='expectation.inspection', placeholder='inspection')
+      input(type='text', ng-model='expectation.inspection', placeholder='{{ "inspection" | translate }}')
 
   .advanced(ng-repeat='expectation in exercise.expectations', ng-if='exercise.new_expectations')
     .sentence
       .subject
-        input(type='text', ng-model='expectation.subject', placeholder='subject')
+        input(type='text', ng-model='expectation.subject', placeholder='{{ "subject" | translate }}')
       .verb
-        input(type='text', ng-model='expectation.verb', placeholder='verb')
+        input(type='text', ng-model='expectation.verb', placeholder='{{ "verb" | translate }}')
       .object
-        input(type='text', ng-model='expectation.object', placeholder='object')
+        input(type='text', ng-model='expectation.object', placeholder='{{ "object" | translate }}')
     .options
       .transitive
         input(type='checkbox', ng-model='expectation.transitive')
-        span {{ 'transitive' }}
+        span {{ 'transitive' | translate }}
       .negated
         input(type='checkbox', ng-model='expectation.negated')
-        span {{ 'negated' }}
+        span {{ 'negated' | translate }}
       .remove
         i.fa.fa-fw.fa-trash
-        span {{ 'remove' }}
+        span {{ 'remove' | translate }}
 
