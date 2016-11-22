@@ -5,9 +5,26 @@
 
   .basic(ng-repeat='expectation in exercise.expectations', ng-if='!exercise.new_expectations')
     .binding
-      span Binding:
       input(type='text', ng-model='expectation.binding', placeholder='binding')
     .inspection
-      span Inspection:
       input(type='text', ng-model='expectation.inspection', placeholder='inspection')
+
+  .advanced(ng-repeat='expectation in exercise.expectations', ng-if='exercise.new_expectations')
+    .sentence
+      .subject
+        input(type='text', ng-model='expectation.subject', placeholder='subject')
+      .verb
+        input(type='text', ng-model='expectation.verb', placeholder='verb')
+      .object
+        input(type='text', ng-model='expectation.object', placeholder='object')
+    .options
+      .transitive
+        input(type='checkbox', ng-model='expectation.transitive')
+        span {{ 'transitive' }}
+      .negated
+        input(type='checkbox', ng-model='expectation.negated')
+        span {{ 'negated' }}
+      .remove
+        i.fa.fa-fw.fa-trash
+        span {{ 'remove' }}
 
