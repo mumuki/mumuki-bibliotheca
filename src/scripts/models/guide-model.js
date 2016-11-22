@@ -30,7 +30,7 @@ angular
       }
 
       getExercise(id) {
-        return _.find(this.exercises, { id: parseInt(id, 10) });
+        return Exercise.from(_.find(this.exercises, { id: parseInt(id, 10) }));
       }
 
       static from(guide = {}) {

@@ -40,6 +40,26 @@
   }
 }
 
+.exercises-list[dnd-list], .exercises-list[dnd-list] > a {
+  position: relative;
+}
+
+.exercises-list[dnd-list] .dndDraggingSource {
+  display: none;
+}
+
+.exercises-list[dnd-list] .dndPlaceholder {
+  display: block;
+  background-color: #ddd;
+  min-height: 10px;
+}
+
+.exercises-list[dnd-list] a {
+  display: block;
+}
+
+
+
 .exercise-detail-area {
   @include display-flex(row, flex-start, flex-start);
 

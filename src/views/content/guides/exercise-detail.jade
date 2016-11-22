@@ -25,11 +25,14 @@
             span {{ language.name }}
 
   main.detail-main
-    .exercises-list
+    .exercises-list(dnd-list='exercise.guide().exercises')
       a.text-center(
-        title='{{ $index + 1 }}. {{ e.name }}',
-        ng-class='{ "active": e.id === exercise.id }',
         ng-repeat='e in exercise.guide().exercises',
+        ng-class='{ "active": e.id === exercise.id }',
+        title='{{ $index + 1 }}. {{ e.name }}',
+        dnd-draggable='e',
+        dnd-effect-allowed='copyMove',
+        dnd-moved='exercise.guide().exercises.splice($index, 1)',
         ui-sref='editor.home.guides.detail.exercise({ eid: e.id })')
 
     .exercise-detail-area(class='{{ exercise.getLayout().type() }}')

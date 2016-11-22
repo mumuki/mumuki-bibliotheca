@@ -46,7 +46,7 @@ angular
       }
 
       number() {
-        return _.indexOf(this.guide().exercises, this) + 1;
+        return _.findIndex(this.guide().exercises, { id: this.id }) + 1;
       }
 
       toggleLayout() {
