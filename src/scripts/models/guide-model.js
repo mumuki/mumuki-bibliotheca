@@ -1,6 +1,6 @@
 angular
   .module('editor')
-  .factory('Guide', function() {
+  .factory('Guide', function(Exercise) {
 
     class Guide {
 
@@ -29,7 +29,12 @@ angular
         this.language = language;
       }
 
+      getExercise(id) {
+        return Exercise.from(_.find(this.exercises, { id: parseInt(id, 10) }));
+      }
+
       static from(guide = {}) {
+        guide.exercises = _.get(guide, 'exercises', []).map(Exercise.from);
         return new Guide(guide);
       }
 

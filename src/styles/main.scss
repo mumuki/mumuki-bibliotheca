@@ -1,3 +1,5 @@
+@import '../bower_components/mumuki-styles/dist/stylesheets/mumuki.scss';
+
 @import "../bower_components/bootswatch-scss/flatly/variables";
 @import "../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/mixins";
 @import "../bower_components/bootstrap-sass/assets/stylesheets/bootstrap";
@@ -13,8 +15,10 @@
 @import 'list-items';
 @import 'footer';
 @import 'guide-details';
+@import 'exercise-details';
 @import 'ace-editor-markdown';
 @import 'flag-icon';
+@import 'expectations';
 
 html, body {
   height: 100%;

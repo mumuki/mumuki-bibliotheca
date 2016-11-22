@@ -59,13 +59,30 @@ angular
             templateUrl: 'views/content/guides/guide-detail.html',
             controller: 'GuideDetailController',
             resolve: {
-              guide: (Api, $stateParams) => {
-                return Api.getGuide($stateParams);
+              guide: (Api, CurrentGuide, $stateParams) => {
+                return Api.getGuide($stateParams)
+                          .tap((guide) => CurrentGuide.set(guide));
+              }
+            }
+          }
+        }
+      })
+      .state('editor.home.guides.detail.exercise', {
+        url: '/exercises/:eid',
+        authenticated: true,
+        views: {
+          'content@editor': {
+            templateUrl: 'views/content/guides/exercise-detail.html',
+            controller: 'ExerciseDetailController',
+            resolve: {
+              exercise: (CurrentGuide, $stateParams) => {
+                return CurrentGuide.get().getExercise($stateParams.eid);
               }
             }
           }
         }
       });
+
     $urlRouterProvider.otherwise(($injector) => {
       $injector.get('$state').go('editor.home.guides', {}, { reload: true, location: 'replace' });
     });

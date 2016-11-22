@@ -29,7 +29,9 @@
     "font-awesome": "4.7.0",
     "ace-builds": "1.2.3",
     "angular-ui-ace": "0.2.3",
-    "angular-sanitize": "^1.5.8"
+    "angular-sanitize": "^1.5.8",
+    "angular-drag-and-drop-lists": "1.4.0",
+    "mumuki-styles": "0.1.1"
   },
   "devDependencies": {
     "angular-mocks": "^1.5.8"

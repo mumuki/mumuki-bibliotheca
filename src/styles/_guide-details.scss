@@ -24,23 +24,45 @@ input {
   border: 1px solid $mu-color-content-editable;
 }
 
+ul[dnd-list], ul[dnd-list] > li {
+  position: relative;
+}
+
+ul[dnd-list] .dndDraggingSource {
+  display: none;
+}
+
+ul[dnd-list] .dndPlaceholder {
+  display: block;
+  background-color: #ddd;
+  min-height: 30px;
+}
+
+ul[dnd-list] li {
+  background-color: #fff;
+  display: block;
+}
+
 .mu-content {
   @include display-flex(column, flex-start, flex-start);
   width: 100%;
 
-  .guide-detail-title {
+  .detail-title {
     @include display-flex(row, space-between, center);
     width: 100%;
 
     font-size: 44px;
     margin: 10px 0 15px;
     input {
-      margin-right: 15px;
+      margin-right: 10px;
     }
     .locale, .language {
       display: flex;
       align-self: center;
       margin: 0 10px;
+    }
+    .language {
+      margin-right: 0;
     }
     .dropdown-menu {
       a {
@@ -53,11 +75,11 @@ input {
     }
   }
 
-  .guide-detail-main {
+  .detail-main {
     width: 100%;
 
 
-    .guide-detail-exercises {
+    .detail-exercises {
       h3 {
         text-transform: capitalize;
       }
@@ -71,7 +93,7 @@ input {
         }
       }
     }
-    .guide-detail-license {
+    .detail-license {
       h3 {
         margin-top: 40px;
         margin-bottom: 15px

@@ -1,0 +1,70 @@
+.expectations {
+  @include display-flex(column, flex-start, flex-start);
+
+  .new-expectations {
+    @include display-flex(row, flex-start, center);
+    input {
+      width: auto;
+      margin: 0;
+    }
+    span {
+      margin-left: 5px;
+    }
+  }
+
+  .basic {
+    @include display-flex(row, flex-start, center);
+    width: 100%;
+    margin: 5px 0;
+    .binding, .inspection {
+      @include display-flex(row, flex-start, center);
+      width: 50%;
+      input {
+        width: 100%;
+        border: none;
+        border-bottom: 1px solid $mu-color-content-editable;
+      }
+    }
+    .binding { margin-right: 5px }
+    .inspection { margin-left: 5px }
+  }
+
+  .advanced {
+    @include display-flex(column, flex-start, center);
+    width: 100%;
+    margin-top: 5px;
+    .sentence {
+      @include display-flex(row, space-between, center);
+      width: 100%;
+      .subject, .verb, .object {
+        width: 33.33%;
+        input {
+          width: 100%;
+          border: none;
+          border-bottom: 1px solid $mu-color-content-editable;
+        }
+      }
+      .subject, .verb { margin-right: 5px }
+      .verb, .object { margin-left: 5px }
+    }
+    .options {
+      @include display-flex(row, flex-start, center);
+      width: 100%;
+      border-bottom: 1px solid $mu-color-disabled;
+      padding-bottom: 5px;
+      .transitive, .negated, .remove {
+        width: 33.33%;
+        @include display-flex(row, flex-start, center);
+        .fa { margin: 0 }
+        span { margin-left: 5px }
+        input {
+          width: auto;
+          margin: 0;
+        }
+      }
+      .transitive, .negated { margin-right: 5px }
+      .negated, .remove { margin-left: 5px }
+    }
+  }
+
+}

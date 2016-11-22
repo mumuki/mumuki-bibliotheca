@@ -41,7 +41,7 @@ angular
 
         $scope.aceEditor = AceEditor.defaults({
           mode: $scope.mode,
-          rendererOptions: { minLines: 10 },
+          rendererOptions: { minLines: 15 },
           onChange: () => update(),
           onLoad: (editor) => {
             $scope.editor = editor;

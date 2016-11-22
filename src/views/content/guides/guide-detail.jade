@@ -1,6 +1,6 @@
 .mu-content
 
-  h1.guide-detail-title
+  h1.detail-title
     input(type='text', ng-model='guide.name', placeholder='{{ "guide_name_placeholder" | translate }}')
 
     div.dropdown
@@ -23,15 +23,19 @@
             i.da(class='{{ language.icon() }}')
             span {{ language.name }}
 
-  main.guide-detail-main
+  main.detail-main
     br
     ace-with-markdown(title='description' content='guide.description')
     br
-    .guide-detail-exercises
+    .detail-exercises
       h3 {{ 'content' | translate }}
-      ul.progress-listing
-        li(ng-repeat='exercise in guide.exercises')
-          a(href='')
+      ul.progress-listing(dnd-list='guide.exercises')
+        li(
+            ng-repeat='exercise in guide.exercises',
+            dnd-draggable='exercise',
+            dnd-effect-allowed='copyMove',
+            dnd-moved='guide.exercises.splice($index, 1)')
+          a(ui-sref='editor.home.guides.detail.exercise({ eid: exercise.id })')
             i.fa.fa-fw.fa-circle.text-muted
             span {{ $index + 1 }}. {{ exercise.name }}
     br
@@ -40,7 +44,7 @@
     ace-with-markdown(title='teacher_info', content='guide.teacher_info', foldable='true')
     br
     ace-editor(content='guide.extra_code', mode='guide.language', title='extra_code', foldable='true')
-    .guide-detail-license
+    .detail-license
       h3 {{ 'authors' | translate }}
       input(type='text', ng-model='guide.authors', placeholder='{{ "authors_placeholder" | translate }}')
       h3 {{ 'collaborators' | translate }}

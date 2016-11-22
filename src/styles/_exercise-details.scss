@@ -1,0 +1,143 @@
+@mixin input-bottom {
+  @include display-flex(column, flex-start, flex-start);
+  .exercise-detail-area-text {
+    margin-right: 0;
+  }
+  .exercise-detail-area-editor {
+    margin-left: 0;
+    margin-top: 30px;
+  }
+}
+
+.margin-top {
+  margin-top: 10px;
+}
+
+.exercise-title {
+  span {
+    margin-right: 10px;
+  }
+  .editor, .layout {
+    display: flex;
+    align-self: center;
+    margin: 0 5px;
+  }
+}
+
+$scroll-height: 2px;
+
+#style-3::-webkit-scrollbar-track {
+  background-color: $mu-color-content-editable;
+}
+
+#style-3::-webkit-scrollbar {
+  height: $scroll-height;
+}
+
+#style-3::-webkit-scrollbar-thumb {
+  background-color: $mu-color-complementary;
+}
+
+
+ace-evaluation {
+  .nav-tabs {
+    overflow-x: auto;
+    overflow-y: auto;
+    display: -webkit-box;
+    display: -moz-box;
+    margin-top: -$scroll-height;
+  }
+
+  .nav-tabs > li {
+    float:none;
+    margin: $scroll-height 0 0;
+  }
+
+}
+
+.exercises-list {
+  @include display-flex(row, flex-start, center);
+  margin-bottom: 20px;
+  a {
+    background-color: $mu-color-content-editable;
+    border: 1px solid white;
+    width: 100%;
+    height: 10px;
+    &.active:after {
+      color: $mu-color-link;
+      content: '•';
+    }
+  }
+}
+
+.exercises-list[dnd-list], .exercises-list[dnd-list] > a {
+  position: relative;
+}
+
+.exercises-list[dnd-list] .dndDraggingSource {
+  display: none;
+}
+
+.exercises-list[dnd-list] .dndPlaceholder {
+  display: block;
+  background-color: #ddd;
+  min-height: 10px;
+}
+
+.exercises-list[dnd-list] a {
+  display: block;
+}
+
+
+
+.exercise-detail-area {
+  @include display-flex(row, flex-start, flex-start);
+
+  width: 100%;
+
+  .exercise-detail-area-text {
+    @include display-flex(column, flex-start, flex-start);
+    width: 100%;
+
+    ace-with-markdown {
+      width: 100%
+    }
+  }
+  .exercise-detail-area-editor {
+    width: 100%;
+  }
+
+  &.input_right {
+    @include display-flex(row, flex-start, flex-start);
+    .exercise-detail-area-text {
+      margin-right: 15px;
+    }
+    .exercise-detail-area-editor {
+      margin-left: 15px;
+    }
+  }
+
+  &.input_bottom {
+    @include input-bottom;
+  }
+
+}
+
+@media (max-width: 991px) {
+  .exercise-detail-area {
+    &.input_right {
+      @include input-bottom;
+    }
+  }
+}
+
+@media (min-width: 992px) {
+  .exercise-detail-area {
+    &.input_right {
+      .exercise-detail-area-editor {
+        .title { display: none }
+      }
+    }
+  }
+}
+

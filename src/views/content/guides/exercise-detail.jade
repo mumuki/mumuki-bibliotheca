@@ -1,0 +1,47 @@
+.mu-content
+
+  h1.detail-title.exercise-title
+    span(style='white-space: nowrap') {{ 'exercise' | translate }} {{ exercise.number() }}:
+    input(type='text', ng-model='exercise.name', placeholder='{{ "exercise_name_placeholder" | translate }}')
+
+    div.dropdown
+      small(id='ddEditor', data-toggle='dropdown', aria-expanded='true')
+        i.pointer.editor.fa.fa-fw(class='{{ exercise.getEditor().icon() }}')
+      ul.dropdown-menu.dropdown-menu-right(aria-labelledby='ddEditor')
+        li(ng-repeat='editor in Editor.types() | orderBy:key', ng-click='exercise.setEditor(editor)')
+          a(href='')
+            i.fa(class='{{ Editor.from(editor).icon() }}')
+            span {{ editor }}
+
+    small
+      i.pointer.layout.da(ng-click='exercise.toggleLayout()', class='{{ exercise.getLayout().icon() }}')
+
+    div.dropdown
+      i.pointer.language.da(class='{{ exercise.icon() }}', id='ddLanguage', data-toggle='dropdown', aria-expanded='true')
+      ul.dropdown-menu.dropdown-menu-right(aria-labelledby='ddLanguage')
+        li(ng-repeat='language in languages.get()', ng-click='exercise.setLanguage(language.name)')
+          a(href='')
+            i.da(class='{{ language.icon() }}')
+            span {{ language.name }}
+
+  main.detail-main
+    .exercises-list(dnd-list='exercise.guide().exercises')
+      a.text-center(
+        ng-repeat='e in exercise.guide().exercises',
+        ng-class='{ "active": e.id === exercise.id }',
+        title='{{ $index + 1 }}. {{ e.name }}',
+        dnd-draggable='e',
+        dnd-effect-allowed='copyMove',
+        dnd-moved='exercise.guide().exercises.splice($index, 1)',
+        ui-sref='editor.home.guides.detail.exercise({ eid: e.id })')
+
+    .exercise-detail-area(class='{{ exercise.getLayout().type() }}')
+      .exercise-detail-area-text
+        ace-with-markdown(title='description' content='exercise.description')
+        br
+        ace-with-markdown(title='hint' content='exercise.hint', foldable='true')
+      .exercise-detail-area-editor
+        ace-evaluation(exercise='exercise')
+
+    br
+    ace-with-markdown(title='corollary', content='exercise.corollary', foldable='true')

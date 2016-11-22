@@ -7,9 +7,22 @@ angular
 
     const $translate = $filter('translate');
 
-    this._list = [
-      { name: () => $translate('guides'), state: 'editor.home.guides' },
-      { name: () => CurrentGuide.get().fullName(), state: 'editor.home.guides.detail' },
+    const safeFullName = (object) => {
+      if (!_.isEmpty(object)) {
+        return object.fullName();
+      }
+    }
+
+    this._list = [{
+        name: () => $translate('guides'),
+        state: 'editor.home.guides'
+      }, {
+        name: () => safeFullName(CurrentGuide.get()),
+        state: 'editor.home.guides.detail'
+      }, {
+        name: () => safeFullName(CurrentGuide.get().getExercise($stateParams.eid)),
+        state: `editor.home.guides.detail.exercise`
+      },
     ];
 
     this.list = () => {

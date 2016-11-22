@@ -9,7 +9,7 @@ angular
     }
 
     this.get = () => {
-      return _guide
+      return _guide;
     }
 
   });
