@@ -53,6 +53,27 @@ angular
         this.layout = this.getLayout().next().type();
       }
 
+      needsTests() {
+        return this.getEditor().needsTests(this);
+      }
+
+      needsChoices() {
+        return this.getEditor().needsChoices(this);
+      }
+
+      needsExpectations() {
+        return this.getEditor().needsExpectations(this);
+      }
+
+      needsExtra() {
+        return this.getEditor().needsExtra(this);
+      }
+
+      needsDefaultCode() {
+        return this.getEditor().needsDefaultCode(this);
+      }
+
+
       static from(exercise = {}) {
         return new Exercise(exercise);
       }
