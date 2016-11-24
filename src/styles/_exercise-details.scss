@@ -141,3 +141,33 @@ ace-evaluation {
   }
 }
 
+.complementary {
+  width: 100%;
+  label {
+    width: 100%;
+    input {
+      width: calc(100% - 40px);
+    }
+    .fa-times {
+      margin-left: 15px;
+    }
+  }
+}
+
+.complementary label::after {
+  background-color: $brand-complementary;
+  color: white;
+  top: 10px;
+}
+
+.complementary label::before {
+  bottom: 7px;
+}
+
+.complementary-checkbox label::after {
+  width: 17px;
+  height: 17px;
+  line-height: 14px;
+  border-radius: 3px;
+  border: 1px solid $brand-complementary;
+}

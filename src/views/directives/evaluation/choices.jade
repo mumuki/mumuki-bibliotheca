@@ -1,1 +1,11 @@
-span Choices
+form(role='form')
+
+  div.checkbox.complementary.complementary-checkbox(ng-repeat='choice in exercise.choices')
+    input(type='checkbox', id='input-{{$id}}', ng-model='choice.checked')
+    label(for='input-{{$id}}')
+      input(type='text', ng-model='choice.value')
+      i.fa.fa-fw.fa-times(ng-click='removeChoice(choice)')
+
+  a(href='', ng-click='addChoice()')
+    i.fa.fa-fw.fa-plus
+    span Add

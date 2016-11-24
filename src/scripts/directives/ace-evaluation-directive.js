@@ -56,6 +56,15 @@ angular
         $scope.$watch(() => $scope.exercise.getEditor(), () => $scope.selectTab(firstTabVisible()));
         $scope.$watch(() => $scope.exercise.getLanguage(), () => $scope.selectTab(firstTabVisible()));
 
+        $scope.addChoice = () => {
+          $scope.exercise.choices = $scope.exercise.choices || [];
+          $scope.exercise.choices.push({ value: '', checked: false });
+        }
+
+        $scope.removeChoice = (choice) => {
+          _.remove($scope.exercise.choices, choice);
+        }
+
       }
 
     }
