@@ -11,42 +11,50 @@ angular
       },
       controller: ($scope) => {
 
-        let _selectedTab;
+        const firstTabVisible = () => _.find($scope.tabs, (t) => t.isVisible());
 
         $scope.tabs = [
           {
+            name: 'choices',
+            templateUrl: 'views/directives/evaluation/choices.html',
+            isVisible: () => $scope.exercise.needsChoices(),
+          },
+          {
             name: 'test',
             templateUrl: 'views/directives/evaluation/test.html',
+            isVisible: () => $scope.exercise.needsTests(),
           },
           {
             name: 'expectations',
             templateUrl: 'views/directives/evaluation/expectations.html',
+            isVisible: () => $scope.exercise.needsExpectations(),
           },
           {
             name: 'extra',
             templateUrl: 'views/directives/evaluation/extra.html',
+            isVisible: () => $scope.exercise.needsExtra(),
           },
           {
             name: 'default_code',
             templateUrl: 'views/directives/evaluation/default_code.html',
+            isVisible: () => $scope.exercise.needsDefaultCode(),
           },
           {
             name: 'solution',
             templateUrl: 'views/directives/evaluation/solution.html',
+            isVisible: () => true,
           },
         ];
 
         $scope.selectTab = (tab) => {
           $scope.tabs.forEach((t) => t.selected = false);
           tab.selected = true;
-          _selectedTab = tab;
         }
 
-        $scope.isSelected = (name) => {
-          return { "active": _selectedTab.name === name };
-        }
+        $scope.selectTab(firstTabVisible());
 
-        $scope.selectTab($scope.tabs[0]);
+        $scope.$watch(() => $scope.exercise.getEditor(), () => $scope.selectTab(firstTabVisible()));
+        $scope.$watch(() => $scope.exercise.getLanguage(), () => $scope.selectTab(firstTabVisible()));
 
       }
 

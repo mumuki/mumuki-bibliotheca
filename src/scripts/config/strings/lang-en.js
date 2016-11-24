@@ -6,6 +6,7 @@ angular
     authors_placeholder: '...Full Name...',
     binding: 'Binding',
     blockquote: 'Blockquote',
+    choices: 'Choices',
     code: 'Code',
     collaborators: 'Collaborators',
     collaborators_placeholder: '...Enter collaborators...',
