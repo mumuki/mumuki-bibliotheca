@@ -7,7 +7,7 @@
       a(href='', data-toggle='tab') {{ t.name | translate }}
 
   .tab-content.margin-top
-    .tab-pane(ng-repeat='t in tabs', ng-class='{ "active": t.selected }')
-      ace-editor(content='exercise[t.name]', mode='exercise.getLanguage()', ng-if='!$last && t.name !== "expectations"')
-      expectations(exercise='exercise', ng-if='!$last && t.name === "expectations"')
-      solution(exercise='exercise', ng-if='$last')
+    .tab-pane(
+        ng-repeat='t in tabs',
+        ng-class='{ "active": t.selected }')
+      div(ng-include="t.templateUrl")
