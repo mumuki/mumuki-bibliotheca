@@ -2,6 +2,8 @@ angular
   .module('editor')
   .constant('LANG_EN', {
 
+    add_choice: 'Add choice',
+    add_expectation: 'Add expectation',
     authors: 'Authors',
     authors_placeholder: '...Full Name...',
     binding: 'Binding',

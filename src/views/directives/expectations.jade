@@ -8,6 +8,9 @@
       input(type='text', ng-model='expectation.binding', placeholder='{{ "binding" | translate }}')
     .inspection
       input(type='text', ng-model='expectation.inspection', placeholder='{{ "inspection" | translate }}')
+    .times
+      i.fa.fa-fw.fa-times(ng-click='removeExpectation(expectation)')
+
 
   .advanced(ng-repeat='expectation in exercise.expectations', ng-if='exercise.new_expectations')
     .sentence
@@ -25,6 +28,9 @@
         input(type='checkbox', ng-model='expectation.negated')
         span {{ 'negated' | translate }}
       .remove
-        i.fa.fa-fw.fa-trash
+        i.fa.fa-fw.fa-times(ng-click='removeExpectation(expectation)')
         span {{ 'remove' | translate }}
 
+  a(href='', ng-click='addExpectation()')
+    i.fa.fa-fw.fa-plus
+    span {{ 'add_expectation' | translate }}
