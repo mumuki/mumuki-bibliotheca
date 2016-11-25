@@ -3,7 +3,8 @@ angular
   .controller('GuideDetailController', function($scope,
                                                 guide,
                                                 Locales,
-                                                Languages) {
+                                                Languages,
+                                                Api) {
 
     $scope.guide = guide;
 
@@ -11,5 +12,7 @@ angular
     $scope.languages = Languages;
 
     $scope.currentLocaleIcon = (locale) => Locales.fromCode(locale).icon();
+
+    $scope.save = () => Api.saveGuide(guide.toSave());
 
   });

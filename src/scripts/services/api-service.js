@@ -25,6 +25,11 @@ angular
         .then((res) => Guide.from(res.data));
     };
 
+    this.saveGuide = (guide) => {
+      return HTTP
+        .call('post',`${API}/guides`, guide, defaultConfig());
+    }
+
     this.getLanguages = () => {
       return HTTP
         .call('get',`${API}/languages`, defaultConfig())
