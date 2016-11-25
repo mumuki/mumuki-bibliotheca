@@ -88,6 +88,27 @@ angular
           $scope.editor.focus();
         }
 
+        const bindCtrl = (letter) => {
+          return {
+            win: `Ctrl-${letter}`,
+            mac: `Command-${letter}`
+          }
+        }
+
+        const command = (letter, callback) => {
+          return {
+            bindKey: bindCtrl(letter),
+            exec: callback,
+          }
+        }
+
+        $scope.editor.commands.addCommands([
+          command('B', $scope.bold),
+          command('K', $scope.link),
+          command('I', $scope.italic),
+          command('M', $scope.mumuki),
+        ]);
+
       }
 
     }
