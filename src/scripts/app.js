@@ -8,4 +8,5 @@ angular
     'ui.ace',
     'ngSanitize',
     'dndLists',
+    'cfp.hotkeys',
   ]);

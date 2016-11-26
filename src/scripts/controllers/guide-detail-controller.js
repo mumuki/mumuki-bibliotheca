@@ -2,6 +2,8 @@ angular
   .module('editor')
   .controller('GuideDetailController', function($scope,
                                                 guide,
+                                                Hotkeys,
+                                                Debounce,
                                                 Locales,
                                                 Languages,
                                                 Api) {
@@ -13,6 +15,8 @@ angular
 
     $scope.currentLocaleIcon = (locale) => Locales.fromCode(locale).icon();
 
-    $scope.save = () => Api.saveGuide(guide.toSave());
+    $scope.save = Debounce.for(() => Api.saveGuide(guide.toSave()));
+
+    Hotkeys.bindSave($scope);
 
   });
