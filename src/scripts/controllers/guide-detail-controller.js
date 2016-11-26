@@ -15,7 +15,13 @@ angular
 
     $scope.currentLocaleIcon = (locale) => Locales.fromCode(locale).icon();
 
-    $scope.save = Debounce.for(() => Api.saveGuide(guide.toSave()));
+    $scope.save = Debounce.for(() => {
+      return Promise
+        .resolve(guide)
+        .call('toSave')
+        .then((guideToSave) => Api.saveGuide(guideToSave))
+        .catch((error) => console.log(error.message));
+    });
 
     Hotkeys.bindSave($scope);
 

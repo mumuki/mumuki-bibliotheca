@@ -16,6 +16,7 @@ angular
     description: 'Descripción',
     editor: 'Editor',
     english: 'Inglés',
+    error_mandatory_field: '{{ field }} no puede estar vacía',
     evaluation: 'Evaluación',
     exercise: 'Ejercicio',
     expectations: 'Expectativas',

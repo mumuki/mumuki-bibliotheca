@@ -1,6 +1,7 @@
 angular
   .module('editor')
-  .factory('Guide', function(Exercise) {
+  .factory('Guide', function (Exercise,
+                              Validator) {
 
     class Guide {
 
@@ -39,7 +40,12 @@ angular
       }
 
       validate() {
-
+        Validator.notEmptyString(this, 'name');
+        Validator.notEmptyString(this, 'type');
+        Validator.notEmptyString(this, 'locale');
+        Validator.notEmptyString(this, 'authors');
+        Validator.notEmptyString(this, 'language');
+        Validator.notEmptyString(this, 'description');
       }
 
       static from(guide = {}) {

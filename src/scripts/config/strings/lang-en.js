@@ -16,6 +16,7 @@ angular
     description: 'Description',
     editor: 'Editor',
     english: 'English',
+    error_mandatory_field: 'Field {{ field }} is mandatory',
     evaluation: 'Evaluation',
     exercise: 'Exercise',
     expectations: 'Expectations',
