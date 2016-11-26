@@ -12,7 +12,8 @@ angular
       scope: Foldable.scope({
         mode: '=',
         header: '@',
-        content: '='
+        content: '=',
+        placeholder: '@',
       }),
       controller: ($scope) => {
 
@@ -36,7 +37,7 @@ angular
         }
 
         $scope.content = $scope.content || '';
-        $scope.placeholder = translate(`${$scope.header}_placeholder`);
+        $scope.placeholder = translate($scope.placeholder || `${$scope.header}_placeholder`);
 
         $scope.aceEditor = AceEditor.defaults({
           mode: getMode(),
