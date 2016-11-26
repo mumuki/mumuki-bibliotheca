@@ -2,7 +2,7 @@
 
   h1.detail-title.exercise-title
     span(style='white-space: nowrap') {{ 'exercise' | translate }} {{ exercise.number() }}:
-    input(type='text', ng-model='exercise.name', placeholder='{{ "exercise_name_placeholder" | translate }}')
+    input(type='text', ng-model='exercise.name', placeholder='{{ "placeholder_exercise_name" | translate }}')
 
     div.dropdown
       small(id='ddEditor', data-toggle='dropdown', aria-expanded='true')

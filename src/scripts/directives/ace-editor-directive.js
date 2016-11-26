@@ -37,7 +37,7 @@ angular
         }
 
         $scope.content = $scope.content || '';
-        $scope.placeholder = translate($scope.placeholder || `${$scope.header}_placeholder`);
+        $scope.placeholder = translate($scope.placeholder || `placeholder_${$scope.header}`);
 
         $scope.aceEditor = AceEditor.defaults({
           mode: getMode(),

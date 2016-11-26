@@ -49,7 +49,7 @@ angular
         $scope.activePreviewClass = () => ({ active: _selectedTab === PREVIEW });
 
         $scope.content = $scope.content || '';
-        $scope.placeholder = translate(`${$scope.header}_placeholder`);
+        $scope.placeholder = translate(`placeholder_${$scope.header}`);
 
         $scope.aceEditor = AceEditor.defaults({
           mode: 'markdown',
