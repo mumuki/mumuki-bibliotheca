@@ -15,11 +15,24 @@ angular
         const insertText = (translationKey, prefix, suffix='') => {
           const range = $scope.editor.selection.getRange();
           const text = $scope.editor.session.getTextRange(range) || translate(translationKey);
-          $scope.editor.session.replace(range, `${prefix}${text}${suffix}`);
-          range.start.column += prefix.length;
-          range.end.column = range.start.column + text.length;
-          $scope.editor.focus();
-          $scope.editor.selection.setSelectionRange(range);
+
+          const range2 = $scope.editor.selection.getRange();
+          range2.start.column -= prefix.length;
+          range2.end.column = range.start.column + text.length + suffix.length;
+
+          const text2 = $scope.editor.session.getTextRange(range2);
+          if (_.startsWith(text2, prefix) && _.endsWith(text2, suffix)) {
+            $scope.editor.session.replace(range2, `${text}`);
+            range2.end.column = range2.start.column + text.length;
+            $scope.editor.focus();
+            $scope.editor.selection.setSelectionRange(range2);
+          } else {
+            $scope.editor.session.replace(range, `${prefix}${text}${suffix}`);
+            range.start.column += prefix.length;
+            range.end.column = range.start.column + text.length;
+            $scope.editor.focus();
+            $scope.editor.selection.setSelectionRange(range);
+          }
         }
         const insertBefore = (translationKey, item) => {
           insertText(translationKey, item);
@@ -74,6 +87,27 @@ angular
           $scope.editor.insert(MU);
           $scope.editor.focus();
         }
+
+        const bindCtrl = (letter) => {
+          return {
+            win: `Ctrl-${letter}`,
+            mac: `Command-${letter}`
+          }
+        }
+
+        const command = (letter, callback) => {
+          return {
+            bindKey: bindCtrl(letter),
+            exec: callback,
+          }
+        }
+
+        $scope.editor.commands.addCommands([
+          command('B', $scope.bold),
+          command('K', $scope.link),
+          command('I', $scope.italic),
+          command('M', $scope.mumuki),
+        ]);
 
       }
 

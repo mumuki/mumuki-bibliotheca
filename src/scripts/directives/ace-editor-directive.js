@@ -35,12 +35,11 @@ angular
           return modes[$scope.mode] || $scope.mode;
         }
 
-        $scope.mode = getMode();
         $scope.content = $scope.content || '';
         $scope.placeholder = translate(`${$scope.title}_placeholder`);
 
         $scope.aceEditor = AceEditor.defaults({
-          mode: $scope.mode,
+          mode: getMode(),
           rendererOptions: { minLines: 15 },
           onChange: () => update(),
           onLoad: (editor) => {
