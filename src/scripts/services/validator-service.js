@@ -7,7 +7,8 @@ angular
     this.notEmptyString = (object, field) => {
       if (_.chain(object).get(field).trim().isEmpty().value()) {
         throw new Error(translate('error_mandatory_field', {
-          field: _.capitalize(translate(field))
+          field: translate(field),
+          fullName: object.fullName(),
         }));
       }
     }

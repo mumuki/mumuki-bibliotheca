@@ -2,6 +2,7 @@ angular
   .module('editor')
   .controller('GuideDetailController', function($scope,
                                                 guide,
+                                                toastr,
                                                 Hotkeys,
                                                 Debounce,
                                                 Locales,
@@ -20,7 +21,7 @@ angular
         .resolve(guide)
         .call('toSave')
         .then((guideToSave) => Api.saveGuide(guideToSave))
-        .catch((error) => console.log(error.message));
+        .catch((error) => toastr.error(`${error.message}`));
     });
 
     Hotkeys.bindSave($scope);

@@ -16,7 +16,7 @@ angular
     description: 'Descripción',
     editor: 'Editor',
     english: 'Inglés',
-    error_mandatory_field: '{{ field }} no puede estar vacía',
+    error_mandatory_field: '{{fullName}}: El campo "{{ field }}" no puede estar vacío',
     evaluation: 'Evaluación',
     exercise: 'Ejercicio',
     expectations: 'Expectativas',
@@ -29,8 +29,10 @@ angular
     language: 'Lenguaje',
     license_disclaimer: 'Esta guía será publicada bajo los términos de la <a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode">Licencia Creative Commons Compartir-Igual, 4.0</a>. Para aprender más sobre las Licencias Creative Commons visitá <a href="https://creativecommons.org/share-your-work">https://creativecommons.org/share-your-work</a>.',
     link: 'Link',
+    locale: 'Idioma',
     login: 'Iniciar sesión',
     logout: 'Cerrar sesión',
+    name: 'Nombre',
     negated: 'Negado',
     object: 'Objeto',
     placeholder_authors: '...Ingrese los autores...',
@@ -66,6 +68,7 @@ angular
     tooltip_quote: 'Cita',
     tooltip_ul: 'Lista desordenada',
     transitive: 'Transitivo',
+    type: 'Tipo',
     verb: 'Verbo',
 
   });

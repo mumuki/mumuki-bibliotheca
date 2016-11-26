@@ -16,7 +16,7 @@ angular
     description: 'Description',
     editor: 'Editor',
     english: 'English',
-    error_mandatory_field: 'Field {{ field }} is mandatory',
+    error_mandatory_field: '{{ fullName }} Field {{ field }} is mandatory',
     evaluation: 'Evaluation',
     exercise: 'Exercise',
     expectations: 'Expectations',
@@ -29,8 +29,10 @@ angular
     language: 'Language',
     license_disclaimer: 'This guide will be published under <a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode">Creative Commons Attribution-ShareAlike 4.0 International Public License</a>. To learn more about Creative Commons Licenses visit <a href="https://creativecommons.org/share-your-work">https://creativecommons.org/share-your-work</a>.',
     link: 'Link',
+    locale: 'Locale',
     login: 'Log in',
     logout: 'Log out',
+    name: 'Name',
     negated: 'Negated',
     object: 'Object',
     placeholder_authors: '...Full Name...',
@@ -66,6 +68,7 @@ angular
     tooltip_quote: 'Quote',
     tooltip_ul: 'Unordered List',
     transitive: 'Transitive',
+    type: 'Type',
     verb: 'Verb',
 
   });

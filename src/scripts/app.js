@@ -9,4 +9,5 @@ angular
     'ngSanitize',
     'dndLists',
     'cfp.hotkeys',
+    'toastr',
   ]);
