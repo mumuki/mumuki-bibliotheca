@@ -1,7 +1,7 @@
 .mu-content
 
   h1.detail-title
-    input(type='text', ng-model='guide.name', placeholder='{{ "guide_name_placeholder" | translate }}')
+    input(type='text', ng-model='guide.name', placeholder='{{ "placeholder_guide_name" | translate }}')
 
     small
       i.fa.fa-fw.fa-upload(ng-click='save()')
@@ -49,9 +49,9 @@
     ace-editor(content='guide.extra_code', mode='guide.language', header='extra_code', foldable='true')
     .detail-license
       h3 {{ 'authors' | translate }}
-      input(type='text', ng-model='guide.authors', placeholder='{{ "authors_placeholder" | translate }}')
+      input(type='text', ng-model='guide.authors', placeholder='{{ "placeholder_authors" | translate }}')
       h3 {{ 'collaborators' | translate }}
-      input(type='text', ng-model='guide.collaborators', placeholder='{{ "collaborators_placeholder" | translate }}')
+      input(type='text', ng-model='guide.collaborators', placeholder='{{ "placeholder_collaborators" | translate }}')
       br
       br
       small(ng-bind-html='"license_disclaimer" | translate')
