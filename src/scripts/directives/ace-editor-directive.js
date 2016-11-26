@@ -11,8 +11,9 @@ angular
       templateUrl: 'views/directives/ace-editor.html',
       scope: Foldable.scope({
         mode: '=',
-        title: '@',
-        content: '='
+        header: '@',
+        content: '=',
+        placeholder: '@',
       }),
       controller: ($scope) => {
 
@@ -36,7 +37,7 @@ angular
         }
 
         $scope.content = $scope.content || '';
-        $scope.placeholder = translate(`${$scope.title}_placeholder`);
+        $scope.placeholder = translate($scope.placeholder || `${$scope.header}_placeholder`);
 
         $scope.aceEditor = AceEditor.defaults({
           mode: getMode(),

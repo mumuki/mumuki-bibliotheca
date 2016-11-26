@@ -1,5 +1,5 @@
-h3(ng-if='title')
-  span {{ title | translate }}
+h3(ng-if='header')
+  span {{ header | translate }}
   i.pointer.fa.fa-fw(
     ng-if='isFoldable',
     ng-click='toggleMinimized()',
