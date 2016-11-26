@@ -46,6 +46,11 @@ angular
         Validator.notEmptyString(this, 'authors');
         Validator.notEmptyString(this, 'language');
         Validator.notEmptyString(this, 'description');
+        this.validateExercises();
+      }
+
+      validateExercises() {
+        this.exercises.forEach((exercise) => exercise.validate());
       }
 
       static from(guide = {}) {

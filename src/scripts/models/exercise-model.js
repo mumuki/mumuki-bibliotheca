@@ -2,7 +2,8 @@ angular
   .module('editor')
   .factory('Exercise', function(CurrentGuide,
                                 Layouts,
-                                Editor) {
+                                Editor,
+                                Validator) {
 
     class Exercise {
 
@@ -73,6 +74,12 @@ angular
         return this.getEditor().needsDefaultCode(this);
       }
 
+      validate() {
+        Validator.notEmptyString(this, 'name');
+        Validator.notEmptyString(this, 'type');
+        Validator.notEmptyString(this, 'layout');
+        Validator.notEmptyString(this, 'description');
+      }
 
       static from(exercise = {}) {
         return new Exercise(exercise);
