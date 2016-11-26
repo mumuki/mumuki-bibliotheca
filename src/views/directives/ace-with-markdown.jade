@@ -2,7 +2,7 @@
   ul.nav.nav-tabs(ng-class='{ "border-bottom-none": !showMinimized() }')
     li
       h3
-        span {{ title | translate }}
+        span {{ header | translate }}
         i.pointer.fa.fa-fw(
             ng-if='isFoldable',
             ng-click='toggleMinimized()',

@@ -11,7 +11,7 @@ angular
       restrict: 'E',
       templateUrl: 'views/directives/ace-with-markdown.html',
       scope: Foldable.scope({
-        title: '@',
+        header: '@',
         content: '=',
       }),
       controller: ($scope) => {
@@ -49,7 +49,7 @@ angular
         $scope.activePreviewClass = () => ({ active: _selectedTab === PREVIEW });
 
         $scope.content = $scope.content || '';
-        $scope.placeholder = translate(`${$scope.title}_placeholder`);
+        $scope.placeholder = translate(`${$scope.header}_placeholder`);
 
         $scope.aceEditor = AceEditor.defaults({
           mode: 'markdown',
