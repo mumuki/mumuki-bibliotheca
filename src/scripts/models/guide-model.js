@@ -1,6 +1,7 @@
 angular
   .module('editor')
-  .factory('Guide', function (Exercise,
+  .factory('Guide', function ($injector,
+                              Exercise,
                               Validator,
                               CurrentGuide) {
 
@@ -65,9 +66,9 @@ angular
 
       static from(guide = {}) {
         _.defaultsDeep(guide, {
-          type: 'problem',
-          locale: 'es',
-          language: 'text',
+          type: $injector.get('GuideType').default(),
+          locale: $injector.get('$translate').use(),
+          language: $injector.get('Languages').default(),
           exercises: [],
         });
         guide.exercises = guide.exercises.map(Exercise.from);
