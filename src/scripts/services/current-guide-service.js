@@ -7,11 +7,15 @@ angular
 
     this.set = (guide) => {
       _guide = guide;
-      _guideWithoutChanges = _.cloneDeep(guide);
+      this.setStored(guide);
     }
 
     this.get = () => {
       return _guide;
+    }
+
+    this.setStored = (savedGuide) => {
+      _guideWithoutChanges = _.cloneDeep(savedGuide);
     }
 
     this.hasChanges = (guide) => {

@@ -3,6 +3,7 @@ angular
   .service('GuideSaver', function($filter,
                                   toastr,
                                   Api,
+                                  CurrentGuide,
                                   Debounce) {
 
     const translate = $filter('translate');
@@ -11,7 +12,8 @@ angular
       return Promise
         .resolve(guide)
         .call('toSave')
-        .then((guideToSave) => Api.saveGuide(guideToSave))
+        .tap((guideToSave) => Api.saveGuide(guideToSave))
+        .tap((savedGuide) => CurrentGuide.setStored(savedGuide))
         .then(() => toastr.success(translate('guide_saved_successfully')))
         .catch((error) => toastr.error(`${error.message}`));
     })
