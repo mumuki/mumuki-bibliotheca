@@ -1,7 +1,8 @@
 angular
   .module('editor')
   .factory('Guide', function (Exercise,
-                              Validator) {
+                              Validator,
+                              CurrentGuide) {
 
     class Guide {
 
@@ -56,7 +57,7 @@ angular
       canSave() {
         try {
           this.validate();
-          return true;
+          return CurrentGuide.hasChanges(this);
         } catch(_) {
           return false;
         }
