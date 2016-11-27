@@ -2,7 +2,8 @@ angular
   .module('editor')
   .factory('Exercise', function(CurrentGuide,
                                 Layouts,
-                                Editor) {
+                                Editor,
+                                Validator) {
 
     class Exercise {
 
@@ -73,6 +74,37 @@ angular
         return this.getEditor().needsDefaultCode(this);
       }
 
+      validate() {
+        Validator.notEmptyString(this, 'name');
+        Validator.notEmptyString(this, 'type');
+        Validator.notEmptyString(this, 'layout');
+        Validator.notEmptyString(this, 'description');
+        this.getEditor().validate(this);
+      }
+
+      isTextLanguage() {
+        return this.getLanguage() === 'text';
+      }
+
+      hasTest() {
+        return !_.isEmpty(this.test.trim());
+      }
+
+      hasExpectations() {
+        return !_.isEmpty(this.expectations);
+      }
+
+      hasAnyChoiceSelected() {
+        return _.some(this.choices, (choice) => choice.checked);
+      }
+
+      hasOneChoiceSelected() {
+        return _.filter(this.choices, 'checked').length === 1;
+      }
+
+      hasMoreThanOneChoiceSelected() {
+        return _.filter(this.choices, 'checked').length > 1;
+      }
 
       static from(exercise = {}) {
         return new Exercise(exercise);

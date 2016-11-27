@@ -1,6 +1,8 @@
 angular
   .module('editor')
-  .factory('Guide', function(Exercise) {
+  .factory('Guide', function (Exercise,
+                              Validator,
+                              CurrentGuide) {
 
     class Guide {
 
@@ -30,7 +32,7 @@ angular
       }
 
       getExercise(id) {
-        return Exercise.from(_.find(this.exercises, { id: parseInt(id, 10) }));
+        return _.find(this.exercises, { id: parseInt(id, 10) });
       }
 
       toSave() {
@@ -39,7 +41,26 @@ angular
       }
 
       validate() {
+        Validator.notEmptyString(this, 'name');
+        Validator.notEmptyString(this, 'type');
+        Validator.notEmptyString(this, 'locale');
+        Validator.notEmptyString(this, 'authors');
+        Validator.notEmptyString(this, 'language');
+        Validator.notEmptyString(this, 'description');
+        this.validateExercises();
+      }
 
+      validateExercises() {
+        this.exercises.forEach((exercise) => exercise.validate());
+      }
+
+      canSave() {
+        try {
+          this.validate();
+          return CurrentGuide.hasChanges(this);
+        } catch(_) {
+          return false;
+        }
       }
 
       static from(guide = {}) {

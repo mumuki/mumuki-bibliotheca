@@ -21,22 +21,11 @@
 @import 'flag-icon';
 @import 'expectations';
 
-html, body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  background-color: white;
-  a {
-    color: $mu-color-link;
-    &:hover,
-    &:active,
-    &:focus {
-      color: $mu-color-link;
-    }
-  }
-}
-
 .mu-page {
   position: relative;
   min-height: 100%;
+}
+
+.mu-disabled {
+  pointer-events: none;
 }

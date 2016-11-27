@@ -4,8 +4,15 @@
     span(style='white-space: nowrap') {{ 'exercise' | translate }} {{ exercise.number() }}:
     input(type='text', ng-model='exercise.name', placeholder='{{ "placeholder_exercise_name" | translate }}')
 
+    small.editor(
+        ng-class='{                               \
+          "text-primary pointer": guide.canSave(),\
+          "mu-disabled": !guide.canSave(),        \
+        }')
+      i.fa.fa-fw.fa-upload(ng-click='save()')
+
     div.dropdown
-      small(id='ddEditor', data-toggle='dropdown', aria-expanded='true')
+      small.text-primary(id='ddEditor', data-toggle='dropdown', aria-expanded='true')
         i.pointer.editor.fa.fa-fw(class='{{ exercise.getEditor().icon() }}')
       ul.dropdown-menu.dropdown-menu-right(aria-labelledby='ddEditor')
         li(ng-repeat='editor in Editor.types() | orderBy:key', ng-click='exercise.setEditor(editor)')
@@ -13,10 +20,10 @@
             i.fa(class='{{ Editor.from(editor).icon() }}')
             span {{ editor }}
 
-    small
+    small.text-primary
       i.pointer.layout.da(ng-click='exercise.toggleLayout()', class='{{ exercise.getLayout().icon() }}')
 
-    div.dropdown
+    div.dropdown.text-primary
       i.pointer.language.da(class='{{ exercise.icon() }}', id='ddLanguage', data-toggle='dropdown', aria-expanded='true')
       ul.dropdown-menu.dropdown-menu-right(aria-labelledby='ddLanguage')
         li(ng-repeat='language in languages.get()', ng-click='exercise.setLanguage(language.name)')
