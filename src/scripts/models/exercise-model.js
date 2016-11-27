@@ -79,6 +79,7 @@ angular
         Validator.notEmptyString(this, 'type');
         Validator.notEmptyString(this, 'layout');
         Validator.notEmptyString(this, 'description');
+        Validator.notIncompleteExpectations(this);
         this.getEditor().validate(this);
       }
 

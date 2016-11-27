@@ -20,6 +20,7 @@ angular
     error_editor_multiple_choice_validation: '{{fullName}}: Should have at least one choice selected',
     error_editor_single_choice_validation: '{{fullName}}: Shoud have only one choice selected',
     error_editor_single_choice_validation2: '{{fullName}}: Should have at most one choice selected',
+    error_expectations_incomplete_validation: '{{fullName}}: Has incomplete expectations',
     error_mandatory_field: '{{ fullName }} Field {{ field }} is mandatory',
     evaluation: 'Evaluation',
     exercise: 'Exercise',

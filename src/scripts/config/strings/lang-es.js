@@ -20,6 +20,7 @@ angular
     error_editor_multiple_choice_validation: '{{fullName}}: Debe seleccionar al menos una alternativa',
     error_editor_single_choice_validation: '{{fullName}}: Debe seleccionar solamente una alternativa',
     error_editor_single_choice_validation2: '{{fullName}}: Debe seleccionar una alternativa como máximo',
+    error_expectations_incomplete_validation: '{{fullName}}: Tiene expectativas incompletas',
     error_mandatory_field: '{{fullName}}: El campo "{{ field }}" no puede estar vacío',
     evaluation: 'Evaluación',
     exercise: 'Ejercicio',
