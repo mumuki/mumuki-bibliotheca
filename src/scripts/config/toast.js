@@ -10,7 +10,7 @@ angular
       positionClass: 'toast-bottom-left',
       preventDuplicates: false,
       preventOpenDuplicates: false,
-      progressBar: true,
+      progressBar: false,
       target: 'body',
     });
 

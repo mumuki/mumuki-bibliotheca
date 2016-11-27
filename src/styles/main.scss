@@ -40,3 +40,7 @@ html, body {
   position: relative;
   min-height: 100%;
 }
+
+.mu-disabled {
+  pointer-events: none;
+}

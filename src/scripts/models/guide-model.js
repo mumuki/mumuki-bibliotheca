@@ -53,6 +53,15 @@ angular
         this.exercises.forEach((exercise) => exercise.validate());
       }
 
+      canSave() {
+        try {
+          this.validate();
+          return true;
+        } catch(_) {
+          return false;
+        }
+      }
+
       static from(guide = {}) {
         guide.exercises = _.get(guide, 'exercises', []).map(Exercise.from);
         return new Guide(guide);

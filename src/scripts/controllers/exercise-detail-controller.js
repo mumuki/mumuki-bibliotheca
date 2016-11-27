@@ -2,10 +2,9 @@ angular
   .module('editor')
   .controller('ExerciseDetailController', function ($scope,
                                                     exercise,
+                                                    GuideSaver,
                                                     Hotkeys,
-                                                    Api,
                                                     Languages,
-                                                    Debounce,
                                                     Editor) {
 
     $scope.guide = exercise.guide();
@@ -14,7 +13,7 @@ angular
 
     $scope.Editor = Editor;
 
-    $scope.save = Debounce.for(() => Api.saveGuide($scope.guide.toSave()));
+    $scope.save = () => GuideSaver.save($scope.guide);
 
     Hotkeys.bindSave($scope);
 

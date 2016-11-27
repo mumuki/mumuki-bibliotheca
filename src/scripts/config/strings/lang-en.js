@@ -22,6 +22,7 @@ angular
     expectations: 'Expectations',
     extra: 'Extra code',
     extra_code: 'Extra code',
+    guide_saved_successfully: 'Guide saved successfully',
     guides: 'Guides',
     hint: 'Hint',
     inspection: 'Inspection',
