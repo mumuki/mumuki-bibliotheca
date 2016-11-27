@@ -1,6 +1,7 @@
 .input-group.filter
   i.input-group-addon.fa.fa-search
   input.form-control(id='filter' placeholder='{{ "search" | translate }}' ng-model='listSearch')
+  i.input-group-addon.fa.fa-plus(ui-sref='editor.home.guides.new')
 
 .list-group
   button.list-group-item(

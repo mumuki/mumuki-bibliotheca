@@ -42,6 +42,7 @@ angular
     logout: 'Log out',
     name: 'Name',
     negated: 'Negated',
+    new_guide: 'New guide',
     object: 'Object',
     placeholder_authors: '...Full Name...',
     placeholder_collaborators: '...Enter collaborators...',

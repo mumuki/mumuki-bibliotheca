@@ -64,7 +64,13 @@ angular
       }
 
       static from(guide = {}) {
-        guide.exercises = _.get(guide, 'exercises', []).map(Exercise.from);
+        _.defaultsDeep(guide, {
+          type: 'problem',
+          locale: 'es',
+          language: 'text',
+          exercises: [],
+        });
+        guide.exercises = guide.exercises.map(Exercise.from);
         return new Guide(guide);
       }
 

@@ -42,6 +42,7 @@ angular
     logout: 'Cerrar sesión',
     name: 'Nombre',
     negated: 'Negado',
+    new_guide: 'Nueva guía',
     object: 'Objeto',
     placeholder_authors: '...Ingrese los autores...',
     placeholder_collaborators: '...Ingrese los colaboradores...',

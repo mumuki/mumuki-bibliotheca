@@ -5,7 +5,7 @@ angular
                                   $filter,
                                   CurrentGuide) {
 
-    const $translate = $filter('translate');
+    const translate = $filter('translate');
 
     const safeFullName = (object) => {
       if (!_.isEmpty(object)) {
@@ -14,15 +14,18 @@ angular
     }
 
     this._list = [{
-        name: () => $translate('guides'),
+        name: () => translate('guides'),
         state: 'editor.home.guides'
       }, {
         name: () => safeFullName(CurrentGuide.get()),
         state: 'editor.home.guides.detail'
       }, {
         name: () => safeFullName(CurrentGuide.get().getExercise($stateParams.eid)),
-        state: `editor.home.guides.detail.exercise`
-      },
+        state: 'editor.home.guides.detail.exercise'
+      }, {
+        name: () => translate('new_guide'),
+        state: 'editor.home.guides.new'
+      }
     ];
 
     this.list = () => {
