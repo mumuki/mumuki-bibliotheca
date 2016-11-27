@@ -32,7 +32,7 @@ angular
       }
 
       getExercise(id) {
-        return Exercise.from(_.find(this.exercises, { id: parseInt(id, 10) }));
+        return _.find(this.exercises, { id: parseInt(id, 10) });
       }
 
       toSave() {
