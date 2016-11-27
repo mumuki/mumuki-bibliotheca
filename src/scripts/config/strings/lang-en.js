@@ -16,6 +16,8 @@ angular
     description: 'Description',
     editor: 'Editor',
     english: 'English',
+    error_choices_empty_validation: '{{fullName}}: Should have at least two choices',
+    error_choices_incomplete_validation: '{{fullName}}: Has incomplete choices',
     error_editor_code_validation: '{{fullName}}: Should have at least one test or expectation',
     error_editor_multiple_choice_validation: '{{fullName}}: Should have at least one choice selected',
     error_editor_single_choice_validation: '{{fullName}}: Shoud have only one choice selected',

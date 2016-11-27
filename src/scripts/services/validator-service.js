@@ -19,6 +19,10 @@ angular
       return (expectation) => isEmptyExpectation(expectationable, expectation);
     }
 
+    const isIncompleteChoice = (choiceable) => {
+      return (choice) => isEmptyString(choice, 'value');
+    }
+
     this.notEmptyString = (object, field) => {
       if (isEmptyString(object, field)) {
         throw new Error(translate('error_mandatory_field', {
@@ -28,10 +32,26 @@ angular
       }
     }
 
+    this.notEmptyChoices = (choiceable) => {
+      if (_.get(choiceable, 'choices', []).length < 2) {
+        throw new Error(translate('error_choices_empty_validation', {
+          fullName: choiceable.fullName(),
+        }));
+      }
+    }
+
     this.notIncompleteExpectations = (expectationable) => {
       if (_.some(expectationable.expectations, isIncompleteExpectation(expectationable))) {
         throw new Error(translate('error_expectations_incomplete_validation', {
           fullName: expectationable.fullName(),
+        }))
+      }
+    }
+
+    this.notIncompleteChoices = (choiceable) => {
+      if (_.some(choiceable.choices, isIncompleteChoice(choiceable))) {
+        throw new Error(translate('error_choices_incomplete_validation', {
+          fullName: choiceable.fullName(),
         }))
       }
     }

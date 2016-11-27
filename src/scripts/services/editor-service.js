@@ -1,6 +1,7 @@
 angular
   .module('editor')
-  .service('Editor', function($filter) {
+  .service('Editor', function($filter,
+                              Validator) {
 
     const translate = $filter('translate');
 
@@ -17,6 +18,7 @@ angular
         needsDefaultCode: (exercise) => true,
         needsExpectations: (exercise) => true,
         validate: (exercise) => {
+          Validator.notIncompleteExpectations(exercise);
           if (!exercise.hasTest() && !exercise.hasExpectations()) {
             throwError('error_editor_code_validation', { fullName: exercise.fullName() });
           }
@@ -30,6 +32,8 @@ angular
         needsDefaultCode: (exercise) => false,
         needsExpectations: (exercise) => false,
         validate: (exercise) => {
+          Validator.notEmptyChoices(exercise);
+          Validator.notIncompleteChoices(exercise);
           if (!exercise.hasAnyChoiceSelected()) {
             throwError('error_editor_multiple_choice_validation', { fullName: exercise.fullName() });
           }
@@ -43,6 +47,8 @@ angular
         needsDefaultCode: (exercise) => exercise.language !== 'text',
         needsExpectations: (exercise) => exercise.language !== 'text',
         validate: (exercise) => {
+          Validator.notEmptyChoices(exercise);
+          Validator.notIncompleteChoices(exercise);
           if (exercise.isTextLanguage() && !exercise.hasOneChoiceSelected()) {
             throwError('error_editor_single_choice_validation', { fullName: exercise.fullName() });
           }
