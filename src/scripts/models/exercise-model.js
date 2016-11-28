@@ -1,6 +1,7 @@
 angular
   .module('editor')
-  .factory('Exercise', function(CurrentGuide,
+  .factory('Exercise', function($filter,
+                                CurrentGuide,
                                 Layouts,
                                 Editor,
                                 Validator) {
@@ -107,6 +108,9 @@ angular
       }
 
       static from(exercise = {}) {
+        _.defaultsDeep(exercise, {
+          name: $filter('translate')('new_exercise'),
+        });
         return new Exercise(exercise);
       }
 

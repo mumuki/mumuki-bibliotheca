@@ -22,7 +22,7 @@ editorTest('Breadcrumb Service', (mocks) => {
       mocks.state
         .expects('go')
         .once()
-        .withExactArgs('editor', {});
+        .withExactArgs('editor', {}, { reload: false });
     });
 
     spec((Breadcrumb) => Breadcrumb.go('editor'));

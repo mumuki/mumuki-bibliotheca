@@ -51,6 +51,21 @@ angular
           }
         }
       })
+      .state('editor.home.guides.new', {
+        url: '/new',
+        authenticated: true,
+        views: {
+          'content@editor': {
+            templateUrl: 'views/content/guides/guide-detail.html',
+            controller: 'NewGuideController',
+            resolve: {
+              guide: (Guide) => {
+                return Guide.from({});
+              }
+            }
+          }
+        }
+      })
       .state('editor.home.guides.detail', {
         url: '/:org/:repo',
         authenticated: true,

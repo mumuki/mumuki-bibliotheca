@@ -1,8 +1,9 @@
 angular
   .module('editor')
-  .service('CurrentGuide', function () {
+  .service('CurrentGuide', function (Auth) {
 
     let _guide;
+    let _organization;
     let _guideWithoutChanges;
 
     this.set = (guide) => {
@@ -16,6 +17,14 @@ angular
 
     this.setStored = (savedGuide) => {
       _guideWithoutChanges = _.cloneDeep(savedGuide);
+    }
+
+    this.getOrganization = () => {
+      return _organization || Auth.organizations()[0];
+    }
+
+    this.setOrganization = (organization) => {
+      _organization = organization;
     }
 
     this.hasChanges = (guide) => {

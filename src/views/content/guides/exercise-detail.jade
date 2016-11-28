@@ -41,6 +41,9 @@
         dnd-effect-allowed='copyMove',
         dnd-moved='exercise.guide().exercises.splice($index, 1)',
         ui-sref='editor.home.guides.detail.exercise({ eid: e.id })')
+      a.text-center(href='', ng-click='addExercise()')
+        i.fa.fa-fw.fa-plus
+        span {{ 'add_exercise' | translate }}
 
     .exercise-detail-area(class='{{ exercise.getLayout().type() }}')
       .exercise-detail-area-text

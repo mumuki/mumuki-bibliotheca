@@ -15,6 +15,8 @@ angular
 
     $scope.save = () => GuideSaver.save($scope.guide);
 
+    $scope.addExercise = () => GuideSaver.addExercise($scope.guide);
+
     Hotkeys.bindSave($scope);
 
   });
