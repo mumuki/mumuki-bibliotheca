@@ -15,7 +15,8 @@ angular
 
     this._list = [{
         name: () => translate('guides'),
-        state: 'editor.home.guides'
+        state: 'editor.home.guides',
+        reload: true
       }, {
         name: () => safeFullName(CurrentGuide.get()),
         state: 'editor.home.guides.detail'
@@ -32,8 +33,8 @@ angular
       return this._list.filter((crumb) => $state.includes(crumb.state))
     }
 
-    this.go = (state) => {
-      $state.go(state, $stateParams);
+    this.go = (state, reload) => {
+      $state.go(state, $stateParams, { reload: !!reload });
     }
 
   });
