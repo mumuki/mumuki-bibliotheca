@@ -48,6 +48,7 @@ angular
     new_exercise: 'Nuevo ejercicio',
     new_guide: 'Nueva guía',
     object: 'Objeto',
+    organization: 'Organización',
     placeholder_authors: '...Ingrese los autores...',
     placeholder_collaborators: '...Ingrese los colaboradores...',
     placeholder_corollary: '...Ingrese el corolario...',

@@ -49,7 +49,29 @@
   main.detail-main
     br
     ace-with-markdown(header='description' content='guide.description')
-    br(ng-if='!isNew')
+    div.is-new(ng-if='isNew')
+      h3 {{ 'organization' | translate }}
+      div.btn-group(ng-if='!isSuperUser')
+        button.btn.btn-primary.dropdown-toggle(
+            type='button',
+            data-toggle='dropdown',
+            aria-haspopup='true'
+            aria-expanded='false')
+          i.fa.fa-fw.fa-university
+          span {{ getOrganization() }}
+        ul.dropdown-menu
+          li.dropdown-item(
+              ng-repeat='organization in organizations | orderBy',
+              ng-click='setOrganization(organization)')
+            a(href='')
+              i.fa.fa-fw.fa-university
+              span {{ organization }}
+
+      div.input-group(ng-if='isSuperUser')
+        span.input-group-addon
+          i.fa.fa-university
+        input.form-control(type='text', ng-change='setOrganization(organizationName)', ng-model='organizationName')
+
     .detail-exercises(ng-if='!isNew')
       h3 {{ 'content' | translate }}
       ul.progress-listing(dnd-list='guide.exercises')

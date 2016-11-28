@@ -6,12 +6,34 @@ angular
                             store,
                             jwtHelper) {
 
+    this.isSuperUser = () => {
+      return this.hasPermission('*');
+    }
+
+    this.hasPermission = (organization) => {
+      return _.chain(this.profile())
+        .get('bibliotheca.permissions', '')
+        .split(':')
+        .map((permission) => permission.split('/')[0])
+        .includes(organization)
+        .value();
+    }
+
     this.profile = () => {
       return store.get('profile');
     }
 
     this.token = () => {
       return store.get('token');
+    }
+
+    this.organizations = () => {
+      return _.chain(this.profile())
+        .get('bibliotheca.permissions', '')
+        .split(':')
+        .map((permission) => permission.split('/')[0])
+        .filter((organization) => organization !== '*')
+        .value();
     }
 
     this.signin = (callback) => {

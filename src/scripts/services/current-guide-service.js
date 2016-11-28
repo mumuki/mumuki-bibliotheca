@@ -1,6 +1,6 @@
 angular
   .module('editor')
-  .service('CurrentGuide', function () {
+  .service('CurrentGuide', function (Auth) {
 
     let _guide;
     let _organization;
@@ -20,7 +20,7 @@ angular
     }
 
     this.getOrganization = () => {
-      return _organization || 'mumuki';
+      return _organization || Auth.organizations()[0];
     }
 
     this.setOrganization = (organization) => {
