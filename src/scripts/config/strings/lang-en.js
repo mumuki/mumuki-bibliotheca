@@ -3,6 +3,7 @@ angular
   .constant('LANG_EN', {
 
     add_choice: 'Add choice',
+    add_exercise: 'Add exercise',
     add_expectation: 'Add expectation',
     authors: 'Authors',
     binding: 'Binding',
@@ -36,6 +37,7 @@ angular
     inspection: 'Inspection',
     item: 'Item',
     language: 'Language',
+    learning: 'Learning',
     license_disclaimer: 'This guide will be published under <a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode">Creative Commons Attribution-ShareAlike 4.0 International Public License</a>. To learn more about Creative Commons Licenses visit <a href="https://creativecommons.org/share-your-work">https://creativecommons.org/share-your-work</a>.',
     link: 'Link',
     locale: 'Locale',
@@ -43,6 +45,7 @@ angular
     logout: 'Log out',
     name: 'Name',
     negated: 'Negated',
+    new_exercise: 'New exercise',
     new_guide: 'New guide',
     object: 'Object',
     placeholder_authors: '...Full Name...',
@@ -58,6 +61,7 @@ angular
     placeholder_teacher_info: '...Enter teacher info...',
     placeholder_test: '...Enter tests...',
     placeholder_undefined: '',
+    practice: 'Practice',
     remove: 'Remove',
     search: 'Search',
     solution: 'Solution',

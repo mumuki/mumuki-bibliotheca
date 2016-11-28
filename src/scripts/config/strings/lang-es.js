@@ -3,6 +3,7 @@ angular
   .constant('LANG_ES', {
 
     add_choice: 'Agregar alternativa',
+    add_exercise: 'Agregar ejercicio',
     add_expectation: 'Agregar expectativa',
     authors: 'Autores',
     binding: 'Binding',
@@ -36,6 +37,7 @@ angular
     inspection: 'Inspección',
     item: 'Item',
     language: 'Lenguaje',
+    learning: 'Aprendizaje',
     license_disclaimer: 'Esta guía será publicada bajo los términos de la <a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode">Licencia Creative Commons Compartir-Igual, 4.0</a>. Para aprender más sobre las Licencias Creative Commons visitá <a href="https://creativecommons.org/share-your-work">https://creativecommons.org/share-your-work</a>.',
     link: 'Link',
     locale: 'Idioma',
@@ -43,6 +45,7 @@ angular
     logout: 'Cerrar sesión',
     name: 'Nombre',
     negated: 'Negado',
+    new_exercise: 'Nuevo ejercicio',
     new_guide: 'Nueva guía',
     object: 'Objeto',
     placeholder_authors: '...Ingrese los autores...',
@@ -58,6 +61,7 @@ angular
     placeholder_teacher_info: '...Ingrese la información del docente...',
     placeholder_test: '...Ingrese las pruebas...',
     placeholder_undefined: '',
+    practice: 'Práctica',
     remove: 'Remover',
     search: 'Buscar',
     solution: 'Solución',

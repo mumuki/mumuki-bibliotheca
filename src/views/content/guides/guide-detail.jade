@@ -32,7 +32,7 @@
         li(ng-repeat='guideType in guideTypes.get()', ng-click='guide.setType(guideType.name)')
           a(href='')
             i.fa(class='{{ guideType.icon() }}')
-            span {{ guideType.name }}
+            span {{ guideType.name | translate }}
 
     div.dropdown
       i.pointer.language.da(
@@ -61,6 +61,10 @@
           a(ui-sref='editor.home.guides.detail.exercise({ eid: exercise.id })')
             i.fa.fa-fw.fa-circle.text-muted
             span {{ $index + 1 }}. {{ exercise.name }}
+      a(href='', ng-click='addExercise()')
+        i.fa.fa-fw.fa-plus
+        span {{ 'add_exercise' | translate }}
+
     br(ng-if='!isNew')
     ace-with-markdown(header='corollary', content='guide.corollary', foldable='true', ng-if='!isNew')
     br(ng-if='!isNew')

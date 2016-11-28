@@ -1,6 +1,7 @@
 angular
   .module('editor')
   .controller('NewGuideController', function ($scope,
+                                              $state,
                                               $controller,
                                               guide,
                                               GuideSaver,
@@ -16,7 +17,9 @@ angular
     $scope.isNew = true;
 
     $scope.save = () => {
-      return GuideSaver.save($scope.guide);
+      GuideSaver
+        .save($scope.guide)
+        .then(() => $state.go('editor.home.guides.detail', $scope.guide.params()));
     };
 
   });

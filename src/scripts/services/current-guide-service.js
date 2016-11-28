@@ -20,7 +20,7 @@ angular
     }
 
     this.getOrganization = () => {
-      return _organization;
+      return _organization || 'mumuki';
     }
 
     this.setOrganization = (organization) => {

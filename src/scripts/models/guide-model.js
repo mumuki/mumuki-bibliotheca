@@ -25,6 +25,13 @@ angular
         return { org, repo };
       }
 
+      addExercise() {
+        const maxExercise = _.maxBy(this.exercises, 'id') || { id: 0 };
+        const exercise = Exercise.from({ id: maxExercise.id + 1 });
+        this.exercises.push(exercise);
+        return exercise;
+      }
+
       setLocale(locale) {
         this.locale = locale;
       }
@@ -68,7 +75,7 @@ angular
         }
         const translate = $injector.get('$translate')
         const translationTable = translate.getTranslationTable(this.locale);
-        const guideTranslated = translationTable.guide.toLowerCase();
+        const guideTranslated = _.deburr(translationTable.guide.toLowerCase());
         const kebabCase = _.kebabCase(this.name);
         const slug = {
           repo: `mumuki-${guideTranslated}-${this.language}-${kebabCase}`,
