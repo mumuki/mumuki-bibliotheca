@@ -38,6 +38,7 @@ angular
 
       toSave() {
         this.validate();
+        this.createSlug();
         return this;
       }
 
@@ -49,6 +50,25 @@ angular
         Validator.notEmptyString(this, 'language');
         Validator.notEmptyString(this, 'description');
         this.validateExercises();
+      }
+
+      createSlug() {
+        if (!_.isEmpty(this.slug)) {
+          Validator.notEmptyString(this, 'slug');
+          return this.slug;
+        }
+        const translate = $injector.get('$translate')
+        const translationTable = translate.getTranslationTable(this.locale);
+        const guideTranslated = translationTable.guide.toLowerCase();
+        const kebabCase = _.kebabCase(this.name);
+        const slug = {
+          repo: `mumuki-${guideTranslated}-${this.language}-${kebabCase}`,
+          org: CurrentGuide.getOrganization(),
+          fullName: () => `${slug.org}/${slug.repo}`,
+        }
+        Validator.notEmptyString(slug, 'org');
+        Validator.notEmptyString(slug, 'repo');
+        this.slug = slug.fullName();
       }
 
       validateExercises() {

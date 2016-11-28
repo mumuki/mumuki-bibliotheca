@@ -3,16 +3,16 @@ angular
   .service('GuideType', function() {
 
     const guideType = {
-      problem: {
-        name: () => 'problem',
+      learning: {
+        name: () => 'learning',
       },
-      playground: {
-        name: () => 'playground',
+      practice: {
+        name: () => 'practice',
       },
     }
 
     this.default = () => {
-      return guideType.problem.name();
+      return guideType.learning.name();
     }
 
     this.types = () => {

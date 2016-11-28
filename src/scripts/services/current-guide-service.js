@@ -3,6 +3,7 @@ angular
   .service('CurrentGuide', function () {
 
     let _guide;
+    let _organization;
     let _guideWithoutChanges;
 
     this.set = (guide) => {
@@ -16,6 +17,14 @@ angular
 
     this.setStored = (savedGuide) => {
       _guideWithoutChanges = _.cloneDeep(savedGuide);
+    }
+
+    this.getOrganization = () => {
+      return _organization;
+    }
+
+    this.setOrganization = (organization) => {
+      _organization = organization;
     }
 
     this.hasChanges = (guide) => {

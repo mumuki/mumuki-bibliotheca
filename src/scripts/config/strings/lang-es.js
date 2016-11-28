@@ -30,6 +30,7 @@ angular
     extra: 'Código extra',
     extra_code: 'Código extra',
     guide_saved_successfully: 'Guía guardada satisfactoriamente',
+    guide: 'Guía',
     guides: 'Guías',
     hint: 'Pista',
     inspection: 'Inspección',
