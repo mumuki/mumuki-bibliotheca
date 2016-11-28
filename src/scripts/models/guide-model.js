@@ -3,6 +3,7 @@ angular
   .factory('Guide', function ($injector,
                               Exercise,
                               Validator,
+                              GuideTypes,
                               CurrentGuide) {
 
     class Guide {
@@ -30,6 +31,14 @@ angular
 
       setLanguage(language) {
         this.language = language;
+      }
+
+      setType(type) {
+        this.type = type;
+      }
+
+      getType() {
+        return GuideTypes.fromName(this.type);
       }
 
       getExercise(id) {
@@ -86,7 +95,7 @@ angular
 
       static from(guide = {}) {
         _.defaultsDeep(guide, {
-          type: $injector.get('GuideType').default(),
+          type: $injector.get('GuideTypes').default(),
           locale: $injector.get('$translate').use(),
           language: $injector.get('Languages').default(),
           exercises: [],

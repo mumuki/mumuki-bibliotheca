@@ -3,6 +3,7 @@ angular
   .controller('GuideDetailController', function($scope,
                                                 guide,
                                                 Hotkeys,
+                                                GuideTypes,
                                                 GuideSaver,
                                                 Locales,
                                                 Languages) {
@@ -11,6 +12,7 @@ angular
 
     $scope.locales = Locales;
     $scope.languages = Languages;
+    $scope.guideTypes = GuideTypes;
 
     $scope.currentLocaleIcon = (locale) => Locales.fromCode(locale).icon();
 
