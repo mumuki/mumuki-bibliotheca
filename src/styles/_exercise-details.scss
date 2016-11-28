@@ -67,6 +67,11 @@ ace-evaluation {
       color: $mu-color-link;
       content: '•';
     }
+    &:last-child {
+      top: -10px;
+      background-color: transparent;
+      white-space: nowrap;
+    }
   }
 }
 
