@@ -3,6 +3,7 @@ angular
   .service('Api', function ($http,
                             Auth,
                             Guide,
+                            Book,
                             CONFIG) {
 
     const API = CONFIG.bibliotheca.url;
@@ -14,9 +15,16 @@ angular
 
     this.getGuides = () => {
       return HTTP
-        .call('get',`${API}/guides`, defaultConfig())
+        .call('get',`${API}/guides/writable`, defaultConfig())
         .then((res) => res.data.guides)
         .map((guide) => Guide.from(guide));
+    };
+
+    this.getBooks = () => {
+      return HTTP
+        .call('get',`${API}/books/writable`, defaultConfig())
+        .then((res) => res.data.books)
+        .map((book) => Book.from(book));
     };
 
     this.getGuide = ({ org, repo }) => {

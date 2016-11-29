@@ -36,6 +36,21 @@ angular
         abstract: true,
         authenticated: true
       })
+      .state('editor.home.books', {
+        url: '/books',
+        authenticated: true,
+        views: {
+          'content@editor': {
+            templateUrl: 'views/content/books/books.html',
+            controller: 'BooksController',
+            resolve: {
+              books: (Api) => {
+                return Api.getBooks();
+              }
+            }
+          }
+        }
+      })
       .state('editor.home.guides', {
         url: '/guides',
         authenticated: true,
