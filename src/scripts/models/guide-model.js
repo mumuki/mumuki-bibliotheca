@@ -78,12 +78,12 @@ angular
         const guideTranslated = _.deburr(translationTable.guide.toLowerCase());
         const kebabCase = _.kebabCase(this.name);
         const slug = {
-          repo: `mumuki-${guideTranslated}-${this.language}-${kebabCase}`,
-          org: CurrentGuide.getOrganization(),
-          fullName: () => `${slug.org}/${slug.repo}`,
+          repository: `mumuki-${guideTranslated}-${this.language}-${kebabCase}`,
+          organization: CurrentGuide.getOrganization(),
+          fullName: () => `${slug.organization}/${slug.repository}`,
         }
-        Validator.notEmptyString(slug, 'org');
-        Validator.notEmptyString(slug, 'repo');
+        Validator.notEmptyString(slug, 'organization');
+        Validator.notEmptyString(slug, 'repository');
         this.slug = slug.fullName();
       }
 

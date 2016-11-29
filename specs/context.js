@@ -1,4 +1,5 @@
 let spec;
+let specAsync;
 let afterSpec;
 let beforeSpec;
 
@@ -19,6 +20,10 @@ function editorTest(message, callback) {
 
     spec = (test) => {
       it(`expectation`, inject(test));
+    }
+
+    specAsync = (test) => {
+      it(`expectation`, (done) => angular.mock.inject(test(done)));
     }
 
     afterSpec = (tearDown) => {

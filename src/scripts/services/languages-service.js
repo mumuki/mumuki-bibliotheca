@@ -1,6 +1,6 @@
 angular
   .module('editor')
-  .service('Languages', function(Api, Language) {
+  .service('Languages', function(Language) {
 
     let _languages;
 
