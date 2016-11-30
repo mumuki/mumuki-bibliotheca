@@ -16,6 +16,11 @@ angular
         return this.name;
       }
 
+      params() {
+        const [org, repo] = this.slug.split('/');
+        return { org, repo };
+      }
+
       static from(book = {}) {
         return new Book(book);
       }

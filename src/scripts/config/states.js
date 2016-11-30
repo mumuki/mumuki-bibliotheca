@@ -51,6 +51,21 @@ angular
           }
         }
       })
+      .state('editor.home.books.detail', {
+        url: '/:org/:repo',
+        authenticated: true,
+        views: {
+          'content@editor': {
+            templateUrl: 'views/content/books/book-detail.html',
+            controller: 'BookDetailController',
+            resolve: {
+              book: (Api, $stateParams) => {
+                return Api.getBook($stateParams);
+              }
+            }
+          }
+        }
+      })
       .state('editor.home.guides', {
         url: '/guides',
         authenticated: true,
