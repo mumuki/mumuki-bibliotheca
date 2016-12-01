@@ -27,6 +27,14 @@ angular
         return book;
       }
 
+      addChapter(chapter) {
+        this.chapters.push(chapter);
+      }
+
+      removeChapter(chapter) {
+        _.remove(this.chapters, { id: chapter.id });
+      }
+
       static from(book = {}) {
         return new Book(book);
       }

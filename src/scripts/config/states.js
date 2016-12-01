@@ -59,6 +59,9 @@ angular
             templateUrl: 'views/content/books/book-detail.html',
             controller: 'BookDetailController',
             resolve: {
+              topics: (Api) => {
+                return Api.getAllTopics();
+              },
               book: (Api, $stateParams) => {
                 return Api
                   .getBook($stateParams)
@@ -67,7 +70,7 @@ angular
                         const [org, repo] = chapter.split('/');
                         return Api.getTopic({ org, repo }).tap((topic) => {
                             return Api
-                              .renderMarkdown(topic.description.trim())
+                              .renderMarkdown(topic.description.split('\n')[0].trim())
                               .then((html) => topic.description = html);
                         });
                     })

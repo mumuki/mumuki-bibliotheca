@@ -7,17 +7,23 @@
     br
     ace-with-markdown(content='book.description', header='description')
 
-    h2 {{ 'content' | translate }}
-    input(type='text', placeholder='{{ "search" | translate }}', ng-model='searchFilter')
-
     br
+    h2 {{ 'content' | translate }}
+    ui-select(ng-model='selected.chapter')
+      ui-select-match(placeholder='{{ "search" | translate }}')
+        span(ng-bind='$select.selected.name')
+      ui-select-choices(
+          repeat='topic in topics | filter:hasTopic | filter:$select.search | orderBy:["name", "slug"]')
+        strong(ng-bind='topic.name')
+        span &nbsp;-&nbsp;
+        span(ng-bind='topic.slug')
+
     .chapter(ng-repeat='chapter in book.chapters')
       h3
         span {{ 'chapter' | translate }} {{ $index + 1 }}:&nbsp;
         a(href='') {{ chapter.name }}
+        small.pointer.pull-right(ng-click='book.removeChapter(chapter)')
+          i.fa.fa-fw.fa-times
 
       .text-box
         span(ng-bind-html='html(chapter.description)')
-
-      </div>
-    </div>
