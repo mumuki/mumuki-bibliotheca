@@ -50,6 +50,11 @@ angular
         .call('post',`${API}/guides`, guide, defaultConfig());
     }
 
+    this.saveBook = (book) => {
+      return HTTP
+        .call('post',`${API}/books`, book, defaultConfig());
+    }
+
     this.getLanguages = () => {
       return HTTP
         .call('get',`${API}/languages`, defaultConfig())

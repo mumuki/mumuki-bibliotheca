@@ -21,6 +21,12 @@ angular
         return { org, repo };
       }
 
+      toSave() {
+        const book = _.cloneDeep(this);
+        book.chapters = _.map(book.chapters, (chapter) => chapter.slug)
+        return book;
+      }
+
       static from(book = {}) {
         return new Book(book);
       }
