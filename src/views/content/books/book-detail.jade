@@ -1,3 +1,23 @@
-.mu-content
+.row
+  .col-md-offset-2.col-md-8
 
-  span Book
+    h2.text-center
+      input(type='text', ng-model='book.name', style='text-align: center')
+
+    br
+    ace-with-markdown(content='book.description', header='description')
+
+    h2 {{ 'content' | translate }}
+    input(type='text', placeholder='{{ "search" | translate }}', ng-model='searchFilter')
+
+    br
+    .chapter(ng-repeat='chapter in book.chapters')
+      h3
+        span {{ 'chapter' | translate }} {{ $index + 1 }}:&nbsp;
+        a(href='') {{ chapter.name }}
+
+      .text-box
+        span(ng-bind-html='html(chapter.description)')
+
+      </div>
+    </div>

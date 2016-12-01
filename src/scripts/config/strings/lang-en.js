@@ -8,6 +8,7 @@ angular
     authors: 'Authors',
     binding: 'Binding',
     blockquote: 'Blockquote',
+    chapter: 'Chapter',
     choices: 'Choices',
     code: 'Code',
     collaborators: 'Collaborators',

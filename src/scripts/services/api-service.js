@@ -39,6 +39,12 @@ angular
         .then((res) => Book.from(res.data));
     };
 
+    this.getTopic = ({ org, repo }) => {
+      return HTTP
+        .call('get',`${API}/topics/${org}/${repo}`, defaultConfig())
+        .then((res) => res.data);
+    };
+
     this.saveGuide = (guide) => {
       return HTTP
         .call('post',`${API}/guides`, guide, defaultConfig());

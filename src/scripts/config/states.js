@@ -60,7 +60,19 @@ angular
             controller: 'BookDetailController',
             resolve: {
               book: (Api, $stateParams) => {
-                return Api.getBook($stateParams);
+                return Api
+                  .getBook($stateParams)
+                  .tap((book) => {
+                    return Promise.map(book.chapters, (chapter) => {
+                        const [org, repo] = chapter.split('/');
+                        return Api.getTopic({ org, repo }).tap((topic) => {
+                            return Api
+                              .renderMarkdown(topic.description.trim())
+                              .then((html) => topic.description = html);
+                        });
+                    })
+                    .then((chapters) => book.chapters = chapters);
+                  });
               }
             }
           }
