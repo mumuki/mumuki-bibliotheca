@@ -11,7 +11,7 @@ editorTest('Exercise Model', () => {
 
   beforeSpec((_Exercise_) => Exercise = _Exercise_);
   beforeSpec((_Languages_) => _Languages_.set([{ name: 'haskell' }, { name: 'text' }]));
-  beforeSpec((_CurrentGuide_) => _CurrentGuide_.set(guide))
+  beforeSpec((_CurrentItem_) => _CurrentItem_.set(guide))
 
   context('#icon', () => {
     spec(() => Exercise.from({ language: 'haskell' }).icon().should.be.eql('da-haskell'));

@@ -77,7 +77,7 @@ editorTest('Guide Model', () => {
       beforeSpec(() => guide = Guide.from({ name: 'túrn DöwnFòr What', language: 'haskell' }));
 
       context('and organization is set', () => {
-        beforeSpec((_CurrentGuide_) => _CurrentGuide_.setOrganization('foo'));
+        beforeSpec((_CurrentItem_) => _CurrentItem_.setOrganization('foo'));
         beforeSpec(() => guide.createSlug());
 
         spec(() => guide.slug.should.be.eql('foo/mumuki-guide-haskell-turn-down-for-what'));

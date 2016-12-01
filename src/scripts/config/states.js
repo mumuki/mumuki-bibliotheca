@@ -119,9 +119,9 @@ angular
             templateUrl: 'views/content/guides/guide-detail.html',
             controller: 'GuideDetailController',
             resolve: {
-              guide: (Api, CurrentGuide, $stateParams) => {
+              guide: (Api, CurrentItem, $stateParams) => {
                 return Api.getGuide($stateParams)
-                          .tap((guide) => CurrentGuide.set(guide));
+                          .tap((guide) => CurrentItem.set(guide));
               }
             }
           }
@@ -135,8 +135,8 @@ angular
             templateUrl: 'views/content/guides/exercise-detail.html',
             controller: 'ExerciseDetailController',
             resolve: {
-              exercise: (CurrentGuide, $stateParams) => {
-                return CurrentGuide.get().getExercise($stateParams.eid);
+              exercise: (CurrentItem, $stateParams) => {
+                return CurrentItem.get().getExercise($stateParams.eid);
               }
             }
           }

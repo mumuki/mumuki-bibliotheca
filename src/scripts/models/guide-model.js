@@ -4,7 +4,7 @@ angular
                               Exercise,
                               Validator,
                               GuideTypes,
-                              CurrentGuide) {
+                              CurrentItem) {
 
     class Guide {
 
@@ -79,7 +79,7 @@ angular
         const kebabCase = _.kebabCase(this.name);
         const slug = {
           repository: `mumuki-${guideTranslated}-${this.language}-${kebabCase}`,
-          organization: CurrentGuide.getOrganization(),
+          organization: CurrentItem.getOrganization(),
           fullName: () => `${slug.organization}/${slug.repository}`,
         }
         Validator.notEmptyString(slug, 'organization');
@@ -94,7 +94,7 @@ angular
       canSave() {
         try {
           this.validate();
-          return CurrentGuide.hasChanges(this);
+          return CurrentItem.hasChanges(this);
         } catch(_) {
           return false;
         }
