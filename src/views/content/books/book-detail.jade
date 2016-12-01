@@ -32,3 +32,20 @@
 
         .text-box
           span(ng-bind-html='html(chapter.description)')
+
+    br
+    h2 {{ 'complement' | translate }}
+    ui-select(ng-model='selected.complement')
+      ui-select-match(placeholder='{{ "search" | translate }}')
+        span(ng-bind='$select.selected.name')
+      ui-select-choices(
+          repeat='topic in topics | filter:hasTopic | filter:$select.search | orderBy:["name", "slug"]')
+        strong(ng-bind='topic.name')
+        span &nbsp;-&nbsp;
+        span(ng-bind='topic.slug')
+
+    div(ng-repeat='complement in book.complements')
+      .text-box
+        small.pointer.pull-right(ng-click='book.removeComplement($index)')
+          i.fa.fa-fw.fa-times
+        span {{ complement }}

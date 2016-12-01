@@ -35,6 +35,14 @@ angular
         _.remove(this.chapters, { id: chapter.id });
       }
 
+      addComplement(complement) {
+        this.complements.push(complement);
+      }
+
+      removeComplement(index) {
+        this.complements.splice(index, 1);
+      }
+
       static from(book = {}) {
         return new Book(book);
       }

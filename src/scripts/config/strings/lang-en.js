@@ -12,6 +12,7 @@ angular
     choices: 'Choices',
     code: 'Code',
     collaborators: 'Collaborators',
+    complement: 'Complement',
     content: 'Content',
     corollary: 'Corollary',
     default_code: 'Default code',

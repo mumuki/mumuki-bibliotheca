@@ -12,6 +12,7 @@ angular
     choices: 'Alternativas',
     code: 'Código',
     collaborators: 'Colaboradores',
+    complement: 'Complemento',
     content: 'Contenido',
     corollary: 'Corolario',
     default_code: 'Código por defecto',

@@ -23,17 +23,28 @@ angular
 
     $scope.save = () => Api.saveBook($scope.book.toSave());
     $scope.html = (html) => $sce.trustAsHtml(html);
-    $scope.hasTopic = (topic) => !_.some($scope.book.chapters, { id: topic.id });
+    $scope.hasTopic = (topic) => {
+      return !_.some($scope.book.chapters, { id: topic.id })
+          && !_.includes($scope.book.complements, topic.slug);
+    };
 
     let _chapterSelected;
+    let _complementSelected;
 
     $scope.selected = {
       get chapter() {
         return _chapterSelected;
       },
-      set chapter(ch) {
-        _chapterSelected = ch;
-        addChapter(ch)
+      set chapter(topic) {
+        _chapterSelected = topic;
+        addChapter(topic);
+      },
+      get complement() {
+        return _complementSelected;
+      },
+      set complement(topic) {
+        _complementSelected = topic;
+        $scope.book.addComplement(topic.slug);
       }
     }
 
