@@ -5,3 +5,21 @@
     border: 1px solid $mu-color-separator;
   }
 }
+
+.chapters[dnd-list], .chapters[dnd-list] > .chapter {
+  position: relative;
+}
+
+.chapters[dnd-list] .dndDraggingSource {
+  display: none;
+}
+
+.chapters[dnd-list] .dndPlaceholder {
+  display: block;
+  background-color: #ddd;
+  min-height: 10px;
+}
+
+.chapters[dnd-list] .chapter {
+  display: block;
+}

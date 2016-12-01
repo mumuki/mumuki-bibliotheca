@@ -18,12 +18,17 @@
         span &nbsp;-&nbsp;
         span(ng-bind='topic.slug')
 
-    .chapter(ng-repeat='chapter in book.chapters')
-      h3
-        span {{ 'chapter' | translate }} {{ $index + 1 }}:&nbsp;
-        a(href='') {{ chapter.name }}
-        small.pointer.pull-right(ng-click='book.removeChapter(chapter)')
-          i.fa.fa-fw.fa-times
+    .chapters(dnd-list='book.chapters')
+      .chapter(
+        ng-repeat='chapter in book.chapters'
+        dnd-draggable='chapter',
+        dnd-moved='book.chapters.splice($index, 1)',
+        dnd-effect-allowed='move')
+        h3
+          span {{ 'chapter' | translate }} {{ $index + 1 }}:&nbsp;
+          a(href='') {{ chapter.name }}
+          small.pointer.pull-right(ng-click='book.removeChapter(chapter)')
+            i.fa.fa-fw.fa-times
 
-      .text-box
-        span(ng-bind-html='html(chapter.description)')
+        .text-box
+          span(ng-bind-html='html(chapter.description)')
