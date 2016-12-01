@@ -62,9 +62,9 @@ angular
               topics: (Api) => {
                 return Api.getAllTopics();
               },
-              book: (Api, $stateParams) => {
-                return Api
-                  .getBook($stateParams)
+              book: (Api, CurrentItem, $stateParams) => {
+                return Api.getBook($stateParams)
+                  .tap((book) => CurrentItem.set(book))
                   .tap((book) => {
                     return Promise.map(book.chapters, (chapter) => {
                         const [org, repo] = chapter.split('/');
