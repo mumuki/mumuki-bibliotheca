@@ -1,8 +1,10 @@
 .row
   .col-md-offset-2.col-md-8
 
-    h2.text-center
-      input(type='text', ng-model='book.name', style='text-align: center')
+    div.text-center
+      img(src='http://mumuki.io/logo-alt-large.png', alt='central - Mumuki', style='height: 75px')
+      h2.text-center
+        input(type='text', ng-model='book.name', style='text-align: center')
 
     br
     ace-with-markdown(content='book.description', header='description')
