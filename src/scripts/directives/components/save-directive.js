@@ -8,7 +8,7 @@ angular
       templateUrl: 'views/directives/components/save-item.html',
       scope: {
         item: '=',
-        save: '=',
+        save: '&',
       }
 
     }

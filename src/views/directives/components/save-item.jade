@@ -1,6 +1,6 @@
-small(
+small.locale(
     ng-class='{                              \
       "text-primary pointer": item.canSave(),\
       "mu-disabled": !item.canSave(),        \
     }')
-  i.fa.fa-fw.fa-upload(ng-click='submit()')
+  i.fa.fa-fw.fa-upload(ng-click='save()')
