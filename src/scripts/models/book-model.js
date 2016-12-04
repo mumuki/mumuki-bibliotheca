@@ -27,6 +27,10 @@ angular
         return book;
       }
 
+      setLocale(locale) {
+        this.locale = locale;
+      }
+
       addChapter(chapter) {
         this.chapters.push(chapter);
       }

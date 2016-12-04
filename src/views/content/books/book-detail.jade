@@ -1,5 +1,24 @@
 .row
+
   .col-md-offset-2.col-md-8
+    h1.pull-right
+      small(
+          ng-class='{                               \
+            "text-primary pointer": guide.canSave(),\
+            "mu-disabled": !guide.canSave(),        \
+          }')
+        i.fa.fa-fw.fa-upload(ng-click='save()')
+      span.dropdown
+        small.pointer.locale.flag-icon(
+            id='ddLocale',
+            aria-expanded='true',
+            data-toggle='dropdown',
+            class='{{ currentLocaleIcon(book.locale) }}')
+        ul.dropdown-menu.dropdown-menu-right(aria-labelledby='ddLocale')
+          li(ng-repeat='locale in locales.get()', ng-click='book.setLocale(locale.code)')
+            a(href='')
+              i.flag-icon(class="{{ locale.icon() }}")
+              span {{ locale.name | translate }}
 
     div.text-center
       img(src='http://mumuki.io/logo-alt-large.png', alt='central - Mumuki', style='height: 75px')

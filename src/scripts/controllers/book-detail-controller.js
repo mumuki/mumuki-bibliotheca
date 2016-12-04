@@ -5,7 +5,12 @@ angular
                                                 book,
                                                 topics,
                                                 Api,
+                                                Locales,
                                                 Hotkeys) {
+
+    $scope.locales = Locales;
+
+    $scope.currentLocaleIcon = (locale) => Locales.fromCode(locale).icon();
 
     const addChapter = (chapter) => {
       const [org, repo] = chapter.slug.split('/');
