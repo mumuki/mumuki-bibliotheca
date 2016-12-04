@@ -2,12 +2,7 @@
 
   .col-md-offset-2.col-md-8
     h1.pull-right
-      small(
-          ng-class='{                               \
-            "text-primary pointer": guide.canSave(),\
-            "mu-disabled": !guide.canSave(),        \
-          }')
-        i.fa.fa-fw.fa-upload(ng-click='save()')
+      save-item(item='book', save='save()')
       span.dropdown
         small.pointer.locale.flag-icon(
             id='ddLocale',
