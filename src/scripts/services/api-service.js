@@ -23,7 +23,6 @@ angular
     this.getAllTopics = () => {
       return HTTP
         .call('get',`${API}/topics`, defaultConfig())
-        .tap((res) => console.log(res.data))
         .then((res) => res.data.topics);
     };
 
