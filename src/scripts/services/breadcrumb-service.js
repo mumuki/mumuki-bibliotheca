@@ -3,7 +3,7 @@ angular
   .service('Breadcrumb', function($state,
                                   $stateParams,
                                   $filter,
-                                  CurrentGuide) {
+                                  CurrentItem) {
 
     const translate = $filter('translate');
 
@@ -14,14 +14,21 @@ angular
     }
 
     this._list = [{
+        name: () => translate('books'),
+        state: 'editor.home.books',
+        reload: true
+      }, {
         name: () => translate('guides'),
         state: 'editor.home.guides',
         reload: true
       }, {
-        name: () => safeFullName(CurrentGuide.get()),
+        name: () => safeFullName(CurrentItem.get()),
+        state: 'editor.home.books.detail'
+      }, {
+        name: () => safeFullName(CurrentItem.get()),
         state: 'editor.home.guides.detail'
       }, {
-        name: () => safeFullName(CurrentGuide.get().getExercise($stateParams.eid)),
+        name: () => safeFullName(CurrentItem.get().getExercise($stateParams.eid)),
         state: 'editor.home.guides.detail.exercise'
       }, {
         name: () => translate('new_guide'),

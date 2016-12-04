@@ -1,7 +1,7 @@
 angular
   .module('editor')
   .factory('Exercise', function($filter,
-                                CurrentGuide,
+                                CurrentItem,
                                 Layouts,
                                 Editor,
                                 Validator) {
@@ -13,7 +13,7 @@ angular
       }
 
       guide() {
-        return CurrentGuide.get();
+        return CurrentItem.get();
       }
 
       icon() {

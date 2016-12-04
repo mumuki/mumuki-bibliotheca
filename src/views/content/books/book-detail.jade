@@ -1,0 +1,72 @@
+.row
+
+  .col-md-offset-2.col-md-8
+    h1.pull-right
+      small(
+          ng-class='{                               \
+            "text-primary pointer": guide.canSave(),\
+            "mu-disabled": !guide.canSave(),        \
+          }')
+        i.fa.fa-fw.fa-upload(ng-click='save()')
+      span.dropdown
+        small.pointer.locale.flag-icon(
+            id='ddLocale',
+            aria-expanded='true',
+            data-toggle='dropdown',
+            class='{{ currentLocaleIcon(book.locale) }}')
+        ul.dropdown-menu.dropdown-menu-right(aria-labelledby='ddLocale')
+          li(ng-repeat='locale in locales.get()', ng-click='book.setLocale(locale.code)')
+            a(href='')
+              i.flag-icon(class="{{ locale.icon() }}")
+              span {{ locale.name | translate }}
+
+    div.text-center
+      img(src='http://mumuki.io/logo-alt-large.png', alt='central - Mumuki', style='height: 75px')
+      h2.text-center
+        input(type='text', ng-model='book.name', style='text-align: center')
+
+    br
+    ace-with-markdown(content='book.description', header='description')
+
+    br
+    h2 {{ 'content' | translate }}
+    ui-select(ng-model='selected.chapter')
+      ui-select-match(placeholder='{{ "search" | translate }}')
+        span(ng-bind='$select.selected.name')
+      ui-select-choices(
+          repeat='topic in topics | filter:hasTopic | filter:$select.search | orderBy:["name", "slug"]')
+        strong(ng-bind='topic.name')
+        span &nbsp;-&nbsp;
+        span(ng-bind='topic.slug')
+
+    .chapters(dnd-list='book.chapters')
+      .chapter(
+        ng-repeat='chapter in book.chapters'
+        dnd-draggable='chapter',
+        dnd-moved='book.chapters.splice($index, 1)',
+        dnd-effect-allowed='move')
+        h3
+          span {{ 'chapter' | translate }} {{ $index + 1 }}:&nbsp;
+          a(href='') {{ chapter.name }}
+          small.pointer.pull-right(ng-click='book.removeChapter(chapter)')
+            i.fa.fa-fw.fa-times
+
+        .text-box
+          span(ng-bind-html='html(chapter.description)')
+
+    br
+    h2 {{ 'complements' | translate }}
+    ui-select(ng-model='selected.complement')
+      ui-select-match(placeholder='{{ "search" | translate }}')
+        span(ng-bind='$select.selected.name')
+      ui-select-choices(
+          repeat='topic in topics | filter:hasTopic | filter:$select.search | orderBy:["name", "slug"]')
+        strong(ng-bind='topic.name')
+        span &nbsp;-&nbsp;
+        span(ng-bind='topic.slug')
+
+    div(ng-repeat='complement in book.complements')
+      .text-box
+        small.pointer.pull-right(ng-click='book.removeComplement($index)')
+          i.fa.fa-fw.fa-times
+        span {{ complement }}

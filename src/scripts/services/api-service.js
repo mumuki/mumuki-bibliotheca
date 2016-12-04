@@ -3,6 +3,7 @@ angular
   .service('Api', function ($http,
                             Auth,
                             Guide,
+                            Book,
                             CONFIG) {
 
     const API = CONFIG.bibliotheca.url;
@@ -14,9 +15,23 @@ angular
 
     this.getGuides = () => {
       return HTTP
-        .call('get',`${API}/guides`, defaultConfig())
+        .call('get',`${API}/guides/writable`, defaultConfig())
         .then((res) => res.data.guides)
         .map((guide) => Guide.from(guide));
+    };
+
+    this.getAllTopics = () => {
+      return HTTP
+        .call('get',`${API}/topics`, defaultConfig())
+        .tap((res) => console.log(res.data))
+        .then((res) => res.data.topics);
+    };
+
+    this.getBooks = () => {
+      return HTTP
+        .call('get',`${API}/books/writable`, defaultConfig())
+        .then((res) => res.data.books)
+        .map((book) => Book.from(book));
     };
 
     this.getGuide = ({ org, repo }) => {
@@ -25,9 +40,26 @@ angular
         .then((res) => Guide.from(res.data));
     };
 
+    this.getBook = ({ org, repo }) => {
+      return HTTP
+        .call('get',`${API}/books/${org}/${repo}`, defaultConfig())
+        .then((res) => Book.from(res.data));
+    };
+
+    this.getTopic = ({ org, repo }) => {
+      return HTTP
+        .call('get',`${API}/topics/${org}/${repo}`, defaultConfig())
+        .then((res) => res.data);
+    };
+
     this.saveGuide = (guide) => {
       return HTTP
         .call('post',`${API}/guides`, guide, defaultConfig());
+    }
+
+    this.saveBook = (book) => {
+      return HTTP
+        .call('post',`${API}/books`, book, defaultConfig());
     }
 
     this.getLanguages = () => {

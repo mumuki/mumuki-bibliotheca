@@ -7,7 +7,7 @@ angular
                                                 GuideTypes,
                                                 GuideSaver,
                                                 Locales,
-                                                CurrentGuide,
+                                                CurrentItem,
                                                 Languages) {
 
     $scope.guide = guide;
@@ -19,8 +19,8 @@ angular
     $scope.isSuperUser = Auth.isSuperUser();
     $scope.organizations = Auth.organizations();
 
-    $scope.getOrganization = CurrentGuide.getOrganization;
-    $scope.setOrganization = CurrentGuide.setOrganization;
+    $scope.getOrganization = CurrentItem.getOrganization;
+    $scope.setOrganization = CurrentItem.setOrganization;
 
     $scope.currentLocaleIcon = (locale) => Locales.fromCode(locale).icon();
 

@@ -10,4 +10,5 @@ angular
     'dndLists',
     'cfp.hotkeys',
     'toastr',
+    'ui.select',
   ]);

@@ -5,13 +5,13 @@ angular
                                               $controller,
                                               guide,
                                               GuideSaver,
-                                              CurrentGuide) {
+                                              CurrentItem) {
 
-    CurrentGuide.set(guide);
+    CurrentItem.set(guide);
 
     $controller('GuideDetailController', {
       $scope: $scope,
-      guide: CurrentGuide.get(),
+      guide: CurrentItem.get(),
     });
 
     $scope.isNew = true;

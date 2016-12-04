@@ -4,7 +4,7 @@ angular
                                   $filter,
                                   toastr,
                                   Api,
-                                  CurrentGuide,
+                                  CurrentItem,
                                   Debounce) {
 
     const translate = $filter('translate');
@@ -14,7 +14,7 @@ angular
         .resolve(guide)
         .call('toSave')
         .tap((guideToSave) => Api.saveGuide(guideToSave))
-        .tap((savedGuide) => CurrentGuide.setStored(savedGuide))
+        .tap((savedGuide) => CurrentItem.setStored(savedGuide))
         .then(() => toastr.success(translate('guide_saved_successfully')))
         .catch((error) => toastr.error(`${error.message}`));
     })
