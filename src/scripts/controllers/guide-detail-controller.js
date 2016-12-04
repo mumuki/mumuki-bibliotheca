@@ -6,13 +6,11 @@ angular
                                                 Hotkeys,
                                                 GuideTypes,
                                                 GuideSaver,
-                                                Locales,
                                                 CurrentItem,
                                                 Languages) {
 
     $scope.guide = guide;
 
-    $scope.locales = Locales;
     $scope.languages = Languages;
     $scope.guideTypes = GuideTypes;
 
@@ -21,8 +19,6 @@ angular
 
     $scope.getOrganization = CurrentItem.getOrganization;
     $scope.setOrganization = CurrentItem.setOrganization;
-
-    $scope.currentLocaleIcon = (locale) => Locales.fromCode(locale).icon();
 
     $scope.save = () => GuideSaver.save($scope.guide);
 

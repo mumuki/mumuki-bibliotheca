@@ -3,19 +3,8 @@
   h1.detail-title
     input(type='text', ng-model='guide.name', placeholder='{{ "placeholder_guide_name" | translate }}')
 
-
-    div.dropdown
-      small.pointer.locale.flag-icon(
-          id='ddLocale',
-          aria-expanded='true',
-          data-toggle='dropdown',
-          class='{{ currentLocaleIcon(guide.locale) }}')
-      ul.dropdown-menu.dropdown-menu-right(aria-labelledby='ddLocale')
-        li(ng-repeat='locale in locales.get()', ng-click='guide.setLocale(locale.code)')
-          a(href='')
-            i.flag-icon(class="{{ locale.icon() }}")
-            span {{ locale.name | translate }}
     save-item(item='guide', save='save')
+    locale(item='guide')
 
     div.dropdown
       small.pointer.locale.text-primary(
