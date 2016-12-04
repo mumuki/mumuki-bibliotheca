@@ -4,12 +4,10 @@ angular
                                                     exercise,
                                                     GuideSaver,
                                                     Hotkeys,
-                                                    Languages,
                                                     Editor) {
 
     $scope.guide = exercise.guide();
     $scope.exercise = exercise;
-    $scope.languages = Languages;
 
     $scope.Editor = Editor;
 

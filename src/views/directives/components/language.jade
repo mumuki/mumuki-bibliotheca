@@ -1,0 +1,12 @@
+div.dropdown
+  i.pointer.language.da(
+      class='{{ item.icon() }}',
+      id='ddLanguage',
+      data-toggle='dropdown',
+      aria-expanded='true')
+  ul.dropdown-menu.dropdown-menu-right(aria-labelledby='ddLanguage')
+    li(ng-repeat='language in languages.get()', ng-click='item.setLanguage(language.name)')
+      a(href='')
+        i.da(class='{{ language.icon() }}')
+        span {{ language.name }}
+

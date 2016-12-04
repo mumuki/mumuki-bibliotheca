@@ -6,12 +6,10 @@ angular
                                                 Hotkeys,
                                                 GuideTypes,
                                                 GuideSaver,
-                                                CurrentItem,
-                                                Languages) {
+                                                CurrentItem) {
 
     $scope.guide = guide;
 
-    $scope.languages = Languages;
     $scope.guideTypes = GuideTypes;
 
     $scope.isSuperUser = Auth.isSuperUser();
