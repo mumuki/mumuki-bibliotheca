@@ -32,6 +32,10 @@ angular
         return exercise;
       }
 
+      removeExercise(id) {
+        _.remove(this.exercises, { id });
+      }
+
       setLocale(locale) {
         this.locale = locale;
       }

@@ -28,7 +28,7 @@ angular
     }
 
     this.hasChanges = (item) => {
-      const newItem = JSON.parse(angular.toJson(_.omitBy(_item, _.isEmpty)));
+      const newItem = JSON.parse(angular.toJson(_.omitBy(item, _.isEmpty)));
       const oldItem = JSON.parse(angular.toJson(_.omitBy(_itemWithoutChanges, _.isEmpty)));
       return !_.isEqual(newItem, oldItem);
     }

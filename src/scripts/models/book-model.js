@@ -1,6 +1,6 @@
 angular
   .module('editor')
-  .factory('Book', function () {
+  .factory('Book', function (CurrentItem) {
 
     class Book {
 
@@ -45,6 +45,19 @@ angular
 
       removeComplement(index) {
         this.complements.splice(index, 1);
+      }
+
+      validate() {
+
+      }
+
+      canSave() {
+        try {
+          this.validate();
+          return CurrentItem.hasChanges(this.toSave());
+        } catch(_) {
+          return false;
+        }
       }
 
       static from(book = {}) {
