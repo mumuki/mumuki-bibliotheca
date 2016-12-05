@@ -3,13 +3,10 @@ angular
   .controller('ExerciseDetailController', function ($scope,
                                                     exercise,
                                                     GuideSaver,
-                                                    Hotkeys,
-                                                    Editor) {
+                                                    Hotkeys) {
 
     $scope.guide = exercise.guide();
     $scope.exercise = exercise;
-
-    $scope.Editor = Editor;
 
     $scope.save = () => GuideSaver.save($scope.guide);
 

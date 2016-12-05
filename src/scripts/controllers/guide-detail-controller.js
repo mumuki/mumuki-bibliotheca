@@ -4,13 +4,10 @@ angular
                                                 guide,
                                                 Auth,
                                                 Hotkeys,
-                                                GuideTypes,
                                                 GuideSaver,
                                                 CurrentItem) {
 
     $scope.guide = guide;
-
-    $scope.guideTypes = GuideTypes;
 
     $scope.isSuperUser = Auth.isSuperUser();
     $scope.organizations = Auth.organizations();
