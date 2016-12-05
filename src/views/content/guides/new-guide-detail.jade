@@ -1,0 +1,15 @@
+.mu-content
+
+  h1.detail-title(ng-include='"views/content/guides/components/title.html"')
+
+  main.detail-main
+    br
+    ace-with-markdown(header='description' content='guide.description')
+
+    slug(item='guide')
+
+    .detail-license
+      div(ng-include='"views/content/guides/components/authors.html"')
+      br
+      br
+      small(ng-bind-html='"license_disclaimer" | translate')

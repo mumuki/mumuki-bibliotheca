@@ -107,7 +107,7 @@ angular
         authenticated: true,
         views: {
           'content@editor': {
-            templateUrl: 'views/content/guides/guide-detail.html',
+            templateUrl: 'views/content/guides/new-guide-detail.html',
             controller: 'NewGuideController',
             resolve: {
               guide: (Guide) => {
