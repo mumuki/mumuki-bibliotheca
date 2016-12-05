@@ -33,8 +33,14 @@ angular
         }
       })
       .state('editor.home', {
-        abstract: true,
-        authenticated: true
+        url: '',
+        authenticated: true,
+        views: {
+          'content@editor': {
+            templateUrl: 'views/home.html',
+            controller: 'HomeController',
+          }
+        }
       })
       .state('editor.home.books', {
         url: '/books',
