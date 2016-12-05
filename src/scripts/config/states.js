@@ -47,7 +47,7 @@ angular
         authenticated: true,
         views: {
           'content@editor': {
-            templateUrl: 'views/content/books/books.html',
+            templateUrl: 'views/content/items-list.html',
             controller: 'BooksController',
             resolve: {
               books: (Api) => {
@@ -92,7 +92,7 @@ angular
         authenticated: true,
         views: {
           'content@editor': {
-            templateUrl: 'views/content/guides/guides.html',
+            templateUrl: 'views/content/items-list.html',
             controller: 'GuidesController',
             resolve: {
               guides: (Api) => {
