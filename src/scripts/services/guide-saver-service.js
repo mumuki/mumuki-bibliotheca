@@ -16,7 +16,8 @@ angular
         .tap((guideToSave) => Api.saveGuide(guideToSave))
         .tap((savedGuide) => CurrentItem.setStored(savedGuide))
         .then(() => toastr.success(translate('guide_saved_successfully')))
-        .catch((error) => toastr.error(`${error.message}`));
+        .catch(Error, (error) => toastr.error(`${error.message}`))
+        .catch((res) => toastr.error(`${res.data.message}`));
     })
 
     this.addExercise = Debounce.for((guide) => {
