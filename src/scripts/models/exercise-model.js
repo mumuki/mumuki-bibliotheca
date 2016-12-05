@@ -4,6 +4,7 @@ angular
                                 CurrentItem,
                                 Layouts,
                                 Editor,
+                                ExerciseTypes,
                                 Validator) {
 
     class Exercise {
@@ -34,6 +35,14 @@ angular
 
       getEditor() {
         return Editor.from(this.editor);
+      }
+
+      getType() {
+        return ExerciseTypes.fromName(this.type);
+      }
+
+      setType(type) {
+        this.type = type;
       }
 
       setLanguage(language) {
@@ -110,6 +119,9 @@ angular
       static from(exercise = {}) {
         _.defaultsDeep(exercise, {
           name: $filter('translate')('new_exercise'),
+          type: ExerciseTypes.default(),
+          editor: Editor.default().name,
+          layout: Layouts.default().type()
         });
         return new Exercise(exercise);
       }

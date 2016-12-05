@@ -1,12 +1,12 @@
 .row
 
   .col-md-offset-2.col-md-8
-    h1.pull-right
-      save-item(item='book', save='save()')
-      locale(item='book')
-
     div.text-center
       img(src='http://mumuki.io/logo-alt-large.png', alt='central - Mumuki', style='height: 75px')
+      h1.pull-right.options
+        save-item(item='book', save='save()')
+        locale(item='book')
+
       h2.text-center
         input(type='text', ng-model='book.name', style='text-align: center')
 
