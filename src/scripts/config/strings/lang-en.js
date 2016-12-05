@@ -8,6 +8,7 @@ angular
     authors: 'Authors',
     binding: 'Binding',
     blockquote: 'Blockquote',
+    book_saved_successfully: 'Book saved successfully',
     books: 'Books',
     chapter: 'Chapter',
     choices: 'Choices',

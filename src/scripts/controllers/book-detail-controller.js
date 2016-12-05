@@ -3,8 +3,10 @@ angular
   .controller('BookDetailController', function ($scope,
                                                 $sce,
                                                 book,
+                                                toastr,
                                                 topics,
                                                 Api,
+                                                CurrentItem,
                                                 Hotkeys) {
 
     const addChapter = (chapter) => {
@@ -21,11 +23,20 @@ angular
     $scope.book = book;
     $scope.topics = topics;
 
-    $scope.save = () => Api.saveBook($scope.book.toSave());
     $scope.html = (html) => $sce.trustAsHtml(html);
     $scope.hasTopic = (topic) => {
       return !_.some($scope.book.chapters, { id: topic.id })
           && !_.includes($scope.book.complements, topic.slug);
+    };
+
+    $scope.save = () => {
+      return Promise.resolve($scope.book)
+        .call('toSave')
+        .tap((book) => Api.saveBook())
+        .tap((book) => CurrentItem.setStored(book))
+        .then(() => toastr.success(translate('book_saved_successfully')))
+        .catch(Error, (error) => toastr.error(`${error.message}`))
+        .catch((res) => toastr.error(`${res.data.message}`));
     };
 
     let _chapterSelected;

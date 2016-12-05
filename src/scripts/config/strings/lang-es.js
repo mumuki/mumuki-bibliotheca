@@ -8,6 +8,7 @@ angular
     authors: 'Autores',
     binding: 'Binding',
     blockquote: 'Cita',
+    book_saved_successfully: 'Libro guardado satisfactoriamente',
     books: 'Libros',
     chapter: 'Capítulo',
     choices: 'Alternativas',
