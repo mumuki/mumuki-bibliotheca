@@ -11,6 +11,7 @@ angular
 
     const editorType = {
       code: {
+        name: 'code',
         icon: () => 'fa-code',
         needsExtra: (exercise) => true,
         needsTests: (exercise) => true,
@@ -25,6 +26,7 @@ angular
         }
       },
       multiple_choice: {
+        name: 'multiple_choice',
         icon: () => 'fa-check-square-o',
         needsExtra: (exercise) => false,
         needsTests: (exercise) => false,
@@ -40,6 +42,7 @@ angular
         }
       },
       single_choice: {
+        name: 'single_choice',
         icon: () => 'fa-check-circle-o',
         needsExtra: (exercise) => exercise.language !== 'text',
         needsTests: (exercise) => exercise.language !== 'text',
@@ -58,20 +61,24 @@ angular
         }
       },
       hidden: {
+        name: 'hidden',
         icon: () => 'fa-eye-slash',
         needsExtra: (exercise) => false,
         needsTests: (exercise) => false,
         needsChoices: (exercise) => false,
         needsDefaultCode: (exercise) => false,
         needsExpectations: (exercise) => false,
+        validate: (exercise) => {},
       },
       text: {
+        name: 'text',
         icon: () => 'fa-file-text-o',
         needsExtra: (exercise) => true,
         needsTests: (exercise) => true,
         needsChoices: (exercise) => false,
         needsDefaultCode: (exercise) => true,
         needsExpectations: (exercise) => false,
+        validate: (exercise) => {},
       },
     }
 
