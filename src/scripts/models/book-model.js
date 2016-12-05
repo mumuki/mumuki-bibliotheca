@@ -9,7 +9,7 @@ angular
       }
 
       icon() {
-        return 'fa-book';
+        return 'fa fa-book';
       }
 
       fullName() {

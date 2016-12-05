@@ -1,5 +1,5 @@
 div.dropdown
-  small.pointer.locale.flag-icon(
+  small.pointer.locale(
       id='ddLocale',
       aria-expanded='true',
       data-toggle='dropdown',
@@ -7,6 +7,6 @@ div.dropdown
   ul.dropdown-menu.dropdown-menu-right(aria-labelledby='ddLocale')
     li(ng-repeat='locale in locales.get()', ng-click='item.setLocale(locale.code)')
       a(href='')
-        i.flag-icon(class="{{ locale.icon() }}")
+        i(class="{{ locale.icon() }}")
         span {{ locale.name | translate }}
 

@@ -3,8 +3,8 @@ angular
   .service('ExerciseTypes', function() {
 
     let _exerciseTypes = [
-      { name: 'problem', icon: () => 'fa-wrench' },
-      { name: 'playground', icon: () => 'fa-soccer-ball-o' },
+      { name: 'problem', icon: () => 'fa fa-wrench' },
+      { name: 'playground', icon: () => 'fa fa-soccer-ball-o' },
     ]
 
     this.get = () => {

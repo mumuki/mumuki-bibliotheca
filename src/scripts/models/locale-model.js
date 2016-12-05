@@ -13,7 +13,7 @@ angular
       }
 
       icon() {
-        return `flag-icon-${flagCode(this.code)}`;
+        return `flag-icon flag-icon-${flagCode(this.code)}`;
       }
 
       static from(locale = {}) {

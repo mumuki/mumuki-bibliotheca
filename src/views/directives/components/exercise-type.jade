@@ -3,10 +3,10 @@ div.dropdown
       id='ddExerciseType',
       aria-expanded='true',
       data-toggle='dropdown')
-    i.fa.fa-fw(class='{{ exercise.getType().icon() }}')
+    i.fa-fw(class='{{ exercise.getType().icon() }}')
   ul.dropdown-menu.dropdown-menu-right(aria-labelledby='ddExerciseType')
     li(ng-repeat='exerciseType in exerciseTypes.get()', ng-click='exercise.setType(exerciseType.name)')
       a(href='')
-        i.fa(class="{{ exerciseType.icon() }}")
+        i(class="{{ exerciseType.icon() }}")
         span {{ exerciseType.name | translate }}
 
