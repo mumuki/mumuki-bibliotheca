@@ -30,6 +30,9 @@ angular
         state: 'editor.home.books.detail'
       }, {
         name: () => safeFullName(CurrentItem.get()),
+        state: 'editor.home.topics.detail'
+      }, {
+        name: () => safeFullName(CurrentItem.get()),
         state: 'editor.home.guides.detail'
       }, {
         name: () => safeFullName(CurrentItem.get().getExercise($stateParams.eid)),

@@ -123,6 +123,32 @@ angular
           }
         }
       })
+      .state('editor.home.topics.detail', {
+        url: '/:org/:repo',
+        authenticated: true,
+        views: {
+          'content@editor': {
+            templateUrl: 'views/content/topics/topic-detail.html',
+            controller: 'TopicDetailController',
+            resolve: {
+              guides: (Api) => {
+                return Api.getAllGuides();
+              },
+              topic: (Api, CurrentItem, $stateParams) => {
+                return Api.getTopic($stateParams)
+                  .tap((topic) => CurrentItem.set(topic))
+                  .tap((topic) => {
+                    return Promise.map(topic.lessons, (lesson) => {
+                      const [org, repo] = lesson.split('/');
+                      return Api.getGuide({ org, repo });
+                    })
+                    .then((lessons) => topic.lessons = lessons);
+                  });
+              }
+            }
+          }
+        }
+      })
       .state('editor.home.guides', {
         url: '/guides',
         authenticated: true,
