@@ -38,6 +38,12 @@ angular
         name: () => safeFullName(CurrentItem.get().getExercise($stateParams.eid)),
         state: 'editor.home.guides.detail.exercise'
       }, {
+        name: () => translate('new_book'),
+        state: 'editor.home.books.new'
+      }, {
+        name: () => translate('new_topic'),
+        state: 'editor.home.topics.new'
+      }, {
         name: () => translate('new_guide'),
         state: 'editor.home.guides.new'
       }

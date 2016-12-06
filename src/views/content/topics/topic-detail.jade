@@ -15,7 +15,7 @@
     .detail-exercises
       h3 {{ 'content' | translate }}
       ui-select(ng-model='selected.lesson')
-        ui-select-match(placeholder='{{ "search" | translate }}')
+        ui-select-match(placeholder='{{ "placeholder_add_lesson" | translate }}')
           span(ng-bind='$select.selected.name')
         ui-select-choices(
             repeat='guide in guides | filter:hasGuide | filter:$select.search | orderBy:Guide.sortBy()')
