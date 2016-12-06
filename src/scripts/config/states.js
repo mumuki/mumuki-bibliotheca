@@ -65,6 +65,9 @@ angular
             templateUrl: 'views/content/books/book-detail.html',
             controller: 'NewBookController',
             resolve: {
+              guides: (Api) => {
+                return Api.getAllGuides();
+              },
               topics: (Api) => {
                 return Api.getAllTopics();
               },
@@ -118,6 +121,24 @@ angular
             resolve: {
               topics: (Api) => {
                 return Api.getTopics();
+              }
+            }
+          }
+        }
+      })
+      .state('editor.home.topics.new', {
+        url: '/new',
+        authenticated: true,
+        views: {
+          'content@editor': {
+            templateUrl: 'views/content/topics/topic-detail.html',
+            controller: 'NewTopicController',
+            resolve: {
+              guides: (Api) => {
+                return Api.getAllGuides();
+              },
+              topic: (Topic) => {
+                return Topic.from({});
               }
             }
           }
