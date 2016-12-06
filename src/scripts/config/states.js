@@ -83,6 +83,9 @@ angular
             templateUrl: 'views/content/books/book-detail.html',
             controller: 'BookDetailController',
             resolve: {
+              guides: (Api) => {
+                return Api.getAllGuides();
+              },
               topics: (Api) => {
                 return Api.getAllTopics();
               },

@@ -4,8 +4,10 @@ angular
                                                 $sce,
                                                 $filter,
                                                 book,
-                                                toastr,
+                                                guides,
                                                 topics,
+                                                toastr,
+                                                Guide,
                                                 Api,
                                                 CurrentItem,
                                                 Hotkeys) {
@@ -24,13 +26,14 @@ angular
     };
 
     $scope.book = book;
+    $scope.guides = guides;
     $scope.topics = topics;
 
+    $scope.Guide = Guide;
+
     $scope.html = (html) => $sce.trustAsHtml(html);
-    $scope.hasTopic = (topic) => {
-      return !_.some($scope.book.chapters, { id: topic.id })
-          && !_.includes($scope.book.complements, topic.slug);
-    };
+    $scope.hasTopic = (topic) => !_.some($scope.book.chapters, { id: topic.id });
+    $scope.hasGuide = (guide) => !_.includes($scope.book.complements, guide.slug);
 
     $scope._save = () => {
       return Promise.resolve($scope.book)
