@@ -5,6 +5,7 @@ angular
                                             $controller,
                                             book,
                                             topics,
+                                            guides,
                                             toastr,
                                             CurrentItem) {
 
@@ -14,6 +15,7 @@ angular
       $scope: $scope,
       book: CurrentItem.get(),
       topics: topics,
+      guides: guides,
     });
 
     $scope.isNew = true;

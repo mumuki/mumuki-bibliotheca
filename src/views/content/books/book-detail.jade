@@ -8,7 +8,11 @@
         locale(item='book')
 
       h2.text-center
-        input(type='text', ng-model='book.name', style='text-align: center')
+        input(
+            type='text',
+            ng-model='book.name',
+            style='text-align: center',
+            placeholder='{{ "placeholder_book_name" | translate }}')
 
     br
     ace-with-markdown(content='book.description', header='description')
@@ -18,7 +22,7 @@
     br
     h2 {{ 'content' | translate }}
     ui-select(ng-model='selected.chapter')
-      ui-select-match(placeholder='{{ "search" | translate }}')
+      ui-select-match(placeholder='{{ "placeholder_add_chapter" | translate }}')
         span(ng-bind='$select.selected.name')
       ui-select-choices(
           repeat='topic in topics | filter:hasTopic | filter:$select.search | orderBy:["name", "slug"]')
@@ -44,7 +48,7 @@
     br
     h2 {{ 'complements' | translate }}
     ui-select(ng-model='selected.complement')
-      ui-select-match(placeholder='{{ "search" | translate }}')
+      ui-select-match(placeholder='{{ "placeholder_add_complement" | translate }}')
         span(ng-bind='$select.selected.name')
       ui-select-choices(
           repeat='guide in guides | filter:hasGuide | filter:$select.search | orderBy:Guide.sortBy()')
@@ -59,3 +63,6 @@
         small.pointer.pull-right(ng-click='book.removeComplement($index)')
           i.fa.fa-fw.fa-times
         span {{ complement }}
+
+    br
+    ace-with-markdown(header='teacher_info', content='topic.teacher_info', foldable='true')

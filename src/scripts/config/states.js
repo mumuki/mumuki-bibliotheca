@@ -65,6 +65,9 @@ angular
             templateUrl: 'views/content/books/book-detail.html',
             controller: 'NewBookController',
             resolve: {
+              guides: (Api) => {
+                return Api.getAllGuides();
+              },
               topics: (Api) => {
                 return Api.getAllTopics();
               },
@@ -102,6 +105,65 @@ angular
                         });
                     })
                     .then((chapters) => book.chapters = chapters);
+                  });
+              }
+            }
+          }
+        }
+      })
+      .state('editor.home.topics', {
+        url: '/topics',
+        authenticated: true,
+        views: {
+          'content@editor': {
+            templateUrl: 'views/content/items-list.html',
+            controller: 'TopicsController',
+            resolve: {
+              topics: (Api) => {
+                return Api.getTopics();
+              }
+            }
+          }
+        }
+      })
+      .state('editor.home.topics.new', {
+        url: '/new',
+        authenticated: true,
+        views: {
+          'content@editor': {
+            templateUrl: 'views/content/topics/topic-detail.html',
+            controller: 'NewTopicController',
+            resolve: {
+              guides: (Api) => {
+                return Api.getAllGuides();
+              },
+              topic: (Topic) => {
+                return Topic.from({});
+              }
+            }
+          }
+        }
+      })
+      .state('editor.home.topics.detail', {
+        url: '/:org/:repo',
+        authenticated: true,
+        views: {
+          'content@editor': {
+            templateUrl: 'views/content/topics/topic-detail.html',
+            controller: 'TopicDetailController',
+            resolve: {
+              guides: (Api) => {
+                return Api.getAllGuides();
+              },
+              topic: (Api, CurrentItem, $stateParams) => {
+                return Api.getTopic($stateParams)
+                  .tap((topic) => CurrentItem.set(topic))
+                  .tap((topic) => {
+                    return Promise.map(topic.lessons, (lesson) => {
+                      const [org, repo] = lesson.split('/');
+                      return Api.getGuide({ org, repo });
+                    })
+                    .then((lessons) => topic.lessons = lessons);
                   });
               }
             }

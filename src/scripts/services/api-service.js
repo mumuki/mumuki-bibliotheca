@@ -3,6 +3,7 @@ angular
   .service('Api', function ($http,
                             Auth,
                             Guide,
+                            Topic,
                             Book,
                             CONFIG) {
 
@@ -27,10 +28,18 @@ angular
         .map((guide) => Guide.from(guide));
     };
 
+    this.getTopics = () => {
+      return HTTP
+        .call('get',`${API}/topics/writable`, defaultConfig())
+        .then((res) => res.data.topics)
+        .map((topic) => Topic.from(topic));
+    };
+
     this.getAllTopics = () => {
       return HTTP
         .call('get',`${API}/topics`, defaultConfig())
-        .then((res) => res.data.topics);
+        .then((res) => res.data.topics)
+        .map((topic) => Topic.from(topic));
     };
 
     this.getBooks = () => {
@@ -55,12 +64,17 @@ angular
     this.getTopic = ({ org, repo }) => {
       return HTTP
         .call('get',`${API}/topics/${org}/${repo}`, defaultConfig())
-        .then((res) => res.data);
+        .then((res) => Topic.from(res.data));
     };
 
     this.saveGuide = (guide) => {
       return HTTP
         .call('post',`${API}/guides`, guide, defaultConfig());
+    }
+
+    this.saveTopic = (topic) => {
+      return HTTP
+        .call('post',`${API}/topics`, topic, defaultConfig());
     }
 
     this.saveBook = (book) => {

@@ -1,0 +1,41 @@
+.mu-content
+
+  h1.detail-title
+    input(type='text', ng-model='topic.name', placeholder='{{ "placeholder_topic_name" | translate }}')
+
+    save-item(item='topic', save='save()')
+    locale(item='topic')
+
+  main.detail-main
+    br
+    ace-with-markdown(header='description' content='topic.description')
+
+    slug(item='topic', ng-if='isNew')
+
+    .detail-exercises
+      h3 {{ 'content' | translate }}
+      ui-select(ng-model='selected.lesson')
+        ui-select-match(placeholder='{{ "placeholder_add_lesson" | translate }}')
+          span(ng-bind='$select.selected.name')
+        ui-select-choices(
+            repeat='guide in guides | filter:hasGuide | filter:$select.search | orderBy:Guide.sortBy()')
+          i(class='{{ guide.icon() }}')
+          span &nbsp;&nbsp;&nbsp;
+          strong(ng-bind='guide.name')
+          span &nbsp;-&nbsp;
+          span(ng-bind='guide.slug')
+
+      div(ng-repeat='lesson in topic.lessons')
+        h4
+          span {{ 'lesson' | translate }} {{ $index + 1 }}:&nbsp;
+          a(href='') {{ lesson.name }}
+          small.pointer.text-muted(ng-click='topic.removeLesson(lesson)')
+            i.fa.fa-fw.fa-times
+        ul.progress-listing
+          li(ng-repeat='exercise in lesson.exercises')
+            a(ui-sref='editor.home.guides.detail.exercise({ eid: exercise.id })')
+              i.fa.fa-fw.fa-circle.text-muted
+              span {{ $index + 1 }}. {{ exercise.name }}
+
+    br
+    ace-with-markdown(header='teacher_info', content='topic.teacher_info', foldable='true')

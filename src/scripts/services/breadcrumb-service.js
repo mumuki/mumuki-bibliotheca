@@ -18,6 +18,10 @@ angular
         state: 'editor.home.books',
         reload: true
       }, {
+        name: () => translate('topics'),
+        state: 'editor.home.topics',
+        reload: true
+      }, {
         name: () => translate('guides'),
         state: 'editor.home.guides',
         reload: true
@@ -26,10 +30,19 @@ angular
         state: 'editor.home.books.detail'
       }, {
         name: () => safeFullName(CurrentItem.get()),
+        state: 'editor.home.topics.detail'
+      }, {
+        name: () => safeFullName(CurrentItem.get()),
         state: 'editor.home.guides.detail'
       }, {
         name: () => safeFullName(CurrentItem.get().getExercise($stateParams.eid)),
         state: 'editor.home.guides.detail.exercise'
+      }, {
+        name: () => translate('new_book'),
+        state: 'editor.home.books.new'
+      }, {
+        name: () => translate('new_topic'),
+        state: 'editor.home.topics.new'
       }, {
         name: () => translate('new_guide'),
         state: 'editor.home.guides.new'
