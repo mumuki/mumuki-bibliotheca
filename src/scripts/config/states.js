@@ -83,6 +83,9 @@ angular
             templateUrl: 'views/content/books/book-detail.html',
             controller: 'BookDetailController',
             resolve: {
+              guides: (Api) => {
+                return Api.getAllGuides();
+              },
               topics: (Api) => {
                 return Api.getAllTopics();
               },
@@ -168,7 +171,7 @@ angular
       });
 
     $urlRouterProvider.otherwise(($injector) => {
-      $injector.get('$state').go('editor.home.guides', {}, { reload: true, location: 'replace' });
+      $injector.get('$state').go('editor.home', {}, { reload: true, location: 'replace' });
     });
 
   })
@@ -184,7 +187,7 @@ angular
       }
 
       if(toState.name === 'editor.login' && Auth.isLoggedIn()) {
-        $state.go('editor.home.guides', {}, { location: 'replace' });
+        $state.go('editor.home', {}, { location: 'replace' });
         ev.preventDefault();
       }
 

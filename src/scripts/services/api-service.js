@@ -20,6 +20,13 @@ angular
         .map((guide) => Guide.from(guide));
     };
 
+    this.getAllGuides = () => {
+      return HTTP
+        .call('get',`${API}/guides`, defaultConfig())
+        .then((res) => res.data.guides)
+        .map((guide) => Guide.from(guide));
+    };
+
     this.getAllTopics = () => {
       return HTTP
         .call('get',`${API}/topics`, defaultConfig())

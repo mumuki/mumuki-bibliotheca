@@ -47,10 +47,12 @@
       ui-select-match(placeholder='{{ "search" | translate }}')
         span(ng-bind='$select.selected.name')
       ui-select-choices(
-          repeat='topic in topics | filter:hasTopic | filter:$select.search | orderBy:["name", "slug"]')
-        strong(ng-bind='topic.name')
+          repeat='guide in guides | filter:hasGuide | filter:$select.search | orderBy:Guide.sortBy()')
+        i(class='{{ guide.icon() }}')
+        span &nbsp;&nbsp;&nbsp;
+        strong(ng-bind='guide.name')
         span &nbsp;-&nbsp;
-        span(ng-bind='topic.slug')
+        span(ng-bind='guide.slug')
 
     div(ng-repeat='complement in book.complements')
       .text-box

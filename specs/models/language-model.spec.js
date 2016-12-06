@@ -6,7 +6,7 @@ editorTest('Language Model', () => {
   beforeSpec((_Language_) => Language = _Language_);
 
   context('#icon', () => {
-    spec(() => Language.from({ name: 'foo' }).icon().should.be.eql('da-foo'));
+    spec(() => Language.from({ name: 'foo' }).icon().should.be.eql('da da-foo'));
   });
 
   context('#sortBy', () => {

@@ -8,7 +8,7 @@ editorTest('Guide Model', () => {
   beforeSpec((_Languages_) => _Languages_.set([{ name: 'haskell' }, { name: 'text' }]));
 
   context('#icon', () => {
-    spec(() => Guide.from({ language: 'haskell' }).icon().should.be.eql('da-haskell'));
+    spec(() => Guide.from({ language: 'haskell' }).icon().should.be.eql('da da-haskell'));
   });
 
   context('#fullName', () => {
@@ -60,32 +60,6 @@ editorTest('Guide Model', () => {
     spec(() => expect(() => _.omit(guide, 'authors').validate()).to.throw());
     spec(() => expect(() => _.omit(guide, 'language').validate()).to.throw());
     spec(() => expect(() => _.omit(guide, 'description').validate()).to.throw());
-  });
-
-  context('#createSlug', () => {
-    context('when guide already has a slug', () => {
-      it('and is empty', () => {
-        guide = Guide.from({ slug: '' });
-        expect(() => guide.createSlug()).to.throw();
-      });
-      it('and is not empty', () => {
-        guide = Guide.from({ slug: 'foo/bar' });
-        expect(() => guide.createSlug()).to.not.throw();
-      });
-    });
-    context('when guide has not a slug', () => {
-      beforeSpec(() => guide = Guide.from({ name: 'túrn DöwnFòr What', language: 'haskell' }));
-
-      context('and organization is set', () => {
-        beforeSpec((_CurrentItem_) => _CurrentItem_.setOrganization('foo'));
-        beforeSpec(() => guide.createSlug());
-
-        spec(() => guide.slug.should.be.eql('foo/mumuki-guide-haskell-turn-down-for-what'));
-      });
-      context('and organization is not set', () => {
-        spec(() => expect(() => guide.createSlug()).to.throw());
-      });
-    });
   });
 
   context('#sortBy', () => {
