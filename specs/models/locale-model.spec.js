@@ -6,8 +6,8 @@ editorTest('Locale Model', () => {
   beforeSpec((_Locale_) => Locale = _Locale_);
 
   context('#icon', () => {
-    spec(() => Locale.from({ code: 'en' }).icon().should.be.eql('flag-icon-us'));
-    spec(() => Locale.from({ code: 'es' }).icon().should.be.eql('flag-icon-es'));
+    spec(() => Locale.from({ code: 'en' }).icon().should.be.eql('flag-icon flag-icon-us'));
+    spec(() => Locale.from({ code: 'es' }).icon().should.be.eql('flag-icon flag-icon-es'));
   });
 
   context('#sortBy', () => {
