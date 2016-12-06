@@ -13,6 +13,8 @@
     br
     ace-with-markdown(content='book.description', header='description')
 
+    slug(item='book', ng-if='isNew')
+
     br
     h2 {{ 'content' | translate }}
     ui-select(ng-model='selected.chapter')

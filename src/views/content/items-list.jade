@@ -1,12 +1,12 @@
 .input-group.filter
   i.input-group-addon.fa.fa-search
   input.form-control(id='filter' placeholder='{{ "search" | translate }}' ng-model='listSearch')
-  i.pointer.input-group-addon.fa.fa-plus(ui-sref='editor.home.guides.new')
+  i.pointer.input-group-addon.fa.fa-plus(ui-sref='{{ newState }}')
 
 .list-group
   button.list-group-item(
       ng-repeat='item in list | orderBy:Model.sortBy() | filter:listSearch',
       ng-click='open(item)')
-    i.mu-list-item-icon.da(class='{{ item.icon() }}')
+    i.mu-list-item-icon(class='{{ item.icon() }}')
     span.divider-vertical
     span.text-primary {{ item.fullName() }}

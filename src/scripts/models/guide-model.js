@@ -1,6 +1,7 @@
 angular
   .module('editor')
   .factory('Guide', function ($injector,
+                              Slug,
                               Exercise,
                               Validator,
                               GuideTypes,
@@ -13,7 +14,7 @@ angular
       }
 
       icon() {
-        return `da-${this.language}`;
+        return `da da-${this.language}`;
       }
 
       fullName() {
@@ -58,7 +59,7 @@ angular
 
       toSave() {
         this.validate();
-        this.createSlug();
+        Slug.create(this, 'guide');
         return this;
       }
 
@@ -70,25 +71,6 @@ angular
         Validator.notEmptyString(this, 'language');
         Validator.notEmptyString(this, 'description');
         this.validateExercises();
-      }
-
-      createSlug() {
-        if (!_.isEmpty(this.slug)) {
-          Validator.notEmptyString(this, 'slug');
-          return this.slug;
-        }
-        const translate = $injector.get('$translate')
-        const translationTable = translate.getTranslationTable(this.locale);
-        const guideTranslated = _.deburr(translationTable.guide.toLowerCase());
-        const kebabCase = _.kebabCase(this.name);
-        const slug = {
-          repository: `mumuki-${guideTranslated}-${this.language}-${kebabCase}`,
-          organization: CurrentItem.getOrganization(),
-          fullName: () => `${slug.organization}/${slug.repository}`,
-        }
-        Validator.notEmptyString(slug, 'organization');
-        Validator.notEmptyString(slug, 'repository');
-        this.slug = slug.fullName();
       }
 
       validateExercises() {

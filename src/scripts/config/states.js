@@ -33,20 +33,44 @@ angular
         }
       })
       .state('editor.home', {
-        abstract: true,
-        authenticated: true
+        url: '',
+        authenticated: true,
+        views: {
+          'content@editor': {
+            templateUrl: 'views/home.html',
+            controller: 'HomeController',
+          }
+        }
       })
       .state('editor.home.books', {
         url: '/books',
         authenticated: true,
         views: {
           'content@editor': {
-            templateUrl: 'views/content/books/books.html',
+            templateUrl: 'views/content/items-list.html',
             controller: 'BooksController',
             resolve: {
               books: (Api) => {
                 return Api.getBooks();
               }
+            }
+          }
+        }
+      })
+      .state('editor.home.books.new', {
+        url: '/new',
+        authenticated: true,
+        views: {
+          'content@editor': {
+            templateUrl: 'views/content/books/book-detail.html',
+            controller: 'NewBookController',
+            resolve: {
+              topics: (Api) => {
+                return Api.getAllTopics();
+              },
+              book: (Book) => {
+                return Book.from({});
+              },
             }
           }
         }
@@ -86,7 +110,7 @@ angular
         authenticated: true,
         views: {
           'content@editor': {
-            templateUrl: 'views/content/guides/guides.html',
+            templateUrl: 'views/content/items-list.html',
             controller: 'GuidesController',
             resolve: {
               guides: (Api) => {
@@ -101,7 +125,7 @@ angular
         authenticated: true,
         views: {
           'content@editor': {
-            templateUrl: 'views/content/guides/guide-detail.html',
+            templateUrl: 'views/content/guides/new-guide-detail.html',
             controller: 'NewGuideController',
             resolve: {
               guide: (Guide) => {

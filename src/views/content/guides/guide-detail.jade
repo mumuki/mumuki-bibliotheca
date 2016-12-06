@@ -1,71 +1,22 @@
 .mu-content
 
-  h1.detail-title
-    input(type='text', ng-model='guide.name', placeholder='{{ "placeholder_guide_name" | translate }}')
-
-    save-item(item='guide', save='save()')
-    locale(item='guide')
-    guide-type(guide='guide')
-    language(item='guide')
+  h1.detail-title(ng-include='"views/content/guides/components/title.html"')
 
   main.detail-main
     br
     ace-with-markdown(header='description' content='guide.description')
-    div.is-new(ng-if='isNew')
-      h3 {{ 'organization' | translate }}
-      div.btn-group(ng-if='!isSuperUser')
-        button.btn.btn-primary.dropdown-toggle(
-            type='button',
-            data-toggle='dropdown',
-            aria-haspopup='true'
-            aria-expanded='false')
-          i.fa.fa-fw.fa-university
-          span {{ getOrganization() }}
-        ul.dropdown-menu
-          li.dropdown-item(
-              ng-repeat='organization in organizations | orderBy',
-              ng-click='setOrganization(organization)')
-            a(href='')
-              i.fa.fa-fw.fa-university
-              span {{ organization }}
 
-      div.input-group(ng-if='isSuperUser')
-        span.input-group-addon
-          i.fa.fa-university
-        input.form-control(type='text', ng-change='setOrganization(organizationName)', ng-model='organizationName')
-
-    .detail-exercises(ng-if='!isNew')
-      h3 {{ 'content' | translate }}
-      ul.progress-listing(dnd-list='guide.exercises')
-        li(
-            ng-repeat='exercise in guide.exercises',
-            dnd-draggable='exercise',
-            dnd-effect-allowed='copyMove',
-            dnd-moved='guide.exercises.splice($index, 1)')
-          a(ui-sref='editor.home.guides.detail.exercise({ eid: exercise.id })')
-            i.fa.fa-fw.fa-circle.text-muted
-            span {{ $index + 1 }}. {{ exercise.name }}
-          i.fa.fa-fw.fa-times.text-muted.pointer(ng-click='guide.removeExercise(exercise.id)')
-
-      a(href='', ng-click='addExercise()')
-        i.fa.fa-fw.fa-plus
-        span {{ 'add_exercise' | translate }}
-
-    br(ng-if='!isNew')
-    ace-with-markdown(header='corollary', content='guide.corollary', foldable='true', ng-if='!isNew')
-    br(ng-if='!isNew')
-    ace-with-markdown(header='teacher_info', content='guide.teacher_info', foldable='true', ng-if='!isNew')
-    br(ng-if='!isNew')
-    ace-editor(content='guide.extra_code', mode='guide.language', header='extra_code', foldable='true', ng-if='!isNew')
+    .detail-exercises(ng-include='"views/content/guides/components/exercises.html"')
+    br
+    ace-with-markdown(header='corollary', content='guide.corollary', foldable='true')
+    br
+    ace-with-markdown(header='teacher_info', content='guide.teacher_info', foldable='true')
+    br
+    ace-editor(content='guide.extra_code', mode='guide.language', header='extra_code', foldable='true')
     .detail-license
-      h3 {{ 'authors' | translate }}
-      input(type='text', ng-model='guide.authors', placeholder='{{ "placeholder_authors" | translate }}')
-      h3(ng-if='!isNew') {{ 'collaborators' | translate }}
-      input(
-          type='text',
-          ng-model='guide.collaborators',
-          placeholder='{{ "placeholder_collaborators" | translate }}',
-          ng-if='!isNew')
+      div(ng-include='"views/content/guides/components/authors.html"')
+      h3 {{ 'collaborators' | translate }}
+      input(type='text', ng-model='guide.collaborators', placeholder='{{ "placeholder_collaborators" | translate }}')
       br
       br
       small(ng-bind-html='"license_disclaimer" | translate')

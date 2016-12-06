@@ -3,8 +3,8 @@ angular
   .service('GuideTypes', function() {
 
     let _guideTypes = [
-      { name: 'learning', icon: () => 'fa-graduation-cap' },
-      { name: 'practice', icon: () => 'fa-laptop' },
+      { name: 'learning', icon: () => 'fa fa-graduation-cap' },
+      { name: 'practice', icon: () => 'fa fa-laptop' },
     ]
 
     this.get = () => {

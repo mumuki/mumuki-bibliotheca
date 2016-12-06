@@ -12,7 +12,7 @@ angular
     const editorType = {
       code: {
         name: 'code',
-        icon: () => 'fa-code',
+        icon: () => 'fa fa-code',
         needsExtra: (exercise) => true,
         needsTests: (exercise) => true,
         needsChoices: (exercise) => false,
@@ -27,7 +27,7 @@ angular
       },
       multiple_choice: {
         name: 'multiple_choice',
-        icon: () => 'fa-check-square-o',
+        icon: () => 'fa fa-check-square-o',
         needsExtra: (exercise) => false,
         needsTests: (exercise) => false,
         needsChoices: (exercise) => true,
@@ -43,7 +43,7 @@ angular
       },
       single_choice: {
         name: 'single_choice',
-        icon: () => 'fa-check-circle-o',
+        icon: () => 'fa fa-check-circle-o',
         needsExtra: (exercise) => exercise.language !== 'text',
         needsTests: (exercise) => exercise.language !== 'text',
         needsChoices: (exercise) => true,
@@ -62,7 +62,7 @@ angular
       },
       hidden: {
         name: 'hidden',
-        icon: () => 'fa-eye-slash',
+        icon: () => 'fa fa-eye-slash',
         needsExtra: (exercise) => false,
         needsTests: (exercise) => false,
         needsChoices: (exercise) => false,
@@ -72,7 +72,7 @@ angular
       },
       text: {
         name: 'text',
-        icon: () => 'fa-file-text-o',
+        icon: () => 'fa fa-file-text-o',
         needsExtra: (exercise) => true,
         needsTests: (exercise) => true,
         needsChoices: (exercise) => false,

@@ -5,7 +5,7 @@ angular
     const input = {
       right: {
         icon() {
-          return 'fa-columns';
+          return 'fa fa-columns';
         },
         type() {
           return 'input_right';
@@ -16,7 +16,7 @@ angular
       },
       bottom: {
         icon() {
-          return 'fa-list-alt';
+          return 'fa fa-list-alt';
         },
         type() {
           return 'input_bottom';

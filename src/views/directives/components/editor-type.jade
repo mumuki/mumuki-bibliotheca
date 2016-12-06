@@ -1,8 +1,8 @@
 div.dropdown
   small.text-primary(id='ddEditor', data-toggle='dropdown', aria-expanded='true')
-    i.pointer.editor.fa.fa-fw(class='{{ exercise.getEditor().icon() }}')
+    i.pointer.editor.fa-fw(class='{{ exercise.getEditor().icon() }}')
   ul.dropdown-menu.dropdown-menu-right(aria-labelledby='ddEditor')
     li(ng-repeat='editor in Editor.types() | orderBy:key', ng-click='exercise.setEditor(editor)')
       a(href='')
-        i.fa(class='{{ Editor.from(editor).icon() }}')
+        i(class='{{ Editor.from(editor).icon() }}')
         span {{ editor }}

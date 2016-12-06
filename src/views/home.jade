@@ -1,0 +1,9 @@
+.row
+  .col-xs-12.col-sm-4.col-md-4.col-lg-4(ng-repeat='state in states')
+    .jumbotron.text-center
+      h2 {{ state | translate }}
+      p
+        h4 {{ 'jumbotron_' + state | translate }}
+      p
+        a.btn.btn-primary(ui-sref='editor.home.{{ state }}', role='button') {{ state | translate }}
+
