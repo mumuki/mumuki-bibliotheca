@@ -1,6 +1,9 @@
 angular
   .module('editor')
-  .factory('Book', function (CurrentItem) {
+  .factory('Book', function($injector,
+                            Slug,
+                            Validator,
+                            CurrentItem) {
 
     class Book {
 
@@ -22,7 +25,9 @@ angular
       }
 
       toSave() {
-        const book = _.cloneDeep(this);
+        this.validate();
+        const book = Book.from(_.cloneDeep(this));
+        Slug.create(book, 'book');
         book.chapters = _.map(book.chapters, (chapter) => chapter.slug)
         return book;
       }
@@ -48,7 +53,9 @@ angular
       }
 
       validate() {
-
+        Validator.notEmptyString(this, 'name');
+        Validator.notEmptyString(this, 'locale');
+        Validator.notEmptyString(this, 'description');
       }
 
       canSave() {
@@ -61,6 +68,11 @@ angular
       }
 
       static from(book = {}) {
+        _.defaultsDeep(book, {
+          locale: $injector.get('$translate').use(),
+          chapters: [],
+          complements: [],
+        });
         return new Book(book);
       }
 

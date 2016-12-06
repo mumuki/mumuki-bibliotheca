@@ -2,12 +2,15 @@ angular
   .module('editor')
   .controller('BookDetailController', function ($scope,
                                                 $sce,
+                                                $filter,
                                                 book,
                                                 toastr,
                                                 topics,
                                                 Api,
                                                 CurrentItem,
                                                 Hotkeys) {
+
+    const translate = $filter('translate');
 
     const addChapter = (chapter) => {
       const [org, repo] = chapter.slug.split('/');
@@ -29,12 +32,17 @@ angular
           && !_.includes($scope.book.complements, topic.slug);
     };
 
-    $scope.save = () => {
+    $scope._save = () => {
       return Promise.resolve($scope.book)
         .call('toSave')
-        .tap((book) => Api.saveBook())
+        .tap((book) => Api.saveBook(book))
         .tap((book) => CurrentItem.setStored(book))
-        .then(() => toastr.success(translate('book_saved_successfully')))
+        .tap((book) => toastr.success(translate('book_saved_successfully')));
+    };
+
+    $scope.save = () => {
+      return $scope
+        ._save()
         .catch(Error, (error) => toastr.error(`${error.message}`))
         .catch((res) => toastr.error(`${res.data.message}`));
     };
