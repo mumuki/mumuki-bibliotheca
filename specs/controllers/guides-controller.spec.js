@@ -16,4 +16,8 @@ editorTest('Guides Controller', (mocks) => {
 
   });
 
+  context('#newState', () => {
+    spec(() => $scope.newState.should.be.eql('editor.home.guides.new'));
+  });
+
 });
