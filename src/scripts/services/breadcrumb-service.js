@@ -18,6 +18,10 @@ angular
         state: 'editor.home.books',
         reload: true
       }, {
+        name: () => translate('topics'),
+        state: 'editor.home.topics',
+        reload: true
+      }, {
         name: () => translate('guides'),
         state: 'editor.home.guides',
         reload: true

@@ -108,6 +108,21 @@ angular
           }
         }
       })
+      .state('editor.home.topics', {
+        url: '/topics',
+        authenticated: true,
+        views: {
+          'content@editor': {
+            templateUrl: 'views/content/items-list.html',
+            controller: 'TopicsController',
+            resolve: {
+              topics: (Api) => {
+                return Api.getTopics();
+              }
+            }
+          }
+        }
+      })
       .state('editor.home.guides', {
         url: '/guides',
         authenticated: true,
