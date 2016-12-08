@@ -42,7 +42,7 @@ angular
           {
             name: 'solution',
             templateUrl: 'views/directives/evaluation/solution.html',
-            isVisible: () => true,
+            isVisible: () => $scope.exercise.needsSolution(),
           },
         ];
 

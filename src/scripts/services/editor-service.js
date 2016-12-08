@@ -16,6 +16,7 @@ angular
         needsExtra: (exercise) => true,
         needsTests: (exercise) => true,
         needsChoices: (exercise) => false,
+        needsSolution: (exercise) => true,
         needsDefaultCode: (exercise) => true,
         needsExpectations: (exercise) => true,
         validate: (exercise) => {
@@ -31,6 +32,7 @@ angular
         needsExtra: (exercise) => false,
         needsTests: (exercise) => false,
         needsChoices: (exercise) => true,
+        needsSolution: (exercise) => true,
         needsDefaultCode: (exercise) => false,
         needsExpectations: (exercise) => false,
         validate: (exercise) => {
@@ -44,11 +46,12 @@ angular
       single_choice: {
         name: 'single_choice',
         icon: () => 'fa fa-check-circle-o',
-        needsExtra: (exercise) => exercise.language !== 'text',
-        needsTests: (exercise) => exercise.language !== 'text',
+        needsExtra: (exercise) => !exercise.isTextLanguage(),
+        needsTests: (exercise) => !exercise.isTextLanguage(),
         needsChoices: (exercise) => true,
-        needsDefaultCode: (exercise) => exercise.language !== 'text',
-        needsExpectations: (exercise) => exercise.language !== 'text',
+        needsSolution: (exercise) => true,
+        needsDefaultCode: (exercise) => !exercise.isTextLanguage(),
+        needsExpectations: (exercise) => !exercise.isTextLanguage(),
         validate: (exercise) => {
           Validator.notEmptyChoices(exercise);
           Validator.notIncompleteChoices(exercise);
@@ -66,6 +69,7 @@ angular
         needsExtra: (exercise) => false,
         needsTests: (exercise) => false,
         needsChoices: (exercise) => false,
+        needsSolution: (exercise) => true,
         needsDefaultCode: (exercise) => false,
         needsExpectations: (exercise) => false,
         validate: (exercise) => {},
@@ -76,6 +80,7 @@ angular
         needsExtra: (exercise) => true,
         needsTests: (exercise) => true,
         needsChoices: (exercise) => false,
+        needsSolution: (exercise) => true,
         needsDefaultCode: (exercise) => true,
         needsExpectations: (exercise) => false,
         validate: (exercise) => {},

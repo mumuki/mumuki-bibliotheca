@@ -84,6 +84,10 @@ angular
         return this.getEditor().needsDefaultCode(this);
       }
 
+      needsSolution() {
+        return this.getEditor().needsSolution(this);
+      }
+
       validate() {
         Validator.notEmptyString(this, 'name');
         Validator.notEmptyString(this, 'type');
