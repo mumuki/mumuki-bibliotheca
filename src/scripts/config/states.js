@@ -224,8 +224,13 @@ angular
             templateUrl: 'views/content/guides/exercise-detail.html',
             controller: 'ExerciseDetailController',
             resolve: {
-              exercise: (CurrentItem, $stateParams) => {
-                return CurrentItem.get().getExercise($stateParams.eid);
+              exercise: (CurrentItem, $stateParams, Validator, $state) => {
+                return Promise
+                  .resolve(CurrentItem)
+                  .call('get')
+                  .call('getExercise', $stateParams.eid)
+                  .tap((exercise) => Validator.notEmptyString(exercise, 'id'))
+                  .catch(() => $state.go('editor.home.guides.detail', $stateParams));
               }
             }
           }
