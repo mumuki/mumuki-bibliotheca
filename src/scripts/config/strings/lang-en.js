@@ -48,6 +48,7 @@ angular
     jumbotron_topics: 'English Lorem Ipsum',
     language: 'Language',
     learning: 'Learning',
+    leave_current_item_with_changes: 'Are you sure? all changes will be lost',
     lesson: 'Lesson',
     license_disclaimer: 'This guide will be published under <a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode">Creative Commons Attribution-ShareAlike 4.0 International Public License</a>. To learn more about Creative Commons Licenses visit <a href="https://creativecommons.org/share-your-work">https://creativecommons.org/share-your-work</a>.',
     link: 'Link',

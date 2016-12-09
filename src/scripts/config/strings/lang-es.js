@@ -48,6 +48,7 @@ angular
     jumbotron_topics: 'Lorem Ipsum en español.',
     language: 'Lenguaje',
     learning: 'Aprendizaje',
+    leave_current_item_with_changes: '¿Estás seguro? Todos los cambios se perderán',
     lesson: 'Lección',
     license_disclaimer: 'Esta guía será publicada bajo los términos de la <a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode">Licencia Creative Commons Compartir-Igual, 4.0</a>. Para aprender más sobre las Licencias Creative Commons visitá <a href="https://creativecommons.org/share-your-work">https://creativecommons.org/share-your-work</a>.',
     link: 'Link',

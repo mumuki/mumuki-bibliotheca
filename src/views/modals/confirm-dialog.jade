@@ -1,0 +1,13 @@
+.modal-content
+  .modal-header
+    p.modal-title.text-center.title-font {{ title }}
+  .modal-body
+    .container-fluid
+      .row
+        .col-md-12
+          p {{ trust(text) }}
+  .modal-footer
+    .row
+      .col-md-12.pull-right
+        button.btn.btn-default(type='button', ng-click='no()', data-dismiss='modal') {{ 'no' | translate }}
+        button.btn.btn-success(type='button', ng-click='yes()') {{ 'yes' | translate }}
