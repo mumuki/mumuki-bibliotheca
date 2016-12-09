@@ -25,6 +25,7 @@ angular
     error_choices_empty_validation: '{{fullName}}: Tiene que ofrecer al menos dos alternativas',
     error_choices_incomplete_validation: '{{fullName}}: Tiene alternativas incompletas',
     error_editor_code_validation: '{{fullName}}: Debe tener al menos una prueba o una expectativa',
+    error_editor_hidden_validation: '{{fullName}}: Debe tener al menos una prueba',
     error_editor_multiple_choice_validation: '{{fullName}}: Debe seleccionar al menos una alternativa',
     error_editor_single_choice_validation: '{{fullName}}: Debe seleccionar solamente una alternativa',
     error_editor_single_choice_validation2: '{{fullName}}: Debe seleccionar una alternativa como máximo',

@@ -66,24 +66,33 @@ angular
       hidden: {
         name: 'hidden',
         icon: () => 'fa fa-eye-slash',
-        needsExtra: (exercise) => false,
-        needsTests: (exercise) => false,
+        needsExtra: (exercise) => true,
+        needsTests: (exercise) => true,
         needsChoices: (exercise) => false,
-        needsSolution: (exercise) => true,
+        needsSolution: (exercise) => false,
         needsDefaultCode: (exercise) => false,
         needsExpectations: (exercise) => false,
-        validate: (exercise) => {},
+        validate: (exercise) => {
+          if (!exercise.hasTest()) {
+            throwError('error_editor_hidden_validation', { fullName: exercise.fullName() });
+          }
+        },
       },
-      text: {
+      one_liner: {
         name: 'text',
         icon: () => 'fa fa-file-text-o',
         needsExtra: (exercise) => true,
         needsTests: (exercise) => true,
         needsChoices: (exercise) => false,
         needsSolution: (exercise) => true,
-        needsDefaultCode: (exercise) => true,
-        needsExpectations: (exercise) => false,
-        validate: (exercise) => {},
+        needsDefaultCode: (exercise) => false,
+        needsExpectations: (exercise) => true,
+        validate: (exercise) => {
+          Validator.notIncompleteExpectations(exercise);
+          if (!exercise.hasTest() && !exercise.hasExpectations()) {
+            throwError('error_editor_code_validation', { fullName: exercise.fullName() });
+          }
+        }
       },
     }
 
