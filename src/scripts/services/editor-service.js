@@ -16,6 +16,7 @@ angular
         needsExtra: (exercise) => true,
         needsTests: (exercise) => true,
         needsChoices: (exercise) => false,
+        needsSolution: (exercise) => true,
         needsDefaultCode: (exercise) => true,
         needsExpectations: (exercise) => true,
         validate: (exercise) => {
@@ -31,6 +32,7 @@ angular
         needsExtra: (exercise) => false,
         needsTests: (exercise) => false,
         needsChoices: (exercise) => true,
+        needsSolution: (exercise) => true,
         needsDefaultCode: (exercise) => false,
         needsExpectations: (exercise) => false,
         validate: (exercise) => {
@@ -44,11 +46,12 @@ angular
       single_choice: {
         name: 'single_choice',
         icon: () => 'fa fa-check-circle-o',
-        needsExtra: (exercise) => exercise.language !== 'text',
-        needsTests: (exercise) => exercise.language !== 'text',
+        needsExtra: (exercise) => !exercise.isTextLanguage(),
+        needsTests: (exercise) => !exercise.isTextLanguage(),
         needsChoices: (exercise) => true,
-        needsDefaultCode: (exercise) => exercise.language !== 'text',
-        needsExpectations: (exercise) => exercise.language !== 'text',
+        needsSolution: (exercise) => true,
+        needsDefaultCode: (exercise) => !exercise.isTextLanguage(),
+        needsExpectations: (exercise) => !exercise.isTextLanguage(),
         validate: (exercise) => {
           Validator.notEmptyChoices(exercise);
           Validator.notIncompleteChoices(exercise);
@@ -63,12 +66,17 @@ angular
       hidden: {
         name: 'hidden',
         icon: () => 'fa fa-eye-slash',
-        needsExtra: (exercise) => false,
-        needsTests: (exercise) => false,
+        needsExtra: (exercise) => true,
+        needsTests: (exercise) => true,
         needsChoices: (exercise) => false,
+        needsSolution: (exercise) => false,
         needsDefaultCode: (exercise) => false,
         needsExpectations: (exercise) => false,
-        validate: (exercise) => {},
+        validate: (exercise) => {
+          if (!exercise.hasTest()) {
+            throwError('error_editor_hidden_validation', { fullName: exercise.fullName() });
+          }
+        },
       },
       text: {
         name: 'text',
@@ -76,9 +84,20 @@ angular
         needsExtra: (exercise) => true,
         needsTests: (exercise) => true,
         needsChoices: (exercise) => false,
-        needsDefaultCode: (exercise) => true,
-        needsExpectations: (exercise) => false,
-        validate: (exercise) => {},
+        needsSolution: (exercise) => true,
+        needsDefaultCode: (exercise) => false,
+        needsExpectations: (exercise) => true,
+        validate: (exercise) => {
+          Validator.notIncompleteExpectations(exercise);
+          if (!exercise.hasTest() && !exercise.hasExpectations()) {
+            throwError('error_editor_code_validation', { fullName: exercise.fullName() });
+          }
+        }
+      },
+      none: {
+        isDisabled: true,
+        isInvisible: true,
+        icon: () => 'fa fa-ban',
       },
     }
 

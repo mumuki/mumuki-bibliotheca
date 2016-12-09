@@ -42,7 +42,7 @@ angular
           {
             name: 'solution',
             templateUrl: 'views/directives/evaluation/solution.html',
-            isVisible: () => true,
+            isVisible: () => $scope.exercise.needsSolution(),
           },
         ];
 
@@ -53,6 +53,7 @@ angular
 
         $scope.selectTab(firstTabVisible());
 
+        $scope.$watch(() => $scope.exercise.getType(), () => $scope.selectTab(firstTabVisible()));
         $scope.$watch(() => $scope.exercise.getEditor(), () => $scope.selectTab(firstTabVisible()));
         $scope.$watch(() => $scope.exercise.getLanguage(), () => $scope.selectTab(firstTabVisible()));
 
@@ -63,6 +64,10 @@ angular
 
         $scope.removeChoice = (choice) => {
           _.remove($scope.exercise.choices, choice);
+        }
+
+        $scope.someIsVisible = () => {
+          return _.some($scope.tabs, (t) => t.isVisible());
         }
 
       }

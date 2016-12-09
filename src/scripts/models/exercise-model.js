@@ -34,7 +34,9 @@ angular
       }
 
       getEditor() {
-        return Editor.from(this.editor);
+        return this.getType().isProblem() ?
+          Editor.from(this.editor) :
+          Editor.from('none');
       }
 
       getType() {
@@ -43,6 +45,9 @@ angular
 
       setType(type) {
         this.type = type;
+        if (!this.getType().isProblem()) {
+          delete this.editor;
+        }
       }
 
       setLanguage(language) {
@@ -65,23 +70,27 @@ angular
       }
 
       needsTests() {
-        return this.getEditor().needsTests(this);
+        return this.getType().needsTests(this);
       }
 
       needsChoices() {
-        return this.getEditor().needsChoices(this);
+        return this.getType().needsChoices(this);
       }
 
       needsExpectations() {
-        return this.getEditor().needsExpectations(this);
+        return this.getType().needsExpectations(this);
       }
 
       needsExtra() {
-        return this.getEditor().needsExtra(this);
+        return this.getType().needsExtra(this);
       }
 
       needsDefaultCode() {
-        return this.getEditor().needsDefaultCode(this);
+        return this.getType().needsDefaultCode(this);
+      }
+
+      needsSolution() {
+        return this.getType().needsSolution(this);
       }
 
       validate() {
@@ -89,7 +98,7 @@ angular
         Validator.notEmptyString(this, 'type');
         Validator.notEmptyString(this, 'layout');
         Validator.notEmptyString(this, 'description');
-        this.getEditor().validate(this);
+        this.getType().validate(this);
       }
 
       isTextLanguage() {
@@ -114,6 +123,16 @@ angular
 
       hasMoreThanOneChoiceSelected() {
         return _.filter(this.choices, 'checked').length > 1;
+      }
+
+      toSave() {
+        if (!this.needsTests()) delete this.test;
+        if (!this.needsExtra()) delete this.extra;
+        if (!this.needsChoices()) delete this.choices;
+        if (!this.needsSolution()) delete this.solution;
+        if (!this.needsDefaultCode()) delete this.default_code;
+        if (!this.needsExpectations()) delete this.expectations;
+        return this;
       }
 
       static from(exercise = {}) {
