@@ -1,0 +1,17 @@
+.lessons[dnd-list], .lessons[dnd-list] > .lesson {
+  position: relative;
+}
+
+.lessons[dnd-list] .dndDraggingSource {
+  display: none;
+}
+
+.lessons[dnd-list] .dndPlaceholder {
+  display: block;
+  background-color: #ddd;
+  min-height: 10px;
+}
+
+.lessons[dnd-list] .lesson {
+  display: block;
+}

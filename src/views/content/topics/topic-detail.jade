@@ -25,17 +25,22 @@
           span &nbsp;-&nbsp;
           span(ng-bind='guide.slug')
 
-      div(ng-repeat='lesson in topic.lessons')
-        h4
-          span {{ 'lesson' | translate }} {{ $index + 1 }}:&nbsp;
-          a(href='') {{ lesson.name }}
-          small.pointer.text-muted(ng-click='topic.removeLesson(lesson)')
-            i.fa.fa-fw.fa-times
-        ul.progress-listing
-          li(ng-repeat='exercise in lesson.exercises')
-            a(ui-sref='editor.home.guides.detail.exercise({ eid: exercise.id })')
-              i.fa.fa-fw.fa-circle.text-muted
-              span {{ $index + 1 }}. {{ exercise.name }}
+      .lessons(dnd-list='topic.lessons')
+        .lesson(
+            ng-repeat='lesson in topic.lessons',
+            dnd-draggable='lesson',
+            dnd-moved='topic.lessons.splice($index, 1)',
+            dnd-effect-allowed='move')
+          h4
+            span {{ 'lesson' | translate }} {{ $index + 1 }}:&nbsp;
+            a(href='') {{ lesson.name }}
+            small.pointer.text-muted(ng-click='topic.removeLesson(lesson)')
+              i.fa.fa-fw.fa-times
+          ul.progress-listing
+            li(ng-repeat='exercise in lesson.exercises')
+              a(ui-sref='editor.home.guides.detail.exercise({ eid: exercise.id })')
+                i.fa.fa-fw.fa-circle.text-muted
+                span {{ $index + 1 }}. {{ exercise.name }}
 
     br
     ace-with-markdown(header='teacher_info', content='topic.teacher_info', foldable='true')

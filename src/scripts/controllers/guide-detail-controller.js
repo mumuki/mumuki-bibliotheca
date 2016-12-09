@@ -7,9 +7,13 @@ angular
 
     $scope.guide = guide;
 
-    $scope.save = () => GuideSaver.save($scope.guide);
-
     $scope.addExercise = () => GuideSaver.addExercise($scope.guide);
+
+    $scope.save = () => {
+      return GuideSaver
+        .save($scope.guide)
+        .tap((guide) => $scope.guide = guide);
+    }
 
     Hotkeys.bindSave($scope);
 
