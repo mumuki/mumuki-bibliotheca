@@ -78,7 +78,7 @@ angular
           }
         },
       },
-      one_liner: {
+      text: {
         name: 'text',
         icon: () => 'fa fa-file-text-o',
         needsExtra: (exercise) => true,

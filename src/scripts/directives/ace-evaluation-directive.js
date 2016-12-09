@@ -65,6 +65,10 @@ angular
           _.remove($scope.exercise.choices, choice);
         }
 
+        $scope.someIsVisible = () => {
+          return _.some($scope.tabs, (t) => t.isVisible());
+        }
+
       }
 
     }
