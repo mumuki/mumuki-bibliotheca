@@ -10,13 +10,14 @@ angular
 
     const translate = $filter('translate');
 
-    this.save = Debounce.for((guide) => {
+    this.save = Debounce.for((guide, callback = () => {}) => {
       return Promise
         .resolve(Guide.from(guide))
         .call('toSave')
         .tap((guideToSave) => Api.saveGuide(guideToSave))
         .tap((savedGuide) => CurrentItem.setStored(savedGuide))
-        .tap(() => toastr.success(translate('guide_saved_successfully')))
+        .tap((savedGuide) => callback(savedGuide))
+        .tap((savedGuide) => toastr.success(translate('guide_saved_successfully')))
         .catch(Error, (error) => toastr.error(`${error.message}`))
         .catch((res) => toastr.error(`${res.data.message}`));
     })
