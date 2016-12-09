@@ -62,6 +62,7 @@ angular
     new_exercise: 'New exercise',
     new_guide: 'New guide',
     new_topic: 'New topic',
+    no: 'No',
     object: 'Object',
     organization: 'Organization',
     placeholder_add_chapter: 'Add chapter',
@@ -111,5 +112,6 @@ angular
     transitive: 'Transitive',
     type: 'Type',
     verb: 'Verb',
+    yes: 'Yes',
 
   });
