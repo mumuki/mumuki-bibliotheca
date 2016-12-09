@@ -13,9 +13,10 @@ angular
 
     $scope.save = () => {
       return GuideSaver
-        .save($scope.guide)
-        .tap((guide) => $scope.guide = guide)
-        .tap((guide) => $scope.exercise = guide.getExercise($scope.exercise.id));
+        .save($scope.guide, (guide) => {
+          $scope.guide = guide;
+          $scope.exercise = guide.getExercise($scope.exercise.id);
+        });
     }
 
     LeaveItem.bindTo($scope, $scope.guide);

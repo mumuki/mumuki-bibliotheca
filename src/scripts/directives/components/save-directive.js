@@ -1,6 +1,6 @@
 angular
   .module('editor')
-  .directive('saveItem', function () {
+  .directive('saveItem', function (CurrentItem) {
 
     return {
 
@@ -9,6 +9,11 @@ angular
       scope: {
         item: '=',
         save: '&',
+      },
+      controller: ($scope) => {
+
+        $scope.hasChanges = () => CurrentItem.hasChanges($scope.item);
+
       }
 
     }
