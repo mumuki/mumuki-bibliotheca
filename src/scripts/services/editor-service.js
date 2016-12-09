@@ -94,6 +94,11 @@ angular
           }
         }
       },
+      none: {
+        isDisabled: true,
+        isInvisible: true,
+        icon: () => 'fa fa-ban',
+      },
     }
 
     this.default = () => {

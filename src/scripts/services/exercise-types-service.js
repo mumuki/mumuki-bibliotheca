@@ -6,6 +6,7 @@ angular
       problem: {
         name: 'problem',
         icon: () => 'fa fa-wrench',
+        isProblem: () => true,
         validate: (exercise) => exercise.getEditor().validate(exercise),
         needsExtra: (exercise) => exercise.getEditor().needsExtra(exercise),
         needsTests: (exercise) => exercise.getEditor().needsTests(exercise),
@@ -17,12 +18,13 @@ angular
       playground: {
         name: 'playground',
         icon: () => 'fa fa-soccer-ball-o',
+        isProblem: () => false,
         validate: (exercise) => {},
         needsExtra: (exercise) => false,
         needsTests: (exercise) => false,
         needsChoices: (exercise) => false,
         needsSolution: (exercise) => false,
-        needsDefaultCode: (exercise) => false,
+        needsDefaultCode: (exercise) => true,
         needsExpectations: (exercise) => false,
       },
     }

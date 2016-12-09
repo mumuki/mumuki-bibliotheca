@@ -53,6 +53,7 @@ angular
 
         $scope.selectTab(firstTabVisible());
 
+        $scope.$watch(() => $scope.exercise.getType(), () => $scope.selectTab(firstTabVisible()));
         $scope.$watch(() => $scope.exercise.getEditor(), () => $scope.selectTab(firstTabVisible()));
         $scope.$watch(() => $scope.exercise.getLanguage(), () => $scope.selectTab(firstTabVisible()));
 

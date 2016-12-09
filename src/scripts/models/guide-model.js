@@ -60,6 +60,7 @@ angular
       toSave() {
         this.validate();
         Slug.create(this, 'guide');
+        this.exercises = _.map(this.exercises, (ex) => ex.toSave());
         return this;
       }
 
