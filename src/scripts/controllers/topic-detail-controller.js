@@ -9,6 +9,7 @@ angular
                                                 Guide,
                                                 Api,
                                                 CurrentItem,
+                                                LeaveItem,
                                                 Hotkeys) {
 
     const translate = $filter('translate');
@@ -57,6 +58,7 @@ angular
       },
     }
 
+    LeaveItem.bindTo($scope, $scope.topic);
     Hotkeys.bindSave($scope);
 
   });

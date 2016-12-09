@@ -18,7 +18,7 @@ angular
         .tap((guide) => $scope.exercise = guide.getExercise($scope.exercise.id));
     }
 
-    LeaveItem.bindTo($scope);
+    LeaveItem.bindTo($scope, $scope.guide);
 
     Hotkeys.bindSave($scope);
 
