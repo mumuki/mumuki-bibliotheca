@@ -9,10 +9,12 @@ angular
     const translate = $filter('translate');
     const message = translate('leave_current_item_with_changes');
 
-    this.bindTo = ($scope, item) => {
+    this.bindTo = ($scope, itemToCompare) => {
+
+      const item = () => _.cloneDeep(itemToCompare).toSave();
 
       window.onbeforeunload = (event) => {
-        return CurrentItem.hasChanges(item) ? message : null;
+        return CurrentItem.hasChanges(item()) ? message : null;
       };
 
       const isLeavingState = (toState, toParams, fromState, fromParams) => {
@@ -21,7 +23,7 @@ angular
       }
 
       const destroyer = $rootScope.$on('$stateChangeStart', (event, toState, toParams, fromState, fromParams) => {
-        if (isLeavingState(toState, toParams, fromState, fromParams) && CurrentItem.hasChanges(item)) {
+        if (isLeavingState(toState, toParams, fromState, fromParams) && CurrentItem.hasChanges(item())) {
           event.preventDefault();
           Modal.showLeaveItemConfirmation('Mumuki', message, () => {
             destroyer();

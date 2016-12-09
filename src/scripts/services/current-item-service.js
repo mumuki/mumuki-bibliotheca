@@ -28,9 +28,21 @@ angular
     }
 
     this.hasChanges = (item) => {
-      const newItem = JSON.parse(angular.toJson(_.omitBy(item, _.isEmpty)));
-      const oldItem = JSON.parse(angular.toJson(_.omitBy(_itemWithoutChanges, _.isEmpty)));
+      const newItem = omitByDeep(item, _.isEmpty);
+      const oldItem = omitByDeep(_itemWithoutChanges, _.isEmpty);
       return !_.isEqual(newItem, oldItem);
+    }
+
+    const omitByDeep = (item, criteria) => {
+      const newItem = JSON.parse(angular.toJson(_.omitBy(item, criteria)));
+      _.forOwn(newItem, (value, key) => {
+        if (_.isObject(value)) {
+          newItem[key] = JSON.parse(angular.toJson(omitByDeep(value, criteria)));
+        } else if (_.isArray(value)) {
+          newItem[key] = JSON.parse(angular.toJson(value.map((v) => omitByDeep(v, criteria))));
+        }
+      });
+      return newItem;
     }
 
   });
