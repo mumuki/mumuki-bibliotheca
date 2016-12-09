@@ -5,4 +5,4 @@ div.dropdown
     li(ng-repeat='editor in Editor.types() | orderBy:key', ng-click='exercise.setEditor(editor)')
       a(href='')
         i(class='{{ Editor.from(editor).icon() }}')
-        span {{ editor }}
+        span {{ editor | translate }}
