@@ -1,6 +1,7 @@
 small.locale(
-    ng-class='{                              \
-      "text-primary pointer": item.canSave(),\
-      "mu-disabled": !item.canSave(),        \
+    ng-class='{                                       \
+      "text-primary pointer": item.canSave(),         \
+      "text-danger": hasChanges() && !item.canSave(), \
+      "mu-disabled": !hasChanges(),                   \
     }')
   i.fa.fa-fw.fa-upload(ng-click='save()')
