@@ -4,6 +4,7 @@ angular
                                   $filter,
                                   toastr,
                                   Api,
+                                  Guide,
                                   CurrentItem,
                                   Debounce) {
 
@@ -11,11 +12,11 @@ angular
 
     this.save = Debounce.for((guide) => {
       return Promise
-        .resolve(guide)
+        .resolve(Guide.from(guide))
         .call('toSave')
         .tap((guideToSave) => Api.saveGuide(guideToSave))
         .tap((savedGuide) => CurrentItem.setStored(savedGuide))
-        .then(() => toastr.success(translate('guide_saved_successfully')))
+        .tap(() => toastr.success(translate('guide_saved_successfully')))
         .catch(Error, (error) => toastr.error(`${error.message}`))
         .catch((res) => toastr.error(`${res.data.message}`));
     })

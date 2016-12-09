@@ -8,9 +8,14 @@ angular
     $scope.guide = exercise.guide();
     $scope.exercise = exercise;
 
-    $scope.save = () => GuideSaver.save($scope.guide);
-
     $scope.addExercise = () => GuideSaver.addExercise($scope.guide);
+
+    $scope.save = () => {
+      return GuideSaver
+        .save($scope.guide)
+        .tap((guide) => $scope.guide = guide)
+        .tap((guide) => $scope.exercise = guide.getExercise($scope.exercise.id));
+    }
 
     Hotkeys.bindSave($scope);
 
