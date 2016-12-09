@@ -65,27 +65,27 @@ angular
       }
 
       needsTests() {
-        return this.getEditor().needsTests(this);
+        return this.getType().needsTests(this);
       }
 
       needsChoices() {
-        return this.getEditor().needsChoices(this);
+        return this.getType().needsChoices(this);
       }
 
       needsExpectations() {
-        return this.getEditor().needsExpectations(this);
+        return this.getType().needsExpectations(this);
       }
 
       needsExtra() {
-        return this.getEditor().needsExtra(this);
+        return this.getType().needsExtra(this);
       }
 
       needsDefaultCode() {
-        return this.getEditor().needsDefaultCode(this);
+        return this.getType().needsDefaultCode(this);
       }
 
       needsSolution() {
-        return this.getEditor().needsSolution(this);
+        return this.getType().needsSolution(this);
       }
 
       validate() {
@@ -93,7 +93,7 @@ angular
         Validator.notEmptyString(this, 'type');
         Validator.notEmptyString(this, 'layout');
         Validator.notEmptyString(this, 'description');
-        this.getEditor().validate(this);
+        this.getType().validate(this);
       }
 
       isTextLanguage() {
