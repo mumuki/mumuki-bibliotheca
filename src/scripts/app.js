@@ -11,4 +11,5 @@ angular
     'cfp.hotkeys',
     'toastr',
     'ui.select',
+    'ui.bootstrap',
   ]);

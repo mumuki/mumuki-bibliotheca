@@ -3,7 +3,8 @@ angular
   .controller('ExerciseDetailController', function ($scope,
                                                     exercise,
                                                     GuideSaver,
-                                                    Hotkeys) {
+                                                    Hotkeys,
+                                                    LeaveItem) {
 
     $scope.guide = exercise.guide();
     $scope.exercise = exercise;
@@ -16,6 +17,8 @@ angular
         .tap((guide) => $scope.guide = guide)
         .tap((guide) => $scope.exercise = guide.getExercise($scope.exercise.id));
     }
+
+    LeaveItem.bindTo($scope, $scope.guide);
 
     Hotkeys.bindSave($scope);
 

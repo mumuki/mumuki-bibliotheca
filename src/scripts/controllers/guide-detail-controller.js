@@ -1,9 +1,11 @@
 angular
   .module('editor')
   .controller('GuideDetailController', function($scope,
+                                                $filter,
                                                 guide,
                                                 Hotkeys,
-                                                GuideSaver) {
+                                                GuideSaver,
+                                                LeaveItem) {
 
     $scope.guide = guide;
 
@@ -16,5 +18,7 @@ angular
     }
 
     Hotkeys.bindSave($scope);
+
+    LeaveItem.bindTo($scope, $scope.guide);
 
   });
