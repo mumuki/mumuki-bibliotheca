@@ -12,10 +12,10 @@ angular
 
     this.save = Debounce.for((guide, callback = () => {}) => {
       return Promise
-        .resolve(Guide.from(guide))
+        .resolve(guide)
         .call('toSave')
         .tap((guideToSave) => Api.saveGuide(guideToSave))
-        .tap((savedGuide) => CurrentItem.setStored(savedGuide))
+        .tap((savedGuide) => CurrentItem.set(savedGuide))
         .tap((savedGuide) => callback(savedGuide))
         .tap((savedGuide) => toastr.success(translate('guide_saved_successfully')))
         .catch(Error, (error) => toastr.error(`${error.message}`))

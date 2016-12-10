@@ -4,7 +4,7 @@
     span(style='white-space: nowrap') {{ 'exercise' | translate }} {{ exercise.number() }}:
     input(type='text', ng-model='exercise.name', placeholder='{{ "placeholder_exercise_name" | translate }}')
 
-    save-item(item='guide', save='save()')
+    save-item(item='item', save='save()')
     exercise-type(exercise='exercise')
     editor-type(exercise='exercise')
     layout(exercise='exercise')

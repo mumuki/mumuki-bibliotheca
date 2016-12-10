@@ -16,9 +16,7 @@ editorTest('New Guide Controller', (mocks) => {
 
   context('#save', () => {
     beforeSpec((_GuideSaver_) => mocks.GuideSaver = sinon.mock(_GuideSaver_));
-    beforeSpec((_$state_) => mocks.state = sinon.mock(_$state_));
-    beforeSpec(() => mocks.GuideSaver.expects('save').once().withExactArgs(guide).returns(Promise.resolve()));
-    beforeSpec(() => mocks.state.expects('go').once().withExactArgs('editor.home.guides.detail', params));
+    beforeSpec(() => mocks.GuideSaver.expects('save').once().withArgs(guide).returns(Promise.resolve()));
 
     specAsync((done) => () => $scope.save().then(done, done));
   });

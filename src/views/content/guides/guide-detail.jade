@@ -4,19 +4,19 @@
 
   main.detail-main
     br
-    ace-with-markdown(header='description' content='guide.description')
+    ace-with-markdown(header='description' content='item.description')
 
     .detail-exercises(ng-include='"views/content/guides/components/exercises.html"')
     br
-    ace-with-markdown(header='corollary', content='guide.corollary', foldable='true')
+    ace-with-markdown(header='corollary', content='item.corollary', foldable='true')
     br
-    ace-with-markdown(header='teacher_info', content='guide.teacher_info', foldable='true')
+    ace-with-markdown(header='teacher_info', content='item.teacher_info', foldable='true')
     br
-    ace-editor(content='guide.extra_code', mode='guide.language', header='extra_code', foldable='true')
+    ace-editor(content='item.extra_code', mode='item.language', header='extra_code', foldable='true')
     .detail-license
       div(ng-include='"views/content/guides/components/authors.html"')
       h3 {{ 'collaborators' | translate }}
-      input(type='text', ng-model='guide.collaborators', placeholder='{{ "placeholder_collaborators" | translate }}')
+      input(type='text', ng-model='item.collaborators', placeholder='{{ "placeholder_collaborators" | translate }}')
       br
       br
       small(ng-bind-html='"license_disclaimer" | translate')

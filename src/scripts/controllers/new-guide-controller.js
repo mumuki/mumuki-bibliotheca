@@ -18,8 +18,9 @@ angular
 
     $scope.save = () => {
       return GuideSaver
-        .save($scope.guide)
-        .then(() => $state.go('editor.home.guides.detail', $scope.guide.params()));
+        .save($scope.item, (item) => {
+          $state.go('editor.home.guides.detail', item.params());
+        });
     };
 
   });

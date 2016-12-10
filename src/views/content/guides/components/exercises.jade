@@ -1,14 +1,14 @@
 h3 {{ 'content' | translate }}
-ul.progress-listing(dnd-list='guide.exercises')
+ul.progress-listing(dnd-list='item.exercises')
   li(
-      ng-repeat='exercise in guide.exercises',
+      ng-repeat='exercise in item.exercises',
       dnd-draggable='exercise',
       dnd-effect-allowed='copyMove',
-      dnd-moved='guide.exercises.splice($index, 1)')
+      dnd-moved='item.exercises.splice($index, 1)')
     a(ui-sref='editor.home.guides.detail.exercise({ eid: exercise.id })')
       i.fa.fa-fw.fa-circle.text-muted
       span {{ $index + 1 }}. {{ exercise.name }}
-    i.fa.fa-fw.fa-times.text-muted.pointer(ng-click='guide.removeExercise(exercise.id)')
+    i.fa.fa-fw.fa-times.text-muted.pointer(ng-click='item.removeExercise(exercise.id)')
 
 a(href='', ng-click='addExercise()')
   i.fa.fa-fw.fa-plus
