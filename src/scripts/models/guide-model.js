@@ -64,6 +64,13 @@ angular
         return this;
       }
 
+      getItem() {
+        const guide = Guide.from(_.cloneDeep(this));
+        Slug.create(guide, 'guide');
+        guide.exercises = _.map(guide.exercises, (ex) => ex.getItem());
+        return guide;
+      }
+
       validate() {
         Validator.notEmptyString(this, 'name');
         Validator.notEmptyString(this, 'type');

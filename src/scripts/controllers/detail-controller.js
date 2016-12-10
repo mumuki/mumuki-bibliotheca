@@ -9,7 +9,7 @@ angular
                                             CurrentItem) {
 
     $scope.item = item;
-    $scope.getRawItem = () => _.cloneDeep($scope.item).toSave();
+    $scope.getItem = () => $scope.item.getItem();
 
     LeaveItem.bindTo($scope);
     Hotkeys.bindSave($scope);

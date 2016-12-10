@@ -32,6 +32,13 @@ angular
         return topic;
       }
 
+      getItem() {
+        const topic = Topic.from(_.cloneDeep(this));
+        Slug.create(topic, 'topic');
+        topic.lessons = _.map(topic.lessons, (lesson) => lesson.slug)
+        return topic;
+      }
+
       setLocale(locale) {
         this.locale = locale;
       }

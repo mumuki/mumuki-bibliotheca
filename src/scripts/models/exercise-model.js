@@ -135,6 +135,17 @@ angular
         return this;
       }
 
+      getItem() {
+        const exercise = Exercise.from(_.cloneDeep(this));
+        if (!exercise.needsTests()) delete exercise.test;
+        if (!exercise.needsExtra()) delete exercise.extra;
+        if (!exercise.needsChoices()) delete exercise.choices;
+        if (!exercise.needsSolution()) delete exercise.solution;
+        if (!exercise.needsDefaultCode()) delete exercise.default_code;
+        if (!exercise.needsExpectations()) delete exercise.expectations;
+        return exercise;
+      }
+
       static from(exercise = {}) {
         _.defaultsDeep(exercise, {
           name: $filter('translate')('new_exercise'),

@@ -11,7 +11,7 @@ angular
           allowIn: ['SELECT', 'INPUT', 'TEXTAREA'],
           callback: (event) => {
             event.preventDefault();
-            if (CurrentItem.hasChanges($scope.getRawItem())) {
+            if (CurrentItem.hasChanges($scope.getItem())) {
               $scope.save();
             }
           },

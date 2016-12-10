@@ -32,6 +32,13 @@ angular
         return book;
       }
 
+      getItem() {
+        const book = Book.from(_.cloneDeep(this));
+        Slug.create(book, 'book');
+        book.chapters = _.map(book.chapters, (chapter) => chapter.slug)
+        return book;
+      }
+
       setLocale(locale) {
         this.locale = locale;
       }
