@@ -1,6 +1,7 @@
 angular
   .module('editor')
-  .service('Hotkeys', function (hotkeys) {
+  .service('Hotkeys', function (hotkeys,
+                                CurrentItem) {
 
     this.bindSave = ($scope) => {
       hotkeys
@@ -9,8 +10,10 @@ angular
           combo: ['ctrl+s', 'command+s'],
           allowIn: ['SELECT', 'INPUT', 'TEXTAREA'],
           callback: (event) => {
-            $scope.save();
             event.preventDefault();
+            if (CurrentItem.hasChanges($scope.getRawItem())) {
+              $scope.save();
+            }
           },
         });
     };

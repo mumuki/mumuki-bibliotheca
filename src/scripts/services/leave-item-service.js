@@ -9,9 +9,9 @@ angular
     const translate = $filter('translate');
     const message = translate('leave_current_item_with_changes');
 
-    this.bindTo = ($scope, itemToCompare) => {
+    this.bindTo = ($scope) => {
 
-      const item = () => _.cloneDeep(itemToCompare).toSave();
+      const item = () => $scope.getRawItem();
 
       window.onbeforeunload = (event) => {
         return CurrentItem.hasChanges(item()) ? message : null;

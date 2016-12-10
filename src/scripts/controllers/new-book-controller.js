@@ -23,7 +23,7 @@ angular
     $scope.save = () => {
       return $scope
         ._save()
-        .tap((book) => $state.go('editor.home.books.detail', book.params()))
+        .tap((item) => $state.go('editor.home.books.detail', item.params()))
         .catch(Error, (error) => toastr.error(`${error.message}`))
         .catch((res) => toastr.error(`${res.data.message}`));
     };
