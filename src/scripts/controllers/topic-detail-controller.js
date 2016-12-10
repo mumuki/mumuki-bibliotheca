@@ -3,39 +3,42 @@ angular
   .controller('TopicDetailController', function($scope,
                                                 $sce,
                                                 $filter,
+                                                $controller,
                                                 topic,
                                                 guides,
                                                 toastr,
                                                 Guide,
                                                 Api,
-                                                CurrentItem,
-                                                LeaveItem,
-                                                Hotkeys) {
+                                                CurrentItem) {
 
     const translate = $filter('translate');
+
+    $controller('DetailController', {
+      $scope: $scope,
+      item: topic
+    });
 
     const addLesson = (lesson) => {
       const [org, repo] = lesson.slug.split('/');
       return Api.getGuide({ org, repo }).tap((guide) => {
-        $scope.topic.addLesson(guide)
+        $scope.item.addLesson(guide)
         $scope.$apply();
       });
     };
 
-    $scope.topic = topic;
     $scope.guides = guides;
 
     $scope.Guide = Guide;
 
     $scope.html = (html) => $sce.trustAsHtml(html);
-    $scope.hasGuide = (guide) => !_.some($scope.topic.lessons, { id: guide.id });
+    $scope.hasGuide = (guide) => !_.some($scope.item.lessons, { id: guide.id });
 
     $scope._save = () => {
-      return Promise.resolve($scope.topic)
+      return Promise.resolve($scope.item)
         .call('toSave')
-        .tap((topic) => Api.saveTopic(topic))
-        .tap((topic) => CurrentItem.setStored(topic))
-        .tap((topic) => toastr.success(translate('topic_saved_successfully')));
+        .tap((item) => Api.saveTopic(item))
+        .tap((item) => CurrentItem.setStored(item))
+        .tap((item) => toastr.success(translate('topic_saved_successfully')));
     };
 
     $scope.save = () => {
@@ -57,8 +60,5 @@ angular
         addLesson(lesson);
       },
     }
-
-    LeaveItem.bindTo($scope, $scope.topic);
-    Hotkeys.bindSave($scope);
 
   });
