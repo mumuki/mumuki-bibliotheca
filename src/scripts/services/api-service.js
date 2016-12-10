@@ -14,73 +14,46 @@ angular
       headers: { Authorization: `Bearer ${Auth.token()}` }
     })
 
-    this.getGuides = () => {
+    this.getItems = (type, Model) => () => {
       return HTTP
-        .call('get',`${API}/guides/writable`, defaultConfig())
-        .then((res) => res.data.guides)
-        .map((guide) => Guide.from(guide));
+        .call('get',`${API}/${type}/writable`, defaultConfig())
+        .then((res) => res.data[type])
+        .map((item) => Model.from(item));
     };
+    this.getBooks = this.getItems('books', Book);
+    this.getTopics = this.getItems('topics', Topic);
+    this.getGuides = this.getItems('guides', Guide);
 
-    this.getAllGuides = () => {
+
+    this.getItem = (type, Model) => ({ org, repo }) => {
       return HTTP
-        .call('get',`${API}/guides`, defaultConfig())
-        .then((res) => res.data.guides)
-        .map((guide) => Guide.from(guide));
+        .call('get',`${API}/${type}s/${org}/${repo}`, defaultConfig())
+        .then((res) => Model.from(res.data));
     };
+    this.getBook = this.getItem('book', Book);
+    this.getTopic = this.getItem('topic', Topic);
+    this.getGuide = this.getItem('guide', Guide);
 
-    this.getTopics = () => {
-      return HTTP
-        .call('get',`${API}/topics/writable`, defaultConfig())
-        .then((res) => res.data.topics)
-        .map((topic) => Topic.from(topic));
-    };
 
-    this.getAllTopics = () => {
+    this.saveItem = (type) => (item) => {
       return HTTP
-        .call('get',`${API}/topics`, defaultConfig())
-        .then((res) => res.data.topics)
-        .map((topic) => Topic.from(topic));
-    };
-
-    this.getBooks = () => {
-      return HTTP
-        .call('get',`${API}/books/writable`, defaultConfig())
-        .then((res) => res.data.books)
-        .map((book) => Book.from(book));
-    };
-
-    this.getGuide = ({ org, repo }) => {
-      return HTTP
-        .call('get',`${API}/guides/${org}/${repo}`, defaultConfig())
-        .then((res) => Guide.from(res.data));
-    };
-
-    this.getBook = ({ org, repo }) => {
-      return HTTP
-        .call('get',`${API}/books/${org}/${repo}`, defaultConfig())
-        .then((res) => Book.from(res.data));
-    };
-
-    this.getTopic = ({ org, repo }) => {
-      return HTTP
-        .call('get',`${API}/topics/${org}/${repo}`, defaultConfig())
-        .then((res) => Topic.from(res.data));
-    };
-
-    this.saveGuide = (guide) => {
-      return HTTP
-        .call('post',`${API}/guides`, guide, defaultConfig());
+        .call('post',`${API}/${type}s`, item, defaultConfig());
     }
+    this.saveBook = this.saveItem('book');
+    this.saveTopic = this.saveItem('topic');
+    this.saveGuide = this.saveItem('guide');
 
-    this.saveTopic = (topic) => {
-      return HTTP
-        .call('post',`${API}/topics`, topic, defaultConfig());
-    }
 
-    this.saveBook = (book) => {
+    this.getAllItems = (type, Model) => () => {
       return HTTP
-        .call('post',`${API}/books`, book, defaultConfig());
-    }
+        .call('get',`${API}/${type}`, defaultConfig())
+        .then((res) => res.data[type])
+        .map((item) => Model.from(item));
+    };
+    this.getAllBooks = this.getAllItems('books', Book);
+    this.getAllTopics = this.getAllItems('topics', Topic);
+    this.getAllGuides = this.getAllItems('guides', Guide);
+
 
     this.getLanguages = () => {
       return HTTP
