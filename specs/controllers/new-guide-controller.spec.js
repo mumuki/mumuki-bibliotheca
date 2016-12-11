@@ -15,8 +15,8 @@ editorTest('New Guide Controller', (mocks) => {
   });
 
   context('#save', () => {
-    beforeSpec((_GuideSaver_) => mocks.GuideSaver = sinon.mock(_GuideSaver_));
-    beforeSpec(() => mocks.GuideSaver.expects('save').once().withArgs(guide).returns(Promise.resolve()));
+    beforeSpec(() => mocks.scope = sinon.mock($scope));
+    beforeSpec(() => mocks.scope.expects('publish').once().withArgs('guide').returns(Promise.resolve()));
 
     specAsync((done) => () => $scope.save().then(done, done));
   });

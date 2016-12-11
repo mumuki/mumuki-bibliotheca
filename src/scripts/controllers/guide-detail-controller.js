@@ -14,8 +14,8 @@ angular
     $scope.addExercise = () => GuideSaver.addExercise($scope.item);
 
     $scope.save = () => {
-      return GuideSaver.save($scope.item, (guide) => {
-        $scope.item = guide;
+      return $scope.publish('guide', (item) => {
+        $scope.item = item;
       });
     }
 

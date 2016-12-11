@@ -17,11 +17,10 @@ angular
     $scope.addExercise = () => GuideSaver.addExercise($scope.item);
 
     $scope.save = () => {
-      return GuideSaver
-        .save($scope.item, (item) => {
-          $scope.item = item;
-          $scope.exercise = item.getExercise($scope.exercise.id);
-        });
+      return $scope.publish('guide', (item) => {
+        $scope.item = item;
+        $scope.exercise = item.getExercise($scope.exercise.id);
+      });
     }
 
   });
