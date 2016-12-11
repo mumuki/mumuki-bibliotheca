@@ -12,7 +12,7 @@ angular
       }
 
       icon() {
-        return 'fa fa-commenting';
+        return `fa fa-${Topic.canonicalIcon()}`;
       }
 
       fullName() {
@@ -67,6 +67,10 @@ angular
 
       static sortBy() {
         return ['slug'];
+      }
+
+      static canonicalIcon() {
+        return 'bookmark-o';
       }
 
     }

@@ -101,6 +101,9 @@ angular
         return ['language', 'fullName()'];
       }
 
+      static canonicalIcon() {
+        return 'map-o';
+      }
     }
 
     return Guide;
