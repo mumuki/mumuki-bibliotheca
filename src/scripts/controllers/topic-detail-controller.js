@@ -49,7 +49,6 @@ angular
         return _lessonSelected;
       },
       set lesson(lesson) {
-        _lessonSelected = lesson;
         addLesson(lesson);
       },
     }
