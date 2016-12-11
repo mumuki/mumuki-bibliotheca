@@ -39,19 +39,8 @@ angular
     $scope.hasTopic = (topic) => !_.some($scope.item.chapters, { id: topic.id });
     $scope.hasGuide = (guide) => !_.includes($scope.item.complements, guide.slug);
 
-    $scope._save = () => {
-      return Promise.resolve($scope.item)
-        .call('toSave')
-        .tap((item) => Api.saveBook(item))
-        .tap((item) => CurrentItem.setStored(item))
-        .tap((item) => toastr.success(translate('book_saved_successfully')));
-    };
-
     $scope.save = () => {
-      return $scope
-        ._save()
-        .catch(Error, (error) => toastr.error(`${error.message}`))
-        .catch((res) => toastr.error(`${res.data.message}`));
+      return $scope.publish('book');
     };
 
     let _chapterSelected;
