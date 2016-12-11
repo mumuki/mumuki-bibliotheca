@@ -5,6 +5,7 @@ angular
                                             toastr,
                                             item,
                                             Api,
+                                            Slug,
                                             Hotkeys,
                                             Debounce,
                                             LeaveItem,
@@ -18,7 +19,8 @@ angular
     $scope.publish = Debounce.for((type, callback = () => {}) => {
       return Promise
         .resolve($scope.item)
-        .call('toSave')
+        .tap((item) => item.validate())
+        .tap((item) => Slug.create(item, type))
         .tap((item) => Api.saveItem(type)(item))
         .tap((item) => CurrentItem.set(item))
         .tap((item) => callback(item))
