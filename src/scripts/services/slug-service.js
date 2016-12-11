@@ -15,7 +15,7 @@ angular
       const language = item.language ? `-${item.language}` : '';
       const slug = {
         repository: `mumuki-${itemTranslated}${language}-${kebabCase}`,
-        organization: CurrentItem.getOrganization(),
+        organization: CurrentItem.getOrganization().toLowerCase(),
         fullName: () => item.fullName(),
         toString: () => `${slug.organization}/${slug.repository}`,
       }
