@@ -19,7 +19,7 @@ angular
       return Promise
         .resolve($scope.item)
         .call('toSave')
-        .tap((item) => Api.saveItem(type, item))
+        .tap((item) => Api.saveItem(type)(item))
         .tap((item) => CurrentItem.set(item))
         .tap((item) => callback(item))
         .tap((item) => toastr.success(translate(`${type}_saved_successfully`)))

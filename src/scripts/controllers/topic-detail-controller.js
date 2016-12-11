@@ -33,19 +33,8 @@ angular
     $scope.html = (html) => $sce.trustAsHtml(html);
     $scope.hasGuide = (guide) => !_.some($scope.item.lessons, { id: guide.id });
 
-    $scope._save = () => {
-      return Promise.resolve($scope.item)
-        .call('toSave')
-        .tap((item) => Api.saveTopic(item))
-        .tap((item) => CurrentItem.setStored(item))
-        .tap((item) => toastr.success(translate('topic_saved_successfully')));
-    };
-
     $scope.save = () => {
-      return $scope
-        ._save()
-        .catch(Error, (error) => toastr.error(`${error.message}`))
-        .catch((res) => toastr.error(`${res.data.message}`));
+      return $scope.publish('topic');
     };
 
     let _lessonSelected;
