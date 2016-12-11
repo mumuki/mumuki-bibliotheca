@@ -17,9 +17,9 @@ angular
     $scope.isNew = true;
 
     $scope.save = () => {
-      return GuideSaver
-        .save($scope.guide)
-        .then(() => $state.go('editor.home.guides.detail', $scope.guide.params()));
+      return $scope.publish('guide', (item) => {
+        $state.go('editor.home.guides.detail', item.params());
+      });
     };
 
   });

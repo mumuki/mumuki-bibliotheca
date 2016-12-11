@@ -4,20 +4,20 @@
     div.text-center
       img(src='http://mumuki.io/logo-alt-large.png', alt='central - Mumuki', style='height: 75px')
       h1.pull-right.options
-        save-item(item='book', save='save()')
-        locale(item='book')
+        save-item(item='item', save='save()')
+        locale(item='item')
 
       h2.text-center
         input(
             type='text',
-            ng-model='book.name',
+            ng-model='item.name',
             style='text-align: center',
             placeholder='{{ "placeholder_book_name" | translate }}')
 
     br
-    ace-with-markdown(content='book.description', header='description')
+    ace-with-markdown(content='item.description', header='description')
 
-    slug(item='book', ng-if='isNew')
+    slug(item='item', ng-if='isNew')
 
     br
     h2 {{ 'content' | translate }}
@@ -30,16 +30,16 @@
         span &nbsp;-&nbsp;
         span(ng-bind='topic.slug')
 
-    .chapters(dnd-list='book.chapters')
+    .chapters(dnd-list='item.chapters')
       .chapter(
-        ng-repeat='chapter in book.chapters'
+        ng-repeat='chapter in item.chapters'
         dnd-draggable='chapter',
-        dnd-moved='book.chapters.splice($index, 1)',
+        dnd-moved='item.chapters.splice($index, 1)',
         dnd-effect-allowed='move')
         h3
           span {{ 'chapter' | translate }} {{ $index + 1 }}:&nbsp;
           a(href='') {{ chapter.name }}
-          small.pointer.pull-right(ng-click='book.removeChapter(chapter)')
+          small.pointer.pull-right(ng-click='item.removeChapter(chapter)')
             i.fa.fa-fw.fa-times
 
         .text-box
@@ -58,11 +58,11 @@
         span &nbsp;-&nbsp;
         span(ng-bind='guide.slug')
 
-    div(ng-repeat='complement in book.complements')
+    div(ng-repeat='complement in item.complements')
       .text-box
-        small.pointer.pull-right(ng-click='book.removeComplement($index)')
+        small.pointer.pull-right(ng-click='item.removeComplement($index)')
           i.fa.fa-fw.fa-times
         span {{ complement }}
 
     br
-    ace-with-markdown(header='teacher_info', content='book.teacher_info', foldable='true')
+    ace-with-markdown(header='teacher_info', content='item.teacher_info', foldable='true')

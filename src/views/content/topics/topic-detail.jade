@@ -1,16 +1,16 @@
 .mu-content
 
   h1.detail-title
-    input(type='text', ng-model='topic.name', placeholder='{{ "placeholder_topic_name" | translate }}')
+    input(type='text', ng-model='item.name', placeholder='{{ "placeholder_topic_name" | translate }}')
 
-    save-item(item='topic', save='save()')
-    locale(item='topic')
+    save-item(item='item', save='save()')
+    locale(item='item')
 
   main.detail-main
     br
-    ace-with-markdown(header='description' content='topic.description')
+    ace-with-markdown(header='description' content='item.description')
 
-    slug(item='topic', ng-if='isNew')
+    slug(item='item', ng-if='isNew')
 
     .detail-exercises
       h3 {{ 'content' | translate }}
@@ -25,16 +25,16 @@
           span &nbsp;-&nbsp;
           span(ng-bind='guide.slug')
 
-      .lessons(dnd-list='topic.lessons')
+      .lessons(dnd-list='item.lessons')
         .lesson(
-            ng-repeat='lesson in topic.lessons',
+            ng-repeat='lesson in item.lessons',
             dnd-draggable='lesson',
-            dnd-moved='topic.lessons.splice($index, 1)',
+            dnd-moved='item.lessons.splice($index, 1)',
             dnd-effect-allowed='move')
           h4
             span {{ 'lesson' | translate }} {{ $index + 1 }}:&nbsp;
             a(href='') {{ lesson.name }}
-            small.pointer.text-muted(ng-click='topic.removeLesson(lesson)')
+            small.pointer.text-muted(ng-click='item.removeLesson(lesson)')
               i.fa.fa-fw.fa-times
           ul.progress-listing
             li(ng-repeat='exercise in lesson.exercises')
@@ -43,4 +43,4 @@
                 span {{ $index + 1 }}. {{ exercise.name }}
 
     br
-    ace-with-markdown(header='teacher_info', content='topic.teacher_info', foldable='true')
+    ace-with-markdown(header='teacher_info', content='item.teacher_info', foldable='true')

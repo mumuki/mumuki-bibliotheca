@@ -21,12 +21,9 @@ angular
     $scope.isNew = true;
 
     $scope.save = () => {
-      return $scope
-        ._save()
-        .tap((book) => $state.go('editor.home.books.detail', book.params()))
-        .catch(Error, (error) => toastr.error(`${error.message}`))
-        .catch((res) => toastr.error(`${res.data.message}`));
+      return $scope.publish('book', (item) => {
+        $state.go('editor.home.books.detail', item.params());
+      });
     };
-
 
   });

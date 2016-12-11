@@ -19,11 +19,9 @@ angular
     $scope.isNew = true;
 
     $scope.save = () => {
-      return $scope
-        ._save()
-        .tap((topic) => $state.go('editor.home.topics.detail', topic.params()))
-        .catch(Error, (error) => toastr.error(`${error.message}`))
-        .catch((res) => toastr.error(`${res.data.message}`));
+      return $scope.publish('topic', (item) => {
+        $state.go('editor.home.topics.detail', item.params());
+      });
     };
 
 

@@ -2,23 +2,21 @@ angular
   .module('editor')
   .controller('GuideDetailController', function($scope,
                                                 $filter,
+                                                $controller,
                                                 guide,
-                                                Hotkeys,
-                                                GuideSaver,
-                                                LeaveItem) {
+                                                GuideSaver) {
 
-    $scope.guide = guide;
+    $controller('DetailController', {
+      $scope: $scope,
+      item: guide
+    });
 
-    $scope.addExercise = () => GuideSaver.addExercise($scope.guide);
+    $scope.addExercise = () => GuideSaver.addExercise($scope.item);
 
     $scope.save = () => {
-      return GuideSaver.save($scope.guide, (guide) => {
-        $scope.guide = guide;
+      return $scope.publish('guide', (item) => {
+        $scope.item = item;
       });
     }
-
-    Hotkeys.bindSave($scope);
-
-    LeaveItem.bindTo($scope, $scope.guide);
 
   });

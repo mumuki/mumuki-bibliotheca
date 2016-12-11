@@ -24,10 +24,8 @@ angular
         return { org, repo };
       }
 
-      toSave() {
-        this.validate();
+      getItem() {
         const book = Book.from(_.cloneDeep(this));
-        Slug.create(book, 'book');
         book.chapters = _.map(book.chapters, (chapter) => chapter.slug)
         return book;
       }
@@ -61,7 +59,7 @@ angular
       canSave() {
         try {
           this.validate();
-          return CurrentItem.hasChanges(this.toSave());
+          return CurrentItem.hasChanges(this.getItem());
         } catch(_) {
           return false;
         }

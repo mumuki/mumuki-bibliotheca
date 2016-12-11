@@ -9,21 +9,27 @@ angular
     const translate = $filter('translate');
     const message = translate('leave_current_item_with_changes');
 
-    this.bindTo = ($scope, itemToCompare) => {
-
-      const item = () => _.cloneDeep(itemToCompare).toSave();
+    this.bindTo = ($scope) => {
 
       window.onbeforeunload = (event) => {
-        return CurrentItem.hasChanges(item()) ? message : null;
+        return CurrentItem.hasChanges($scope.getItem()) ? message : null;
       };
 
-      const isLeavingState = (toState, toParams, fromState, fromParams) => {
-        return _.includes(fromState.name, '.new') ||
-          !_.isEqual(_.pick(toParams, ['org', 'repo']), _.pick(fromParams, ['org', 'repo']));
+      const params = (state) => _.pick(state.params, ['org', 'repo']);
+
+      const isLeavingState = (to, from) => {
+        return _.includes(from.state.name, '.new') || !_.isEqual(params(to), params(from));
+      }
+
+      const needsModal = (to, from) => {
+        return isLeavingState(to, from) && CurrentItem.hasChanges($scope.getItem());
       }
 
       const destroyer = $rootScope.$on('$stateChangeStart', (event, toState, toParams, fromState, fromParams) => {
-        if (isLeavingState(toState, toParams, fromState, fromParams) && CurrentItem.hasChanges(item())) {
+        const to = { state: toState, params: toParams };
+        const from = { state: fromState, params: fromParams };
+
+        if (needsModal(to, from)) {
           event.preventDefault();
           Modal.showLeaveItemConfirmation('Mumuki', message, () => {
             destroyer();

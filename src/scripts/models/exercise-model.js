@@ -125,14 +125,15 @@ angular
         return _.filter(this.choices, 'checked').length > 1;
       }
 
-      toSave() {
-        if (!this.needsTests()) delete this.test;
-        if (!this.needsExtra()) delete this.extra;
-        if (!this.needsChoices()) delete this.choices;
-        if (!this.needsSolution()) delete this.solution;
-        if (!this.needsDefaultCode()) delete this.default_code;
-        if (!this.needsExpectations()) delete this.expectations;
-        return this;
+      getItem() {
+        const exercise = Exercise.from(_.cloneDeep(this));
+        if (!exercise.needsTests()) delete exercise.test;
+        if (!exercise.needsExtra()) delete exercise.extra;
+        if (!exercise.needsChoices()) delete exercise.choices;
+        if (!exercise.needsSolution()) delete exercise.solution;
+        if (!exercise.needsDefaultCode()) delete exercise.default_code;
+        if (!exercise.needsExpectations()) delete exercise.expectations;
+        return exercise;
       }
 
       static from(exercise = {}) {

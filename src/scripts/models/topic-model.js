@@ -24,10 +24,8 @@ angular
         return { org, repo };
       }
 
-      toSave() {
-        this.validate();
+      getItem() {
         const topic = Topic.from(_.cloneDeep(this));
-        Slug.create(topic, 'topic');
         topic.lessons = _.map(topic.lessons, (lesson) => lesson.slug)
         return topic;
       }
@@ -53,7 +51,7 @@ angular
       canSave() {
         try {
           this.validate();
-          return CurrentItem.hasChanges(this.toSave());
+          return CurrentItem.hasChanges(this.getItem());
         } catch(_) {
           return false;
         }

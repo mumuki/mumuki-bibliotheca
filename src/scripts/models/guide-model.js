@@ -57,11 +57,10 @@ angular
         return _.find(this.exercises, { id: parseInt(id, 10) });
       }
 
-      toSave() {
-        this.validate();
-        Slug.create(this, 'guide');
-        this.exercises = _.map(this.exercises, (ex) => ex.toSave());
-        return this;
+      getItem() {
+        const guide = Guide.from(_.cloneDeep(this));
+        guide.exercises = _.map(guide.exercises, (ex) => ex.getItem());
+        return guide;
       }
 
       validate() {
@@ -81,7 +80,7 @@ angular
       canSave() {
         try {
           this.validate();
-          return CurrentItem.hasChanges(this);
+          return CurrentItem.hasChanges(this.getItem());
         } catch(_) {
           return false;
         }

@@ -12,7 +12,7 @@ angular
       },
       controller: ($scope) => {
 
-        $scope.hasChanges = () => CurrentItem.hasChanges($scope.item);
+        $scope.hasChanges = () => CurrentItem.hasChanges($scope.item.getItem());
 
       }
 

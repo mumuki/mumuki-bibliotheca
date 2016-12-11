@@ -3,17 +3,21 @@ angular
   .controller('BookDetailController', function ($scope,
                                                 $sce,
                                                 $filter,
+                                                $controller,
                                                 book,
                                                 guides,
                                                 topics,
                                                 toastr,
                                                 Guide,
                                                 Api,
-                                                CurrentItem,
-                                                LeaveItem,
-                                                Hotkeys) {
+                                                CurrentItem) {
 
     const translate = $filter('translate');
+
+    $controller('DetailController', {
+      $scope: $scope,
+      item: book
+    });
 
     const addChapter = (chapter) => {
       const [org, repo] = chapter.slug.split('/');
@@ -21,34 +25,22 @@ angular
         return Api
           .renderMarkdown(topic.description.split('\n')[0].trim())
           .then((html) => topic.description = html)
-          .then(() => $scope.book.addChapter(topic))
+          .then(() => $scope.item.addChapter(topic))
           .then(() => $scope.$apply());
       });
     };
 
-    $scope.book = book;
     $scope.guides = guides;
     $scope.topics = topics;
 
     $scope.Guide = Guide;
 
     $scope.html = (html) => $sce.trustAsHtml(html);
-    $scope.hasTopic = (topic) => !_.some($scope.book.chapters, { id: topic.id });
-    $scope.hasGuide = (guide) => !_.includes($scope.book.complements, guide.slug);
-
-    $scope._save = () => {
-      return Promise.resolve($scope.book)
-        .call('toSave')
-        .tap((book) => Api.saveBook(book))
-        .tap((book) => CurrentItem.setStored(book))
-        .tap((book) => toastr.success(translate('book_saved_successfully')));
-    };
+    $scope.hasTopic = (topic) => !_.some($scope.item.chapters, { id: topic.id });
+    $scope.hasGuide = (guide) => !_.includes($scope.item.complements, guide.slug);
 
     $scope.save = () => {
-      return $scope
-        ._save()
-        .catch(Error, (error) => toastr.error(`${error.message}`))
-        .catch((res) => toastr.error(`${res.data.message}`));
+      return $scope.publish('book');
     };
 
     let _chapterSelected;
@@ -67,11 +59,8 @@ angular
       },
       set complement(topic) {
         _complementSelected = topic;
-        $scope.book.addComplement(topic.slug);
+        $scope.item.addComplement(topic.slug);
       }
     }
-
-    LeaveItem.bindTo($scope, $scope.book);
-    Hotkeys.bindSave($scope);
 
   });
