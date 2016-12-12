@@ -8,7 +8,7 @@ editorTest('Topic Model', () => {
   beforeSpec((_Languages_) => _Languages_.set([{ name: 'haskell' }, { name: 'text' }]));
 
   context('#icon', () => {
-    spec(() => Topic.from({}).icon().should.be.eql('fa fa-commenting'));
+    spec(() => Topic.from({}).icon().should.be.eql('fa fa-bookmark-o'));
   });
 
   context('#fullName', () => {

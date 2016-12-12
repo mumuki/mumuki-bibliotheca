@@ -32,7 +32,7 @@ angular
         needsExtra: (exercise) => false,
         needsTests: (exercise) => false,
         needsChoices: (exercise) => true,
-        needsSolution: (exercise) => true,
+        needsSolution: (exercise) => false,
         needsDefaultCode: (exercise) => false,
         needsExpectations: (exercise) => false,
         validate: (exercise) => {
@@ -49,7 +49,7 @@ angular
         needsExtra: (exercise) => !exercise.isTextLanguage(),
         needsTests: (exercise) => !exercise.isTextLanguage(),
         needsChoices: (exercise) => true,
-        needsSolution: (exercise) => true,
+        needsSolution: (exercise) => false,
         needsDefaultCode: (exercise) => !exercise.isTextLanguage(),
         needsExpectations: (exercise) => !exercise.isTextLanguage(),
         validate: (exercise) => {

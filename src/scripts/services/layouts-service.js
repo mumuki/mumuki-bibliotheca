@@ -16,7 +16,7 @@ angular
       },
       bottom: {
         icon() {
-          return 'fa fa-list-alt';
+          return 'fa fa-window-maximize';
         },
         type() {
           return 'input_bottom';

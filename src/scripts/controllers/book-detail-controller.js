@@ -51,14 +51,12 @@ angular
         return _chapterSelected;
       },
       set chapter(topic) {
-        _chapterSelected = topic;
         addChapter(topic);
       },
       get complement() {
         return _complementSelected;
       },
       set complement(topic) {
-        _complementSelected = topic;
         $scope.item.addComplement(topic.slug);
       }
     }

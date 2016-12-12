@@ -21,7 +21,7 @@ editorTest('Slug Service', (mocks) => {
       beforeSpec(() => guide = Guide.from({ name: 'túrn DöwnFòr What', language: 'haskell' }));
 
       context('and organization is set', () => {
-        beforeSpec((_CurrentItem_) => _CurrentItem_.setOrganization('foo'));
+        beforeSpec((_CurrentItem_) => _CurrentItem_.setOrganization('Foo'));
         beforeSpec(() => Slug.create(guide, 'guide'));
 
         spec(() => guide.slug.should.be.eql('foo/mumuki-guide-haskell-turn-down-for-what'));

@@ -33,12 +33,12 @@
             dnd-effect-allowed='move')
           h4
             span {{ 'lesson' | translate }} {{ $index + 1 }}:&nbsp;
-            a(href='') {{ lesson.name }}
+            a(ui-sref='editor.home.guides.detail(lesson.params())') {{ lesson.name }}
             small.pointer.text-muted(ng-click='item.removeLesson(lesson)')
               i.fa.fa-fw.fa-times
           ul.progress-listing
             li(ng-repeat='exercise in lesson.exercises')
-              a(ui-sref='editor.home.guides.detail.exercise({ eid: exercise.id })')
+              a(ui-sref='editor.home.guides.detail.exercise(exerciseParams(lesson, exercise))')
                 i.fa.fa-fw.fa-circle.text-muted
                 span {{ $index + 1 }}. {{ exercise.name }}
 

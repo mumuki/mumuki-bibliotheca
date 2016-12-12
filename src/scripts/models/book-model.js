@@ -12,7 +12,7 @@ angular
       }
 
       icon() {
-        return 'fa fa-book';
+        return `fa fa-${Book.canonicalIcon()}`;
       }
 
       fullName() {
@@ -78,6 +78,9 @@ angular
         return ['slug'];
       }
 
+      static canonicalIcon() {
+        return 'book';
+      }
     }
 
     return Book;

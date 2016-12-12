@@ -37,6 +37,10 @@ angular
       return $scope.publish('topic');
     };
 
+    $scope.exerciseParams = (lesson, exercise) => {
+      return _.merge({ eid: exercise.id }, lesson.params());
+    }
+
     let _lessonSelected;
     let _complementSelected;
 
@@ -45,7 +49,6 @@ angular
         return _lessonSelected;
       },
       set lesson(lesson) {
-        _lessonSelected = lesson;
         addLesson(lesson);
       },
     }
