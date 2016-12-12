@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "node_modules/.bin/gulp test",
-    "start": "node_modules/.bin/gulp dev"
+    "start": "node_modules/.bin/gulp dev",
+    "build": "node_modules/.bin/gulp prod",
+    "postinstall": "node_modules/.bin/bower install --allow-root"
   },
   "author": "Federico Scarpa",
   "license": "ISC",
