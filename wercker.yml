@@ -1,0 +1,20 @@
+box: node
+
+build:
+  steps:
+  - script:
+      name: install bower
+      code: sudo npm install -g bower
+  - npm-install
+  - script:
+      name: install bower dependencies
+      code: bower install --allow-root
+  - npm-test
+
+deploy:
+  escualo:
+  - add-ssh-key:
+      keyname: ESCUALO_RSA
+  - script:
+      name: deploy
+      code: wget https://raw.githubusercontent.com/mumuki/mumuki-escualo-deploy/master/wercker_deploy && chmod u+x wercker_deploy && ./wercker_deploy classroom
