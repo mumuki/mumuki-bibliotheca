@@ -21,6 +21,7 @@ angular
         .resolve($scope.item)
         .tap((item) => item.validate())
         .tap((item) => Slug.create(item, type))
+        .call('getItem')
         .tap((item) => Api.saveItem(type)(item))
         .tap((item) => CurrentItem.set(item))
         .tap((item) => callback(item))
