@@ -23,6 +23,7 @@ gulp.task('test:karma', (done) => {
       .concat(bower.filter((dep) => /\.js$/.test(dep)))
       .concat([
         `${srcFolder}/scripts/**/*.js`,
+        `config/test.js`,
         `${specFolder}/context.js`,
         `${specFolder}/**/*.spec.js`
       ])
@@ -42,6 +43,7 @@ gulp.task('karma', (done) => {
       .concat(bower.filter((dep) => /\.js$/.test(dep)))
       .concat([
         `${srcFolder}/scripts/**/*.js`,
+        `config/test.js`,
         `${specFolder}/context.js`,
         `${specFolder}/**/*.spec.js`
       ])
