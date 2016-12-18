@@ -28,7 +28,8 @@ angular
         authenticated: false,
         views: {
           'content@editor': {
-            template: 'NOT Authenticated',
+            templateUrl: 'views/home.html',
+            controller: 'LoginController',
           }
         }
       })
