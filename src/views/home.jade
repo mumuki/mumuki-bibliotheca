@@ -2,7 +2,7 @@
   .col-xs-12.col-sm-4.col-md-4.col-lg-4(ng-repeat='state in states')
     .jumbotron.text-center
       h2
-        a(ui-sref='editor.home.{{ state.name }}')
+        a(href='', ng-click='click(state)')
           i.fa.fa-lg.state-icon(class="fa-{{ state.icon }}")
           span {{ state.name | translate }}
       p
