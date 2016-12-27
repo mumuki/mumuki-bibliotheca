@@ -40,7 +40,7 @@ angular
       const authConfig = {
         dict: $translate.use(),
         icon: '/images/icon.png',
-        authParams: { scope: 'openid app_metadata' }
+        authParams: { scope: 'openid email' }
       }
       auth.signin(authConfig, (profile, token) => {
         store.set('profile', profile);
