@@ -18,6 +18,15 @@ angular
         $scope.getOrganization = CurrentItem.getOrganization;
         $scope.setOrganization = CurrentItem.setOrganization;
 
+        $scope.selected = {
+          get organization() {
+            return $scope.getOrganization();
+          },
+          set organization(organization) {
+            $scope.setOrganization(organization);
+          }
+        }
+
       }
 
     }
