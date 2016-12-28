@@ -67,4 +67,10 @@ angular
         .then((res) => res.data.markdown);
     };
 
+    this.permissions = (markdown) => {
+      return HTTP
+        .call('get',`${API}/permissions`, defaultConfig())
+        .then((res) => res.data.permissions);
+    };
+
   });
