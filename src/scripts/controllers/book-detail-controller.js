@@ -61,4 +61,10 @@ angular
       }
     }
 
+    $scope.complements = () => _.map($scope.item.complements, toGuide)
+
+    const toGuide = (slug) => {
+      return _.find(guides, { slug: slug });
+    }
+
   });
