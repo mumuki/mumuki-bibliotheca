@@ -20,12 +20,12 @@ angular
         icon: () => 'fa fa-soccer-ball-o',
         isProblem: () => false,
         validate: (exercise) => {},
-        needsExtra: (exercise) => false,
+        needsExtra: (exercise) => true,
         needsTests: (exercise) => false,
         needsChoices: (exercise) => false,
         needsSolution: (exercise) => false,
         needsExpectations: (exercise) => false,
-        needsDefaultContent: (exercise) => true,
+        needsDefaultContent: (exercise) => false,
       },
     }
 
