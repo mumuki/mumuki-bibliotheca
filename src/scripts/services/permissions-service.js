@@ -71,4 +71,8 @@ angular
       return this.hasPermission('owner', slug);
     };
 
+    this.isSuperUser = () => {
+      return this.isOwner('*');
+    }
+
   });

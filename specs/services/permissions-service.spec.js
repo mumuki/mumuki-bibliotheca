@@ -55,6 +55,41 @@ editorTest('Permissions Service', (mocks) => {
     spec(() => Permissions.isWriter('bar/foo').should.be.eql(true));
     spec(() => Permissions.isEditor('bar/foo').should.be.eql(true));
     spec(() => Permissions.isOwner('bar/foo').should.be.eql(false));
+    spec(() => Permissions.isOwner('foo').should.be.eql(true));
+  });
+
+  context('#isSuperUser', () => {
+
+    spec(() => {
+      Permissions.set({ editor: '*' });
+      Permissions.isSuperUser().should.be.eql(false);
+    });
+
+    spec(() => {
+      Permissions.set({ owner: '' });
+      Permissions.isSuperUser().should.be.eql(false);
+    });
+
+    spec(() => {
+      Permissions.set({ owner: 'foo/bar' });
+      Permissions.isSuperUser().should.be.eql(false);
+    });
+
+    spec(() => {
+      Permissions.set({ owner: 'foo/*' });
+      Permissions.isSuperUser().should.be.eql(false);
+    });
+
+    spec(() => {
+      Permissions.set({ owner: '*/*' });
+      Permissions.isSuperUser().should.be.eql(true);
+    });
+
+    spec(() => {
+      Permissions.set({ owner: '*' });
+      Permissions.isSuperUser().should.be.eql(true);
+    });
+
   });
 
 });

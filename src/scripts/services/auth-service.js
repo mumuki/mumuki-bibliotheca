@@ -16,7 +16,7 @@ angular
     }
 
     this.isSuperUser = () => {
-      return Permissions.isOwner('*');
+      return Permissions.isSuperUser();
     }
 
     this.profile = () => {
