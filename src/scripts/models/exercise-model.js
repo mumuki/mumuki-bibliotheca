@@ -85,8 +85,8 @@ angular
         return this.getType().needsExtra(this);
       }
 
-      needsDefaultCode() {
-        return this.getType().needsDefaultCode(this);
+      needsDefaultContent() {
+        return this.getType().needsDefaultContent(this);
       }
 
       needsSolution() {
@@ -131,8 +131,8 @@ angular
         if (!exercise.needsExtra()) delete exercise.extra;
         if (!exercise.needsChoices()) delete exercise.choices;
         if (!exercise.needsSolution()) delete exercise.solution;
-        if (!exercise.needsDefaultCode()) delete exercise.default_code;
         if (!exercise.needsExpectations()) delete exercise.expectations;
+        if (!exercise.needsDefaultContent()) delete exercise.default_content;
         return exercise;
       }
 

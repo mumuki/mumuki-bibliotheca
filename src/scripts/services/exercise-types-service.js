@@ -12,20 +12,20 @@ angular
         needsTests: (exercise) => exercise.getEditor().needsTests(exercise),
         needsChoices: (exercise) => exercise.getEditor().needsChoices(exercise),
         needsSolution: (exercise) => exercise.getEditor().needsSolution(exercise),
-        needsDefaultCode: (exercise) => exercise.getEditor().needsDefaultCode(exercise),
         needsExpectations: (exercise) => exercise.getEditor().needsExpectations(exercise),
+        needsDefaultContent: (exercise) => exercise.getEditor().needsDefaultContent(exercise),
       },
       playground: {
         name: 'playground',
         icon: () => 'fa fa-soccer-ball-o',
         isProblem: () => false,
         validate: (exercise) => {},
-        needsExtra: (exercise) => false,
+        needsExtra: (exercise) => true,
         needsTests: (exercise) => false,
         needsChoices: (exercise) => false,
         needsSolution: (exercise) => false,
-        needsDefaultCode: (exercise) => true,
         needsExpectations: (exercise) => false,
+        needsDefaultContent: (exercise) => false,
       },
     }
 
