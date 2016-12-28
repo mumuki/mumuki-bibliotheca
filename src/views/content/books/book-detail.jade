@@ -58,11 +58,13 @@
         span &nbsp;-&nbsp;
         span(ng-bind='guide.slug')
 
-    div(ng-repeat='complement in item.complements')
+    div(ng-repeat='complement in complements()')
       .text-box
         small.pointer.pull-right(ng-click='item.removeComplement($index)')
           i.fa.fa-fw.fa-times
-        span {{ complement }}
+        i(class='{{ complement.icon() }}')
+        span &nbsp;&nbsp;&nbsp;
+        span {{ complement.name }}
 
     br
     ace-with-markdown(header='teacher_info', content='item.teacher_info', foldable='true')
