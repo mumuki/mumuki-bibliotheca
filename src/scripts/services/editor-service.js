@@ -17,8 +17,8 @@ angular
         needsTests: (exercise) => true,
         needsChoices: (exercise) => false,
         needsSolution: (exercise) => true,
-        needsDefaultCode: (exercise) => true,
         needsExpectations: (exercise) => true,
+        needsDefaultContent: (exercise) => true,
         validate: (exercise) => {
           Validator.notIncompleteExpectations(exercise);
           if (!exercise.hasTest() && !exercise.hasExpectations()) {
@@ -33,8 +33,8 @@ angular
         needsTests: (exercise) => false,
         needsChoices: (exercise) => true,
         needsSolution: (exercise) => false,
-        needsDefaultCode: (exercise) => false,
         needsExpectations: (exercise) => false,
+        needsDefaultContent: (exercise) => false,
         validate: (exercise) => {
           Validator.notEmptyChoices(exercise);
           Validator.notIncompleteChoices(exercise);
@@ -50,8 +50,8 @@ angular
         needsTests: (exercise) => !exercise.isTextLanguage(),
         needsChoices: (exercise) => true,
         needsSolution: (exercise) => false,
-        needsDefaultCode: (exercise) => !exercise.isTextLanguage(),
         needsExpectations: (exercise) => !exercise.isTextLanguage(),
+        needsDefaultContent: (exercise) => !exercise.isTextLanguage(),
         validate: (exercise) => {
           Validator.notEmptyChoices(exercise);
           Validator.notIncompleteChoices(exercise);
@@ -70,8 +70,8 @@ angular
         needsTests: (exercise) => true,
         needsChoices: (exercise) => false,
         needsSolution: (exercise) => false,
-        needsDefaultCode: (exercise) => false,
         needsExpectations: (exercise) => false,
+        needsDefaultContent: (exercise) => false,
         validate: (exercise) => {
           if (!exercise.hasTest()) {
             throwError('error_editor_hidden_validation', { fullName: exercise.fullName() });
@@ -85,8 +85,8 @@ angular
         needsTests: (exercise) => true,
         needsChoices: (exercise) => false,
         needsSolution: (exercise) => true,
-        needsDefaultCode: (exercise) => false,
         needsExpectations: (exercise) => true,
+        needsDefaultContent: (exercise) => false,
         validate: (exercise) => {
           Validator.notIncompleteExpectations(exercise);
           if (!exercise.hasTest() && !exercise.hasExpectations()) {

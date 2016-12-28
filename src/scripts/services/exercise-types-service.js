@@ -12,8 +12,8 @@ angular
         needsTests: (exercise) => exercise.getEditor().needsTests(exercise),
         needsChoices: (exercise) => exercise.getEditor().needsChoices(exercise),
         needsSolution: (exercise) => exercise.getEditor().needsSolution(exercise),
-        needsDefaultCode: (exercise) => exercise.getEditor().needsDefaultCode(exercise),
         needsExpectations: (exercise) => exercise.getEditor().needsExpectations(exercise),
+        needsDefaultContent: (exercise) => exercise.getEditor().needsDefaultContent(exercise),
       },
       playground: {
         name: 'playground',
@@ -24,8 +24,8 @@ angular
         needsTests: (exercise) => false,
         needsChoices: (exercise) => false,
         needsSolution: (exercise) => false,
-        needsDefaultCode: (exercise) => true,
         needsExpectations: (exercise) => false,
+        needsDefaultContent: (exercise) => true,
       },
     }
 

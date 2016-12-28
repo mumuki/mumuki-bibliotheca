@@ -35,9 +35,9 @@ angular
             isVisible: () => $scope.exercise.needsExtra(),
           },
           {
-            name: 'default_code',
-            templateUrl: 'views/directives/evaluation/default_code.html',
-            isVisible: () => $scope.exercise.needsDefaultCode(),
+            name: 'default_content',
+            templateUrl: 'views/directives/evaluation/default_content.html',
+            isVisible: () => $scope.exercise.needsDefaultContent(),
           },
           {
             name: 'solution',
