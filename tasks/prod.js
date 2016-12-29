@@ -18,7 +18,7 @@ module.exports = (done) => {
 
 
 gulp.task('prod:build', (done) => {
-  runs(['prod:scripts', 'prod:styles', 'prod:fonts', 'prod:images', 'prod:assets'], done);
+  runs(['prod:scripts', 'prod:styles', 'prod:fonts', 'prod:images', 'prod:assets', 'prod:flags'], done);
 });
 
 gulp.task('prod:clean', (done) => {
@@ -87,6 +87,11 @@ gulp.task('prod:views:jade', () => {
 gulp.task('prod:images', function () {
   return gulp.src(`${srcFolder}/images/**/*`)
     .pipe(gulp.dest(`${outFolder}/images`));
+});
+
+gulp.task('prod:flags', function () {
+  return gulp.src(`${srcFolder}/bower_components/flag-icon-css/flags/**/*`)
+    .pipe(gulp.dest(`${outFolder}/flags`));
 });
 
 gulp.task('prod:release', ['prod:release:clean'], function () {
