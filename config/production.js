@@ -3,7 +3,7 @@ angular
   .constant('CONFIG', {
 
     bibliotheca: {
-      url: 'http://bibliotheca.mumuki.io'
+      url: 'http://bibliotheca-api.mumuki.io'
     },
 
     auth: {
