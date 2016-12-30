@@ -1,20 +1,14 @@
 div
   h3 {{ 'organization' | translate }}
-  div.btn-group(ng-if='!isSuperUser')
-    button.btn.btn-primary.dropdown-toggle(
-        type='button',
-        data-toggle='dropdown',
-        aria-haspopup='true'
-        aria-expanded='false')
-      i.fa.fa-fw.fa-university
-      span {{ getOrganization() }}
-    ul.dropdown-menu
-      li.dropdown-item(
-          ng-repeat='organization in organizations | orderBy',
-          ng-click='setOrganization(organization)')
-        a(href='')
-          i.fa.fa-fw.fa-university
-          span {{ organization }}
+  ui-select(ng-model='selected.organization', ng-if='!isSuperUser')
+    ui-select-match(placeholder='{{ "organization" | translate }}')
+      span(ng-bind='getOrganization()')
+    ui-select-choices(repeat='organization in organizations | orderBy')
+      span(ng-click='setOrganization(organization)')
+        i.fa.fa-fw.fa-university
+        span &nbsp;&nbsp;
+        span(ng-bind='organization')
+
 
   div.input-group(ng-if='isSuperUser')
     span.input-group-addon

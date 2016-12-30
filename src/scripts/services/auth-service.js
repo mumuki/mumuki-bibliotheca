@@ -1,22 +1,22 @@
 angular
   .module('editor')
-  .service('Auth', function($state,
+  .service('Auth', function($injector,
+                            $state,
                             $translate,
                             auth,
                             store,
-                            jwtHelper) {
+                            jwtHelper,
+                            Permissions) {
 
-    this.isSuperUser = () => {
-      return this.hasPermission('*');
+    const updatePermissions = (callback = () => {}) => {
+      $injector.get('Api')
+        .getPermissions()
+        .then((permissions) => Permissions.set(permissions))
+        .then(() => callback())
     }
 
-    this.hasPermission = (organization) => {
-      return _.chain(this.profile())
-        .get('bibliotheca.permissions', '')
-        .split(':')
-        .map((permission) => permission.split('/')[0])
-        .includes(organization)
-        .value();
+    this.isSuperUser = () => {
+      return Permissions.isSuperUser();
     }
 
     this.profile = () => {
@@ -28,24 +28,19 @@ angular
     }
 
     this.organizations = () => {
-      return _.chain(this.profile())
-        .get('bibliotheca.permissions', '')
-        .split(':')
-        .map((permission) => permission.split('/')[0])
-        .filter((organization) => organization !== '*')
-        .value();
+      return Permissions.organizations();
     }
 
     this.signin = (callback) => {
       const authConfig = {
         dict: $translate.use(),
         icon: '/images/icon.png',
-        authParams: { scope: 'openid app_metadata' }
+        authParams: { scope: 'openid email' }
       }
       auth.signin(authConfig, (profile, token) => {
         store.set('profile', profile);
         store.set('token', token);
-        if (_.isFunction(callback)) callback(profile);
+        updatePermissions(callback);
       });
     };
 
