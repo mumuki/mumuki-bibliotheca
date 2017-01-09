@@ -40,6 +40,7 @@ angular
     extra_code: 'Extra code',
     extra_visible: 'Show extra code',
     guide: 'Guide',
+    guide_type: 'Guide type',
     guide_saved_successfully: 'Guide saved successfully',
     guides: 'Guides',
     hidden: 'Hidden',
