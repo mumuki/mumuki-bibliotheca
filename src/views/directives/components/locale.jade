@@ -3,6 +3,7 @@ div.dropdown
       id='ddLocale',
       aria-expanded='true',
       data-toggle='dropdown',
+      title='{{ "locale" | translate }}',
       class='{{ currentLocaleIcon(item.locale) }}')
   ul.dropdown-menu.dropdown-menu-right(aria-labelledby='ddLocale')
     li(ng-repeat='locale in locales.get()', ng-click='item.setLocale(locale.code)')
