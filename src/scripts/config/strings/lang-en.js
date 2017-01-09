@@ -34,6 +34,7 @@ angular
     error_mandatory_field: '{{ fullName }}: Field {{ field }} is mandatory',
     evaluation: 'Evaluation',
     exercise: 'Exercise',
+    exercise_type: 'Exercise type',
     expectations: 'Expectations',
     extra: 'Extra code',
     extra_code: 'Extra code',

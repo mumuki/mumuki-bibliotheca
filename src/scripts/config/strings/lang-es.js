@@ -34,6 +34,7 @@ angular
     error_mandatory_field: '{{fullName}}: El campo "{{ field }}" no puede estar vacío',
     evaluation: 'Evaluación',
     exercise: 'Ejercicio',
+    exercise_type: 'Tipo de ejercicio',
     expectations: 'Expectativas',
     extra: 'Código extra',
     extra_code: 'Código extra',
