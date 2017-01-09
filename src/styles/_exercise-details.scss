@@ -38,7 +38,6 @@ $scroll-height: 2px;
   background-color: $mu-color-complementary;
 }
 
-
 ace-evaluation {
   .nav-tabs {
     overflow-x: auto;
@@ -49,7 +48,7 @@ ace-evaluation {
   }
 
   .nav-tabs > li {
-    float:none;
+    float: none;
     margin: $scroll-height 0 0;
   }
 
@@ -92,8 +91,6 @@ ace-evaluation {
 .exercises-list[dnd-list] a {
   display: block;
 }
-
-
 
 .exercise-detail-area {
   @include display-flex(row, flex-start, flex-start);
@@ -140,7 +137,9 @@ ace-evaluation {
   .exercise-detail-area {
     &.input_right {
       .exercise-detail-area-editor {
-        .title { display: none }
+        .title {
+          display: none
+        }
       }
     }
   }
@@ -175,4 +174,8 @@ ace-evaluation {
   line-height: 14px;
   border-radius: 3px;
   border: 1px solid $brand-complementary;
+}
+
+.border-white {
+  border: 1px solid white;
 }
