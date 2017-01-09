@@ -1,2 +1,5 @@
 small.text-primary
-  i.pointer.layout.fa-fw(ng-click='exercise.toggleLayout()', class='{{ exercise.getLayout().icon() }}')
+  i.pointer.layout.fa-fw(
+      title='{{ "layout" | translate }}',
+      ng-click='exercise.toggleLayout()',
+      class='{{ exercise.getLayout().icon() }}')
