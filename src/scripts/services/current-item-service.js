@@ -33,8 +33,10 @@ angular
       return !_.isEqual(newItem, oldItem);
     };
 
+    const plainCloneDeep = (object) => JSON.parse(angular.toJson(object));
+
     const omitByDeep = (item, criteria) => {
-      const newItem = JSON.parse(angular.toJson(_.omitBy(item, criteria)));
+      const newItem = plainCloneDeep(_.omitBy(item, criteria));
       omitNewItemValues(newItem, criteria);
       omitBooleanItemValues(item, newItem);
       return newItem;
@@ -43,9 +45,9 @@ angular
     const omitNewItemValues = (newItem, criteria) => {
       _.forOwn(newItem, (value, key) => {
         if (_.isObject(value)) {
-          newItem[key] = JSON.parse(angular.toJson(omitByDeep(value, criteria)));
+          newItem[key] = plainCloneDeep(omitByDeep(value, criteria));
         } else if (_.isArray(value)) {
-          newItem[key] = JSON.parse(angular.toJson(value.map((v) => omitByDeep(v, criteria))));
+          newItem[key] = plainCloneDeep(value.map((v) => omitByDeep(v, criteria)));
         }
       });
     };
