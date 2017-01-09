@@ -89,6 +89,7 @@ angular
     practice: 'Practice',
     problem: 'Problem',
     remove: 'Remove',
+    save: 'Save',
     search: 'Search',
     single_choice: 'Single choice',
     solution: 'Solution',

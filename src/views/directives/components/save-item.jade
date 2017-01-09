@@ -1,7 +1,8 @@
-small.locale(
-    ng-class='{                                       \
-      "text-primary pointer": item.canSave(),         \
-      "text-danger": hasChanges() && !item.canSave(), \
-      "mu-disabled": !hasChanges(),                   \
-    }')
-  i.fa.fa-fw.fa-save(ng-click='save()')
+small.locale(title='{{ "save" | translate }}')
+  i.fa.fa-fw.fa-save(
+      ng-click='save()',
+      ng-class='{                                       \
+        "text-primary pointer": item.canSave(),         \
+        "text-danger": hasChanges() && !item.canSave(), \
+        "mu-disabled": !hasChanges(),                   \
+      }')
