@@ -48,6 +48,7 @@ angular
     inspection: 'Inspection',
     item: 'Item',
     language: 'Language',
+    layout: 'Editor layout',
     learning: 'Learning',
     leave_current_item_with_changes: 'Are you sure? all changes will be lost',
     lesson: 'Lesson',

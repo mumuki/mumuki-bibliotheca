@@ -48,6 +48,7 @@ angular
     inspection: 'Inspección',
     item: 'Item',
     language: 'Lenguaje',
+    layout: 'Disposición del editor',
     learning: 'Aprendizaje',
     leave_current_item_with_changes: 'Tenés cambios sin publicar, que se perderán si abandonás esta pantalla. ¿Querés continuar?',
     lesson: 'Lección',
