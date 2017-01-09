@@ -10,6 +10,7 @@ const outFolder = 'build';
 const configFolder = 'config';
 const releaseFolder = 'release';
 
+const replaceEnvVar = (variable) => $.stringReplace(`<${variable}>`, process.env[variable]);
 
 module.exports = (done) => {
   process.env.NODE_ENV = 'production';
@@ -35,6 +36,9 @@ gulp.task('prod:scripts', ['prod:config'], function () {
 
 gulp.task('prod:config', function () {
   return gulp.src(`${configFolder}/${process.env.NODE_ENV}.js`)
+    .pipe(replaceEnvVar('MUMUKI_BIBLIOTHECA_URL'))
+    .pipe(replaceEnvVar('MUMUKI_AUTH0_DOMAIN'))
+    .pipe(replaceEnvVar('MUMUKI_AUTH0_CLIENT_ID'))
     .pipe($.concat('config.js'))
     .pipe(gulp.dest(`${srcFolder}/scripts/config`));
 });

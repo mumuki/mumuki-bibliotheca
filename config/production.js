@@ -3,12 +3,12 @@ angular
   .constant('CONFIG', {
 
     bibliotheca: {
-      url: 'http://bibliotheca-api.mumuki.io'
+      url: '<MUMUKI_BIBLIOTHECA_URL>'
     },
 
     auth: {
-      domain: 'mumuki.auth0.com',
-      clientID: '08Bvp9bczfIb0Ps6yZ52Pl0H7CzukglU'
+      domain: '<MUMUKI_AUTH0_DOMAIN>',
+      clientID: '<MUMUKI_AUTH0_CLIENT_ID>'
     }
 
   });
