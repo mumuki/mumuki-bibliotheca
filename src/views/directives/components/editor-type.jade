@@ -1,6 +1,7 @@
 div.dropdown
   small.text-primary(id='ddEditor', data-toggle='dropdown', aria-expanded='true')
     i.pointer.editor.fa-fw(
+        title='{{ "editor_type" | translate }}',
         class='{{ exercise.getEditor().icon() }}',
         ng-class='{ "mu-disabled": exercise.getEditor().isDisabled }')
   ul.dropdown-menu.dropdown-menu-right(

@@ -21,6 +21,7 @@ angular
     default_content: 'Código por defecto',
     description: 'Descripción',
     editor: 'Editor',
+    editor_type: 'Tipo de editor',
     english: 'Inglés (UK)',
     error_choices_empty_validation: '{{fullName}}: Tiene que ofrecer al menos dos opción',
     error_choices_incomplete_validation: '{{fullName}}: Tiene opción incompletas',

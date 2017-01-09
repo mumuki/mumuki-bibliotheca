@@ -21,6 +21,7 @@ angular
     default_content: 'Default code',
     description: 'Description',
     editor: 'Editor',
+    editor_type: 'Editor type',
     english: 'English (UK)',
     error_choices_empty_validation: '{{fullName}}: Should have at least two choices',
     error_choices_incomplete_validation: '{{fullName}}: Has incomplete choices',
