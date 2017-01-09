@@ -36,6 +36,7 @@ angular
     expectations: 'Expectativas',
     extra: 'Código extra',
     extra_code: 'Código extra',
+    extra_visible: 'Mostrar código extra',
     guide: 'Guía',
     guide_saved_successfully: 'Guía guardada satisfactoriamente',
     guides: 'Guías',
