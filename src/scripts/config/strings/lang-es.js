@@ -101,6 +101,7 @@ angular
     text: 'Texto',
     tooltip_bold: 'Negrita (ctrl+b)',
     tooltip_code: 'Código',
+    tooltip_emojis: 'Emoticones',
     tooltip_image: 'Imagen',
     tooltip_inline_code: 'Código en línea',
     tooltip_italic: 'Cursiva (ctrl+i)',
