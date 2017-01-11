@@ -14,4 +14,4 @@
       .tab-pane(ng-repeat='group in groups', ng-class='{ "active": isActive(group) }')
         span(ng-repeat='emoji in emojis(group)')
           a.pointer(ng-click='selectEmoji(emoji)')
-            img(ng-src='/assets/emojis/{{emoji}}.png', title=':{{emoji}}:')
+            img(lazy-img='/assets/emojis/{{emoji}}.png', title=':{{emoji}}:')

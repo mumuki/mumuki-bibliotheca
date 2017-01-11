@@ -12,4 +12,5 @@ angular
     'toastr',
     'ui.select',
     'ui.bootstrap',
+    'angularLazyImg',
   ]);
