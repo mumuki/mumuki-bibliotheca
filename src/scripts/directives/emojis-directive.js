@@ -1,6 +1,6 @@
 angular
   .module('editor')
-  .directive('emojis', function (EMOJIS) {
+  .directive('emojis', function (store, EMOJIS) {
 
     return {
 
@@ -11,14 +11,32 @@ angular
       },
       controller: ($scope) => {
 
-        $scope.groups = _.map(EMOJIS, (em) => ({
+        const RECENTS = 'recentEmojis';
+        store.set(RECENTS, store.get(RECENTS) || []);
+
+        const recentGroup = {category: 'Recents', icon: 'fa-clock-o', emojis: store.get(RECENTS)};
+
+        const _EMOJIS = [recentGroup, ...EMOJIS];
+
+        const addToLocalStorage = (emoji) => {
+          _.chain([emoji])
+            .concat(store.get(RECENTS))
+            .compact()
+            .uniq()
+            .take(45)
+            .tap((emojis) => store.set(RECENTS, emojis))
+            .tap((emojis) => recentGroup.emojis = emojis)
+            .value();
+        };
+
+        $scope.groups = _.map(_EMOJIS, (em) => ({
           category: em.category,
           icon: em.icon,
           isSelected: false
         }));
 
         $scope.emojis = (group) => {
-          const emojisGroup = _.find(EMOJIS, {category: group.category});
+          const emojisGroup = _.find(_EMOJIS, {category: group.category});
           return _.difference(emojisGroup.emojis, emojisGroup.notSupported);
         };
 
@@ -29,11 +47,12 @@ angular
 
         $scope.isActive = (group) => group.isSelected;
 
-        $scope.selectGroup($scope.groups[0]);
-
         $scope.selectEmoji = (emoji) => {
+          addToLocalStorage(emoji);
           $scope.emojiClick(emoji);
-        }
+        };
+
+        $scope.selectGroup($scope.groups[_.isEmpty(recentGroup.emojis) ? 1 : 0]);
 
       },
       link: (scope, element) => {

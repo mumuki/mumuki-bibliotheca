@@ -4,10 +4,10 @@
   .tabbable.dropdown-menu.dropdown-menu-right(aria-labelledby='dEmojis')
     ul.nav.nav-tabs
       li(
-      role='presentation',
-      ng-repeat='group in groups',
-      ng-class='{ "active": isActive(group) }',
-      ng-click='selectGroup(group)')
+          role='presentation',
+          ng-repeat='group in groups',
+          ng-class='{ "active": isActive(group) }',
+          ng-click='selectGroup(group)')
         a(href='', title='{{ group.category }}')
           i.fa(class='{{ group.icon }}')
     .tab-content
