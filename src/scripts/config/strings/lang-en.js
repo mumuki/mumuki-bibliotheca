@@ -91,6 +91,7 @@ angular
     remove: 'Remove',
     save: 'Save',
     search: 'Search',
+    saving: 'Saving...',
     single_choice: 'Single choice',
     solution: 'Solution',
     spanish: 'Spanish (Arg)',

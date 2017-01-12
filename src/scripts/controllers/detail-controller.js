@@ -17,6 +17,7 @@ angular
     $scope.getItem = () => $scope.item.getItem();
 
     $scope.publish = Debounce.for((type, callback = () => {}) => {
+      toastr.info(translate('saving'));
       return Promise
         .resolve($scope.item)
         .tap((item) => item.validate())
@@ -28,7 +29,7 @@ angular
         .tap((item) => toastr.success(translate(`${type}_saved_successfully`)))
         .catch(Error, (error) => toastr.error(`${error.message}`))
         .catch((res) => toastr.error(`${res.data.message}`));
-    })
+    });
 
     LeaveItem.bindTo($scope);
     Hotkeys.bindSave($scope);
