@@ -90,6 +90,7 @@ angular
     problem: 'Problema',
     remove: 'Remover',
     save: 'Guardar',
+    saving: 'Guardando...',
     search: 'Buscar',
     single_choice: 'Selección única',
     solution: 'Solución',
