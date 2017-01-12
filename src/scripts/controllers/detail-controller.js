@@ -31,6 +31,18 @@ angular
         .catch((res) => toastr.error(`${res.data.message}`));
     });
 
+    $scope.hideSpinner = () => {
+      const icon = $('.spinner').find('i.fa.fa-fw.fa-spinner.fa-spin');
+      icon.addClass('caret');
+      icon.removeClass('fa fa-fw fa-spinner fa-spin');
+    };
+
+    $scope.showSpinner = () => {
+      const icon = $('.spinner').find('i.caret');
+      icon.removeClass('caret');
+      icon.addClass('fa fa-fw fa-spinner fa-spin');
+    };
+
     LeaveItem.bindTo($scope);
     Hotkeys.bindSave($scope);
 

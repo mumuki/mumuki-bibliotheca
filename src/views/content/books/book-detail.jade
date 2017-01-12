@@ -21,7 +21,7 @@
 
     br
     h2 {{ 'content' | translate }}
-    ui-select(ng-model='selected.chapter')
+    ui-select.spinner(ng-model='selected.chapter')
       ui-select-match(placeholder='{{ "placeholder_add_chapter" | translate }}')
         span(ng-bind='$select.selected.name')
       ui-select-choices(
@@ -32,10 +32,10 @@
 
     .chapters(dnd-list='item.chapters')
       .chapter(
-        ng-repeat='chapter in item.chapters'
-        dnd-draggable='chapter',
-        dnd-moved='item.chapters.splice($index, 1)',
-        dnd-effect-allowed='move')
+            ng-repeat='chapter in item.chapters'
+            dnd-draggable='chapter',
+            dnd-moved='item.chapters.splice($index, 1)',
+            dnd-effect-allowed='move')
         h3
           span {{ 'chapter' | translate }} {{ $index + 1 }}:&nbsp;
           a(ui-sref='editor.home.topics.detail(chapter.params())') {{ chapter.name }}
