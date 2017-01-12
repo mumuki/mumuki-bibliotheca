@@ -1,0 +1,30 @@
+$emojis-size: 24px;
+
+.emojis {
+
+  .nav-tabs {
+    li {
+      margin-top: -5px;
+      a {
+        padding: 3px 8.8px;
+      }
+    }
+  }
+
+  .dropdown-menu {
+    width: 345px;
+  }
+
+  img {
+    height: $emojis-size;
+    width: $emojis-size;
+    margin: 6px;
+  }
+
+  .tab-content {
+    height: 185px;
+    overflow-y: scroll;
+    overflox-x: hidden;
+  }
+
+}

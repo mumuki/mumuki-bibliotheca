@@ -1,0 +1,17 @@
+.dropdown.emojis
+  a.pointer.dropdown-toggle(id='dEmojis', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')
+    i.fa.fa-lg.fa-smile-o(title='{{ "tooltip_emojis" | translate }}')
+  .tabbable.dropdown-menu.dropdown-menu-right(aria-labelledby='dEmojis')
+    ul.nav.nav-tabs
+      li(
+          role='presentation',
+          ng-repeat='group in groups',
+          ng-class='{ "active": isActive(group) }',
+          ng-click='selectGroup(group)')
+        a(href='', title='{{ group.category }}')
+          i.fa(class='{{ group.icon }}')
+    .tab-content
+      .tab-pane(ng-repeat='group in groups', ng-class='{ "active": isActive(group) }')
+        span(ng-repeat='emoji in emojis(group)')
+          a.pointer(ng-click='selectEmoji(emoji)')
+            img(lazy-img='/assets/emojis/{{emoji}}.png', title=':{{emoji}}:')

@@ -33,35 +33,38 @@ angular
             $scope.editor.focus();
             $scope.editor.selection.setSelectionRange(range);
           }
-        }
+        };
         const insertBefore = (translationKey, item) => {
           insertText(translationKey, item);
-        }
+        };
         const wrapText = (item) => {
           insertText('text', item, item);
-        }
+        };
 
         $scope.number = () => {
           insertBefore('item', '1. ');
-        }
+        };
         $scope.bullet = () => {
           insertBefore('item', '* ');
-        }
+        };
         $scope.quote = () => {
           insertBefore('blockquote', '> ');
-        }
+        };
+        $scope.insertEmoji = (emoji) => {
+          insertBefore('', `:${emoji}:`);
+        };
         $scope.bold = () => {
           wrapText('**');
-        }
+        };
         $scope.italic = () => {
           wrapText('_');
-        }
+        };
         $scope.inlineCode = () => {
           wrapText('`');
-        }
+        };
         $scope.image = () => {
           // TODO: IMPLEMENT
-        }
+        };
         $scope.link = () => {
           const text = translate('text');
           const link = translate('link');
@@ -71,7 +74,7 @@ angular
           range.start.column += 1;
           range.end.column = range.start.column + text.length;
           $scope.editor.selection.setSelectionRange(range);
-        }
+        };
         $scope.code = () => {
           const range = $scope.editor.selection.getRange();
           const code = $scope.editor.session.getTextRange(range) || translate('code');
@@ -82,25 +85,25 @@ angular
           range.end.row = range.start.row;
           range.end.column = range.start.column + language.length + 4;
           $scope.editor.selection.setSelectionRange(range);
-        }
+        };
         $scope.mumuki = () => {
           $scope.editor.insert(MU);
           $scope.editor.focus();
-        }
+        };
 
         const bindCtrl = (letter) => {
           return {
             win: `Ctrl-${letter}`,
             mac: `Command-${letter}`
           }
-        }
+        };
 
         const command = (letter, callback) => {
           return {
             bindKey: bindCtrl(letter),
             exec: callback,
           }
-        }
+        };
 
         $scope.editor.commands.addCommands([
           command('B', $scope.bold),
@@ -113,4 +116,4 @@ angular
 
     }
 
-  })
+  });
