@@ -14,11 +14,11 @@
 
     .detail-exercises
       h3 {{ 'content' | translate }}
-      ui-select(ng-model='selected.lesson')
+      ui-select.spinner(ng-model='selected.lesson')
         ui-select-match(placeholder='{{ "placeholder_add_lesson" | translate }}')
           span(ng-bind='$select.selected.name')
         ui-select-choices(
-            repeat='guide in guides | filter:hasGuide | filter:$select.search | orderBy:Guide.sortBy()')
+        repeat='guide in guides | filter:hasGuide | filter:$select.search | orderBy:Guide.sortBy()')
           i(class='{{ guide.icon() }}')
           span &nbsp;&nbsp;&nbsp;
           strong(ng-bind='guide.name')
@@ -27,10 +27,10 @@
 
       .lessons(dnd-list='item.lessons')
         .lesson(
-            ng-repeat='lesson in item.lessons',
-            dnd-draggable='lesson',
-            dnd-moved='item.lessons.splice($index, 1)',
-            dnd-effect-allowed='move')
+        ng-repeat='lesson in item.lessons',
+        dnd-draggable='lesson',
+        dnd-moved='item.lessons.splice($index, 1)',
+        dnd-effect-allowed='move')
           h4
             span {{ 'lesson' | translate }} {{ $index + 1 }}:&nbsp;
             a(ui-sref='editor.home.guides.detail(lesson.params())') {{ lesson.name }}

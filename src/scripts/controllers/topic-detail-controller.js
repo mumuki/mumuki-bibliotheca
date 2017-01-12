@@ -1,15 +1,15 @@
 angular
   .module('editor')
-  .controller('TopicDetailController', function($scope,
-                                                $sce,
-                                                $filter,
-                                                $controller,
-                                                topic,
-                                                guides,
-                                                toastr,
-                                                Guide,
-                                                Api,
-                                                CurrentItem) {
+  .controller('TopicDetailController', function ($scope,
+                                                 $sce,
+                                                 $filter,
+                                                 $controller,
+                                                 topic,
+                                                 guides,
+                                                 toastr,
+                                                 Guide,
+                                                 Api,
+                                                 CurrentItem) {
 
     const translate = $filter('translate');
 
@@ -19,10 +19,11 @@ angular
     });
 
     const addLesson = (lesson) => {
+      $scope.showSpinner();
       const [org, repo] = lesson.slug.split('/');
-      return Api.getGuide({ org, repo }).tap((guide) => {
-        $scope.item.addLesson(guide)
-        $scope.$apply();
+      return Api.getGuide({org, repo}).tap((guide) => {
+        $scope.item.addLesson(guide);
+        $scope.$apply(() => $scope.hideSpinner());
       });
     };
 
@@ -31,15 +32,15 @@ angular
     $scope.Guide = Guide;
 
     $scope.html = (html) => $sce.trustAsHtml(html);
-    $scope.hasGuide = (guide) => !_.some($scope.item.lessons, { id: guide.id });
+    $scope.hasGuide = (guide) => !_.some($scope.item.lessons, {id: guide.id});
 
     $scope.save = () => {
       return $scope.publish('topic');
     };
 
     $scope.exerciseParams = (lesson, exercise) => {
-      return _.merge({ eid: exercise.id }, lesson.params());
-    }
+      return _.merge({eid: exercise.id}, lesson.params());
+    };
 
     let _lessonSelected;
     let _complementSelected;

@@ -9,8 +9,7 @@ angular
                                                 topics,
                                                 toastr,
                                                 Guide,
-                                                Api,
-                                                CurrentItem) {
+                                                Api) {
 
     const translate = $filter('translate');
 
@@ -20,13 +19,14 @@ angular
     });
 
     const addChapter = (chapter) => {
+      $scope.showSpinner();
       const [org, repo] = chapter.slug.split('/');
-      return Api.getTopic({ org, repo }).tap((topic) => {
+      return Api.getTopic({org, repo}).tap((topic) => {
         return Api
           .renderMarkdown(topic.description.split('\n')[0].trim())
           .then((html) => topic.description = html)
           .then(() => $scope.item.addChapter(topic))
-          .then(() => $scope.$apply());
+          .then(() => $scope.$apply(() => $scope.hideSpinner()));
       });
     };
 
@@ -36,7 +36,7 @@ angular
     $scope.Guide = Guide;
 
     $scope.html = (html) => $sce.trustAsHtml(html);
-    $scope.hasTopic = (topic) => !_.some($scope.item.chapters, { id: topic.id });
+    $scope.hasTopic = (topic) => !_.some($scope.item.chapters, {id: topic.id});
     $scope.hasGuide = (guide) => !_.includes($scope.item.complements, guide.slug);
 
     $scope.save = () => {
@@ -59,12 +59,12 @@ angular
       set complement(topic) {
         $scope.item.addComplement(topic.slug);
       }
-    }
+    };
 
-    $scope.complements = () => _.map($scope.item.complements, toGuide)
+    $scope.complements = () => _.map($scope.item.complements, toGuide);
 
     const toGuide = (slug) => {
-      return _.find(guides, { slug: slug });
-    }
+      return _.find(guides, {slug: slug});
+    };
 
   });
