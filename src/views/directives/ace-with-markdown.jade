@@ -1,14 +1,14 @@
 .tabbable
-  ul.nav.nav-tabs(ng-class='{ "border-bottom-none": !showMinimized() }')
+  ul.nav.nav-tabs(ng-class='{ "border-bottom-none": !showMinimized(), "nav-tabs-inline": showMinimized() }')
     li
       h3
         span {{ header | translate }}
         i.pointer.fa.fa-fw(
             ng-if='isFoldable',
             ng-click='toggleMinimized()',
-            ng-class='{                             \
-              "fa-plus-square-o": isMinimized(),    \
-              "fa-minus-square-o": !isMinimized(),  \
+            ng-class='{                           \
+              "fa-plus-square-o": isMinimized(),  \
+              "fa-minus-square-o": !isMinimized() \
             }')
     li(role='presentation', ng-click='write()', ng-class='activeWriteClass()', ng-show='showMinimized()')
       a(href='', data-toggle='tab') Write
