@@ -24,7 +24,12 @@
   }
 }
 
-$scroll-height: 2px;
+$scroll-height: 1px;
+
+@mixin angle {
+  position: absolute;
+  padding-top: 18px;
+}
 
 .nav-tabs-inline {
   overflow-x: auto;
@@ -49,7 +54,6 @@ $scroll-height: 2px;
 .nav-tabs-inline::-webkit-scrollbar-thumb {
   background-color: $mu-color-complementary;
 }
-
 
 .exercises-list {
   @include display-flex(row, flex-start, center);
@@ -175,4 +179,16 @@ $scroll-height: 2px;
 
 .border-white {
   border: 1px solid white;
+}
+
+.tabbable {
+  position: relative;
+  .fa-angle-left {
+    @include angle;
+    left: -22px;
+  }
+  .fa-angle-right {
+    @include angle;
+    right: -22px;
+  }
 }
