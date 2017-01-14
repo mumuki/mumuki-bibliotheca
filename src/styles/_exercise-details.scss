@@ -26,11 +26,6 @@
 
 $scroll-height: 1px;
 
-@mixin angle {
-  position: absolute;
-  padding-top: 18px;
-}
-
 .nav-tabs-inline {
   overflow-x: auto;
   overflow-y: auto;
@@ -179,6 +174,12 @@ $scroll-height: 1px;
 
 .border-white {
   border: 1px solid white;
+}
+
+@mixin angle {
+  position: absolute;
+  padding-top: 18px;
+  padding-bottom: 18px;
 }
 
 .tabbable {

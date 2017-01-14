@@ -11,8 +11,8 @@ angular
       scope: {},
       link: (scope, element) => {
         const navTabsParent = element.parent();
-        const leftArrow = angular.element('<i class="fa fa-fw fa-angle-left">');
-        const rightArrow = angular.element('<i class="fa fa-fw fa-angle-right">');
+        const leftArrow = angular.element('<i class="pointer fa fa-fw fa-angle-left">');
+        const rightArrow = angular.element('<i class="pointer fa fa-fw fa-angle-right">');
 
         const elInner = () => element[0].clientWidth;
         const elOutter = () => element[0].scrollWidth;
