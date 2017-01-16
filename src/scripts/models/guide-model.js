@@ -23,18 +23,18 @@ angular
 
       params() {
         const [org, repo] = this.slug.split('/');
-        return { org, repo };
+        return {org, repo};
       }
 
       addExercise() {
-        const maxExercise = _.maxBy(this.exercises, 'id') || { id: 0 };
-        const exercise = Exercise.from({ id: maxExercise.id + 1 });
+        const maxExercise = _.maxBy(this.exercises, 'id') || {id: 0};
+        const exercise = Exercise.from({id: maxExercise.id + 1});
         this.exercises.push(exercise);
         return exercise;
       }
 
       removeExercise(id) {
-        _.remove(this.exercises, { id });
+        _.remove(this.exercises, {id});
       }
 
       setLocale(locale) {
@@ -54,7 +54,12 @@ angular
       }
 
       getExercise(id) {
-        return _.find(this.exercises, { id: parseInt(id, 10) });
+        return _.find(this.exercises, {id: parseInt(id, 10)});
+      }
+
+      moveExerciseTo(index, exercise) {
+        _.remove(this.exercises, {id: exercise.id});
+        this.exercises.splice(index, 0, Exercise.from(exercise));
       }
 
       getItem() {
@@ -81,7 +86,7 @@ angular
         try {
           this.validate();
           return CurrentItem.hasChanges(this.getItem());
-        } catch(_) {
+        } catch (_) {
           return false;
         }
       }
