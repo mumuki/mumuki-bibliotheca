@@ -24,34 +24,30 @@
   }
 }
 
-$scroll-height: 2px;
+$scroll-height: 1px;
 
-#style-3::-webkit-scrollbar-track {
-  background-color: $mu-color-content-editable;
-}
-
-#style-3::-webkit-scrollbar {
-  height: $scroll-height;
-}
-
-#style-3::-webkit-scrollbar-thumb {
-  background-color: $mu-color-complementary;
-}
-
-ace-evaluation {
-  .nav-tabs {
-    overflow-x: auto;
-    overflow-y: auto;
-    display: -webkit-box;
-    display: -moz-box;
-    margin-top: -$scroll-height;
-  }
-
-  .nav-tabs > li {
+.nav-tabs-inline {
+  overflow-x: auto;
+  overflow-y: auto;
+  display: -webkit-box;
+  display: -moz-box;
+  margin-top: -$scroll-height;
+  li {
     float: none;
     margin: $scroll-height 0 0;
   }
+}
 
+.nav-tabs-inline::-webkit-scrollbar-track {
+  background-color: $mu-color-content-editable;
+}
+
+.nav-tabs-inline::-webkit-scrollbar {
+  height: $scroll-height;
+}
+
+.nav-tabs-inline::-webkit-scrollbar-thumb {
+  background-color: $mu-color-complementary;
 }
 
 .exercises-list {
@@ -178,4 +174,22 @@ ace-evaluation {
 
 .border-white {
   border: 1px solid white;
+}
+
+@mixin angle {
+  position: absolute;
+  padding-top: 18px;
+  padding-bottom: 18px;
+}
+
+.tabbable {
+  position: relative;
+  .fa-angle-left {
+    @include angle;
+    left: -22px;
+  }
+  .fa-angle-right {
+    @include angle;
+    right: -22px;
+  }
 }
