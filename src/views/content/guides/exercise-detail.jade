@@ -11,14 +11,14 @@
     language(item='exercise')
 
   main.detail-main
-    .exercises-list(dnd-list='exercise.guide().exercises')
+    .exercises-list(dnd-list='exercise.guide().exercises', dnd-drop='moveExerciseTo(index, item)')
       a.text-center(
         ng-repeat='e in exercise.guide().exercises',
         ng-class='{ "active": e.id === exercise.id }',
         title='{{ $index + 1 }}. {{ e.name }}',
         dnd-draggable='e',
         dnd-effect-allowed='copyMove',
-        dnd-moved='exercise.guide().exercises.splice($index, 1)',
+        dnd-moved='',
         ui-sref='editor.home.guides.detail.exercise({ eid: e.id })')
       a.text-center(href='', ng-click='addExercise()')
         i.fa.fa-fw.fa-plus
