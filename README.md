@@ -23,7 +23,7 @@ npm build
 ```
 
 # See also
-[Bibliotheca API](https://github.com/mumuki/mumuki-classroom-api)
+[Bibliotheca API](https://github.com/mumuki/mumuki-bibliotheca-api)
 
 ## Authentication Powered by Auth0
 
