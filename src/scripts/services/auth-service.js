@@ -2,71 +2,61 @@ angular
   .module('editor')
   .service('Auth', function($injector,
                             $state,
+                            $cookies,
+                            CONFIG,
                             $translate,
-                            auth,
                             store,
                             jwtHelper,
                             Permissions) {
+
+    let profile;
 
     const updatePermissions = (callback = () => {}) => {
       $injector.get('Api')
         .getPermissions()
         .then((permissions) => Permissions.set(permissions))
-        .then(() => callback())
-    }
+        .then(() => callback());
+    };
 
     this.isSuperUser = () => {
       return Permissions.isSuperUser();
-    }
+    };
 
     this.profile = () => {
-      return store.get('profile');
-    }
+      return profile;
+    };
 
     this.token = () => {
-      return store.get('token');
-    }
+      return $cookies.get(CONFIG.cookie.name);
+    };
 
     this.organizations = () => {
       return Permissions.organizations();
-    }
+    };
 
     this.signin = (callback) => {
-      const authConfig = {
-        dict: $translate.use(),
-        icon: '/images/icon.png',
-        authParams: { scope: 'openid email' }
-      }
-      auth.signin(authConfig, (profile, token) => {
-        store.set('profile', profile);
-        store.set('token', token);
-        updatePermissions(callback);
-      });
+      document.location.href = $injector.get('Api').getLoginUrl();
     };
 
     this.signout = () => {
-      auth.signout();
       store.remove('token');
-      store.remove('profile');
-      $state.go('editor.login', {}, { reload: true });
+      document.location.href = $injector.get('Api').getLogoutUrl();
     };
 
     this.isLoggedIn = () => {
-      return auth.isAuthenticated;
+      return !this.isTokenExpired();
     };
 
     this.isTokenExpired = () => {
       return _.isEmpty(this.token()) || jwtHelper.isTokenExpired(this.token());
     };
 
-    this.authenticate = () => {
-      auth.authenticate(this.profile(), this.token());
-    };
-
     this.authenticateIfPossible = () => {
-      if(!this.isTokenExpired() && !this.isLoggedIn()) {
-        this.authenticate();
+      if(this.isLoggedIn()) {
+        profile = jwtHelper.decodeToken(this.token()).metadata;
+        // TODO: sacar este picture (está de prueba únicamente)
+        profile.picture = 'https://pbs.twimg.com/profile_images/378800000515605146/dabda3943bac1225ec56d5aa396e23ed.jpeg';
       }
-    }
+    };
 
   });

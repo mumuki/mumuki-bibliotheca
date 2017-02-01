@@ -73,4 +73,6 @@ angular
         .then((res) => res.data.permissions);
     };
 
+    this.getLoginUrl = () =>  `${API}/login?origin=` + encodeURIComponent(document.location.href);
+    this.getLogoutUrl = () =>  `${API}/logout`;
   });
