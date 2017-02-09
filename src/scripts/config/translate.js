@@ -1,7 +1,7 @@
 angular
   .module('editor')
-  .config(function ($injector, $translateProvider) {
-
+  .config(function ($injector, $translateProvider, $httpProvider) {
+    $httpProvider.defaults.withCredentials = true;
     const LANG_ES = $injector.get('LANG_ES');
     const LANG_EN = $injector.get('LANG_EN');
 

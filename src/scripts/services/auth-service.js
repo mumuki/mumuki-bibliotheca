@@ -23,7 +23,7 @@ angular
     };
 
     this.profile = () => {
-      return profile;
+      return JSON.parse($cookies.get('mucookie'));
     };
 
     this.token = () => {
@@ -48,14 +48,12 @@ angular
     };
 
     this.isTokenExpired = () => {
-      return _.isEmpty(this.token()) || jwtHelper.isTokenExpired(this.token());
+      return false;
+      // return _.isEmpty(this.token()) || jwtHelper.isTokenExpired(this.token());
     };
 
     this.authenticateIfPossible = () => {
       if(this.isLoggedIn()) {
-        profile = jwtHelper.decodeToken(this.token()).metadata;
-        // TODO: sacar este picture (está de prueba únicamente)
-        profile.picture = 'https://pbs.twimg.com/profile_images/378800000515605146/dabda3943bac1225ec56d5aa396e23ed.jpeg';
       }
     };
 

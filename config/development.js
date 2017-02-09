@@ -7,6 +7,6 @@ angular
     },
 
     cookie: {
-      name: 'mucookie'
+      name: '_mumuki_bibliotheca_session'
     }
   });

@@ -11,7 +11,7 @@ angular
     const HTTP = Promise.resolve($http);
 
     const defaultConfig = (requestOptions = {}) => _.defaultsDeep(requestOptions, {
-      headers: { Authorization: `Bearer ${Auth.token()}` }
+      headers: { }
     })
 
     this.getItems = (type, Model) => () => {
