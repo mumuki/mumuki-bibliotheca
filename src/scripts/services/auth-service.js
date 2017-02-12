@@ -8,8 +8,7 @@ angular
                             store,
                             jwtHelper,
                             Permissions) {
-
-    let profile;
+    let profile = null;
 
     const updatePermissions = (callback = () => {}) => {
       $injector.get('Api')
@@ -22,14 +21,6 @@ angular
       return Permissions.isSuperUser();
     };
 
-    this.profile = () => {
-      return JSON.parse($cookies.get('mucookie'));
-    };
-
-    this.token = () => {
-      return $cookies.get(CONFIG.cookie.name);
-    };
-
     this.organizations = () => {
       return Permissions.organizations();
     };
@@ -40,16 +31,24 @@ angular
 
     this.signout = () => {
       store.remove('token');
+      profile = null;
       document.location.href = $injector.get('Api').getLogoutUrl();
     };
 
-    this.isLoggedIn = () => {
-      return !this.isTokenExpired();
+    this.checkProfile = () => {
+      let encodedProfile = $cookies.get('mucookie_profile');
+      if (encodedProfile) {
+        profile = JSON.parse(atob(encodedProfile));
+      }
     };
 
-    this.isTokenExpired = () => {
-      return false;
-      // return _.isEmpty(this.token()) || jwtHelper.isTokenExpired(this.token());
+    this.profile = () => profile;
+
+    this.isLoggedIn = () => {
+      if (profile === null) {
+        this.checkProfile()
+      }
+      return profile !== null;
     };
 
     this.authenticateIfPossible = () => {

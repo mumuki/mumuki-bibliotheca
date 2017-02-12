@@ -3,10 +3,6 @@ angular
   .constant('CONFIG', {
 
     bibliotheca: {
-      url: 'localmumuki.io:9292'
+      url: 'bibliotheca-api.localmumuki.io:9292'
     },
-
-    cookie: {
-      name: 'mucookie'
-    }
   });
