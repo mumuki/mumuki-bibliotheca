@@ -11,11 +11,10 @@ angular
 
     let profile = null;
 
-    const updatePermissions = (callback = () => {}) => {
+    const updatePermissions = () => {
       $injector.get('Api')
         .getPermissions()
         .then((permissions) => Permissions.set(permissions))
-        .then(() => callback());
     };
 
     this.isSuperUser = () => {
@@ -54,7 +53,11 @@ angular
 
     // I think this method is obsolete now
     this.authenticateIfPossible = () => {
-      if(this.isLoggedIn()) { }
+      if(this.isLoggedIn()) {
+        if(Permissions.isEmpty()) {
+          updatePermissions();
+        }
+      }
     };
 
   });

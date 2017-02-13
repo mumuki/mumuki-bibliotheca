@@ -26,8 +26,16 @@ angular
               .value();
     };
 
+    this.set = (permissions = {}) => {
+      store.set(PERMISSIONS_KEY, _.pick(permissions, availableScopes));
+    };
+
+    this.isEmpty = () => {
+      return _.isEmpty(store.get(PERMISSIONS_KEY));
+    };
+
     this.get = (role) => {
-      return _.get($injector.get('Auth').profile().permissions, role, '');
+      return _.get(store.get(PERMISSIONS_KEY), role, '');
     };
 
     this.organizations = () => {
