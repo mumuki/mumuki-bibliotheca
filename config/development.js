@@ -7,6 +7,8 @@ angular
     },
 
     cookie: {
-      name: '_mumuki_bibliotheca_session'
+      domain: '.localmumuki.io',
+      session: '_mumuki_bibliotheca_session',
+      regular: 'mucookie'
     }
   });
