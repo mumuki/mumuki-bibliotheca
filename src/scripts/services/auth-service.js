@@ -52,10 +52,6 @@ angular
       return profile !== null;
     };
 
-    this.isLoggedIn = () => {
-      return !!$cookies.get(CONFIG.cookie.session);
-    };
-
     // I think this method is obsolete now
     this.authenticateIfPossible = () => {
       if(this.isLoggedIn()) { }
