@@ -1,7 +1,6 @@
 angular
   .module('editor')
-  .service('Permissions', function ($injector,
-                                    store) {
+  .service('Permissions', function ($injector, store) {
 
     const PERMISSIONS_KEY = 'permissions';
     const availableScopes = ['writer', 'editor', 'owner'];
@@ -18,24 +17,26 @@ angular
       const slug = Slug.parse(slug_string);
       const perm = Slug.parse(permission);
       return perm.allows(slug);
-    }
+    };
 
     this.hasPermission = (role, slug_string) => {
       return _.chain(this[`${role}Permissions`]())
               .split(':')
               .some((permission) => match(permission, slug_string))
               .value();
-    }
-
+    };
 
     this.set = (permissions = {}) => {
       store.set(PERMISSIONS_KEY, _.pick(permissions, availableScopes));
-    }
+    };
+
+    this.isEmpty = () => {
+      return _.isEmpty(store.get(PERMISSIONS_KEY));
+    };
 
     this.get = (role) => {
-      return store.get(PERMISSIONS_KEY)[role] || '';
-    }
-
+      return _.get(store.get(PERMISSIONS_KEY), role, '');
+    };
 
     this.organizations = () => {
       return _.chain(availableScopes)
@@ -43,8 +44,7 @@ angular
               .reject(isWildCard)
               .uniq()
               .value();
-    }
-
+    };
 
     this.writerPermissions = () => {
       return this.get('writer');
@@ -57,7 +57,6 @@ angular
     this.ownerPermissions = () => {
       return this.get('owner');
     };
-
 
     this.isWriter = (slug) => {
       return this.hasPermission('writer', slug) || this.isEditor(slug);
@@ -73,6 +72,6 @@ angular
 
     this.isSuperUser = () => {
       return this.isOwner('*');
-    }
+    };
 
   });

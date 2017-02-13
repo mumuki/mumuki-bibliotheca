@@ -2,9 +2,9 @@ angular
   .module('editor', [
     'ui.router',
     'pascalprecht.translate',
-    'auth0',
     'angular-storage',
     'angular-jwt',
+    'ngCookies',
     'ui.ace',
     'ngSanitize',
     'dndLists',

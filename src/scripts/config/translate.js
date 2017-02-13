@@ -1,7 +1,6 @@
 angular
   .module('editor')
   .config(function ($injector, $translateProvider) {
-
     const LANG_ES = $injector.get('LANG_ES');
     const LANG_EN = $injector.get('LANG_EN');
 

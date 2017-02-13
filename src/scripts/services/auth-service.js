@@ -2,71 +2,62 @@ angular
   .module('editor')
   .service('Auth', function($injector,
                             $state,
+                            $cookies,
+                            CONFIG,
                             $translate,
-                            auth,
                             store,
                             jwtHelper,
                             Permissions) {
 
-    const updatePermissions = (callback = () => {}) => {
+    let profile = null;
+
+    const updatePermissions = () => {
       $injector.get('Api')
         .getPermissions()
         .then((permissions) => Permissions.set(permissions))
-        .then(() => callback())
-    }
+    };
 
     this.isSuperUser = () => {
       return Permissions.isSuperUser();
-    }
-
-    this.profile = () => {
-      return store.get('profile');
-    }
-
-    this.token = () => {
-      return store.get('token');
-    }
+    };
 
     this.organizations = () => {
       return Permissions.organizations();
-    }
+    };
 
     this.signin = (callback) => {
-      const authConfig = {
-        dict: $translate.use(),
-        icon: '/images/icon.png',
-        authParams: { scope: 'openid email' }
-      }
-      auth.signin(authConfig, (profile, token) => {
-        store.set('profile', profile);
-        store.set('token', token);
-        updatePermissions(callback);
-      });
+      document.location.href = $injector.get('Api').getLoginUrl();
     };
 
     this.signout = () => {
-      auth.signout();
-      store.remove('token');
-      store.remove('profile');
-      $state.go('editor.login', {}, { reload: true });
+      $cookies.remove(CONFIG.cookie.session, { domain: CONFIG.cookie.session });
+      profile = null;
+      document.location.href = $injector.get('Api').getLogoutUrl();
     };
+
+    this.checkProfile = () => {
+      let encodedProfile = $cookies.get('mucookie_profile');
+      if (encodedProfile) {
+        profile = JSON.parse(atob(encodedProfile));
+      }
+    };
+
+    this.profile = () => profile;
 
     this.isLoggedIn = () => {
-      return auth.isAuthenticated;
-    };
-
-    this.isTokenExpired = () => {
-      return _.isEmpty(this.token()) || jwtHelper.isTokenExpired(this.token());
-    };
-
-    this.authenticate = () => {
-      auth.authenticate(this.profile(), this.token());
-    };
-
-    this.authenticateIfPossible = () => {
-      if(!this.isTokenExpired() && !this.isLoggedIn()) {
-        this.authenticate();
+      if (profile === null) {
+        this.checkProfile()
       }
-    }
+      return profile !== null;
+    };
+
+    // I think this method is obsolete now
+    this.authenticateIfPossible = () => {
+      if(this.isLoggedIn()) {
+        if(Permissions.isEmpty()) {
+          updatePermissions();
+        }
+      }
+    };
 
   });

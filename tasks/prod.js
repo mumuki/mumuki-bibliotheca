@@ -113,7 +113,7 @@ gulp.task('prod:serve', () => {
     .pipe($.webserver({
       open: true,
       port: 8080,
-      host: 'editor.localmumuki.io',
+      host: 'bibliotheca.localmumuki.io',
       livereload: true
     }));
 });

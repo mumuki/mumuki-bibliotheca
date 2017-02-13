@@ -11,7 +11,7 @@ angular
     const HTTP = Promise.resolve($http);
 
     const defaultConfig = (requestOptions = {}) => _.defaultsDeep(requestOptions, {
-      headers: { Authorization: `Bearer ${Auth.token()}` }
+      headers: { }
     })
 
     this.getItems = (type, Model) => () => {
@@ -73,4 +73,7 @@ angular
         .then((res) => res.data.permissions);
     };
 
+    this.origin = () => `?origin=${encodeURIComponent(document.location.href)}`;
+    this.getLoginUrl = () =>  `${API}/login${this.origin()}`;
+    this.getLogoutUrl = () =>  `${API}/logout${this.origin()}`;
   });
