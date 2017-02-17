@@ -70,7 +70,7 @@ angular
       return this.hasPermission('owner', slug);
     };
 
-    this.isSuperUser = () => {
+    this.isWriterInAnyOrganization = () => {
       return this.isWriter('*');
     };
 

@@ -12,7 +12,7 @@ angular
       },
       controller: ($scope) => {
 
-        $scope.isSuperUser = Auth.isSuperUser();
+        $scope.isWriterInAnyOrganization = Auth.isWriterInAnyOrganization();
         $scope.organizations = Auth.organizations();
 
         $scope.getOrganization = CurrentItem.getOrganization;

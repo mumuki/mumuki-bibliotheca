@@ -1,6 +1,6 @@
 div
   h3 {{ 'organization' | translate }}
-  ui-select(ng-model='selected.organization', ng-if='!isSuperUser')
+  ui-select(ng-model='selected.organization', ng-if='!isWriterInAnyOrganization')
     ui-select-match(placeholder='{{ "organization" | translate }}')
       span(ng-bind='getOrganization()')
     ui-select-choices(repeat='organization in organizations | orderBy')
@@ -10,7 +10,7 @@ div
         span(ng-bind='organization')
 
 
-  div.input-group(ng-if='isSuperUser')
+  div.input-group(ng-if='isWriterInAnyOrganization')
     span.input-group-addon
       i.fa.fa-university
     input.form-control(type='text', ng-change='setOrganization(organizationName)', ng-model='organizationName')
