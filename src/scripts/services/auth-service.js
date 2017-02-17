@@ -17,8 +17,8 @@ angular
         .then((permissions) => Permissions.set(permissions))
     };
 
-    this.isSuperUser = () => {
-      return Permissions.isSuperUser();
+    this.isWriterInAnyOrganization = () => {
+      return Permissions.isWriterInAnyOrganization();
     };
 
     this.organizations = () => {
