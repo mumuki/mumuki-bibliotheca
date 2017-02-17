@@ -71,7 +71,7 @@ angular
     };
 
     this.isSuperUser = () => {
-      return this.isOwner('*');
+      return this.isWriter('*');
     };
 
   });
