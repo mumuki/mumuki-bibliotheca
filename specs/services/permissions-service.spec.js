@@ -61,8 +61,13 @@ editorTest('Permissions Service', (mocks) => {
   context('#isSuperUser', () => {
 
     spec(() => {
+      Permissions.set({ writer: '*' });
+      Permissions.isSuperUser().should.be.eql(true);
+    });
+
+    spec(() => {
       Permissions.set({ editor: '*' });
-      Permissions.isSuperUser().should.be.eql(false);
+      Permissions.isSuperUser().should.be.eql(true);
     });
 
     spec(() => {
