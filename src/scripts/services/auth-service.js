@@ -17,8 +17,8 @@ angular
         .then((permissions) => Permissions.set(permissions))
     };
 
-    this.isSuperUser = () => {
-      return Permissions.isSuperUser();
+    this.isWriterInAnyOrganization = () => {
+      return Permissions.isWriterInAnyOrganization();
     };
 
     this.organizations = () => {
@@ -32,6 +32,7 @@ angular
     this.signout = () => {
       $cookies.remove(CONFIG.cookie.session, { domain: CONFIG.cookie.session });
       profile = null;
+      store.remove('permissions');
       document.location.href = $injector.get('Api').getLogoutUrl();
     };
 

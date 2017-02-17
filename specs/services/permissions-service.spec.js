@@ -58,36 +58,41 @@ editorTest('Permissions Service', (mocks) => {
     spec(() => Permissions.isOwner('foo').should.be.eql(true));
   });
 
-  context('#isSuperUser', () => {
+  context('#isWriterInAnyOrganization', () => {
+
+    spec(() => {
+      Permissions.set({ writer: '*' });
+      Permissions.isWriterInAnyOrganization().should.be.eql(true);
+    });
 
     spec(() => {
       Permissions.set({ editor: '*' });
-      Permissions.isSuperUser().should.be.eql(false);
+      Permissions.isWriterInAnyOrganization().should.be.eql(true);
     });
 
     spec(() => {
       Permissions.set({ owner: '' });
-      Permissions.isSuperUser().should.be.eql(false);
+      Permissions.isWriterInAnyOrganization().should.be.eql(false);
     });
 
     spec(() => {
       Permissions.set({ owner: 'foo/bar' });
-      Permissions.isSuperUser().should.be.eql(false);
+      Permissions.isWriterInAnyOrganization().should.be.eql(false);
     });
 
     spec(() => {
       Permissions.set({ owner: 'foo/*' });
-      Permissions.isSuperUser().should.be.eql(false);
+      Permissions.isWriterInAnyOrganization().should.be.eql(false);
     });
 
     spec(() => {
       Permissions.set({ owner: '*/*' });
-      Permissions.isSuperUser().should.be.eql(true);
+      Permissions.isWriterInAnyOrganization().should.be.eql(true);
     });
 
     spec(() => {
       Permissions.set({ owner: '*' });
-      Permissions.isSuperUser().should.be.eql(true);
+      Permissions.isWriterInAnyOrganization().should.be.eql(true);
     });
 
   });
