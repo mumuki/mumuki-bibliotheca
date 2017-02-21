@@ -13,4 +13,4 @@ angular
     'ui.select',
     'ui.bootstrap',
     'angularLazyImg',
-  ]);
+  ]).run(Organization => Organization.load());
