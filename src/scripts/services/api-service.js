@@ -14,6 +14,12 @@ angular
       headers: { }
     })
 
+    this.getOrganization = () => {
+      return HTTP
+        .call('get', `${API}/organization`, defaultConfig())
+        .then((res) => res.data)
+    }
+
     this.getItems = (type, Model) => () => {
       return HTTP
         .call('get',`${API}/${type}/writable`, defaultConfig())

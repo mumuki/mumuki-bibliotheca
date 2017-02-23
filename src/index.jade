@@ -24,6 +24,8 @@ html.no-js(lang='es')
     // endbuild
 
   body(ng-app='editor')
+    link(rel='stylesheet', ng-href='{{ customCssUrl }}')
+    script(ng-src='{{ customJsUrl | trusted }}', defer='')
 
     //if lt IE 10
       p.browserupgrade
