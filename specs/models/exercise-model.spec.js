@@ -63,6 +63,7 @@ editorTest('Exercise Model', () => {
   });
 
   context('#hasTest', () => {
+    spec(() => Exercise.from({}).hasTest().should.be.false);
     spec(() => Exercise.from({ test: '' }).hasTest().should.be.false);
     spec(() => Exercise.from({ test: 'foo' }).hasTest().should.be.true);
   });
