@@ -106,7 +106,7 @@ angular
       }
 
       hasTest() {
-        return !_.isEmpty(this.test.trim());
+        return !_.isEmpty(_.get(this, 'test', '').trim());
       }
 
       hasExpectations() {
