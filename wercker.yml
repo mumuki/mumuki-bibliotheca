@@ -11,7 +11,7 @@ build:
       code: bower install --allow-root
   - npm-test
 
-deploy:
+ikumi-deploy:
   escualo:
   - add-ssh-key:
       keyname: ESCUALO_RSA
