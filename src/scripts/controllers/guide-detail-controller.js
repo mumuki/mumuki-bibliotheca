@@ -4,11 +4,12 @@ angular
                                                  $filter,
                                                  $controller,
                                                  guide,
+                                                 CurrentItem,
                                                  GuideSaver) {
 
     $controller('DetailController', {
       $scope: $scope,
-      item: guide
+      item: CurrentItem.get()
     });
 
     $scope.addExercise = () => GuideSaver.addExercise($scope.item);

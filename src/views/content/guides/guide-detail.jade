@@ -12,7 +12,7 @@
     br
     ace-with-markdown(header='teacher_info', content='item.teacher_info', foldable='true')
     br
-    ace-editor(content='item.extra_code', mode='item.language', header='extra_code', foldable='true')
+    ace-editor(content='item.extra', mode='item.language', header='extra', foldable='true', placeholder='placeholder_extra_code')
     .detail-license
       div(ng-include='"views/content/guides/components/authors.html"')
       h3 {{ 'collaborators' | translate }}
