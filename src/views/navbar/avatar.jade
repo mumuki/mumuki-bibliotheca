@@ -4,7 +4,7 @@
 
   .dropdown(ng-if='auth.isLoggedIn()')
 
-    img.mu-profile-avatar.dropdown-toggle(ng-src='{{ auth.profile().picture }}', data-toggle='dropdown')
+    img.mu-profile-avatar.dropdown-toggle(ng-src='{{ auth.imageUrl() }}', data-toggle='dropdown')
 
     ul.dropdown-menu.dropdown-menu-right
       li
