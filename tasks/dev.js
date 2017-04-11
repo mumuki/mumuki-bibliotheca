@@ -38,7 +38,7 @@ gulp.task('dev:serve', () => {
       open: true,
       port: 9090,
       host: 'bibliotheca.localmumuki.io',
-      livereload: true
+      livereload: 35730
     }));
 });
 
