@@ -2,6 +2,7 @@ angular
   .module('editor')
   .directive('aceEditor', function ($sce,
                                     $filter,
+                                    $timeout,
                                     AceEditor,
                                     Foldable) {
 
@@ -29,7 +30,8 @@ angular
         }
 
         const update = () => {
-          AceEditor.update($scope.editor, $scope.placeholder);
+          const placeholderKey = $scope.placeholder || `placeholder_${$scope.header}`
+          AceEditor.update($scope.editor, translate(placeholderKey));
         }
 
         const getMode = () => {
@@ -37,7 +39,6 @@ angular
         }
 
         $scope.content = $scope.content || '';
-        $scope.placeholder = translate($scope.placeholder || `placeholder_${$scope.header}`);
 
         $scope.aceEditor = AceEditor.defaults({
           mode: getMode(),
@@ -51,6 +52,10 @@ angular
             }));
             update();
           }
+        });
+
+        $scope.$watch(() => $scope.isMinimized(), (isMinimized) => {
+          if (!isMinimized) $timeout(update);
         });
 
       }
