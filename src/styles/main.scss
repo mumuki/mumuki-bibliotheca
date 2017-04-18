@@ -21,6 +21,15 @@
 @import 'expectations';
 @import 'emojis';
 
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  height: 100%;
+}
+
 .mu-page {
   position: relative;
   min-height: 100%;

@@ -1,6 +1,7 @@
 @media (min-width: 768px){
   .mu-footer {
     @include display-flex(row, space-between, center);
+    margin-top: 22px;
   }
   section[ui-view='content'] {
     margin-bottom: 107px;
@@ -10,6 +11,7 @@
 @media (max-width: 767px){
   .mu-footer {
     @include display-flex(column, space-between, center);
+    margin-top: -63px;
   }
   .mu-footer-section {
     padding: 5px;
@@ -27,12 +29,22 @@ section[ui-view='footer'] {
 }
 
 .footer {
+
+  position: absolute;
+  height: 110px;
+  width: 100%;
+  bottom: 0;
+
   .mu-footer {
+
+    padding-top: 30px;
+    border-top: 1px solid $mu-color-separator;
+
     p {
       margin-bottom: 0;
       margin-left: 5px;
     }
-    margin-bottom: 22px;
+
     .social-icon {
       padding-top: 6px;
       font-size: 16px;
