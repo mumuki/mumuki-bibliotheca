@@ -1,10 +1,16 @@
 angular
   .module('editor')
-  .service('CurrentItem', function (Auth) {
+  .service('CurrentItem', function (Auth, Debounce) {
 
     let _item;
     let _organization;
     let _itemWithoutChanges;
+
+    const _hasChanges = (item) => {
+      const newItem = omitByDeep(item, _.isEmpty);
+      const oldItem = omitByDeep(_itemWithoutChanges, _.isEmpty);
+      return !_.isEqual(newItem, oldItem);
+    }
 
     this.set = (item) => {
       _item = item;
@@ -27,11 +33,10 @@ angular
       _organization = organization;
     };
 
-    this.hasChanges = (item) => {
-      const newItem = omitByDeep(item, _.isEmpty);
-      const oldItem = omitByDeep(_itemWithoutChanges, _.isEmpty);
-      return !_.isEqual(newItem, oldItem);
-    };
+    this.hasChanges = _.throttle(_hasChanges, 100, {
+      leading: true,
+      trailing: false
+    });
 
     const plainCloneDeep = (object) => JSON.parse(angular.toJson(object));
 
