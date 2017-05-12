@@ -79,7 +79,14 @@ angular
         .then((res) => res.data.permissions);
     };
 
+    this.testSolution = (guideId, exerciseId) => {
+      return HTTP
+        .call('get',`${API}/guides/${guideId}/exercises/${exerciseId}/test`, defaultConfig())
+        .then((res) => res.data)
+    };
+
     this.origin = () => `?origin=${encodeURIComponent(document.location.href)}`;
     this.getLoginUrl = () =>  `${API}/login${this.origin()}`;
     this.getLogoutUrl = () =>  `${API}/logout${this.origin()}`;
+
   });

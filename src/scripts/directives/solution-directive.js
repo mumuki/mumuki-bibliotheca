@@ -1,6 +1,6 @@
 angular
   .module('editor')
-  .directive('solution', function () {
+  .directive('solution', function (Api) {
 
     return {
 
@@ -11,8 +11,13 @@ angular
       },
       controller: ($scope) => {
 
-        $scope.submit = () => {
-          // TODO
+        $scope.solution = {}
+
+        $scope.submit = (exercise) => {
+          Api
+            .testSolution(exercise.guide().id, exercise.id)
+            .then((data) => $scope.solution = data)
+            .then(() => $scope.$apply())
         }
 
       }
