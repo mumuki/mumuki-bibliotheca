@@ -90,6 +90,7 @@ angular
     playground: 'Playground',
     practice: 'Practice',
     problem: 'Problem',
+    reading: 'Reading',
     remove: 'Remove',
     save: 'Save',
     search: 'Search',
