@@ -28,9 +28,9 @@
       .exercise-detail-area-text
         ace-with-markdown(header='description' content='exercise.description')
         br
-        ace-with-markdown(header='hint' content='exercise.hint', foldable='true')
+        ace-with-markdown(header='hint' content='exercise.hint', foldable='true', ng-if='needsHint')
       .exercise-detail-area-editor
         ace-evaluation(exercise='exercise')
 
     br
-    ace-with-markdown(header='corollary', content='exercise.corollary', foldable='true')
+    ace-with-markdown(header='corollary', content='exercise.corollary', foldable='true', ng-if='needsCorollary')
