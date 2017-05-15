@@ -14,6 +14,8 @@ angular
         needsSolution: (exercise) => exercise.getEditor().needsSolution(exercise),
         needsExpectations: (exercise) => exercise.getEditor().needsExpectations(exercise),
         needsDefaultContent: (exercise) => exercise.getEditor().needsDefaultContent(exercise),
+        needsHint: (exercise) => true,
+        needsCorollary: (exercise) => true,
       },
       playground: {
         name: 'playground',
@@ -26,7 +28,23 @@ angular
         needsSolution: (exercise) => false,
         needsExpectations: (exercise) => false,
         needsDefaultContent: (exercise) => false,
+        needsHint: (exercise) => true,
+        needsCorollary: (exercise) => false,
       },
+      reading: {
+        name: 'reading',
+        icon: () => 'fa fa-align-justify',
+        isProblem: () => false,
+        validate: (exercise) => {},
+        needsExtra: (exercise) => false,
+        needsTests: (exercise) => false,
+        needsChoices: (exercise) => false,
+        needsSolution: (exercise) => false,
+        needsExpectations: (exercise) => false,
+        needsDefaultContent: (exercise) => false,
+        needsHint: (exercise) => false,
+        needsCorollary: (exercise) => false,
+      }
     }
 
     this.get = () => {
