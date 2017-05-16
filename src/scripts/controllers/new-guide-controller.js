@@ -6,7 +6,7 @@ angular
                                               guide,
                                               GuideSaver,
                                               CurrentItem) {
-    console.log("alalal");
+
     CurrentItem.set(guide);
 
     $controller('GuideDetailController', {
