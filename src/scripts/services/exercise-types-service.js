@@ -33,7 +33,7 @@ angular
       },
       reading: {
         name: 'reading',
-        icon: () => 'fa fa-align-justify',
+        icon: () => 'fa fa-align-left',
         isProblem: () => false,
         validate: (exercise) => {},
         needsExtra: (exercise) => false,

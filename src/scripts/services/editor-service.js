@@ -97,11 +97,11 @@ angular
       upload: {
         name: 'upload',
         icon: () => 'fa fa-upload',
-        needsExtra: (exercise) => false,
-        needsTests: (exercise) => false,
+        needsExtra: (exercise) => true,
+        needsTests: (exercise) => true,
         needsChoices: (exercise) => false,
-        needsSolution: (exercise) => false,
-        needsExpectations: (exercise) => false,
+        needsSolution: (exercise) => true,
+        needsExpectations: (exercise) => true,
         needsDefaultContent: (exercise) => false,
         validate: (exercise) => {}
       },
