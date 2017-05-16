@@ -119,6 +119,7 @@ angular
     topics: 'Topics',
     transitive: 'Transitive',
     type: 'Type',
+    upload: 'Upload file',
     verb: 'Verb',
     yes: 'Yes',
 
