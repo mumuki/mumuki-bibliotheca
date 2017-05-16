@@ -94,6 +94,17 @@ angular
           }
         }
       },
+      upload: {
+        name: 'upload',
+        icon: () => 'fa fa-upload',
+        needsExtra: (exercise) => false,
+        needsTests: (exercise) => false,
+        needsChoices: (exercise) => false,
+        needsSolution: (exercise) => false,
+        needsExpectations: (exercise) => false,
+        needsDefaultContent: (exercise) => false,
+        validate: (exercise) => {}
+      },
       none: {
         isDisabled: true,
         isInvisible: true,
