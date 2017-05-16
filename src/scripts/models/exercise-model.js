@@ -93,6 +93,14 @@ angular
         return this.getType().needsSolution(this);
       }
 
+      needsHint() {
+        return this.getType().needsHint(this);
+      }
+
+      needsCorollary() {
+        return this.getType().needsCorollary(this);
+      }
+
       validate() {
         Validator.notEmptyString(this, 'name');
         Validator.notEmptyString(this, 'type');
