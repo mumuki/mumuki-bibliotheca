@@ -19,3 +19,28 @@ $filter-height: 40px;
     height: $filter-height;
   }
 }
+
+.mu-list-group {
+  @include display-flex(column, flex-start, center);
+
+  .mu-list-group-item {
+
+    padding: 5px 15px;
+
+    @include display-flex(row, flex-start, center);
+
+    .divider-vertical {
+      padding: 25px 0;
+    }
+
+    .mu-list-group-item-data {
+      @include display-flex(column, flex-start, flex-start);
+
+      small {
+        font-size: 75%;
+        color: $mu-color-disabled;
+      }
+    }
+
+  }
+}
