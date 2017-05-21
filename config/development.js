@@ -3,11 +3,11 @@ angular
   .constant('CONFIG', {
 
     bibliotheca: {
-      url: 'http://bibliotheca.localmumuki.io:9292'
+      url: 'http://localhost:3004'
     },
 
     cookie: {
-      domain: '.localmumuki.io',
+      domain: 'localhost',
       session: '_mumuki_bibliotheca_session'
     }
   });
