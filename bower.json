@@ -1,6 +1,6 @@
 {
-  "name": "mumuki-editor",
-  "description": "Mumuki Editor",
+  "name": "mumuki-bibliotheca",
+  "description": "Mumuki Bibliotheca",
   "main": [
     "src/bower_components/ace-builds/src-min-noconflict/ace.js",
     "src/bower_components/ace-builds/src-min-noconflict/mode-*.js"
