@@ -10,8 +10,8 @@ echo ' |______  /__||___  /____/__|\____/|__| |___|  /\___  >\___  >____  /'
 echo '        \/        \/                         \/     \/     \/     \/ '
 echo ''
 
-echo "[MumukiDevstart::Classroom] Installing dependencies...."
+echo "[MumukiDevstart::Bibliotheca] Installing dependencies...."
 npm install
 
-echo "[MumukiDevstart::Classroom] Starting server...."
+echo "[MumukiDevstart::Bibliotheca] Starting server...."
 npm start
