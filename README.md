@@ -1,25 +1,39 @@
 [![Build Status](https://travis-ci.org/mumuki/mumuki-bibliotheca.svg?branch=master)](https://travis-ci.org/mumuki/mumuki-bibliotheca)
+[![Code Climate](https://codeclimate.com/github/mumuki/mumuki-bibliotheca/badges/gpa.svg)](https://codeclimate.com/github/mumuki/mumuki-bibliotheca)
+[![Test Coverage](https://codeclimate.com/github/mumuki/mumuki-bibliotheca/badges/coverage.svg)](https://codeclimate.com/github/mumuki/mumuki-bibliotheca)
+[![Issue Count](https://codeclimate.com/github/mumuki/mumuki-bibliotheca/badges/issue_count.svg)](https://codeclimate.com/github/mumuki/mumuki-bibliotheca)
 
 # Mumuki Bibliotheca
 > Storage and formatting web client for Mumuki content
 
-# Getting Started
+## Preparing environment
 
-```
-npm install
-npm start
-```
+1. Install [Vagrant](https://www.vagrantup.com/downloads.html) and [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
+2. Run `curl https://raw.githubusercontent.com/mumuki/mumuki-devinstaller/master/install.sh | bash`
+3. `cd mumuki && vagrant ssh` and then - **inside Vagrant VM** - `cd /vagrant/bibliotheca`
+4. Go to [Installing and Running](#installing-and-running)
 
-# Build for production
+
+## Installing and Running
+
+### Quick start
+
+If you want to start the client quickly in developer environment,
+you can just do the following:
 
 ```bash
-export NODE_ENV=production
-# Environment variables needed:
-# - MUMUKI_AUTH0_DOMAIN
-# - MUMUKI_AUTH0_CLIENT_ID
-# - MUMUKI_ATHENEUM_URL
-# - MUMUKI_BIBLIOTHECA_API_URL
-npm build
+./devstart
+```
+
+This will install your dependencies and boot the client.
+
+### Manual start
+
+Just install and start the client using `npm`:
+
+```bash
+npm install
+npm start
 ```
 
 # See also
