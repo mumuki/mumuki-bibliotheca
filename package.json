@@ -1,7 +1,7 @@
 {
-  "name": "mumuki-editor",
+  "name": "mumuki-bibliotheca",
   "version": "0.0.1",
-  "description": "Mumuki Editor",
+  "description": "Mumuki Bibliotheca",
   "main": "index.js",
   "scripts": {
     "test": "node_modules/.bin/gulp test",
