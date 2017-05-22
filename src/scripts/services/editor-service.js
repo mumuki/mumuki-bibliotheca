@@ -1,6 +1,7 @@
 angular
   .module('editor')
   .service('Editor', function($filter,
+                              Layouts,
                               Validator) {
 
     const translate = $filter('translate');
@@ -19,6 +20,8 @@ angular
         needsSolution: (exercise) => true,
         needsExpectations: (exercise) => true,
         needsDefaultContent: (exercise) => true,
+        canChangeLayout: (exercise) => true,
+        initalLayout: (exercise) => exercise.layout,
         validate: (exercise) => {
           Validator.notIncompleteExpectations(exercise);
           if (!exercise.hasTest() && !exercise.hasExpectations()) {
@@ -35,6 +38,8 @@ angular
         needsSolution: (exercise) => false,
         needsExpectations: (exercise) => false,
         needsDefaultContent: (exercise) => false,
+        canChangeLayout: (exercise) => true,
+        initalLayout: (exercise) => exercise.layout,
         validate: (exercise) => {
           Validator.notEmptyChoices(exercise);
           Validator.notIncompleteChoices(exercise);
@@ -52,6 +57,8 @@ angular
         needsSolution: (exercise) => false,
         needsExpectations: (exercise) => !exercise.isTextLanguage(),
         needsDefaultContent: (exercise) => !exercise.isTextLanguage(),
+        canChangeLayout: (exercise) => true,
+        initalLayout: (exercise) => exercise.layout,
         validate: (exercise) => {
           Validator.notEmptyChoices(exercise);
           Validator.notIncompleteChoices(exercise);
@@ -78,6 +85,8 @@ angular
         needsSolution: (exercise) => false,
         needsExpectations: (exercise) => false,
         needsDefaultContent: (exercise) => false,
+        canChangeLayout: (exercise) => false,
+        initalLayout: (exercise) => Layout.input_bottom.type(),
         validate: (exercise) => {
           if (!exercise.hasTest()) {
             throwError('error_editor_hidden_validation', { fullName: exercise.fullName() });
@@ -93,6 +102,8 @@ angular
         needsSolution: (exercise) => true,
         needsExpectations: (exercise) => true,
         needsDefaultContent: (exercise) => false,
+        canChangeLayout: (exercise) => true,
+        initalLayout: (exercise) => exercise.layout,
         validate: (exercise) => {
           Validator.notIncompleteExpectations(exercise);
           if (!exercise.hasTest() && !exercise.hasExpectations()) {
@@ -109,12 +120,16 @@ angular
         needsSolution: (exercise) => true,
         needsExpectations: (exercise) => true,
         needsDefaultContent: (exercise) => false,
+        canChangeLayout: (exercise) => false,
+        initalLayout: (exercise) => Layout.input_bottom.type(),
         validate: (exercise) => {}
       },
       none: {
         isDisabled: true,
         isInvisible: true,
         icon: () => 'fa fa-ban',
+        canChangeLayout: (exercise) => false,
+        initalLayout: (exercise) => Layout.input_bottom.type(),
       },
     }
 

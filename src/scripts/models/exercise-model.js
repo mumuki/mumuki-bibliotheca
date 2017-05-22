@@ -66,7 +66,9 @@ angular
       }
 
       toggleLayout() {
-        this.layout = this.getLayout().next().type();
+        if (this.getEditor().canChangeLayout()) {
+          this.layout = this.getLayout().next().type();
+        }
       }
 
       needsTests() {
