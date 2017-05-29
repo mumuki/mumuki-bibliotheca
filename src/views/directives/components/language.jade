@@ -2,6 +2,7 @@ div.dropdown
   i.pointer.language(
       title='{{ "language" | translate }}'
       class='{{ item.icon() }}',
+      ng-class='{ "mu-disabled": !item.canChangeLanguage() }'
       id='ddLanguage',
       data-toggle='dropdown',
       aria-expanded='true')

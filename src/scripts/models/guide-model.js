@@ -26,6 +26,10 @@ angular
         return {org, repo};
       }
 
+      canChangeLanguage() {
+        return true;
+      }
+
       addExercise() {
         const maxExercise = _.maxBy(this.exercises, 'id') || {id: 0};
         const exercise = Exercise.from({id: maxExercise.id + 1});

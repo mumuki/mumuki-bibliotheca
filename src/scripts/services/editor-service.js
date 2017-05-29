@@ -22,6 +22,8 @@ angular
         needsDefaultContent: (exercise) => true,
         canChangeLayout: (exercise) => true,
         initalLayout: (exercise) => exercise.layout,
+        canChangeLanguage: (exercise) => true,
+        initialLanguage: (exercise) => exercise.language,
         validate: (exercise) => {
           Validator.notIncompleteExpectations(exercise);
           if (!exercise.hasTest() && !exercise.hasExpectations()) {
@@ -40,6 +42,8 @@ angular
         needsDefaultContent: (exercise) => false,
         canChangeLayout: (exercise) => true,
         initalLayout: (exercise) => exercise.layout,
+        canChangeLanguage: (exercise) => false,
+        initialLanguage: (exercise) => 'text',
         validate: (exercise) => {
           Validator.notEmptyChoices(exercise);
           Validator.notIncompleteChoices(exercise);
@@ -59,6 +63,8 @@ angular
         needsDefaultContent: (exercise) => !exercise.isTextLanguage(),
         canChangeLayout: (exercise) => true,
         initalLayout: (exercise) => exercise.layout,
+        canChangeLanguage: (exercise) => true,
+        initialLanguage: (exercise) => exercise.language,
         validate: (exercise) => {
           Validator.notEmptyChoices(exercise);
           Validator.notIncompleteChoices(exercise);
@@ -86,7 +92,9 @@ angular
         needsExpectations: (exercise) => false,
         needsDefaultContent: (exercise) => false,
         canChangeLayout: (exercise) => false,
-        initalLayout: (exercise) => Layout.input_bottom.type(),
+        initalLayout: (exercise) => Layouts.input_bottom.type(),
+        canChangeLanguage: (exercise) => true,
+        initialLanguage: (exercise) => exercise.language,
         validate: (exercise) => {
           if (!exercise.hasTest()) {
             throwError('error_editor_hidden_validation', { fullName: exercise.fullName() });
@@ -104,6 +112,8 @@ angular
         needsDefaultContent: (exercise) => false,
         canChangeLayout: (exercise) => true,
         initalLayout: (exercise) => exercise.layout,
+        canChangeLanguage: (exercise) => true,
+        initialLanguage: (exercise) => exercise.language,
         validate: (exercise) => {
           Validator.notIncompleteExpectations(exercise);
           if (!exercise.hasTest() && !exercise.hasExpectations()) {
@@ -121,7 +131,9 @@ angular
         needsExpectations: (exercise) => true,
         needsDefaultContent: (exercise) => false,
         canChangeLayout: (exercise) => false,
-        initalLayout: (exercise) => Layout.input_bottom.type(),
+        initalLayout: (exercise) => Layouts.input_bottom.type(),
+        canChangeLanguage: (exercise) => true,
+        initialLanguage: (exercise) => exercise.language,
         validate: (exercise) => {}
       },
       none: {
@@ -129,7 +141,9 @@ angular
         isInvisible: true,
         icon: () => 'fa fa-ban',
         canChangeLayout: (exercise) => false,
-        initalLayout: (exercise) => Layout.input_bottom.type(),
+        initalLayout: (exercise) => Layouts.input_bottom.type(),
+        canChangeLanguage: (exercise) => true,
+        initialLanguage: (exercise) => exercise.language
       },
     }
 

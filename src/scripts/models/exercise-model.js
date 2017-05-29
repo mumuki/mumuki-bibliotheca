@@ -25,6 +25,10 @@ angular
         return `${this.number()}. ${this.name}`;
       }
 
+      canChangeLanguage() {
+        return this.getEditor().canChangeLanguage(this);
+      }
+
       getLanguage() {
         return this.language || this.guide().language;
       }
@@ -48,6 +52,7 @@ angular
         if (!this.getType().isProblem()) {
           delete this.editor;
         }
+        this.layout = this.getEditor().initalLayout(this);
       }
 
       setLanguage(language) {
@@ -59,6 +64,8 @@ angular
 
       setEditor(editor) {
         this.editor = editor;
+        this.layout = this.getEditor().initalLayout(this);
+        this.setLanguage(this.getEditor().initialLanguage(this));
       }
 
       number() {
