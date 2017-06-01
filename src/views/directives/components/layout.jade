@@ -2,4 +2,5 @@ small.text-primary
   i.pointer.layout.fa-fw(
       title='{{ "layout" | translate }}',
       ng-click='exercise.toggleLayout()',
+      ng-class='{ "mu-disabled": !exercise.canChangeLayout()}',
       class='{{ exercise.getLayout().icon() }}')

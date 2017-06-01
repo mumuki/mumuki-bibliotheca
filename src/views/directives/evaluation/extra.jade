@@ -1,5 +1,5 @@
 ace-editor(content='exercise.extra', mode='exercise.getLanguage()', placeholder='placeholder_extra_code')
-div.checkbox.complementary.complementary-checkbox
+div.checkbox.complementary.complementary-checkbox(ng-if='exercise.canChangeLayout()')
   input(type='checkbox', id='input-extra-visible', ng-model='exercise.extra_visible')
   label(for='input-extra-visible')
     input.border-white(type='text', value='{{ "extra_visible" | translate }}', readonly)
