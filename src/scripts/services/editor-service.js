@@ -60,8 +60,8 @@ angular
           }
           if (!exercise.isTextLanguage()) {
             Validator.notIncompleteExpectations(exercise);
-            if (exercise.hasMoreThanOneChoiceSelected()) {
-              throwError('error_editor_single_choice_validation_at_most_one', { fullName: exercise.fullName() });
+            if (exercise.hasAnyChoiceSelected()) {
+              throwError('error_editor_single_choice_validation_no_selected', { fullName: exercise.fullName() });
             }
             if (!exercise.hasTest() && !exercise.hasExpectations()) {
               throwError('error_editor_code_validation', { fullName: exercise.fullName() });

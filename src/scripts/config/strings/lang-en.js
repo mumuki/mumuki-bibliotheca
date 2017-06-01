@@ -29,7 +29,7 @@ angular
     error_editor_code_validation: '{{fullName}}: Should have at least one test or expectation',
     error_editor_hidden_validation: '{{fullName}}: Should have at least one test',
     error_editor_multiple_choice_validation: '{{fullName}}: Should have at least one choice selected',
-    error_editor_single_choice_validation_at_most_one: '{{fullName}}: Should have at most one choice selected',
+    error_editor_single_choice_validation_no_selected: '{{fullName}}: Should not have choices selected',
     error_editor_single_choice_validation_only_one: '{{fullName}}: Shoud have only one choice selected',
     error_expectations_incomplete_validation: '{{fullName}}: Has incomplete expectations',
     error_mandatory_field: '{{ fullName }}: Field {{ field }} is mandatory',

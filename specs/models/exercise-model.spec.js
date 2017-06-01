@@ -40,21 +40,85 @@ editorTest('Exercise Model', () => {
   });
 
   context('#validation', () => {
-    beforeSpec((_Editor_) => sinon.stub(_Editor_, 'default', () => ({ validate: () => {} })));
-    beforeSpec(() => exercise = Exercise.from({
-      name: 'example',
-      type: 'problem',
-      layout: 'input_right',
-      description: 'description',
-    }));
+    context('#default', () => {
+      beforeSpec((_Editor_) => sinon.stub(_Editor_, 'default', () => ({ validate: () => {} })));
+      beforeSpec(() => exercise = Exercise.from({
+        name: 'example',
+        type: 'problem',
+        layout: 'input_right',
+        description: 'description',
+      }));
 
-    spec(() => expect(() => exercise.validate()).to.not.throw());
-    spec(() => expect(() => _.omit(exercise, 'name').validate()).to.throw());
-    spec(() => expect(() => _.omit(exercise, 'type').validate()).to.throw());
-    spec(() => expect(() => _.omit(exercise, 'layout').validate()).to.throw());
-    spec(() => expect(() => _.omit(exercise, 'description').validate()).to.throw());
+      spec(() => expect(() => exercise.validate()).to.not.throw());
+      spec(() => expect(() => _.omit(exercise, 'name').validate()).to.throw());
+      spec(() => expect(() => _.omit(exercise, 'type').validate()).to.throw());
+      spec(() => expect(() => _.omit(exercise, 'layout').validate()).to.throw());
+      spec(() => expect(() => _.omit(exercise, 'description').validate()).to.throw());
 
-    afterSpec((_Editor_) => _Editor_.default.restore());
+      afterSpec((_Editor_) => _Editor_.default.restore());
+    });
+    context('#single_choice', () => {
+      beforeSpec(() => exercise.editor = 'single_choice');
+
+      spec(() => {
+        exercise.choices = [];
+        expect(() => exercise.validate()).to.throw('Should have at least two choices');
+      });
+      spec(() => {
+        exercise.choices = [{value: 'foo'}];
+        expect(() => exercise.validate()).to.throw('Should have at least two choices');
+      });
+      spec(() => {
+        exercise.choices = [{value: 'foo'}, {value: ''}];
+        expect(() => exercise.validate()).to.throw('Has incomplete choices');
+      });
+      spec(() => {
+        exercise.setLanguage('text');
+        exercise.choices = [{value: 'foo'}, {value: 'bar'}];
+        expect(() => exercise.validate()).to.throw('Shoud have only one choice selected');
+      });
+      spec(() => {
+        exercise.setLanguage('text');
+        exercise.choices = [{value: 'foo', checked: true}, {value: 'bar', checked: true}];
+        expect(() => exercise.validate()).to.throw('Shoud have only one choice selected');
+      });
+      spec(() => {
+        exercise.setLanguage('text');
+        exercise.test = 'it "one is one" $ do 1 `shouldBe 1`';
+        exercise.choices = [{value: 'foo'}, {value: 'bar', checked: true}];
+        expect(() => exercise.validate()).to.not.throw();
+      });
+      spec(() => {
+        exercise.setLanguage('text');
+        exercise.choices = [{value: 'foo'}, {value: 'bar', checked: true}];
+        expect(() => exercise.validate()).to.not.throw();
+      });
+      spec(() => {
+        exercise.setLanguage('haskell');
+        exercise.choices = [{value: 'foo'}, {value: 'bar', checked: true}];
+        expect(() => exercise.validate()).to.throw('Should not have choices selected');
+      });
+      spec(() => {
+        exercise.setLanguage('haskell');
+        exercise.test = '';
+        exercise.expectations = [];
+        exercise.choices = [{value: 'foo'}, {value: 'bar'}];
+        expect(() => exercise.validate()).to.throw('Should have at least one test or expectation');
+      });
+      spec(() => {
+        exercise.setLanguage('haskell');
+        exercise.choices = [{value: 'foo'}, {value: 'bar'}];
+        exercise.test = 'it "one is one" $ do 1 `shouldBe 1`';
+        expect(() => exercise.validate()).to.not.throw();
+      });
+      spec(() => {
+        exercise.setLanguage('haskell');
+        exercise.choices = [{value: 'foo'}, {value: 'bar'}];
+        exercise.expectations = [{binding: 'foo', inspection: 'HasUsage:bar'}];
+        expect(() => exercise.validate()).to.not.throw();
+      });
+
+    });
   });
 
   context('#isTextlanguage', () => {
