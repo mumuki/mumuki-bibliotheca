@@ -56,10 +56,16 @@ angular
           Validator.notEmptyChoices(exercise);
           Validator.notIncompleteChoices(exercise);
           if (exercise.isTextLanguage() && !exercise.hasOneChoiceSelected()) {
-            throwError('error_editor_single_choice_validation', { fullName: exercise.fullName() });
+            throwError('error_editor_single_choice_validation_only_one', { fullName: exercise.fullName() });
           }
-          if (!exercise.isTextLanguage() && exercise.hasMoreThanOneChoiceSelected()) {
-            throwError('error_editor_single_choice_validation2', { fullName: exercise.fullName() });
+          if (!exercise.isTextLanguage()) {
+            Validator.notIncompleteExpectations(exercise);
+            if (exercise.hasAnyChoiceSelected()) {
+              throwError('error_editor_single_choice_validation_no_selected', { fullName: exercise.fullName() });
+            }
+            if (!exercise.hasTest() && !exercise.hasExpectations()) {
+              throwError('error_editor_code_validation', { fullName: exercise.fullName() });
+            }
           }
         }
       },
