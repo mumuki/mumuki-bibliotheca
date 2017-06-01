@@ -140,7 +140,7 @@ angular
         isDisabled: true,
         isInvisible: true,
         icon: () => 'fa fa-ban',
-        canChangeLayout: (exercise) => false,
+        canChangeLayout: (exercise) => exercise.getType().isPlayground(),
         initalLayout: (exercise) => Layouts.input_bottom.type(),
         canChangeLanguage: (exercise) => true,
         initialLanguage: (exercise) => exercise.language
