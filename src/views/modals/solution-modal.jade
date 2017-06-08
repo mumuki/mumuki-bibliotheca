@@ -1,0 +1,34 @@
+.modal-content
+  .modal-header
+    p.modal-title.text-center.title-font {{ 'solution' | translate }}
+  .modal-body
+    .container-fluid
+      .row
+        .col-md-12
+
+          .bs-callout(ng-class='"bs-callout-" + colorClass(solution)', ng-if='solution.test_results.length')
+            h4 {{ 'test' | translate }}
+            p
+              .row(ng-repeat='result in solution.test_results')
+                .col-sm-11
+                  span {{ result.title || 'Example ' + ($index + 1) }}
+                  div(ng-if="result.status != 'passed'")
+                    div(ng-if="containsHtml(result.result)", ng-bind-html='trust(result.result)')
+                    pre(ng-if="!containsHtml(result.result)") {{ result.result }}
+                .col-sm-1
+                  status-icon(status='result.status')
+
+          .bs-callout(ng-class='"bs-callout-" + colorClass(solution)', ng-if='solution.result')
+            h4 {{ 'results' | translate }}
+            p
+              div(ng-bind-html='trust(solution.result)')
+
+          .bs-callout(ng-class='"bs-callout-" + colorClass(solution)', ng-if='solution.expectation_results.length')
+            h4 {{ 'expectations' | translate }}
+            p
+              .row(ng-repeat='expectationResult in solution.expectation_results')
+                .col-sm-11
+                  div(ng-bind-html="trust(expectationResult.html)")
+                .col-sm-1
+                  status-icon(status='expectationResult.result')
+

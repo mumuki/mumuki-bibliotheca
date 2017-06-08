@@ -3,10 +3,3 @@ ace-editor(content='exercise.solution', mode='exercise.getLanguage()', placehold
 button.btn.btn-success.btn-block.btn-submit(ng-click='submit(exercise)')
   i.fa.fa-fw.fa-play
   span {{ 'submit' | translate }}
-
-ul.list-group
-  li.list-group-item(
-      ng-repeat='result in solution.test_results'
-      style="display: flex; justify-content: space-between")
-    span {{result.title}}
-    span {{result.status}}

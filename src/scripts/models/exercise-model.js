@@ -33,6 +33,10 @@ angular
         return this.getEditor().canChangeLayout(this);
       }
 
+      getExtraCode() {
+        return `\n${this.guide().extra}\n${this.extra}\n`;
+      }
+
       getLanguage() {
         return this.language || this.guide().language;
       }

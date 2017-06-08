@@ -79,9 +79,9 @@ angular
         .then((res) => res.data.permissions);
     };
 
-    this.testSolution = (guideId, exerciseId) => {
+    this.testSolution = (guideId, exerciseId, language, solution) => {
       return HTTP
-        .call('get',`${API}/guides/${guideId}/exercises/${exerciseId}/test`, defaultConfig())
+        .call('post',`${API}/guides/${guideId}/exercises/${exerciseId}/test`, {language, solution}, defaultConfig())
         .then((res) => res.data)
     };
 
