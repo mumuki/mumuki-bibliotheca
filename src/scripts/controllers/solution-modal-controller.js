@@ -18,4 +18,8 @@ angular
       }
     }
 
+    $scope.visibleExpectations = () => _.reject(solution.expectation_results, {result: 'passed'});
+
+    $scope.toggleIn = (index) => angular.element(`#example-result-${index}`).toggleClass('in');
+
   });

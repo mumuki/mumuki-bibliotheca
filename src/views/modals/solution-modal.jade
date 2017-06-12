@@ -6,29 +6,102 @@
       .row
         .col-md-12
 
-          .bs-callout(ng-class='"bs-callout-" + colorClass(solution)', ng-if='solution.test_results.length')
-            h4 {{ 'test' | translate }}
-            p
-              .row(ng-repeat='result in solution.test_results')
-                .col-sm-11
-                  span {{ result.title || 'Example ' + ($index + 1) }}
-                  div(ng-if="result.status != 'passed'")
-                    div(ng-if="containsHtml(result.result)", ng-bind-html='trust(result.result)')
-                    pre(ng-if="!containsHtml(result.result)") {{ result.result }}
-                .col-sm-1
-                  status-icon(status='result.status')
+          <div class="bs-callout bs-callout-{{colorClass(solution)}}">
+            <h4>
+              <strong>
+                <status-icon status="solution.status"></status-icon>
+                <span>{{ solution.status | translate }}</span>
+              </strong>
+            </h4>
 
-          .bs-callout(ng-class='"bs-callout-" + colorClass(solution)', ng-if='solution.result')
-            h4 {{ 'results' | translate }}
-            p
-              div(ng-bind-html='trust(solution.result)')
+            <div ng-if="true">
 
-          .bs-callout(ng-class='"bs-callout-" + colorClass(solution)', ng-if='solution.expectation_results.length')
-            h4 {{ 'expectations' | translate }}
-            p
-              .row(ng-repeat='expectationResult in solution.expectation_results')
-                .col-sm-11
-                  div(ng-bind-html="trust(expectationResult.html)")
-                .col-sm-1
-                  status-icon(status='expectationResult.result')
+              <div class="results-item" ng-if="visibleExpectations().length">
+                <strong>{{ 'unmeet_expectations' | translate }}:</strong>
+                <ul class="results-list">
+                  <li ng-repeat="it in visibleExpectations()">
+                    <status-icon status="it.result"></status-icon>
+                    <span ng-bind-html="trust(it.title)"></span>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="results-item", ng-if="solution.feedback.length">
+                <strong>{{ 'feedback' | translate }}:</strong>
+
+                <div>
+                  <span>{{ solution.feedback }}</span>
+                </div>
+                <a data-toggle="collapse" href="#results-section" class="text-danger">
+                  <i class="fa fa-question-circle"></i>
+                  <span>{{ 'details' | translate }}</span>
+                </a>
+              </div>
+
+              <div id="results-section" class="results-item" ng-if="solution.status !== 'passed'">
+                <strong>{{ 'test_results' | translate }}</strong>
+
+                <ul class="results-list">
+                  <li ng-repeat="test_result in solution.test_results">
+
+                    <span class="text-danger" ng-if="test_result.status === 'failed'">
+                      <status-icon status="test_result.status"></status-icon>
+                      <strong class="example-title">{{ test_result.title }}</strong>
+                        <a ng-if="!solution.visible_success_output" ng-click="toggleIn($index)" class="example-see-more" href="">
+                          span {{ 'details' | translate }}
+                        </a>
+                    </span>
+
+                    <span class="text-success example-title" ng-if="test_result.status !== 'failed'">
+                      <status-icon status="test_result.status"></status-icon>
+                      <span>{{ test_result.title }}</span>
+                    </span>
+
+
+                    <div class="example-result collapse" id="example-result-{{$index}}" ng-class="{ 'in': solution.visible_success_output }">
+                      <span ng-bind-html="trust(test_result.result)"></span>
+                    </div>
+                  </li>
+                </ul>
+
+                <ul class="results-list">
+                  <span ng-bind-html="trust(solution.result)"></span>
+                </ul>
+
+              </div>
+            </div>
+
+
+            <div ng-if="solution.status === 'passed'">
+              <h4>{{ 'exercise_done' | translate }}</h4>
+            </div>
+
+          </div>
+
+
+          //- .bs-callout(class='bs-callout-{{ colorClass(solution) }}', ng-if='solution.test_results.length')
+          //-   h4 {{ 'test' | translate }}
+          //-   p
+          //-     .row(ng-repeat='result in solution.test_results')
+          //-       .col-sm-11
+          //-         span {{ result.title || 'Example ' + ($index + 1) }}
+          //-         div(ng-if="result.status != 'passed'")
+          //-           div(ng-if="containsHtml(result.result)", ng-bind-html='trust(result.result)')
+          //-           pre(ng-if="!containsHtml(result.result)") {{ result.result }}
+          //-       .col-sm-1
+          //-         status-icon(status='result.status')
+
+          //- .bs-callout(ng-class='bs-callout-{{colorClass(solution)}}', ng-if='solution.result')
+          //-   h4 {{ 'results' | translate }}
+          //-   p
+          //-     div(ng-bind-html='trust(solution.result)')
+
+          //- .bs-callout(ng-class='bs-callout-{{colorClass(solution)}}', ng-if='solution.expectation_results.length')
+          //-   h4 {{ 'expectations' | translate }}
+          //-   p
+          //-     .row(ng-repeat='expectationResult in solution.expectation_results')
+          //-       .col-sm-11
+          //-         div(ng-bind-html="trust(expectationResult.html)")
+          //-       .col-sm-1
+          //-         status-icon(status='expectationResult.result')
 

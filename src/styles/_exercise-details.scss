@@ -193,3 +193,37 @@ $scroll-height: 1px;
     right: -22px;
   }
 }
+
+.submission-results {
+  margin-top: 15px;
+
+  .panel-heading {
+    padding-top: 6px;
+    padding-bottom: 6px;
+  }
+}
+
+.results-item {
+  margin-top: 10px;
+}
+
+ul.results-list {
+  list-style-type: none;
+  padding-left: 10px;
+}
+
+.results-list pre {
+  margin-left: 15px;
+}
+
+.example-see-more {
+  font-size: $font-size * 0.65;
+  background: lighten($brand-complementary, 10%);
+  border-radius: 6px;
+  padding: 2px 5px;
+  color: white;
+
+  &:hover, &:focus {
+    color: white;
+  }
+}
