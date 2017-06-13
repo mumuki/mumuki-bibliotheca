@@ -30,7 +30,7 @@
                 <strong>{{ 'feedback' | translate }}:</strong>
 
                 <div>
-                  <span>{{ solution.feedback }}</span>
+                  <span ng-bind-html="trust(solution.feedback)"></span>
                 </div>
                 <a data-toggle="collapse" href="##results-section" class="text-danger" target="_self">
                   <i class="fa fa-question-circle"></i>
