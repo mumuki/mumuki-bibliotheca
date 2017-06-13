@@ -32,13 +32,13 @@
                 <div>
                   <span>{{ solution.feedback }}</span>
                 </div>
-                <a data-toggle="collapse" href="#results-section" class="text-danger">
+                <a data-toggle="collapse" href="##results-section" class="text-danger" target="_self">
                   <i class="fa fa-question-circle"></i>
                   <span>{{ 'details' | translate }}</span>
                 </a>
               </div>
 
-              <div id="results-section" class="results-item" ng-if="solution.status !== 'passed'">
+              <div id="results-section" class="presults-item" ng-if="solution.status !== 'passed'" ng-class="{collapse: solution.feedback.length}">
                 <strong>{{ 'test_results' | translate }}</strong>
 
                 <ul class="results-list">
@@ -56,7 +56,6 @@
                       <status-icon status="test_result.status"></status-icon>
                       <span>{{ test_result.title }}</span>
                     </span>
-
 
                     <div class="example-result collapse" id="example-result-{{$index}}" ng-class="{ 'in': solution.visible_success_output }">
                       <span ng-bind-html="trust(test_result.result)"></span>

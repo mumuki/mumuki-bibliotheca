@@ -3,6 +3,7 @@ angular
   .controller('SolutionModalController', function($scope,
                                                   $sce,
                                                   $uibModalInstance,
+                                                  $anchorScroll,
                                                   solution) {
 
     $scope.solution = solution;
