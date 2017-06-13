@@ -5,7 +5,7 @@ angular
     return {
       restrict: 'E',
       scope: { status: '=' },
-      template: '<i class="fa colorize-exercise-status" ng-class="statusIcon()"></i>',
+      template: '<i class="fa fa-fw colorize-exercise-status" ng-class="statusIcon()"></i>',
       controller: ($scope) => {
         $scope.statusIcon = () => {
           switch ($scope.status) {
