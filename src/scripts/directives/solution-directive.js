@@ -21,7 +21,7 @@ angular
         });
 
         $scope.submit = (exercise) => {
-          Api
+          return Api
             .testSolution(exercise.guide().id, exercise.id, exercise.getLanguage(), getSolution(exercise))
             .then((data) => Modal.solutionResults(data))
         }
