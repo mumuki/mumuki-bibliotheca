@@ -1,0 +1,58 @@
+.modal-content
+  .modal-header
+    p.modal-title.text-center.title-font {{ 'solution' | translate }}
+  .modal-body
+    .container-fluid
+      .row
+        .col-md-12
+
+          .bs-callout(class='bs-callout-{{colorClass(solution)}}')
+            h4
+              strong
+                status-icon(status='solution.status')
+                span {{ solution.status | translate }}
+
+            div(ng-if='solution.status !== "passed"')
+              .results-item(ng-if='visibleExpectations().length')
+                strong {{ 'unmeet_expectations' | translate }}:
+
+                ul.results-list
+                  li(ng-repeat='it in visibleExpectations()')
+                    status-icon(status='it.result')
+                    span(ng-bind-html='trust(it.title)')
+
+              .results-item(ng-if='solution.feedback.length')
+                strong {{ 'feedback' | translate }}:
+
+                div
+                  span(ng-bind-html='trust(solution.feedback)')
+
+                a.text-danger(data-toggle='collapse' href='##results-section' target='_self')
+                  i.fa.fa-question-circle
+                  span {{ 'details' | translate }}
+
+              #results-section.presults-item(ng-if='solution.status !== "passed"' ng-class='{collapse: solution.feedback.length}')
+                strong {{ 'test_results' | translate }}
+
+                ul.results-list
+                  li(ng-repeat='test_result in solution.test_results')
+
+                    span.text-danger(ng-if='test_result.status === "failed"')
+                      status-icon(status='test_result.status')
+                      strong.example-title {{ test_result.title }}
+                        span &nbsp;
+                        a.example-see-more(ng-if='!solution.visible_success_output' ng-click='toggleIn($index)' href='')
+                          span {{ 'details' | translate }}
+
+                    span.text-success.example-title(ng-if='test_result.status !== "failed"')
+                      status-icon(status='test_result.status')
+                      span {{ test_result.title }}
+
+                    div.example-result.collapse(id='example-result-{{$index}}' ng-class='{ in: solution.visible_success_output }')
+                      span(ng-bind-html='trust(test_result.result)')
+
+                ul.results-list
+                  span(ng-bind-html='trust(solution.result)')
+
+            div(ng-if='solution.status === "passed"')
+              h4 {{ 'exercise_done' | translate }}

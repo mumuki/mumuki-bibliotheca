@@ -12,4 +12,13 @@ angular
       }
     });
 
+    this.solutionResults = (solution) => $uibModal.open({
+      templateUrl: 'views/modals/solution-modal.html',
+      controller: 'SolutionModalController',
+      size: 'lg',
+      resolve: {
+        solution: () => solution
+      }
+    });
+
   });
