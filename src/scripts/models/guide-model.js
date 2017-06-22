@@ -18,6 +18,10 @@ angular
         return Languages.fromName(this.language).icon();
       }
 
+      getAceMode() {
+        return Languages.fromName(this.language).ace_mode;
+      }
+
       fullName() {
         return this.name;
       }

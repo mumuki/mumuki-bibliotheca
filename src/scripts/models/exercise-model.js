@@ -22,6 +22,10 @@ angular
         return Languages.fromName(this.getLanguage()).icon();
       }
 
+      getAceMode() {
+        return Languages.fromName(this.language).ace_mode;
+      }
+
       fullName() {
         return `${this.number()}. ${this.name}`;
       }
