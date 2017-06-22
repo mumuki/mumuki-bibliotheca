@@ -19,11 +19,15 @@ angular
       }
 
       icon() {
-        return Languages.fromName(this.getLanguage()).icon();
+        return this.fullLanguage().icon();
       }
 
       getAceMode() {
-        return Languages.fromName(this.language).ace_mode;
+        return this.fullLanguage().ace_mode;
+      }
+
+      fullLanguage() {
+        return Languages.fromName(this.getLanguage());
       }
 
       fullName() {
