@@ -9,7 +9,7 @@ angular
       }
 
       icon() {
-        return `da da-${this.name}`;
+        return `da da-${this.devicon || this.name}`;
       }
 
       static from(language = {}) {
