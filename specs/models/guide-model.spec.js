@@ -38,7 +38,7 @@ editorTest('Guide Model', () => {
 
     spec(() => guide.should.have.property('type').eql('learning'));
     spec(() => guide.should.have.property('locale').eql('en'));
-    spec(() => guide.should.have.property('language').eql('haskell'));
+    spec(() => guide.should.have.property('language').eql(undefined));
     spec(() => guide.should.have.property('exercises').eql([]));
     spec(() => _.keys(guide).length.should.be.eql(4));
   });

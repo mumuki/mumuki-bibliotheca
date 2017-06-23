@@ -3,17 +3,23 @@ angular
   .service('Languages', function(Language) {
 
     let _languages;
+    const _default = {
+      name: undefined,
+      icon() {
+        return 'fa fa-language'
+      }
+    };
 
     this.get = () => {
       return _languages;
     }
 
     this.set = (languages = []) => {
-      _languages = languages.map(Language.from);
+      _languages = [_default, ...languages.map(Language.from)];
     }
 
     this.default = () => {
-      return _languages[0].name;
+      return _default.name;
     }
 
     this.fromName = (name) => {

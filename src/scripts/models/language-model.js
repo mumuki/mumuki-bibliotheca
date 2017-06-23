@@ -5,7 +5,7 @@ angular
     class Language {
 
       constructor(language) {
-        _.defaultsDeep(this, language);
+        _.merge(this, language);
       }
 
       icon() {
