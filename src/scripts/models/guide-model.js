@@ -5,6 +5,7 @@ angular
                               Exercise,
                               Validator,
                               GuideTypes,
+                              Languages,
                               CurrentItem) {
 
     class Guide {
@@ -14,7 +15,15 @@ angular
       }
 
       icon() {
-        return `da da-${this.language}`;
+        return this.fullLanguage().icon();
+      }
+
+      getAceMode() {
+        return this.fullLanguage().ace_mode;
+      }
+
+      fullLanguage() {
+        return Languages.fromName(this.language);
       }
 
       fullName() {

@@ -4,6 +4,7 @@ angular
                                 CurrentItem,
                                 Layouts,
                                 Editor,
+                                Languages,
                                 ExerciseTypes,
                                 Validator) {
 
@@ -18,7 +19,15 @@ angular
       }
 
       icon() {
-        return `da da-${this.getLanguage()}`;
+        return this.fullLanguage().icon();
+      }
+
+      getAceMode() {
+        return this.fullLanguage().ace_mode;
+      }
+
+      fullLanguage() {
+        return Languages.fromName(this.getLanguage());
       }
 
       fullName() {
