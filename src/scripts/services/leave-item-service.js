@@ -22,7 +22,7 @@ angular
       }
 
       const needsModal = (to, from) => {
-        return isLeavingState(to, from) && CurrentItem.hasChanges($scope.getItem());
+        return !$scope.isNew && isLeavingState(to, from) && CurrentItem.hasChanges($scope.getItem());
       }
 
       const destroyer = $rootScope.$on('$stateChangeStart', (event, toState, toParams, fromState, fromParams) => {
