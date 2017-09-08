@@ -11,12 +11,12 @@ angular
       },
       controller: ($scope) => {
 
-        $scope.expectations = $scope.exercise.expectations
+        $scope.expectations = $scope.exercise.expectations;
 
         $scope.addExpectation = () => {
           $scope.exercise.expectations = $scope.exercise.expectations || [];
           $scope.exercise.expectations.push({});
-        }
+        };
 
         $scope.removeExpectation = (expectation) => {
           _.remove($scope.exercise.expectations, expectation);
