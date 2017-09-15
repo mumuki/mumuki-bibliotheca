@@ -1,13 +1,23 @@
 .expectations
 
-  .basic(ng-repeat='expectation in exercise.expectations', ng-if='!exercise.new_expectations')
+  .basic(ng-repeat='expectation in full_expectations')
+
     .binding
-      input(type='text', ng-model='expectation.binding', placeholder='{{ "binding" | translate }}')
-    .inspection
-      input(type='text', ng-model='expectation.inspection', placeholder='{{ "inspection" | translate }}')
+      input(type='text', ng-model='expectation.scope', placeholder='{{ "binding" | translate }}')
+
+    .inspection(ng-class='{"with-target": expectation.needsArgument()}')
+
+      ui-select(ng-model='expectation.verb' theme='bootstrap' title='{{ "inspection" | translate }}')
+        ui-select-match(placeholder='{{ "inspection" | translate }}') {{$select.selected}}
+        ui-select-choices(repeat='inspection in inspections | filter:$select.search')
+          small(ng-bind-html='inspection | highlight: $select.search')
+
+      input(type='text', ng-model='expectation.target', placeholder='{{ "target" | translate }}', ng-if='expectation.needsArgument()')
+
     .times
       i.fa.fa-fw.fa-times(ng-click='removeExpectation(expectation)')
 
-  a(href='', ng-click='addExpectation()')
+  a(href='', ng-click='addInspection()')
     i.fa.fa-fw.fa-plus
     span {{ 'add_expectation' | translate }}
+

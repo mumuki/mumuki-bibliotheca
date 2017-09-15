@@ -2,9 +2,7 @@ angular
   .module('editor')
   .service('Expectations', function (Api) {
 
-    this._expectations = {};
-
-    const fetchExpectations = () => {}
+    this._expectations = [];
 
     const getExpectations = () => {
       return Api
