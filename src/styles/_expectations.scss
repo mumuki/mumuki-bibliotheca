@@ -1,12 +1,21 @@
 .expectations {
   @include display-flex(column, flex-start, flex-start);
 
+  h4 {
+    margin-top: 30px;
+    margin-bottom: 0;
+
+    &:first-child {
+      margin-top: 5px;
+    }
+  }
+
   .times {
     cursor: pointer;
     margin-right: 5px;
   }
 
-  .basic {
+  .inspections, .smells {
     @include display-flex(row, flex-start, center);
     width: 100%;
     margin: 5px 0;
@@ -26,20 +35,6 @@
     .inspection {
       width: 66%;
       margin-right: 5px;
-      .ui-select-container {
-        width: 100%;
-      }
-      .ui-select-toggle.btn.btn-default {
-        max-width: 100%;
-        border: none;
-        border-bottom: 1px solid $mu-color-content-editable;
-        &:focus, &:active {
-          outline: -webkit-focus-ring-color auto 5px;
-          outline-color: -webkit-focus-ring-color;
-          outline-style: auto;
-          outline-width: 5px;
-        }
-      }
       input {
         width: 50%;
         min-width: 50%;
@@ -50,6 +45,24 @@
         .ui-select-container {
           width: 50%;
         }
+      }
+    }
+    .smell {
+      width: 100%;
+      margin-right: 5px;
+    }
+    .ui-select-container {
+      width: 100%;
+    }
+    .ui-select-toggle.btn.btn-default {
+      max-width: 100%;
+      border: none;
+      border-bottom: 1px solid $mu-color-content-editable;
+      &:focus, &:active {
+        outline: -webkit-focus-ring-color auto 5px;
+        outline-color: -webkit-focus-ring-color;
+        outline-style: auto;
+        outline-width: 5px;
       }
     }
   }

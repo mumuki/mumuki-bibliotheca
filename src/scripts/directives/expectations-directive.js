@@ -48,6 +48,10 @@ angular
           $scope.full_expectations.push(emptyInspection());
         };
 
+        $scope.addException = () => {
+          $scope.full_expectations.push(emptySmell());
+        };
+
         $scope.removeExpectation = (expectation) => {
           _.remove($scope.full_expectations, expectation);
         }
