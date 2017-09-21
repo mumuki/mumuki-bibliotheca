@@ -1,6 +1,6 @@
 angular
   .module('editor')
-  .directive('expectations', function (Expectations) {
+  .directive('expectations', function (Inspections) {
 
     return {
 
@@ -11,63 +11,64 @@ angular
       },
       controller: ($scope) => {
 
-        const emptyInspection = () => {
-          const exp = {
+        const emptyExpectation = () => {
+          const inspection = {
             verb: '',
             scope: '',
             target: '',
             isSmell: false,
-            needsArgument: () => _.endsWith(exp.verb, ':'),
-            asInspection: () => `${exp.verb}${exp.needsArgument() ? exp.target : ''}`
+            needsArgument: () => _.endsWith(inspection.verb, ':'),
+            asInspection: () => `${inspection.verb}${inspection.needsArgument() ? inspection.target : ''}`
           }
-          return exp;
+          return inspection;
         }
 
         const emptySmell = () => {
-          const exp = {
+          const inspection = {
             verb: '',
             scope: '*',
             isSmell: true,
             needsArgument: () => false,
-            asInspection: () => `${exp.verb}`
+            asInspection: () => `Except:${inspection.verb}`
           }
-          return exp;
+          return inspection;
         }
 
-        $scope.full_expectations = $scope.exercise.expectations.map(({binding, inspection}) => {
+        $scope.inspections = $scope.exercise.expectations.map(({binding, inspection}) => {
           const [verb, target] = _(inspection).split(/^(Not:.*:|Except:.*|.*:)/).compact().value();
-          const exp = emptyInspection();
-          exp.verb = verb;
-          exp.scope = binding;
-          exp.target = target;
-          exp.isSmell = _(verb).startsWith('Except:');
-          return exp;
+          const isSmell = _(verb).startsWith('Except:');
+          const newInspection = isSmell ? emptySmell() : emptyExpectation();
+          newInspection.verb = verb.replace(/^Except:/, '');
+          newInspection.scope = binding;
+          newInspection.target = target;
+          newInspection.isSmell = isSmell;
+          return newInspection;
         });
 
-        $scope.addInspection = () => {
-          $scope.full_expectations.push(emptyInspection());
+        $scope.addExpectation = () => {
+          $scope.inspections.push(emptyExpectation());
         };
 
         $scope.addException = () => {
-          $scope.full_expectations.push(emptySmell());
+          $scope.inspections.push(emptySmell());
         };
 
-        $scope.removeExpectation = (expectation) => {
-          _.remove($scope.full_expectations, expectation);
+        $scope.removeInspection = (inspection) => {
+          _.remove($scope.inspections, inspection);
         }
 
-        Expectations
+        Inspections
           .get()
           .then((expectations) => {
             $scope.smells = expectations.smells;
-            $scope.inspections = expectations.inspections;
+            $scope.expectations = expectations.expectations;
           })
 
-        $scope.$watch('full_expectations', () => {
-          $scope.exercise.expectations = $scope.full_expectations.map((expectation) => {
+        $scope.$watch('inspections', () => {
+          $scope.exercise.expectations = $scope.inspections.map((inspection) => {
             return {
-              binding: expectation.scope,
-              inspection: expectation.asInspection()
+              binding: inspection.scope,
+              inspection: inspection.asInspection()
             }
           });
         }, true);

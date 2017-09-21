@@ -1,5 +1,10 @@
-.expectations {
+.inspections {
   @include display-flex(column, flex-start, flex-start);
+
+  input {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
 
   h4 {
     margin-top: 30px;
@@ -15,11 +20,13 @@
     margin-right: 5px;
   }
 
-  .inspections, .smells {
+  .expectations, .smells {
     @include display-flex(row, flex-start, center);
+
     width: 100%;
     margin: 5px 0;
-    .binding, .inspection {
+
+    .binding, .expectation {
       @include display-flex(row, flex-start, center);
       input {
         width: 100%;
@@ -28,11 +35,13 @@
         border-bottom: 1px solid $mu-color-content-editable;
       }
     }
+
     .binding {
       width: 34%;
       margin-right: 5px;
     }
-    .inspection {
+
+    .expectation {
       width: 66%;
       margin-right: 5px;
       input {
@@ -47,13 +56,16 @@
         }
       }
     }
+
     .smell {
       width: 100%;
       margin-right: 5px;
     }
+
     .ui-select-container {
       width: 100%;
     }
+
     .ui-select-toggle.btn.btn-default {
       max-width: 100%;
       border: none;

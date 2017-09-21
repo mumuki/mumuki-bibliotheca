@@ -1,41 +1,41 @@
-.expectations
+.inspections
 
-  h4 {{ 'inspections' | translate }}
+  h4 {{ 'expectations' | translate }}
 
-  .inspections(ng-if="!expectation.isSmell", ng-repeat='expectation in full_expectations | filter:!"isSmell"')
+  .expectations(ng-if="!inspection.isSmell", ng-repeat='inspection in inspections')
 
     .binding
-      input(type='text', ng-model='expectation.scope', placeholder='{{ "binding" | translate }}')
+      input(type='text', ng-model='inspection.scope', placeholder='{{ "binding" | translate }}')
 
-    .inspection(ng-class='{"with-target": expectation.needsArgument()}')
+    .expectation(ng-class='{"with-target": inspection.needsArgument()}')
 
-      ui-select(ng-model='expectation.verb' theme='bootstrap' title='{{ "inspection" | translate }}')
-        ui-select-match(placeholder='{{ "inspection" | translate }}') {{$select.selected}}
-        ui-select-choices(repeat='inspection in inspections | filter:$select.search')
-          small(ng-bind-html='inspection | highlight: $select.search')
+      ui-select(ng-model='inspection.verb' theme='bootstrap' title='{{ "expectation" | translate }}')
+        ui-select-match(placeholder='{{ "expectation" | translate }}') {{$select.selected}}
+        ui-select-choices(repeat='expectation in expectations | filter:$select.search')
+          small(ng-bind-html='expectation | highlight: $select.search')
 
-      input(type='text', ng-model='expectation.target', placeholder='{{ "target" | translate }}', ng-if='expectation.needsArgument()')
+      input(type='text', ng-model='inspection.target', placeholder='{{ "target" | translate }}', ng-if='inspection.needsArgument()')
 
     .times
-      i.fa.fa-fw.fa-times(ng-click='removeExpectation(expectation)')
+      i.fa.fa-fw.fa-times(ng-click='removeInspection(inspection)')
 
-  a(href='', ng-click='addInspection()')
+  a(href='', ng-click='addExpectation()')
     i.fa.fa-fw.fa-plus
-    span {{ 'add_expectation_inspection' | translate }}
+    span {{ 'add_expectation' | translate }}
 
   h4 {{ 'code_smells' | translate }}
 
-  .smells(ng-if="expectation.isSmell", ng-repeat='expectation in full_expectations | filter:"!isSmell"')
+  .smells(ng-if="inspection.isSmell", ng-repeat='inspection in inspections')
 
     .smell
-      ui-select(ng-model='expectation.verb' theme='bootstrap' title='{{ "inspection" | translate }}')
-        ui-select-match(placeholder='{{ "inspection" | translate }}') {{$select.selected}}
+      ui-select(ng-model='inspection.verb' theme='bootstrap' title='{{ "code_smell" | translate }}')
+        ui-select-match(placeholder='{{ "code_smell" | translate }}') {{$select.selected}}
         ui-select-choices(repeat='smell in smells | filter:$select.search')
           small(ng-bind-html='smell | highlight: $select.search')
 
     .times
-      i.fa.fa-fw.fa-times(ng-click='removeExpectation(expectation)')
+      i.fa.fa-fw.fa-times(ng-click='removeInspection(inspection)')
 
   a(href='', ng-click='addException()')
     i.fa.fa-fw.fa-plus
-    span {{ 'add_expectation_smell' | translate }}
+    span {{ 'add_smell' | translate }}
