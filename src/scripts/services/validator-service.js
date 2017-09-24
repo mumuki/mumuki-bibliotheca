@@ -9,10 +9,10 @@ angular
     }
 
     const isEmptyExpectation = (exercise, expectation) => {
-      const fields = exercise.new_expectations ?
-        ['subject', 'verb', 'object'] :
-        ['binding', 'inspection'];
-      return _.some(fields, (field) => isEmptyString(expectation, field));
+      return isEmptyString(expectation, 'binding') ||
+             isEmptyString(expectation, 'inspection') ||
+             _.startsWith(expectation.inspection, 'undefined') ||
+             _.endsWith(expectation.inspection, ':');
     }
 
     const isIncompleteExpectation = (expectationable) => {

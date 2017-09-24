@@ -30,15 +30,12 @@ editorTest('Validator Service', (mocks) => {
 
   context('Expectations', () => {
     context('#notIncompleteExpectations', () => {
-      const expectations = (ne, exps) => _.merge(exercise, { new_expectations: ne, expectations: exps });
+      const expectations = (exps) => _.merge(exercise, { expectations: exps });
 
-      spec((Validator) => expect(() => Validator.notIncompleteExpectations(expectations(false, [{binding: 'foo', inspection: 'bar'}]))).to.not.throw());
-      spec((Validator) => expect(() => Validator.notIncompleteExpectations(expectations(false, [{binding: 'foo', inspection: ''}]))).to.throw('test: Has incomplete expectations'));
-      spec((Validator) => expect(() => Validator.notIncompleteExpectations(expectations(false, [{binding: '', inspection: 'bar'}]))).to.throw('test: Has incomplete expectations'));
-      spec((Validator) => expect(() => Validator.notIncompleteExpectations(expectations(true, [{subject: 'foo', verb: 'bar', object: 'baz'}]))).to.not.throw());
-      spec((Validator) => expect(() => Validator.notIncompleteExpectations(expectations(true, [{subject: '', verb: 'bar', object: 'baz'}]))).to.throw('test: Has incomplete expectations'));
-      spec((Validator) => expect(() => Validator.notIncompleteExpectations(expectations(true, [{subject: 'foo', verb: '', object: 'baz'}]))).to.throw('test: Has incomplete expectations'));
-      spec((Validator) => expect(() => Validator.notIncompleteExpectations(expectations(true, [{subject: 'foo', verb: 'bar', object: ''}]))).to.throw('test: Has incomplete expectations'));
+      spec((Validator) => expect(() => Validator.notIncompleteExpectations(expectations([{binding: 'foo', inspection: 'bar'}]))).to.not.throw());
+      spec((Validator) => expect(() => Validator.notIncompleteExpectations(expectations([{binding: 'foo', inspection: ''}]))).to.throw('test: Has incomplete expectations'));
+      spec((Validator) => expect(() => Validator.notIncompleteExpectations(expectations([{binding: '', inspection: 'bar'}]))).to.throw('test: Has incomplete expectations'));
+      spec((Validator) => expect(() => Validator.notIncompleteExpectations(expectations([{binding: 'foo', inspection: 'uses:'}]))).to.throw('test: Has incomplete expectations'));
     });
   });
 
