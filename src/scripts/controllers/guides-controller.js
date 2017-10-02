@@ -24,8 +24,10 @@ angular
       $state.go('editor.home.guides.detail', guide.params());
     }
 
-    $scope.import = () => {
-      return Modal.importFromGithub(importMessage, message, (slug) => Api.importGuide(slug));
-    }
+    $scope.import = () => Modal.importFromGithub(importMessage, message, (slug) => {
+      return Api
+        .importGuide(slug)
+        .then(() => $state.go($state.current, $stateParams, {reload: true}))
+    });
 
   });

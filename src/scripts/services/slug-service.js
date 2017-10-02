@@ -34,7 +34,7 @@ angular
         allows: (other) => slug.matchOrganization(other) && slug.matchContent(other),
         matchContent: (other) =>  slug.content === other.content || slug.content === '*' || slug.organization === '*',
         matchOrganization: (other) =>  slug.organization === other.organization || slug.organization === '*',
-        isValid: () => Validator.isEmptyString(slug, 'organization') || Validator.isEmptyString(slug, 'repository'),
+        isValid: () => Validator.isEmptyString(slug, 'organization') || Validator.isEmptyString(slug, 'content'),
       }
       return slug
     }

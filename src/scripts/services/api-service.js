@@ -96,4 +96,10 @@ angular
       });
     }
 
+    this.importGuide = ({ organization, content }) => {
+      return HTTP
+        .call('post',`${API}/guides/import/${organization}/${content}`, {}, defaultConfig())
+        .then((res) => res.data)
+    }
+
   });

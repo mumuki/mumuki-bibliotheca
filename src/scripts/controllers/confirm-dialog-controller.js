@@ -10,8 +10,8 @@ angular
     $scope.title = title;
     $scope.text = text;
 
-    $scope.yes = () => {
-      onYesPromise()
+    $scope.yes = (...params) => {
+      onYesPromise(...params)
         .then(() => $uibModalInstance.close());
     }
 
