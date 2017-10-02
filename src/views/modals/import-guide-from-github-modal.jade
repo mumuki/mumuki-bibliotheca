@@ -1,0 +1,20 @@
+.modal-content
+  .modal-header
+    p.modal-title.text-center.title-font {{ title }}
+  .modal-body
+    .container-fluid
+      .row
+        .col-md-12
+          p #[i.fa.fa-fw.fa-github] {{ trust(text) }}
+
+        .col-md-12
+          .input-group
+            input.form-control(ng-model='slug.organization', placeholder='{{ "organization" | translate }}')
+            span.input-group-addon /
+            input.form-control(ng-model='slug.repository', placeholder='{{ "repository" | translate }}')
+
+  .modal-footer
+    .row
+      .col-md-12.pull-right
+        button.btn.btn-default(type='button', ng-click='no()', data-dismiss='modal') {{ 'cancel' | translate }}
+        button.btn.btn-success(type='button', ng-click='yes()', ng-disabled='slug.isValid()') {{ 'import' | translate }}

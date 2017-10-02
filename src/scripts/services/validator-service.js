@@ -4,7 +4,7 @@ angular
 
     const translate = $filter('translate');
 
-    const isEmptyString = (object, field) => {
+    this.isEmptyString = (object, field) => {
       return _.chain(object).get(field).trim().isEmpty().value()
     }
 
