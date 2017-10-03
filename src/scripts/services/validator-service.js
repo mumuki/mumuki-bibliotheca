@@ -4,13 +4,13 @@ angular
 
     const translate = $filter('translate');
 
-    const isEmptyString = (object, field) => {
+    this.isEmptyString = (object, field) => {
       return _.chain(object).get(field).trim().isEmpty().value()
     }
 
     const isEmptyExpectation = (exercise, expectation) => {
-      return isEmptyString(expectation, 'binding') ||
-             isEmptyString(expectation, 'inspection') ||
+      return this.isEmptyString(expectation, 'binding') ||
+             this.isEmptyString(expectation, 'inspection') ||
              _.startsWith(expectation.inspection, 'undefined') ||
              _.endsWith(expectation.inspection, ':');
     }
@@ -20,11 +20,11 @@ angular
     }
 
     const isIncompleteChoice = (choiceable) => {
-      return (choice) => isEmptyString(choice, 'value');
+      return (choice) => this.isEmptyString(choice, 'value');
     }
 
     this.notEmptyString = (object, field) => {
-      if (isEmptyString(object, field)) {
+      if (this.isEmptyString(object, field)) {
         throw new Error(translate('error_mandatory_field', {
           field: translate(field),
           fullName: object.fullName(),

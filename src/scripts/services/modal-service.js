@@ -21,4 +21,14 @@ angular
       }
     });
 
+    this.importFromGithub = (title, text, onYesPromise) => $uibModal.open({
+      templateUrl: 'views/modals/import-guide-from-github-modal.html',
+      controller: 'ImportGuideFromGithubController',
+      resolve: {
+        title: () => title,
+        text: () => text,
+        onYesPromise: () => onYesPromise,
+      }
+    });
+
   });
