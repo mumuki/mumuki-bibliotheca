@@ -46,8 +46,8 @@ gulp.task('prod:config', function () {
 });
 
 gulp.task('prod:styles', function () {
-  return gulp.src(`${srcFolder}/styles/**/*.scss`)
-    .pipe($.sass.sync())
+  return gulp.src(`${srcFolder}/styles/main.scss`)
+    .pipe($.sass.sync({outputStyle: 'compressed'}))
     .pipe(gulp.dest(`${outFolder}/styles`));
 });
 
@@ -79,7 +79,7 @@ gulp.task('prod:views:index', () => {
       js: [$.rev],
       css: [$.minifyCss, $.protocol, $.rev],
       es6: [$.uglify, $.rev],
-      scss: [$.minifyCss, $.rev]
+      scss: [$.rev]
     }))
     .pipe(gulp.dest(`${outFolder}`));
 });
