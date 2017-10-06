@@ -10,7 +10,9 @@ const outFolder = 'build';
 const configFolder = 'config';
 const releaseFolder = 'release';
 
-const replaceEnvVar = (variable) => $.stringReplace(`<${variable}>`, process.env[variable]);
+$.replaceEnvVar = (variable) => $.stringReplace(`<${variable}>`, process.env[variable]);
+$.protocol = $.stringReplace(/https?:\/\//g, '//');
+
 
 module.exports = (done) => {
   process.env.NODE_ENV = 'production';
@@ -36,9 +38,9 @@ gulp.task('prod:scripts', ['prod:config'], function () {
 
 gulp.task('prod:config', function () {
   return gulp.src(`${configFolder}/${process.env.NODE_ENV}.js`)
-    .pipe(replaceEnvVar('MUMUKI_BIBLIOTHECA_API_URL'))
-    .pipe(replaceEnvVar('MUMUKI_AUTH0_DOMAIN'))
-    .pipe(replaceEnvVar('MUMUKI_AUTH0_CLIENT_ID'))
+    .pipe($.replaceEnvVar('MUMUKI_BIBLIOTHECA_API_URL'))
+    .pipe($.replaceEnvVar('MUMUKI_AUTH0_DOMAIN'))
+    .pipe($.replaceEnvVar('MUMUKI_AUTH0_CLIENT_ID'))
     .pipe($.concat('config.js'))
     .pipe(gulp.dest(`${srcFolder}/scripts/config`));
 });
@@ -75,7 +77,7 @@ gulp.task('prod:views:index', () => {
     .pipe($.wiredep({ includeSelf: true }))
     .pipe($.usemin({
       js: [$.rev],
-      css: [$.rev],
+      css: [$.minifyCss, $.protocol, $.rev],
       es6: [$.uglify, $.rev],
       scss: [$.minifyCss, $.rev]
     }))

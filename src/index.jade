@@ -17,12 +17,6 @@ html.no-js(lang='es')
     link(rel='stylesheet', href='styles/main.css')
     // endbuild
 
-    // build:js scripts/vendor.js
-    // bower:js
-    //- javascript bower dependencies, generated automatically
-    // endbower
-    // endbuild
-
   body(ng-app='editor')
     link(rel='stylesheet', ng-href='{{ customCssUrl }}')
     script(ng-src='{{ customJsUrl | trusted }}', defer='')
@@ -36,6 +30,12 @@ html.no-js(lang='es')
         |  to improve your experience.
 
     div.ng-cloak.container.mu-page(ui-view)
+
+    // build:js scripts/vendor.js
+    // bower:js
+    //- javascript bower dependencies, generated automatically
+    // endbower
+    // endbuild
 
     // build:es6(build) scripts/main.js
     script(type='text/javascript', src='scripts/main.js')
