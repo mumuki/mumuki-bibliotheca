@@ -9,6 +9,7 @@ angular
       restrict: 'E',
       templateUrl: 'views/directives/ace-with-toolbar-code.html',
       scope: {
+        from: '@',
         mode: '=',
         comment: '=',
         content: '=',

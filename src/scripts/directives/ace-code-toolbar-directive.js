@@ -8,7 +8,8 @@ angular
       templateUrl: 'views/directives/ace-code-toolbar.html',
       scope: {
         editor: '=',
-        comment: '='
+        comment: '=',
+        from: '='
       },
       controller: ($scope) => {
 
@@ -46,8 +47,10 @@ angular
 
         $scope.solution = () => insertText('exercise_number', '/*...solution[', ']...*/');
         $scope.previousSolution = () => insertText('', '/*...previousSolution...*/');
+      },
+      link: (scope, element) => {
+        element.find(`#${scope.from}`).hide();
       }
-
     }
 
   });
