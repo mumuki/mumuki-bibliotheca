@@ -1,9 +1,17 @@
-div.markdown-panel
-  a#test.pointer(ng-click='test()', title='{{ "test" | translate }}') test
-  a#extra.pointer(ng-click='extra()', title='{{ "extra" | translate }}') extra
-  a#content.pointer(ng-click='content()', title='{{ "content" | translate }}') content
-  a.pointer(ng-click='solution()', title='{{ "solution" | translate }}') solution
-  a.pointer(ng-click='previousSolution()', title='{{ "previousSolution" | translate }}') previousSolution
-  a.pointer(ng-click='ignoreContentOnQuery()', title='{{ "ignoreContentOnQuery" | translate }}') ignoreContentOnQuery
+div.dropdown.markdown-panel
+  a(href='', data-toggle='dropdown')
+    span {{ 'insert_interpolation' | translate }}
+    i.fa.fa-fw.fa-caret-down
+  ul.dropdown-menu
+    li: a#test.pointer(ng-click='test()', title='{{ "test_directive" | translate }}') {{ "test_directive" | translate }}
+    li: a#extra.pointer(ng-click='extra()', title='{{ "extra_directive" | translate }}') {{ "extra_directive" | translate }}
+    li: a#content.pointer(ng-click='content()', title='{{ "content_directive" | translate }}') {{ "content_directive" | translate }}
+    li.divider(role='separator')
+    li: a.pointer(ng-click='absoluteSolution()', title='{{ "absolute_solution_directive" | translate }}') {{ "absolute_solution_directive" | translate }}
+    li: a.pointer(ng-click='relativeSolution()', title='{{ "relative_solution_directive" | translate }}') {{ "relative_solution_directive" | translate }}
+    li: a.pointer(ng-click='previousSolution()', title='{{ "previous_solution_directive" | translate }}') {{ "previous_solution_directive" | translate }}
+    li.divider(ng-if='from === "extra"', role='separator')
+    li(ng-if='from === "extra"')
+      a.pointer(ng-click='ignoreContentOnQuery()', title='{{ "ignore_content_directive" | translate }}') {{ "ignore_content_directive" | translate }}
 
 

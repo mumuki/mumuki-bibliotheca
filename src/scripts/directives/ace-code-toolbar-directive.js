@@ -45,7 +45,8 @@ angular
         $scope.content = () => betweenLanguageComment('content');
         $scope.ignoreContentOnQuery = () => betweenLanguageComment('IgnoreContentOnQuery', '[', ']');
 
-        $scope.solution = () => insertText('exercise_number', '/*...solution[', ']...*/');
+        $scope.absoluteSolution = () => insertText('exercise_number', '/*...solution[', ']...*/');
+        $scope.relativeSolution = () => insertText('previous_exercise', '/*...solution[-', ']...*/');
         $scope.previousSolution = () => insertText('', '/*...previousSolution...*/');
       },
       link: (scope, element) => {

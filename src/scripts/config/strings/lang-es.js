@@ -142,4 +142,15 @@ angular
     verb: 'Verbo',
     yes: 'Sí',
 
+
+    insert_interpolation: 'Insertar interpolación',
+
+    test_directive: 'Pruebas',
+    extra_directive: 'Código extra',
+    content_directive: 'Solución actual',
+    absolute_solution_directive: 'Solución de ejercicio anterior (referencia absoluta)',
+    relative_solution_directive: 'Solución de ejercicio anterior (referencia relativa)',
+    previous_solution_directive: 'Solucion del ejericio anterior',
+    ignore_content_directive: 'Ignorar solución en la consola',
+
   });

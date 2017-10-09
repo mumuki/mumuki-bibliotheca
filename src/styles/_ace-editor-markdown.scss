@@ -41,6 +41,15 @@ ace-editor {
     &:hover { color: $mu-color-primary }
     &:active { color: darken($mu-color-primary, 10%) }
   }
+  &.dropdown {
+    @include display-flex(row, flex-start, center);
+    margin-top: -5px;
+    margin-bottom: 4px;
+    ul {
+      margin-left: -5px;
+      font-size: 14px;
+    }
+  }
 }
 
 .btn-submit {
