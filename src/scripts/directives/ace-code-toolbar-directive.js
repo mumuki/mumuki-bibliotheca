@@ -35,16 +35,17 @@ angular
           }
         };
 
-        const betweenLanguageComment = (type) => {
-          insertText('', `${$scope.comment.start}...${type}...${$scope.comment.end}`);
+        const betweenLanguageComment = (type, separator1 = '...', separator2 = '...') => {
+          insertText('', `${$scope.comment.start}${separator1}${type}${separator2}${$scope.comment.end}`);
         }
 
         $scope.test = () => betweenLanguageComment('test');
         $scope.extra = () => betweenLanguageComment('extra');
         $scope.content = () => betweenLanguageComment('content');
+        $scope.ignoreContentOnQuery = () => betweenLanguageComment('IgnoreContentOnQuery', '[', ']');
+
         $scope.solution = () => insertText('exercise_number', '/*...solution[', ']...*/');
         $scope.previousSolution = () => insertText('', '/*...previousSolution...*/');
-        $scope.ignoreContentOnQuery = () => insertText('', `${$scope.comment.start}[IgnoreContentOnQuery]${$scope.comment.end}`);
       }
 
     }
