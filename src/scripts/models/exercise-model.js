@@ -4,6 +4,7 @@ angular
                                 CurrentItem,
                                 Layouts,
                                 Editor,
+                                Comment,
                                 Languages,
                                 ExerciseTypes,
                                 Validator) {
@@ -24,6 +25,10 @@ angular
 
       getAceMode() {
         return this.fullLanguage().ace_mode;
+      }
+
+      getComment() {
+        return Comment.from(this.fullLanguage().comment_type);
       }
 
       fullLanguage() {
