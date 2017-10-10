@@ -1,24 +1,26 @@
-.modal-content
-  .modal-header
-    p.modal-title.text-center.title-font Subi la imagen
+.modal-content.upload-image
   .modal-body
-    .container-fluid
-      .row
-        .col-md-12
-          .tabbable
-            ul.nav.nav-tabs(ng-class='{ "border-bottom-none": !showMinimized(), "nav-tabs-inline": showMinimized() }')
-              li.active(role='presentation', ng-click='active = UPLOAD'): a(href='', data-toggle='tab') Upload
-              li(role='presentation', ng-click='active = URL'): a(href='', data-toggle='tab') By URL
+    .row
+      .col-md-12
+        .tabbable
+          ul.nav.nav-tabs
+            li.active(role='presentation', ng-click='active = UPLOAD'): a(href='', data-toggle='tab') Upload
+            li(role='presentation', ng-click='active = URL'): a(href='', data-toggle='tab') By URL
 
-            .tab-content
-              .tab-pane(ng-class='{active: active === UPLOAD}')
-                input#upload-image(type='file', accept='image/x-png,image/gif,image/jpeg')
-              .tab-pane(ng-class='{active: active === URL}')
-                input(type='text', ng-model='image.url', placeholder='Insert image URL')
+          .tab-content
+            .tab-pane(ng-class='{active: active === UPLOAD}')
+              p
+                span Buscá una imagen* en tu computadora haciendo click
+                label
+                  input#upload-image(type='file', accept='image/x-png,image/gif,image/jpeg', style='display: none')
+                  span {{ description || ('acá' | translate) }}.
 
+            .tab-pane(ng-class='{active: active === URL}')
+              input.form-control(type='text', ng-model='image.url', placeholder='Insert image URL')
 
   .modal-footer
     .row
       .col-md-12.pull-right
+        small.pull-left * Recordá que no puede superar los 256KB.
         button.btn.btn-default(type='button', ng-click='cancel()', data-dismiss='modal') {{ 'cancel' | translate }}
         button.btn.btn-success(type='button', spin-on-click='upload()') {{ 'accept' | translate }}

@@ -2,6 +2,7 @@ angular
   .module('editor')
   .controller('UploadImageController', function($scope,
                                                 $filter,
+                                                $timeout,
                                                 $stateParams,
                                                 toastr,
                                                 $uibModalInstance,
@@ -18,7 +19,22 @@ angular
     $scope.active = $scope.UPLOAD;
     $scope.image = {}
 
-    const getFile = () => document.querySelector('#upload-image').files[0];
+    let input
+
+    const humanSize = (file) => {
+      return `${Math.round((file.size / 1024) * 100) / 100}KB`;
+    }
+
+    $timeout(() => {
+      input = document.querySelector('#upload-image');
+      input.onchange = () => {
+        const file = getFile();
+        $scope.description = file ? `${file.name} - ${humanSize(file)}` : '';
+        $scope.$apply();
+      }
+    });
+
+    const getFile = () => input.files[0];
 
     const doFailure = (err) => toastr.error($translate('upload_image_failed'));
 
