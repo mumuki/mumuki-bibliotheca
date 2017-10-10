@@ -5,10 +5,20 @@
     .container-fluid
       .row
         .col-md-12
-          input#upload-image(type='file', accept='image/x-png,image/gif,image/jpeg')
+          .tabbable
+            ul.nav.nav-tabs(ng-class='{ "border-bottom-none": !showMinimized(), "nav-tabs-inline": showMinimized() }')
+              li.active(role='presentation', ng-click='active = UPLOAD'): a(href='', data-toggle='tab') Upload
+              li(role='presentation', ng-click='active = URL'): a(href='', data-toggle='tab') By URL
+
+            .tab-content
+              .tab-pane(ng-class='{active: active === UPLOAD}')
+                input#upload-image(type='file', accept='image/x-png,image/gif,image/jpeg')
+              .tab-pane(ng-class='{active: active === URL}')
+                input(type='text', ng-model='image.url', placeholder='Insert image URL')
+
 
   .modal-footer
     .row
       .col-md-12.pull-right
         button.btn.btn-default(type='button', ng-click='cancel()', data-dismiss='modal') {{ 'cancel' | translate }}
-        button.btn.btn-success(type='button', spin-on-click='upload()') {{ 'upload' | translate }}
+        button.btn.btn-success(type='button', spin-on-click='upload()') {{ 'accept' | translate }}

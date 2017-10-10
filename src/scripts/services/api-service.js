@@ -102,10 +102,9 @@ angular
         .then((res) => res.data)
     }
 
-    this.uploadImage = ({ organization, repository, content, filename }) => {
-      const body = { organization, repository, content, filename };
+    this.uploadImage = ({ org, repo }, { content, filename }) => {
       return HTTP
-        .call('post',`http://localhost:4444/upload`, body, defaultConfig({ withCredentials: false }))
+        .call('post',`${API}/guides/${org}/${repo}/images`, { content, filename }, defaultConfig())
         .then((res) => res.data)
     }
 
