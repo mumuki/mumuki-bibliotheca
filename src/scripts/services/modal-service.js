@@ -31,4 +31,13 @@ angular
       }
     });
 
+    this.uploadImage = (onYesPromise) => $uibModal.open({
+      templateUrl: 'views/modals/upload-image-modal.html',
+      controller: 'UploadImageController',
+      size: 'lg',
+      resolve: {
+        onYesPromise: () => onYesPromise,
+      }
+    });
+
   });

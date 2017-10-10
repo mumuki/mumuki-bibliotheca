@@ -3,6 +3,7 @@ angular
   .constant('LANG_EN', {
 
     absolute_solution_directive: 'Previous exercise solution (absolute reference)',
+    accept: 'Accept',
     add_choice: 'Add choice',
     add_exercise: 'Add exercise',
     add_expectation: 'Add expectation',
@@ -56,6 +57,7 @@ angular
     guide_saved_successfully: 'Guide saved successfully',
     guide_type: 'Guide type',
     guides: 'Guides',
+    here: 'here',
     hidden: 'Hidden',
     hint: 'Hint',
     ignore_content_directive: 'Ignore content on query',
@@ -147,6 +149,10 @@ angular
     type: 'Type',
     unmeet_expectations: 'Goals that weren\'t met',
     upload: 'Upload file',
+    upload_image_failed: 'You did not select any images or exceed 256 KB',
+    upload_image_placeholder: 'Insert image URL',
+    upload_text: 'Select an image from your computer clicking',
+    upload_text_note: '* Remember: image size should be lower than 256 KB.',
     verb: 'Verb',
     yes: 'Yes',
 

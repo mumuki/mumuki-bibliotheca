@@ -1,0 +1,27 @@
+.modal-content.upload-image
+  .modal-body
+    .row
+      .col-md-12
+        .tabbable
+          ul.nav.nav-tabs
+            li.active(role='presentation', ng-click='active = UPLOAD'): a(href='', data-toggle='tab') Upload
+            li(role='presentation', ng-click='active = URL'): a(href='', data-toggle='tab') By URL
+
+          .tab-content
+            .tab-pane(ng-class='{active: active === UPLOAD}')
+              p
+                span {{ 'upload_text' | translate }}
+                label
+                  input#upload-image(type='file', accept='image/x-png,image/gif,image/jpeg', style='display: none')
+                  span {{ description || ('here' | translate) }}
+                span *.
+
+            .tab-pane(ng-class='{active: active === URL}')
+              input.form-control(type='text', ng-model='image.url', placeholder='{{ "upload_image_placeholder" | translate }}')
+
+  .modal-footer
+    .row
+      .col-md-12.pull-right
+        small.pull-left(ng-if='active === UPLOAD') {{ 'upload_text_note' | translate }}
+        button.btn.btn-default(type='button', ng-click='cancel()', data-dismiss='modal') {{ 'cancel' | translate }}
+        button.btn.btn-success(type='button', spin-on-click='upload()') {{ 'accept' | translate }}

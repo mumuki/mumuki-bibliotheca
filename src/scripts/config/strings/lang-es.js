@@ -3,6 +3,7 @@ angular
   .constant('LANG_ES', {
 
     absolute_solution_directive: 'Solución de ejercicio anterior (referencia absoluta)',
+    accept: 'Aceptar',
     add_choice: 'Agregar opción',
     add_exercise: 'Agregar ejercicio',
     add_expectation: 'Agregar expectativa',
@@ -56,6 +57,7 @@ angular
     guide_saved_successfully: 'Guía guardada satisfactoriamente',
     guide_type: 'Tipo de guía',
     guides: 'Guías',
+    here: 'acá',
     hidden: 'Oculto',
     hint: 'Pista',
     ignore_content_directive: 'Ignorar solución en la consola',
@@ -147,6 +149,10 @@ angular
     type: 'Tipo',
     unmeet_expectations: 'Objetivos que no se cumplieron',
     upload: 'Subir archivo',
+    upload_image_failed: 'No seleccionaste ninguna imágen o la misma supera los 256 KB',
+    upload_image_placeholder: 'Insertá la URL de una imagen',
+    upload_text: 'Buscá una imagen en tu computadora haciendo click',
+    upload_text_note: '* Recordá que no puede superar los 256 KB.',
     verb: 'Verbo',
     yes: 'Sí',
 

@@ -227,3 +227,26 @@ ul.results-list {
     color: white;
   }
 }
+
+.modal-content.upload-image {
+  .modal-body {
+    height: 232px;
+    p {
+      padding: 64px 0 0;
+      width: 100%;
+      margin: 0;
+      label {
+        @extend a;
+        @extend .pointer;
+      }
+    }
+    input.form-control {
+      margin-top: 54px;
+    }
+  }
+  .modal-footer {
+    small {
+      margin-top: 10px;
+    }
+  }
+}
