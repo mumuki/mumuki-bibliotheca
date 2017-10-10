@@ -102,4 +102,11 @@ angular
         .then((res) => res.data)
     }
 
+    this.uploadImage = ({ organization, repository, content, filename }) => {
+      const body = { organization, repository, content, filename };
+      return HTTP
+        .call('post',`http://localhost:4444/upload`, body, defaultConfig({ withCredentials: false }))
+        .then((res) => res.data)
+    }
+
   });

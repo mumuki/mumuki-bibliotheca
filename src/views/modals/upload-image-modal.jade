@@ -1,0 +1,14 @@
+.modal-content
+  .modal-header
+    p.modal-title.text-center.title-font Subi la imagen
+  .modal-body
+    .container-fluid
+      .row
+        .col-md-12
+          input#upload-image(type='file', accept='image/x-png,image/gif,image/jpeg')
+
+  .modal-footer
+    .row
+      .col-md-12.pull-right
+        button.btn.btn-default(type='button', ng-click='cancel()', data-dismiss='modal') {{ 'cancel' | translate }}
+        button.btn.btn-success(type='button', spin-on-click='upload()') {{ 'upload' | translate }}

@@ -1,6 +1,7 @@
 angular
   .module('editor')
-  .directive('aceMarkdownToolbar', function ($filter) {
+  .directive('aceMarkdownToolbar', function ($filter,
+                                             Modal) {
 
     return {
 
@@ -63,15 +64,15 @@ angular
           wrapText('`');
         };
         $scope.image = () => {
-          // TODO: IMPLEMENT
+          Modal.uploadImage((filename, link) => $scope.link(filename, link, '!'));
         };
-        $scope.link = () => {
-          const text = translate('text');
-          const link = translate('link');
+        $scope.link = (filename, filelink, prefix = '') => {
+          const text = filename || translate('text');
+          const link = filelink || translate('link');
           const range = $scope.editor.selection.getRange();
-          $scope.editor.session.replace(range, `[${text}](${link})`);
+          $scope.editor.session.replace(range, `${prefix}[${text}](${link})`);
           $scope.editor.focus();
-          range.start.column += 1;
+          range.start.column += (1 + prefix.length);
           range.end.column = range.start.column + text.length;
           $scope.editor.selection.setSelectionRange(range);
         };
