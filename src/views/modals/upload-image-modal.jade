@@ -10,17 +10,18 @@
           .tab-content
             .tab-pane(ng-class='{active: active === UPLOAD}')
               p
-                span Buscá una imagen* en tu computadora haciendo click
+                span {{ 'upload_text' | translate }}
                 label
                   input#upload-image(type='file', accept='image/x-png,image/gif,image/jpeg', style='display: none')
-                  span {{ description || ('acá' | translate) }}.
+                  span {{ description || ('here' | translate) }}
+                span *.
 
             .tab-pane(ng-class='{active: active === URL}')
-              input.form-control(type='text', ng-model='image.url', placeholder='Insert image URL')
+              input.form-control(type='text', ng-model='image.url', placeholder='{{ "upload_image_placeholder" | translate }}')
 
   .modal-footer
     .row
       .col-md-12.pull-right
-        small.pull-left * Recordá que no puede superar los 256KB.
+        small.pull-left(ng-if='active === UPLOAD') {{ 'upload_text_note' | translate }}
         button.btn.btn-default(type='button', ng-click='cancel()', data-dismiss='modal') {{ 'cancel' | translate }}
         button.btn.btn-success(type='button', spin-on-click='upload()') {{ 'accept' | translate }}

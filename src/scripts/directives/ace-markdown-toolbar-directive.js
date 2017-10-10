@@ -64,7 +64,9 @@ angular
           wrapText('`');
         };
         $scope.image = () => {
-          Modal.uploadImage((filename, link) => $scope.link(filename, link, '!'));
+          Modal.uploadImage((filename, link) => {
+            insertText(filename, `<img src="${link}" alt="`, `" width="auto" height="auto">`);
+          });
         };
         $scope.link = (filename, filelink, prefix = '') => {
           const text = filename || translate('text');

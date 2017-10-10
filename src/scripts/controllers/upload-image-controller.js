@@ -22,7 +22,7 @@ angular
     let input
 
     const humanSize = (file) => {
-      return `${Math.round((file.size / 1024) * 100) / 100}KB`;
+      return `${Math.round((file.size / 1024) * 100) / 100} KB`;
     }
 
     $timeout(() => {
