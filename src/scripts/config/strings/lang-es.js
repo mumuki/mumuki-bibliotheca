@@ -78,6 +78,7 @@ angular
     locale: 'Idioma',
     login: 'Iniciar sesión',
     logout: 'Cerrar sesión',
+    manual_evaluation: 'Evaluación Manual',
     multiple_choice: 'Selección múltiple',
     name: 'Nombre',
     negated: 'Negado',

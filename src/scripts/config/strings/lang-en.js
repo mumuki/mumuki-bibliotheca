@@ -78,6 +78,7 @@ angular
     locale: 'Locale',
     login: 'Log in',
     logout: 'Log out',
+    manual_evaluation: 'Manual Evaluation',
     multiple_choice: 'Multiple choice',
     name: 'Name',
     negated: 'Negated',
