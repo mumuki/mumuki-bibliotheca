@@ -26,7 +26,7 @@ angular
         initialLanguage: (exercise) => exercise.language,
         validate: (exercise) => {
           Validator.notIncompleteExpectations(exercise);
-          if (!exercise.hasTest() && !exercise.hasExpectations()) {
+          if (!exercise.manual_evaluation && !exercise.hasTest() && !exercise.hasExpectations()) {
             throwError('error_editor_code_validation', { fullName: exercise.fullName() });
           }
         }

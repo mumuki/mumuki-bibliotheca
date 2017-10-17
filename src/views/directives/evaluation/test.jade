@@ -3,10 +3,9 @@ ace-with-toolbar-code(
   mode='exercise.getAceMode()',
   comment='exercise.getComment()',
   placeholder='placeholder_test',
-  from='test',
-  ng-if='!exercise.manual_evaluation'
+  from='test'
 )
-div.checkbox.complementary.complementary-checkbox(ng-if='exercise.canChangeLayout()')
+div.checkbox.complementary.complementary-checkbox
   input(type='checkbox', id='manual-evaluation', ng-model='exercise.manual_evaluation')
   label(for='manual-evaluation')
     input.border-white(type='text', value='{{ "manual_evaluation" | translate }}', readonly)
