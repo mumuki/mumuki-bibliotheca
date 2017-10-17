@@ -101,7 +101,7 @@ angular
       }
 
       needsTests() {
-        return this.getType().needsTests(this);
+        return this.getType().needsTests(this) && !this.manual_evaluation;
       }
 
       needsChoices() {
