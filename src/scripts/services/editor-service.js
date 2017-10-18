@@ -10,6 +10,10 @@ angular
       throw new Error(translate(...args));
     }
 
+    const hasEvaluation = (exercise) => {
+      return exercise.manual_evaluation || exercise.hasTest() || exercise.hasExpectations();
+    }
+
     const editorType = {
       code: {
         name: 'code',
@@ -26,7 +30,7 @@ angular
         initialLanguage: (exercise) => exercise.language,
         validate: (exercise) => {
           Validator.notIncompleteExpectations(exercise);
-          if (!exercise.hasTest() && !exercise.hasExpectations()) {
+          if (!hasEvaluation(exercise)) {
             throwError('error_editor_code_validation', { fullName: exercise.fullName() });
           }
         }
@@ -76,7 +80,7 @@ angular
             if (exercise.hasAnyChoiceSelected()) {
               throwError('error_editor_single_choice_validation_no_selected', { fullName: exercise.fullName() });
             }
-            if (!exercise.hasTest() && !exercise.hasExpectations()) {
+            if (!hasEvaluation(exercise)) {
               throwError('error_editor_code_validation', { fullName: exercise.fullName() });
             }
           }
@@ -116,7 +120,7 @@ angular
         initialLanguage: (exercise) => exercise.language,
         validate: (exercise) => {
           Validator.notIncompleteExpectations(exercise);
-          if (!exercise.hasTest() && !exercise.hasExpectations()) {
+          if (!hasEvaluation(exercise)) {
             throwError('error_editor_code_validation', { fullName: exercise.fullName() });
           }
         }
@@ -134,7 +138,12 @@ angular
         initalLayout: (exercise) => Layouts.input_bottom.type(),
         canChangeLanguage: (exercise) => true,
         initialLanguage: (exercise) => exercise.language,
-        validate: (exercise) => {}
+        validate: (exercise) => {
+          Validator.notIncompleteExpectations(exercise);
+          if (!hasEvaluation(exercise)) {
+            throwError('error_editor_code_validation', { fullName: exercise.fullName() });
+          }
+        }
       },
       none: {
         isDisabled: true,

@@ -103,7 +103,7 @@ editorTest('Exercise Model', () => {
         exercise.test = '';
         exercise.expectations = [];
         exercise.choices = [{value: 'foo'}, {value: 'bar'}];
-        expect(() => exercise.validate()).to.throw('Should have at least one test or expectation');
+        expect(() => exercise.validate()).to.throw('Should have at least one test, one expectation or evaluation should be manual');
       });
       spec(() => {
         exercise.setLanguage('haskell');

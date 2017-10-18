@@ -5,3 +5,7 @@ ace-with-toolbar-code(
   placeholder='placeholder_test',
   from='test'
 )
+div.checkbox.complementary.complementary-checkbox
+  input(type='checkbox', id='manual-evaluation', ng-model='exercise.manual_evaluation')
+  label(for='manual-evaluation')
+    input.border-white(type='text', value='{{ "manual_evaluation" | translate }}', readonly)

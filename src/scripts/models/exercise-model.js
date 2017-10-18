@@ -167,6 +167,7 @@ angular
       getItem() {
         const exercise = Exercise.from(_.cloneDeep(this));
         if (!exercise.needsTests()) delete exercise.test;
+        if (this.manual_evaluation) delete exercise.test;
         if (!exercise.needsExtra()) delete exercise.extra;
         if (!exercise.needsChoices()) delete exercise.choices;
         if (!exercise.needsSolution()) delete exercise.solution;
