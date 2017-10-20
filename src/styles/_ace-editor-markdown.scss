@@ -31,6 +31,10 @@ ace-editor {
   }
 }
 
+.mu-file-browser > main > ul > li > i {
+  font-size: 64px;
+}
+
 .markdown-panel {
   @include display-flex(row, space-around, center);
   padding: 2.5px 0 5px;
