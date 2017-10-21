@@ -66,7 +66,9 @@ angular
 
         $scope.$watch(() => _selectedTab, (newVal) => {
           if (newVal === PREVIEW) {
-           renderMarkdown().then(() => $scope.$apply());
+           renderMarkdown()
+            .then(() => $scope.$apply())
+            .then(() => $('.mu-file-browser').renderFileBrowser());
           }
         });
 
