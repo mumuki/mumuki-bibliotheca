@@ -25,6 +25,11 @@ angular
             isVisible: () => $scope.exercise.needsTests(),
           },
           {
+            name: 'goal',
+            templateUrl: 'views/directives/evaluation/goal.html',
+            isVisible: () => $scope.exercise.needsGoal(),
+          },
+          {
             name: 'inspections',
             templateUrl: 'views/directives/evaluation/expectations.html',
             isVisible: () => $scope.exercise.needsExpectations(),

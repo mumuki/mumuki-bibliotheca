@@ -15,7 +15,7 @@ angular
     }
 
     this.set = (languages = []) => {
-      _languages = [_default, ...languages.map(Language.from)];
+      _languages = [_default, ..._(languages).map(Language.from).sortBy('name').value()];
     }
 
     this.default = () => {

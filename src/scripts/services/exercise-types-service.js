@@ -1,6 +1,6 @@
 angular
   .module('editor')
-  .service('ExerciseTypes', function() {
+  .service('ExerciseTypes', function(Validator) {
 
     let _exerciseTypes = {
       problem: {
@@ -10,6 +10,7 @@ angular
         isPlayground: () => false,
         validate: (exercise) => exercise.getEditor().validate(exercise),
         needsExtra: (exercise) => exercise.getEditor().needsExtra(exercise),
+        needsGoal: (exercise) => false,
         needsTests: (exercise) => exercise.getEditor().needsTests(exercise),
         needsChoices: (exercise) => exercise.getEditor().needsChoices(exercise),
         needsSolution: (exercise) => exercise.getEditor().needsSolution(exercise),
@@ -25,6 +26,7 @@ angular
         isPlayground: () => true,
         validate: (exercise) => {},
         needsExtra: (exercise) => true,
+        needsGoal: (exercise) => false,
         needsTests: (exercise) => false,
         needsChoices: (exercise) => false,
         needsSolution: (exercise) => false,
@@ -40,6 +42,7 @@ angular
         isPlayground: () => false,
         validate: (exercise) => {},
         needsExtra: (exercise) => false,
+        needsGoal: (exercise) => false,
         needsTests: (exercise) => false,
         needsChoices: (exercise) => false,
         needsSolution: (exercise) => false,
@@ -47,7 +50,24 @@ angular
         needsDefaultContent: (exercise) => false,
         needsHint: (exercise) => false,
         needsCorollary: (exercise) => false,
+      },
+      interactive: {
+        name: 'interactive',
+        icon: () => 'fa fa-refresh',
+        isProblem: () => false,
+        isPlayground: () => false,
+        validate: (exercise) => Validator.notEmptyString(exercise, 'goal'),
+        needsExtra: (exercise) => true,
+        needsGoal: (exercise) => true,
+        needsTests: (exercise) => false,
+        needsChoices: (exercise) => false,
+        needsSolution: (exercise) => false,
+        needsExpectations: (exercise) => false,
+        needsDefaultContent: (exercise) => false,
+        needsHint: (exercise) => true,
+        needsCorollary: (exercise) => true,
       }
+
     }
 
     this.get = () => {

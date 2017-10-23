@@ -100,6 +100,10 @@ angular
         }
       }
 
+      needsGoal() {
+        return this.getType().needsGoal(this);
+      }
+
       needsTests() {
         return this.getType().needsTests(this);
       }
