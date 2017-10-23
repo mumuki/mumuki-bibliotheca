@@ -1,6 +1,6 @@
 angular
   .module('editor')
-  .service('ExerciseTypes', function() {
+  .service('ExerciseTypes', function(Validator) {
 
     let _exerciseTypes = {
       problem: {
@@ -10,7 +10,7 @@ angular
         isPlayground: () => false,
         validate: (exercise) => exercise.getEditor().validate(exercise),
         needsExtra: (exercise) => exercise.getEditor().needsExtra(exercise),
-        needsGoals: (exercise) => false,
+        needsGoal: (exercise) => false,
         needsTests: (exercise) => exercise.getEditor().needsTests(exercise),
         needsChoices: (exercise) => exercise.getEditor().needsChoices(exercise),
         needsSolution: (exercise) => exercise.getEditor().needsSolution(exercise),
@@ -26,7 +26,7 @@ angular
         isPlayground: () => true,
         validate: (exercise) => {},
         needsExtra: (exercise) => true,
-        needsGoals: (exercise) => false,
+        needsGoal: (exercise) => false,
         needsTests: (exercise) => false,
         needsChoices: (exercise) => false,
         needsSolution: (exercise) => false,
@@ -42,7 +42,7 @@ angular
         isPlayground: () => false,
         validate: (exercise) => {},
         needsExtra: (exercise) => false,
-        needsGoals: (exercise) => false,
+        needsGoal: (exercise) => false,
         needsTests: (exercise) => false,
         needsChoices: (exercise) => false,
         needsSolution: (exercise) => false,
@@ -56,9 +56,9 @@ angular
         icon: () => 'fa fa-refresh',
         isProblem: () => false,
         isPlayground: () => false,
-        validate: (exercise) => {},
+        validate: (exercise) => Validator.notEmptyString(exercise, 'goal'),
         needsExtra: (exercise) => true,
-        needsGoals: (exercise) => true,
+        needsGoal: (exercise) => true,
         needsTests: (exercise) => false,
         needsChoices: (exercise) => false,
         needsSolution: (exercise) => false,
