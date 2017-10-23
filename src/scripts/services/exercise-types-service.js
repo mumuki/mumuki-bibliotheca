@@ -10,6 +10,7 @@ angular
         isPlayground: () => false,
         validate: (exercise) => exercise.getEditor().validate(exercise),
         needsExtra: (exercise) => exercise.getEditor().needsExtra(exercise),
+        needsGoals: (exercise) => false,
         needsTests: (exercise) => exercise.getEditor().needsTests(exercise),
         needsChoices: (exercise) => exercise.getEditor().needsChoices(exercise),
         needsSolution: (exercise) => exercise.getEditor().needsSolution(exercise),
@@ -25,6 +26,7 @@ angular
         isPlayground: () => true,
         validate: (exercise) => {},
         needsExtra: (exercise) => true,
+        needsGoals: (exercise) => false,
         needsTests: (exercise) => false,
         needsChoices: (exercise) => false,
         needsSolution: (exercise) => false,
@@ -40,6 +42,7 @@ angular
         isPlayground: () => false,
         validate: (exercise) => {},
         needsExtra: (exercise) => false,
+        needsGoals: (exercise) => false,
         needsTests: (exercise) => false,
         needsChoices: (exercise) => false,
         needsSolution: (exercise) => false,
@@ -47,7 +50,24 @@ angular
         needsDefaultContent: (exercise) => false,
         needsHint: (exercise) => false,
         needsCorollary: (exercise) => false,
+      },
+      interactive: {
+        name: 'interactive',
+        icon: () => 'fa fa-refresh',
+        isProblem: () => false,
+        isPlayground: () => false,
+        validate: (exercise) => {},
+        needsExtra: (exercise) => true,
+        needsGoals: (exercise) => true,
+        needsTests: (exercise) => false,
+        needsChoices: (exercise) => false,
+        needsSolution: (exercise) => false,
+        needsExpectations: (exercise) => false,
+        needsDefaultContent: (exercise) => false,
+        needsHint: (exercise) => true,
+        needsCorollary: (exercise) => true,
       }
+
     }
 
     this.get = () => {

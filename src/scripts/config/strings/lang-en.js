@@ -67,6 +67,7 @@ angular
     insert_interpolation: 'Insert interpolation',
     inspection: 'Inspection',
     inspections: 'Inspections',
+    interactive: 'Interactive',
     item: 'Item',
     language: 'Language',
     layout: 'Editor layout',
