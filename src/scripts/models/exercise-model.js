@@ -170,6 +170,7 @@ angular
 
       getItem() {
         const exercise = Exercise.from(_.cloneDeep(this));
+        if (!exercise.needsGoal()) delete exercise.goal;
         if (!exercise.needsTests()) delete exercise.test;
         if (this.manual_evaluation) delete exercise.test;
         if (!exercise.needsExtra()) delete exercise.extra;
