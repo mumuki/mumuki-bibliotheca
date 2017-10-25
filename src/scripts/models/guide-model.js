@@ -19,7 +19,7 @@ angular
       }
 
       getAceMode() {
-        return this.fullLanguage().ace_mode;
+        return this.fullLanguage().highlight_mode;
       }
 
       fullLanguage() {
