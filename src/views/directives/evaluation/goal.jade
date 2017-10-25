@@ -1,4 +1,27 @@
-ace-editor(
-  mode='"yaml"',
-  content='exercise.goal',
-  placeholder='placeholder_goal')
+ui-select(ng-model='exercise.goal' theme='bootstrap' title='{{ "goal_placeholder_kind" | translate }}')
+  ui-select-match(placeholder='{{ "goal_placeholder_kind" | translate }}')
+    | {{ $select.selected.kind && "goal_" + $select.selected.kind | translate }}
+  ui-select-choices(repeat='goal in goals | filter:$select.search')
+    small(ng-bind-html='"goal_" + goal.kind | translate | highlight: $select.search')
+
+input.form-control.goal-input(
+    ng-if='has("value")'
+    ng-model='exercise.goal.value',
+    placeholder='{{ "goal_placeholder_value" | translate }}')
+
+input.form-control.goal-input(
+    ng-if='has("query")'
+    ng-model='exercise.goal.query',
+    placeholder='{{ "goal_placeholder_query" | translate }}')
+
+input.form-control.goal-input(
+    ng-if='has("regexp")'
+    ng-model='exercise.goal.regexp',
+    placeholder='{{ "goal_placeholder_regexp" | translate }}')
+
+.goal-input
+  ace-editor(
+    ng-if='has("output")'
+    mode='exercise.getAceMode()',
+    content='exercise.goal.output',
+    placeholder='goal_placeholder_output')

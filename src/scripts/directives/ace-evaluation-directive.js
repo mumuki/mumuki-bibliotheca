@@ -75,6 +75,47 @@ angular
           return _.some($scope.tabs, (t) => t.isVisible());
         }
 
+        $scope.goals = [
+          {
+            kind: 'last_query_equals',
+            value: ''
+          },
+          {
+            kind: 'last_query_matches',
+            regexp: ''
+          },
+          {
+            kind: 'last_query_passes',
+          },
+          {
+            kind: 'last_query_fails',
+          },
+          {
+            kind: 'last_query_outputs',
+            output: ''
+          },
+          {
+            kind: 'query_passes',
+            query: ''
+          },
+          {
+            kind: 'query_fails',
+            query: ''
+          },
+          {
+            kind: 'query_outputs',
+            query: '',
+            output: ''
+          }
+        ]
+
+        $scope.has = (field) => {
+           return _.chain($scope)
+            .get('exercise.goal', {})
+            .has(field)
+            .value();
+        };
+
       }
 
     }
