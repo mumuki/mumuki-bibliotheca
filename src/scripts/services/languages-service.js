@@ -7,6 +7,9 @@ angular
       name: undefined,
       icon() {
         return 'fa fa-language'
+      },
+      testTemplate() {
+        return ''
       }
     };
 

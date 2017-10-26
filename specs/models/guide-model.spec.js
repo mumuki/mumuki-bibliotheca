@@ -26,7 +26,7 @@ editorTest('Guide Model', () => {
 
   context('#getExercise', () => {
     const exercise1 = { id: 1 };
-    const exercise2 = { id: 2 };
+    const exercise2 = { id: 2, test: '' };
     const exercise3 = { id: 3 };
     const exercises = [exercise1, exercise2, exercise3];
 
