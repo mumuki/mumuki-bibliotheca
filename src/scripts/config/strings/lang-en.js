@@ -35,7 +35,7 @@ angular
     error_choices_empty_validation: '{{fullName}}: Should have at least two choices',
     error_choices_incomplete_validation: '{{fullName}}: Has incomplete choices',
     error_editor_code_validation: '{{fullName}}: Should have at least one test, one expectation or evaluation should be manual',
-    error_editor_hidden_validation: '{{fullName}}: Should have at least one test',
+    error_editor_hidden_validation: '{{fullName}}: Should have corollary and at least one test',
     error_editor_multiple_choice_validation: '{{fullName}}: Should have at least one choice selected',
     error_editor_single_choice_validation_no_selected: '{{fullName}}: Should not have choices selected',
     error_editor_single_choice_validation_only_one: '{{fullName}}: Shoud have only one choice selected',

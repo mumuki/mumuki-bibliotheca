@@ -100,7 +100,7 @@ angular
         canChangeLanguage: (exercise) => true,
         initialLanguage: (exercise) => exercise.language,
         validate: (exercise) => {
-          if (!exercise.hasTest()) {
+          if (!exercise.hasTest() || !exercise.hasCorollary()) {
             throwError('error_editor_hidden_validation', { fullName: exercise.fullName() });
           }
         },
