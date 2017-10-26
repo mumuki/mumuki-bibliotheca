@@ -35,7 +35,7 @@ angular
     error_choices_empty_validation: '{{fullName}}: Tiene que ofrecer al menos dos opción',
     error_choices_incomplete_validation: '{{fullName}}: Tiene opción incompletas',
     error_editor_code_validation: '{{fullName}}: Debe tener al menos una prueba, una expectativa o su evaluación debe ser manual',
-    error_editor_hidden_validation: '{{fullName}}: Debe tener al menos una prueba',
+    error_editor_hidden_validation: '{{fullName}}: Debe tener corolario y al menos una prueba',
     error_editor_multiple_choice_validation: '{{fullName}}: Debe seleccionar al menos una opción',
     error_editor_single_choice_validation_no_selected: '{{fullName}}: No debe seleccionar ninguna opción',
     error_editor_single_choice_validation_only_one: '{{fullName}}: Debe seleccionar solamente una opción',

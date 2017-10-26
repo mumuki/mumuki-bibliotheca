@@ -148,6 +148,10 @@ angular
         return this.getLanguage() === 'text';
       }
 
+      hasCorollary() {
+        return !_.isEmpty(_.get(this, 'corollary', '').trim());
+      }
+
       hasTest() {
         return !_.isEmpty(_.get(this, 'test', '').trim());
       }
