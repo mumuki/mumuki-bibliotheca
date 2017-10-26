@@ -13,6 +13,21 @@ angular
 
       constructor(exercise) {
         _.defaultsDeep(this, exercise);
+        if (this.needsTests()) {
+          this.useTestOrTemplate();
+        }
+      }
+
+      useTestOrTemplate() {
+        this.test = this.hasTest() ? this.test : this.testTemplate();
+      }
+
+      resetTestTemplate() {
+        this.test = this.testTemplate();
+      }
+
+      testTemplate() {
+        return this.fullLanguage().test_template;
       }
 
       guide() {
