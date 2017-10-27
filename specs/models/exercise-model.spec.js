@@ -163,7 +163,8 @@ editorTest('Exercise Model', () => {
     spec(() => exercise.should.have.property('type').eql('problem'));
     spec(() => exercise.should.have.property('editor').eql('code'));
     spec(() => exercise.should.have.property('layout').eql('input_right'));
-    spec(() => _.keys(exercise).length.should.be.eql(4));
+    spec(() => exercise.should.have.property('test').eql(''));
+    spec(() => _.keys(exercise).length.should.be.eql(5));
   });
 
 });

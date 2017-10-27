@@ -250,3 +250,12 @@ ul.results-list {
     }
   }
 }
+
+.with-template {
+  position: relative;
+  a {
+    position: absolute;
+    right: 5px;
+    bottom: 0;
+  }
+}

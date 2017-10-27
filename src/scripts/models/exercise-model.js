@@ -13,6 +13,19 @@ angular
 
       constructor(exercise) {
         _.defaultsDeep(this, exercise);
+        this.useTestOrTemplate();
+      }
+
+      useTestOrTemplate() {
+        this.test = this.hasTest() ? this.test : this.testTemplate();
+      }
+
+      resetTestTemplate() {
+        this.test = this.testTemplate();
+      }
+
+      testTemplate() {
+        return this.fullLanguage().testTemplate().trim();
       }
 
       guide() {
@@ -52,7 +65,7 @@ angular
       }
 
       getLanguage() {
-        return this.language || this.guide().language;
+        return this.language || _.get(this.guide(), 'language');
       }
 
       getLayout() {

@@ -13,6 +13,7 @@ angular
         mode: '=',
         comment: '=',
         content: '=',
+        template: '=',
         placeholder: '='
       },
       controller: ($scope) => {
@@ -32,6 +33,10 @@ angular
             editor.setHighlightGutterLine(false);
           }
         });
+
+        $scope.resetContent = () => {
+          $scope.content = $scope.template
+        }
 
       }
 

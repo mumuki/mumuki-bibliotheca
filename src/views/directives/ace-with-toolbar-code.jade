@@ -1,2 +1,4 @@
 ace-code-toolbar(editor='editor', comment='comment', from='from')
-div(ui-ace='aceEditor', ng-model='content', mode='mode', placeholder='placeholder')
+div.with-template
+  div(ui-ace='aceEditor', ng-model='content', mode='mode', placeholder='placeholder')
+  a(href='', ng-click='resetContent()', ng-if='!!template'): i.fa.fa-fw.fa-trash-o
