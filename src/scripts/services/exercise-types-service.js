@@ -1,13 +1,6 @@
 angular
   .module('editor')
-  .service('ExerciseTypes', function($filter,
-                                     Validator) {
-
-    const translate = $filter('translate');
-
-    const throwError = (...args) => {
-      throw new Error(translate(...args));
-    }
+  .service('ExerciseTypes', function(Validator) {
 
     let _exerciseTypes = {
       problem: {
@@ -32,13 +25,7 @@ angular
         isProblem: () => false,
         isPlayground: () => true,
         validate: (exercise) => {
-          const language = exercise.fullLanguage();
-          if (!language.queriable) {
-            throwError('error_queriable_language_validation', {
-              exercise: exercise.fullName(),
-              language: language.name
-            })
-          }
+          Validator.languageSupport(exercise, 'queriable');
         },
         needsExtra: (exercise) => true,
         needsGoal: (exercise) => false,
@@ -73,14 +60,7 @@ angular
         isPlayground: () => false,
         validate: (exercise) => {
           Validator.notEmptyString(exercise, 'goal');
-
-          const language = exercise.fullLanguage();
-          if (!language.triable) {
-            throwError('error_triable_language_validation', {
-              exercise: exercise.fullName(),
-              language: language.name
-            })
-          }
+          Validator.languageSupport(exercise, 'triable');
         },
         needsExtra: (exercise) => true,
         needsGoal: (exercise) => true,
