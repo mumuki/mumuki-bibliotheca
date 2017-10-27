@@ -31,7 +31,15 @@ angular
         icon: () => 'fa fa-soccer-ball-o',
         isProblem: () => false,
         isPlayground: () => true,
-        validate: (exercise) => {},
+        validate: (exercise) => {
+          const language = exercise.fullLanguage();
+          if (!language.queriable) {
+            throwError('error_queriable_language_validation', {
+              exercise: exercise.fullName(),
+              language: language.name
+            })
+          }
+        },
         needsExtra: (exercise) => true,
         needsGoal: (exercise) => false,
         needsTests: (exercise) => false,

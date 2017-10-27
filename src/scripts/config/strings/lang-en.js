@@ -41,6 +41,7 @@ angular
     error_editor_single_choice_validation_only_one: '{{fullName}}: Shoud have only one choice selected',
     error_expectations_incomplete_validation: '{{fullName}}: Has incomplete expectations',
     error_mandatory_field: '{{ fullName }}: Field {{ field }} is mandatory',
+    error_queriable_language_validation: '{{ exercise }}: Language {{ language }} does not supports playground exercises',
     error_triable_language_validation: '{{ exercise }}: Language {{ language }} does not supports interactive exercises',
     errored: "Oops, your solution doesn't work",
     evaluation: 'Evaluation',

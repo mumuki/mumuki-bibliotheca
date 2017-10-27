@@ -41,6 +41,7 @@ angular
     error_editor_single_choice_validation_only_one: '{{fullName}}: Debe seleccionar solamente una opción',
     error_expectations_incomplete_validation: '{{fullName}}: Tiene expectativas incompletas',
     error_mandatory_field: '{{fullName}}: El campo "{{ field }}" no puede estar vacío',
+    error_queriable_language_validation: '{{ exercise }}: El lenguage "{{ language }}" no soporta ejercicios de tipo juego',
     error_triable_language_validation: '{{ exercise }}: El lenguage "{{ language }}" no soporta ejercicios interactivos',
     errored: 'Ups, tu solución no funcionó',
     evaluation: 'Evaluación',
