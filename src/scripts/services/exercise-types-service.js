@@ -1,6 +1,13 @@
 angular
   .module('editor')
-  .service('ExerciseTypes', function(Validator) {
+  .service('ExerciseTypes', function($filter,
+                                     Validator) {
+
+    const translate = $filter('translate');
+
+    const throwError = (...args) => {
+      throw new Error(translate(...args));
+    }
 
     let _exerciseTypes = {
       problem: {
@@ -56,7 +63,17 @@ angular
         icon: () => 'fa fa-refresh',
         isProblem: () => false,
         isPlayground: () => false,
-        validate: (exercise) => Validator.notEmptyString(exercise, 'goal'),
+        validate: (exercise) => {
+          Validator.notEmptyString(exercise, 'goal');
+
+          const language = exercise.fullLanguage();
+          if (!language.triable) {
+            throwError('error_triable_language_validation', {
+              exercise: exercise.fullName(),
+              language: language.name
+            })
+          }
+        },
         needsExtra: (exercise) => true,
         needsGoal: (exercise) => true,
         needsTests: (exercise) => false,
