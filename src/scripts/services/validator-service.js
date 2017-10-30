@@ -40,6 +40,16 @@ angular
       }
     }
 
+    this.languageSupport = (exercise, type) => {
+      const language = exercise.fullLanguage();
+      if (!language[type]) {
+        throw new Error(translate(`error_${type}_language_validation`, {
+          exercise: exercise.fullName(),
+          language: language.name
+        }))
+      }
+    }
+
     this.notIncompleteExpectations = (expectationable) => {
       if (_.some(expectationable.expectations, isIncompleteExpectation(expectationable))) {
         throw new Error(translate('error_expectations_incomplete_validation', {

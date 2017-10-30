@@ -24,7 +24,9 @@ angular
         icon: () => 'fa fa-soccer-ball-o',
         isProblem: () => false,
         isPlayground: () => true,
-        validate: (exercise) => {},
+        validate: (exercise) => {
+          Validator.languageSupport(exercise, 'queriable');
+        },
         needsExtra: (exercise) => true,
         needsGoal: (exercise) => false,
         needsTests: (exercise) => false,
@@ -56,7 +58,10 @@ angular
         icon: () => 'fa fa-refresh',
         isProblem: () => false,
         isPlayground: () => false,
-        validate: (exercise) => Validator.notEmptyString(exercise, 'goal'),
+        validate: (exercise) => {
+          Validator.notEmptyString(exercise, 'goal');
+          Validator.languageSupport(exercise, 'triable');
+        },
         needsExtra: (exercise) => true,
         needsGoal: (exercise) => true,
         needsTests: (exercise) => false,
