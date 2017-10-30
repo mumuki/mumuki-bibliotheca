@@ -3,7 +3,7 @@ angular
   .constant('CONFIG', {
 
     bibliotheca: {
-      url: 'http://localhost:3004'
+      url: 'http://0.0.0.0:3004'
     },
 
     cookie: {

@@ -37,7 +37,7 @@ gulp.task('dev:serve', () => {
     .pipe($.webserver({
       open: true,
       port: 3003,
-      host: 'localhost',
+      host: '0.0.0.0',
       livereload: 35730
     }));
 });
