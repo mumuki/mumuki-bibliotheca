@@ -8,6 +8,5 @@ angular
 
     cookie: {
       domain: '.localmumuki.io',
-      session: '_mumuki_bibliotheca_session'
     }
   });
