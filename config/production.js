@@ -6,5 +6,7 @@ angular
       url: '<MUMUKI_BIBLIOTHECA_API_URL>'
     },
 
-    cookie: {}
+    cookie: {
+      domain: '<MUMUKI_COOKIES_DOMAIN>'
+    }
   });
