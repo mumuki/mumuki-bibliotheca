@@ -30,7 +30,6 @@ angular
     };
 
     this.signout = () => {
-      $cookies.remove(CONFIG.cookie.session, { domain: CONFIG.cookie.session });
       profile = null;
       store.remove('permissions');
       document.location.href = $injector.get('Api').getLogoutUrl();
