@@ -11,6 +11,8 @@ angular
       },
       controller: ($scope) => {
 
+        _.defaults($scope.exercise, {expectations: []});
+
         const emptyExpectation = () => {
           const inspection = {
             verb: '',
