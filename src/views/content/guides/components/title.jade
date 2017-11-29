@@ -1,6 +1,7 @@
 input(type='text', ng-model='item.name', placeholder='{{ "placeholder_guide_name" | translate }}')
 
 save-item(item='item', save='save()')
+small.pointer.text-primary: i.fa.fa-fw.fa-code-fork(ng-click='fork(item)')
 locale(item='item')
 guide-type(guide='item')
 language(item='item')

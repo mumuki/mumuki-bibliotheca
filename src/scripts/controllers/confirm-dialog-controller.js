@@ -11,7 +11,7 @@ angular
     $scope.text = text;
 
     $scope.yes = (...params) => {
-      onYesPromise(...params)
+      return onYesPromise(...params)
         .then(() => $uibModalInstance.close());
     }
 

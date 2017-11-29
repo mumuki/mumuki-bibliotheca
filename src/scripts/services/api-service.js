@@ -108,4 +108,10 @@ angular
         .then((res) => res.data)
     }
 
+    this.fork = ({ org, repo }, organization) => {
+      return HTTP
+        .call('post',`${API}/guides/${org}/${repo}/fork`, { organization }, defaultConfig())
+        .then((res) => res.data)
+    }
+
   });
