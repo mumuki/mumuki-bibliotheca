@@ -1,11 +1,18 @@
 angular
   .module('editor')
   .controller('GuideDetailController', function ($scope,
+                                                 $state,
+                                                 $stateParams,
                                                  $filter,
                                                  $controller,
+                                                 toastr,
                                                  guide,
                                                  CurrentItem,
-                                                 GuideSaver) {
+                                                 GuideSaver,
+                                                 Modal,
+                                                 Api) {
+
+    const translate = $filter('translate');
 
     $controller('DetailController', {
       $scope: $scope,
@@ -22,6 +29,21 @@ angular
     $scope.save = () => {
       return $scope.publish('guide', (item) => {
         $scope.item = item;
+      });
+    }
+
+    $scope.fork = (guide) => {
+      Modal.forkFromGithub(translate('copy_guide'), translate('copy_guide_text'), (organization) => {
+        return Api
+          .fork($stateParams, organization)
+          .then(() => $state.go('editor.home.guides.detail', { org: organization, repo: $stateParams.repo }, {reload: true}))
+          .then(() => toastr.success(translate('guide_forked_successfully', { fullName: guide.fullName() })))
+          .catch((response) => {
+            console.log(response);
+            return (response.status == 400) ? 
+              toastr.error(translate('guide_already_exists', { fullName: guide.fullName() })) :
+              toastr.error(translate('guide_fork_fails'));
+          })
       });
     }
 

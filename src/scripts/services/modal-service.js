@@ -40,4 +40,14 @@ angular
       }
     });
 
+    this.forkFromGithub = (title, text, onYesPromise) => $uibModal.open({
+      templateUrl: 'views/modals/fork-guide-from-github-modal.html',
+      controller: 'ForkGuideFromGithubController',
+      resolve: {
+        title: () => title,
+        text: () => text,
+        onYesPromise: () => onYesPromise,
+      }
+    });
+
   });
