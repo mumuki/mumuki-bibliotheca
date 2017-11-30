@@ -39,8 +39,7 @@ angular
           .then(() => $state.go('editor.home.guides.detail', { org: organization, repo: $stateParams.repo }, {reload: true}))
           .then(() => toastr.success(translate('guide_forked_successfully', { fullName: guide.fullName() })))
           .catch((response) => {
-            console.log(response);
-            return (response.status == 400) ? 
+            return (response.status == 400) ?
               toastr.error(translate('guide_already_exists', { fullName: guide.fullName() })) :
               toastr.error(translate('guide_fork_fails'));
           })
