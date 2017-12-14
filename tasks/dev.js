@@ -28,7 +28,6 @@ gulp.task('dev:watch', () => {
   gulp.watch(`${srcFolder}/images/**/*`, ['dev:images']);
   gulp.watch(`${srcFolder}/styles/**/*`, ['dev:styles']);
   gulp.watch(`${srcFolder}/scripts/**/*`, ['dev:scripts']);
-  gulp.watch(`${srcFolder}/bower_components/**/*`, ['dev:views:index']);
 });
 
 gulp.task('dev:serve', () => {
