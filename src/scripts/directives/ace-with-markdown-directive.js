@@ -68,7 +68,8 @@ angular
           if (newVal === PREVIEW) {
            renderMarkdown()
             .then(() => $scope.$apply())
-            .then(() => $('.mu-file-browser').renderFileBrowser());
+            .then(() => $('.mu-file-browser').renderFileBrowser())
+            .then(() => $('.mu-erd').renderERD());
           }
         });
 
