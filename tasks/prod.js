@@ -57,9 +57,7 @@ gulp.task('prod:views', (done) => {
 gulp.task('prod:fonts', function () {
   const fonts = [
     `${srcFolder}/fonts/**/*`,
-    `${srcFolder}/bower_components/dev-awesome/dist/fonts/**/*`,
-    `${srcFolder}/bower_components/font-awesome/fonts/**/*`,
-    `${srcFolder}/bower_components/bootstrap-sass/assets/fonts/**/*`
+    `${srcFolder}/bower_components/mumuki-styles/dist/fonts/**/*`
   ]
   return gulp.src(fonts)
     .pipe(gulp.dest(`${outFolder}/fonts`));

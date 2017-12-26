@@ -1,6 +1,6 @@
 {
   "name": "mumuki-bibliotheca",
-  "version": "0.0.1",
+  "version": "4.10.0",
   "description": "Mumuki Bibliotheca",
   "main": "index.js",
   "scripts": {
