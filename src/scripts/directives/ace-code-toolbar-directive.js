@@ -37,7 +37,10 @@ angular
         };
 
         const betweenLanguageComment = (type, separator1 = '...', separator2 = '...') => {
-          insertText('', `${$scope.comment.start}${separator1}${type}${separator2}${$scope.comment.end}`);
+          const text2 = separator2 === '...' ? `${type}${separator2}${$scope.comment.end}` : '';
+          const text3 = separator2 !== '...' ? `${type}${separator2}${$scope.comment.end}` : '';
+          const text1 = `${$scope.comment.start}${separator1}${text2}`;
+          insertText('', text1, text3);
         }
 
         $scope.test = () => betweenLanguageComment('test');
@@ -45,9 +48,9 @@ angular
         $scope.content = () => betweenLanguageComment('content');
         $scope.ignoreContentOnQuery = () => betweenLanguageComment('IgnoreContentOnQuery', '[', ']');
 
-        $scope.absoluteSolution = () => insertText('exercise_number', '/*...solution[', ']...*/');
-        $scope.relativeSolution = () => insertText('previous_exercise', '/*...solution[-', ']...*/');
-        $scope.previousSolution = () => insertText('', '/*...previousSolution...*/');
+        $scope.absoluteSolution = () => betweenLanguageComment('1', '...solution[', ']...');
+        $scope.relativeSolution = () => betweenLanguageComment('1', '...solution[-', ']...');
+        $scope.previousSolution = () => betweenLanguageComment('previousSolution');
       },
       link: (scope, element) => {
         element.find(`#${scope.from}`).hide();
