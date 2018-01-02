@@ -24,10 +24,6 @@ angular
 
     $scope.toggleIn = (index) => angular.element(`#example-result-${index}`).toggleClass('in');
 
-    $timeout(() => {
-      $('.mu-erd');
-      $('.mu-browser').renderWebBrowser();
-      $('.mu-file-browser').renderFileBrowser();
-    })
+    $timeout(() => $(document).renderMuComponents());
 
   });
