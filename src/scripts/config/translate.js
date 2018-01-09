@@ -5,7 +5,7 @@ angular
     const LANG_EN = $injector.get('LANG_EN');
     const LANG_PT = $injector.get('LANG_PT');
 
-    const supportedLocales = ['es', 'en'];
+    const supportedLocales = ['es', 'en', 'pt'];
 
     $translateProvider.translations('es', LANG_ES);
     $translateProvider.translations('en', LANG_EN);
