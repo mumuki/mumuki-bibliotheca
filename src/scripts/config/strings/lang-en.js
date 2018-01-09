@@ -134,6 +134,7 @@ angular
     placeholder_topic_name: '...Topic name...',
     placeholder_undefined: '',
     playground: 'Playground',
+    portuguese: 'Portuguese (Br)',
     practice: 'Practice',
     previous_solution_directive: 'Previous solution',
     problem: 'Problem',

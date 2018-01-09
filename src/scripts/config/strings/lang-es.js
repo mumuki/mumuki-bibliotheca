@@ -134,6 +134,7 @@ angular
     placeholder_topic_name: '...Nombre del tema...',
     placeholder_undefined: '',
     playground: 'Juego',
+    portuguese: 'Portugués (Br)',
     practice: 'Práctica',
     previous_solution_directive: 'Solucion del ejericio anterior',
     problem: 'Problema',
