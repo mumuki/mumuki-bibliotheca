@@ -5,6 +5,7 @@ angular
     const _locales = [
       { name: 'spanish', code: 'es' },
       { name: 'english', code: 'en' },
+      { name: 'portuguese', code: 'pt' }
     ].map(Locale.from);
 
     this.Locale = Locale;

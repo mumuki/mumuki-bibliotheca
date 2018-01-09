@@ -3,7 +3,7 @@ angular
   .factory('Locale', function() {
 
     const flagCode = (code) => {
-      return { es: 'ar', en: 'gb' }[code];
+      return { es: 'ar', en: 'gb', pt: 'br' }[code];
     }
 
     class Locale {
