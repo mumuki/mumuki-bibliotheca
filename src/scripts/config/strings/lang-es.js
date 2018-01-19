@@ -61,6 +61,8 @@ angular
     goal_last_query_fails: 'La última consulta es inválida',
     goal_last_query_matches: 'La última consulta es encaja con...',
     goal_last_query_outputs: 'La última consulta devuelve...',
+    goal_last_query_output_includes: 'El retorno de la última consulta incluye...',
+    goal_last_query_output_like: 'El retorno de la última consulta tiene la forma...',
     goal_last_query_passes: 'La última consulta es válida',
     goal_placeholder_kind: 'Elija el tipo del objetivo',
     goal_placeholder_output: 'Resultado esperado',

@@ -61,6 +61,8 @@ angular
     goal_last_query_fails: 'Last query fails',
     goal_last_query_matches: 'Last query matches...',
     goal_last_query_outputs: 'Last query outputs...',
+    goal_last_query_output_includes: 'Last query output includes...',
+    goal_last_query_output_like: 'Last query output like...',
     goal_last_query_passes: 'Last query passes',
     goal_placeholder_kind: 'Choose goal kind',
     goal_placeholder_output: 'Expected output',
