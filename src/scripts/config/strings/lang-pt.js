@@ -61,6 +61,8 @@ angular
     goal_last_query_fails: 'A última consulta falha',
     goal_last_query_matches: 'A última consulta combina ...',
     goal_last_query_outputs: 'Últimas saídas de consulta ...',
+    goal_last_query_output_includes: 'O último resultado da consulta inclui ...',
+    goal_last_query_output_like: 'Última saída da consulta como ...',
     goal_last_query_passes: 'A última consulta passa',
     goal_placeholder_kind: 'Escolha o tipo de objetivo',
     goal_placeholder_output: 'Saída esperada',

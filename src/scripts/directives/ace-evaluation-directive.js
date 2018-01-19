@@ -95,6 +95,14 @@ angular
             output: ''
           },
           {
+            kind: 'last_query_output_includes',
+            output: ''
+          },
+          {
+            kind: 'last_query_output_like',
+            output: ''
+          },
+          {
             kind: 'query_passes',
             query: ''
           },
