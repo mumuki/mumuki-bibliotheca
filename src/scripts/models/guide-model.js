@@ -55,6 +55,7 @@ angular
       }
 
       setLanguage(language) {
+        Languages.fromName(language).setLayoutAssets();
         this.language = language;
       }
 

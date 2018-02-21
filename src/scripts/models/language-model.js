@@ -1,6 +1,6 @@
 angular
   .module('editor')
-  .factory('Language', function($filter) {
+  .factory('Language', function($filter, $rootScope) {
 
     const $translate = $filter('translate');
 
@@ -12,6 +12,12 @@ angular
 
       icon() {
         return `da da-${this.devicon || this.name}`;
+      }
+
+      setLayoutAssets(){
+        $rootScope.language_layout_css_urls = this.layout_css_urls;
+        $rootScope.language_layout_html_urls = this.layout_html_urls;
+        $rootScope.language_layout_js_urls = this.layout_js_urls;
       }
 
       testTemplate() {

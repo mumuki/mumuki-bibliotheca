@@ -91,6 +91,7 @@ angular
       }
 
       setLanguage(language) {
+        Languages.fromName(language).setLayoutAssets();
         this.language = language;
         if (this.language === this.guide().language) {
           delete this.language;
