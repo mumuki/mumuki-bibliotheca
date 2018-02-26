@@ -11,7 +11,8 @@ angular
     const HTTP = Promise.resolve($http);
 
     const defaultConfig = (requestOptions = {}) => _.defaultsDeep(requestOptions, {
-      headers: { }
+      headers: { },
+      withCredentials: true
     })
 
     this.getOrganization = () => {

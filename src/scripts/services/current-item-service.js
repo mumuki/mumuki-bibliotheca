@@ -1,6 +1,6 @@
 angular
   .module('editor')
-  .service('CurrentItem', function (Auth, Debounce) {
+  .service('CurrentItem', function (Auth, Debounce, Languages) {
 
     let _item;
     let _organization;
@@ -13,6 +13,9 @@ angular
     }
 
     this.set = (item) => {
+      if(item.language){
+        Languages.fromName(item.language).setLayoutAssets();
+      }
       _item = item;
       this.setStored(item);
     };
