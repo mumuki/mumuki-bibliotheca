@@ -69,7 +69,7 @@ angular
       }
 
       getLayout() {
-        return Layouts.from(this.layout);
+        return Layouts.from(this.layout, this.getLanguage());
       }
 
       getEditor() {
@@ -110,7 +110,7 @@ angular
 
       toggleLayout() {
         if (this.canChangeLayout()) {
-          this.layout = this.getLayout().next().type();
+          this.layout = this.getLayout().getNext(this.getLanguage()).type();
         }
       }
 

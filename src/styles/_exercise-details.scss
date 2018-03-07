@@ -115,7 +115,7 @@ $scroll-height: 1px;
     }
   }
 
-  &.input_bottom {
+  &.input_bottom, &.input_kids {
     @include input-bottom;
   }
 

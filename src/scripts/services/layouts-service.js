@@ -22,20 +22,58 @@ angular
           return 'input_bottom';
         },
         next() {
+          return input.kids;
+        }
+      },
+      kids: {
+        icon() {
+          return 'fa fa-gamepad';
+        },
+        type() {
+          return 'input_kids';
+        },
+        next() {
           return input.right;
+        },
+        usableBy(language){
+          return this.languages().includes(language);
+        },
+        languages(){
+          return ["gobstones"];
         }
       }
     }
 
+    const layout_defaults = {
+      getNext(language) {
+        const next_layout = this.next();
+        if(next_layout.usableBy(language)){
+          return next_layout;
+        }
+        return next_layout.getNext(language);
+      },
+      usableBy(language){
+        return true;
+      }
+    }
+
+    for(var layout in input){
+      input[layout] = angular.extend({}, layout_defaults, input[layout])
+    }
+
     this.input_right = input.right;
     this.input_bottom = input.bottom;
+    this.input_kids = input.kids;
 
     this.default = () => {
       return this.input_right;
     }
 
-    this.from = (type) => {
-      return this[type] || this.default();
+    this.from = (type, language) => {
+      if(type && this[type].usableBy(language)){
+        return this[type];
+      }
+      return this.default();
     }
 
   });
