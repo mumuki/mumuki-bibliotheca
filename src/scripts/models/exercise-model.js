@@ -199,6 +199,12 @@ angular
         return exercise;
       }
 
+      usesCustomEditor(){
+        const usesCustomEditor = this.getLayout().usesCustomEditor(this.getLanguage());
+        if(usesCustomEditor) this.fullLanguage().setEditorAssets();
+        return usesCustomEditor;
+      }
+
       static from(exercise = {}) {
         _.defaultsDeep(exercise, {
           name: $filter('translate')('new_exercise'),

@@ -36,11 +36,18 @@ angular
           return input.right;
         },
         usableBy(language){
-          return this.languages().includes(language);
+          return this.supportedLanguages().includes(language);
         },
-        languages(){
+        supportedLanguages(){
+          return ["gobstones"];
+        },
+        usesCustomEditor(language){
+          return this.languagesWithCustomEditor().includes(language);
+        },
+        languagesWithCustomEditor(){
           return ["gobstones"];
         }
+
       }
     }
 
@@ -54,6 +61,9 @@ angular
       },
       usableBy(language){
         return true;
+      },
+      usesCustomEditor(language){
+        return false;
       }
     }
 

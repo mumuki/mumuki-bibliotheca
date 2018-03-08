@@ -1,10 +1,13 @@
-ace-with-toolbar-code(
-  content='exercise.extra',
-  mode='exercise.getAceMode()',
-  comment='exercise.getComment()',
-  placeholder='placeholder_extra_code',
-  from='extra')
-div.checkbox.complementary.complementary-checkbox(ng-if='exercise.canChangeLayout()')
-  input(type='checkbox', id='input-extra-visible', ng-model='exercise.extra_visible')
-  label(for='input-extra-visible')
-    input.border-white(type='text', value='{{ "extra_visible" | translate }}', readonly)
+div(ng-if='exercise.usesCustomEditor()')
+  div#mu-custom-editor
+div(ng-if='!exercise.usesCustomEditor()')
+  ace-with-toolbar-code(
+    content='exercise.extra',
+    mode='exercise.getAceMode()',
+    comment='exercise.getComment()',
+    placeholder='placeholder_extra_code',
+    from='extra')
+  div.checkbox.complementary.complementary-checkbox(ng-if='exercise.canChangeLayout()')
+    input(type='checkbox', id='input-extra-visible', ng-model='exercise.extra_visible')
+    label(for='input-extra-visible')
+      input.border-white(type='text', value='{{ "extra_visible" | translate }}', readonly)
