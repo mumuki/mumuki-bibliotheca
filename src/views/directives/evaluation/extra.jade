@@ -1,5 +1,4 @@
-div(ng-if='exercise.usesCustomEditor()')
-  div#mu-custom-editor
+div(ng-if='exercise.usesCustomEditor()', ng-bind-html="exercise.getCustomEditorHtml() | trustedHtml ")
 div(ng-if='!exercise.usesCustomEditor()')
   ace-with-toolbar-code(
     content='exercise.extra',

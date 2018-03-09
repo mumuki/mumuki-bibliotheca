@@ -26,6 +26,11 @@ angular
         $rootScope.language_editor_js_urls = this.editor_js_urls;
       }
 
+      getCustomEditorHtml(){
+        const editor_tag = `mu-${this.name}-custom-editor`;
+        return `<${editor_tag}> </${editor_tag}>`
+      }
+
       testTemplate() {
         return _.chain(this)
           .get('test_template', '')
