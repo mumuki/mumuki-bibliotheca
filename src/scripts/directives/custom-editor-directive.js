@@ -7,10 +7,10 @@ angular
       restrict: 'E',
       templateUrl: 'views/directives/custom-editor.html',
       scope: {
-        exercise: '='
+        exercise: '=',
+        content: '='
       },
       controller: ($scope) => {
       }
-
     }
   })
