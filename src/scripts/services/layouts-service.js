@@ -34,41 +34,8 @@ angular
         },
         next() {
           return input.right;
-        },
-        usableBy(language){
-          return this.supportedLanguages().includes(language);
-        },
-        supportedLanguages(){
-          return ["gobstones"];
-        },
-        usesCustomEditor(language){
-          return this.languagesWithCustomEditor().includes(language);
-        },
-        languagesWithCustomEditor(){
-          return ["gobstones"];
         }
-
       }
-    }
-
-    const layout_defaults = {
-      getNext(language) {
-        const next_layout = this.next();
-        if(next_layout.usableBy(language)){
-          return next_layout;
-        }
-        return next_layout.getNext(language);
-      },
-      usableBy(language){
-        return true;
-      },
-      usesCustomEditor(language){
-        return false;
-      }
-    }
-
-    for(var layout in input){
-      input[layout] = angular.extend({}, layout_defaults, input[layout])
     }
 
     this.input_right = input.right;
@@ -79,11 +46,8 @@ angular
       return this.input_right;
     }
 
-    this.from = (type, language) => {
-      if(type && this[type].usableBy(language)){
-        return this[type];
-      }
-      return this.default();
+    this.from = (type) => {
+      return this[type] || this.default();
     }
 
   });

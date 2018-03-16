@@ -69,7 +69,7 @@ angular
       }
 
       getLayout() {
-        return Layouts.from(this.layout, this.getLanguage());
+        return Layouts.from(this.layout);
       }
 
       getEditor() {
@@ -87,7 +87,7 @@ angular
         if (!this.getType().isProblem()) {
           delete this.editor;
         }
-        this.layout = this.getEditor().initalLayout(this);
+        this.layout = this.getEditor().initialLayout(this);
       }
 
       setLanguage(language) {
@@ -100,7 +100,7 @@ angular
 
       setEditor(editor) {
         this.editor = editor;
-        this.layout = this.getEditor().initalLayout(this);
+        this.layout = this.getEditor().initialLayout(this);
         this.setLanguage(this.getEditor().initialLanguage(this));
       }
 
@@ -110,7 +110,7 @@ angular
 
       toggleLayout() {
         if (this.canChangeLayout()) {
-          this.layout = this.getLayout().getNext(this.getLanguage()).type();
+          this.layout = this.getLayout().next().type();
         }
       }
 
@@ -200,7 +200,7 @@ angular
       }
 
       usesCustomEditor(){
-        const usesCustomEditor = this.getLayout().usesCustomEditor(this.getLanguage());
+        const usesCustomEditor = this.editor == "custom";
         if(usesCustomEditor) this.fullLanguage().setEditorAssets();
         return usesCustomEditor;
       }

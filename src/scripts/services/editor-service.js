@@ -25,7 +25,7 @@ angular
         needsExpectations: (exercise) => true,
         needsDefaultContent: (exercise) => true,
         canChangeLayout: (exercise) => true,
-        initalLayout: (exercise) => exercise.layout,
+        initialLayout: (exercise) => exercise.layout,
         canChangeLanguage: (exercise) => true,
         initialLanguage: (exercise) => exercise.language,
         validate: (exercise) => {
@@ -45,7 +45,7 @@ angular
         needsExpectations: (exercise) => false,
         needsDefaultContent: (exercise) => false,
         canChangeLayout: (exercise) => true,
-        initalLayout: (exercise) => exercise.layout,
+        initialLayout: (exercise) => exercise.layout,
         canChangeLanguage: (exercise) => false,
         initialLanguage: (exercise) => 'text',
         validate: (exercise) => {
@@ -66,7 +66,7 @@ angular
         needsExpectations: (exercise) => !exercise.isTextLanguage(),
         needsDefaultContent: (exercise) => !exercise.isTextLanguage(),
         canChangeLayout: (exercise) => true,
-        initalLayout: (exercise) => exercise.layout,
+        initialLayout: (exercise) => exercise.layout,
         canChangeLanguage: (exercise) => true,
         initialLanguage: (exercise) => exercise.language,
         validate: (exercise) => {
@@ -96,7 +96,7 @@ angular
         needsExpectations: (exercise) => false,
         needsDefaultContent: (exercise) => false,
         canChangeLayout: (exercise) => false,
-        initalLayout: (exercise) => Layouts.input_bottom.type(),
+        initialLayout: (exercise) => Layouts.input_bottom.type(),
         canChangeLanguage: (exercise) => true,
         initialLanguage: (exercise) => exercise.language,
         validate: (exercise) => {
@@ -115,7 +115,7 @@ angular
         needsExpectations: (exercise) => true,
         needsDefaultContent: (exercise) => false,
         canChangeLayout: (exercise) => true,
-        initalLayout: (exercise) => exercise.layout,
+        initialLayout: (exercise) => exercise.layout,
         canChangeLanguage: (exercise) => true,
         initialLanguage: (exercise) => exercise.language,
         validate: (exercise) => {
@@ -135,10 +135,30 @@ angular
         needsExpectations: (exercise) => true,
         needsDefaultContent: (exercise) => false,
         canChangeLayout: (exercise) => false,
-        initalLayout: (exercise) => Layouts.input_bottom.type(),
+        initialLayout: (exercise) => Layouts.input_bottom.type(),
         canChangeLanguage: (exercise) => true,
         initialLanguage: (exercise) => exercise.language,
         validate: (exercise) => {
+          Validator.notIncompleteExpectations(exercise);
+          if (!hasEvaluation(exercise)) {
+            throwError('error_editor_code_validation', { fullName: exercise.fullName() });
+          }
+        }
+      },
+      custom: {
+        name: 'custom',
+          icon: () => 'fa fa-terminal',
+          needsExtra: (exercise) => true,
+          needsTests: (exercise) => true,
+          needsChoices: (exercise) => false,
+          needsSolution: (exercise) => true,
+          needsExpectations: (exercise) => true,
+          needsDefaultContent: (exercise) => true,
+          canChangeLayout: (exercise) => true,
+          initialLayout: (exercise) => Layouts.input_kids.type(),
+          canChangeLanguage: (exercise) => true,
+          initialLanguage: (exercise) => exercise.language,
+          validate: (exercise) => {
           Validator.notIncompleteExpectations(exercise);
           if (!hasEvaluation(exercise)) {
             throwError('error_editor_code_validation', { fullName: exercise.fullName() });
@@ -150,7 +170,7 @@ angular
         isInvisible: true,
         icon: () => 'fa fa-ban',
         canChangeLayout: (exercise) => exercise.getType().isPlayground(),
-        initalLayout: (exercise) => Layouts.input_bottom.type(),
+        initialLayout: (exercise) => Layouts.input_bottom.type(),
         canChangeLanguage: (exercise) => true,
         initialLanguage: (exercise) => exercise.language
       },
