@@ -11,6 +11,12 @@ angular
         content: '='
       },
       controller: ($scope) => {
+      },
+      compile: (element) => {
+        return function (scope, element) {
+          const editor_tag = `mu-${scope.exercise.getLanguage()}-custom-editor`;
+          element.prepend(`<${editor_tag}> </${editor_tag}>`);
+        };
       }
     }
   })

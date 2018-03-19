@@ -205,10 +205,6 @@ angular
         return usesCustomEditor;
       }
 
-      getCustomEditorHtml(){
-        return this.fullLanguage().getCustomEditorHtml();
-      }
-
       static from(exercise = {}) {
         _.defaultsDeep(exercise, {
           name: $filter('translate')('new_exercise'),
