@@ -14,7 +14,7 @@ angular
 
     this.set = (item) => {
       if(item.language){
-        Languages.fromName(item.language).setLayoutAssets();
+        Languages.fromName(item.language).setAssets();
       }
       _item = item;
       this.setStored(item);

@@ -91,7 +91,7 @@ angular
       }
 
       setLanguage(language) {
-        Languages.fromName(language).setLayoutAssets();
+        Languages.fromName(language).setAssets();
         this.language = language;
         if (this.language === this.guide().language) {
           delete this.language;
@@ -200,9 +200,7 @@ angular
       }
 
       usesCustomEditor(){
-        const usesCustomEditor = this.editor == "custom";
-        if(usesCustomEditor) this.fullLanguage().setEditorAssets();
-        return usesCustomEditor;
+        return this.editor == "custom";
       }
 
       static from(exercise = {}) {

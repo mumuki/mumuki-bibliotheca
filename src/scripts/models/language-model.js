@@ -14,6 +14,11 @@ angular
         return `da da-${this.devicon || this.name}`;
       }
 
+      setAssets(){
+        this.setLayoutAssets();
+        this.setEditorAssets();
+      }
+
       setLayoutAssets(){
         $rootScope.language_layout_css_urls = this.layout_css_urls;
         $rootScope.language_layout_html_urls = this.layout_html_urls;
