@@ -14,10 +14,26 @@ angular
         return `da da-${this.devicon || this.name}`;
       }
 
+      setAssets(){
+        this.setLayoutAssets();
+        this.setEditorAssets();
+      }
+
       setLayoutAssets(){
         $rootScope.language_layout_css_urls = this.layout_css_urls;
         $rootScope.language_layout_html_urls = this.layout_html_urls;
         $rootScope.language_layout_js_urls = this.layout_js_urls;
+      }
+
+      setEditorAssets(){
+        $rootScope.language_editor_css_urls = this.editor_css_urls;
+        $rootScope.language_editor_html_urls = this.editor_html_urls;
+        $rootScope.language_editor_js_urls = this.editor_js_urls;
+      }
+
+      getCustomEditorHtml(){
+        const editor_tag = `mu-${this.name}-custom-editor`;
+        return `<${editor_tag}> </${editor_tag}>`
       }
 
       testTemplate() {

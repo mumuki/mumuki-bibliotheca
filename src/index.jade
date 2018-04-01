@@ -19,7 +19,7 @@ html.no-js(lang='es')
 
   body(ng-app='editor')
     link(rel='stylesheet', ng-href='{{ customCssUrl }}')
-    script(ng-src='{{ customJsUrl | trusted }}', defer='')
+    script(ng-src='{{ customJsUrl | trustedUrl }}', defer='')
     script(src='assets/javascripts/webcomponents-lite.js')
     div(ng-include="'views/language_assets.html'")
 
