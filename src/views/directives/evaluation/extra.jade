@@ -1,5 +1,5 @@
 div(ng-if='exercise.usesCustomEditor()')
-  custom-editor(exercise="exercise", content='exercise.extra')
+  custom-editor(exercise="exercise", content='exercise.extra', extra-attributes="'start-empty=true'")
 div(ng-if='!exercise.usesCustomEditor()')
   ace-with-toolbar-code(
     content='exercise.extra',
