@@ -155,7 +155,7 @@ angular
           needsExpectations: (exercise) => true,
           needsDefaultContent: (exercise) => true,
           canChangeLayout: (exercise) => true,
-          initialLayout: (exercise) => Layouts.input_kids.type(),
+          initialLayout: (exercise) => exercise.layout,
           canChangeLanguage: (exercise) => true,
           initialLanguage: (exercise) => exercise.language,
           validate: (exercise) => {
