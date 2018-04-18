@@ -32,6 +32,19 @@ angular
       }
     }
 
+    this.notForbiddenFields = (object, fields) => {
+      fields.forEach(field => this.notForbiddenField(object, field));
+    }
+
+    this.notForbiddenField = (object, field) => {
+      if(object && object.hasOwnProperty(field)){
+        throw new Error(translate('error_forbidden_field', {
+          field: field,
+          fullName: object.fullName()
+        }));
+      }
+    }
+
     this.notEmptyChoices = (choiceable) => {
       if (_.get(choiceable, 'choices', []).length < 2) {
         throw new Error(translate('error_choices_empty_validation', {

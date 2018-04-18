@@ -42,6 +42,7 @@ angular
     error_editor_single_choice_validation_no_selected: '{{fullName}}: Não deve ter escolhas selecionadas',
     error_editor_single_choice_validation_only_one: '{{nome completo}}: deve ter apenas uma escolha selecionada',
     error_expectations_incomplete_validation: '{{fullName}}: Tem expectativas incompletas',
+    error_forbidden_field: '{{fullName}}: Não pode incluir o atributo "{{ field }}"',
     error_mandatory_field: '{{fullName}}: Campo {{campo}} é obrigatório',
     error_queriable_language_validation: '{{exercise}}: Language {{language}} não suporta exercícios do campo de jogos',
     error_triable_language_validation: '{{exercise}}: Language {{language}} não suporta exercícios interativos',

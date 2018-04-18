@@ -42,6 +42,7 @@ angular
     error_editor_single_choice_validation_no_selected: '{{fullName}}: Should not have choices selected',
     error_editor_single_choice_validation_only_one: '{{fullName}}: Shoud have only one choice selected',
     error_expectations_incomplete_validation: '{{fullName}}: Has incomplete expectations',
+    error_forbidden_field: '{{ fullName }}: Can\'t include {{ field }}',
     error_mandatory_field: '{{ fullName }}: Field {{ field }} is mandatory',
     error_queriable_language_validation: '{{ exercise }}: Language {{ language }} does not support playground exercises',
     error_triable_language_validation: '{{ exercise }}: Language {{ language }} does not support interactive exercises',

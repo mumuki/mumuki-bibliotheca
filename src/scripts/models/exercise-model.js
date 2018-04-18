@@ -162,6 +162,14 @@ angular
         return this.getLanguage() === 'text';
       }
 
+      isGobstonesLanguage() {
+        return this.getLanguage() === 'gobstones';
+      }
+
+      getYamlTest() {
+        return jsyaml.load(_.get(this, 'test', ''));
+      }
+
       hasCorollary() {
         return !_.isEmpty(_.get(this, 'corollary', '').trim());
       }

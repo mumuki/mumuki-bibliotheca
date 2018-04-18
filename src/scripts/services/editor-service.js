@@ -159,6 +159,11 @@ angular
           canChangeLanguage: (exercise) => true,
           initialLanguage: (exercise) => exercise.language,
           validate: (exercise) => {
+          if (exercise.isGobstonesLanguage()) {
+            var test = exercise.getYamlTest();
+            test.fullName = () => translate('test');
+            Validator.notForbiddenFields(test, ['subject', 'title', 'check_head_position']);
+          }
           Validator.notIncompleteExpectations(exercise);
           if (!hasEvaluation(exercise)) {
             throwError('error_editor_code_validation', { fullName: exercise.fullName() });
