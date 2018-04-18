@@ -103,6 +103,7 @@ angular
     locale: 'Idioma',
     login: 'Iniciar sesión',
     logout: 'Cerrar sesión',
+    malformed_document: '{{fullName}}: Debe estar en formato {{format}}',
     manual_evaluation: 'Evaluación Manual',
     multiple_choice: 'Selección múltiple',
     name: 'Nombre',

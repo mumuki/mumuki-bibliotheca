@@ -147,23 +147,19 @@ angular
       },
       custom: {
         name: 'custom',
-          icon: () => 'fa fa-terminal',
-          needsExtra: (exercise) => true,
-          needsTests: (exercise) => true,
-          needsChoices: (exercise) => false,
-          needsSolution: (exercise) => true,
-          needsExpectations: (exercise) => true,
-          needsDefaultContent: (exercise) => true,
-          canChangeLayout: (exercise) => true,
-          initialLayout: (exercise) => exercise.layout,
-          canChangeLanguage: (exercise) => true,
-          initialLanguage: (exercise) => exercise.language,
-          validate: (exercise) => {
-          if (exercise.isGobstonesLanguage()) {
-            var test = exercise.getYamlTest();
-            test.fullName = () => translate('test');
-            Validator.notForbiddenFields(test, ['subject', 'title', 'check_head_position']);
-          }
+        icon: () => 'fa fa-terminal',
+        needsExtra: (exercise) => true,
+        needsTests: (exercise) => true,
+        needsChoices: (exercise) => false,
+        needsSolution: (exercise) => true,
+        needsExpectations: (exercise) => true,
+        needsDefaultContent: (exercise) => true,
+        canChangeLayout: (exercise) => true,
+        initialLayout: (exercise) => exercise.layout,
+        canChangeLanguage: (exercise) => true,
+        initialLanguage: (exercise) => exercise.language,
+        validate: (exercise) => {
+          exercise.validateWithCustomEditor();
           Validator.notIncompleteExpectations(exercise);
           if (!hasEvaluation(exercise)) {
             throwError('error_editor_code_validation', { fullName: exercise.fullName() });

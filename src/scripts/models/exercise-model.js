@@ -9,6 +9,8 @@ angular
                                 ExerciseTypes,
                                 Validator) {
 
+    const $translate = $filter('translate');
+
     class Exercise {
 
       constructor(exercise) {
@@ -158,6 +160,10 @@ angular
         this.getType().validate(this);
       }
 
+      validateWithCustomEditor() {
+        this.fullLanguage().validateWithCustomEditor(this);
+      }
+
       isTextLanguage() {
         return this.getLanguage() === 'text';
       }
@@ -167,7 +173,11 @@ angular
       }
 
       getYamlTest() {
-        return jsyaml.load(_.get(this, 'test', ''));
+        try {
+          return jsyaml.load(_.get(this, 'test', ''));
+        } catch (e) {
+          throw new Error($translate('malformed_document', { fullName: $translate('test'), format: 'yaml' }));
+        }
       }
 
       hasCorollary() {
@@ -213,7 +223,7 @@ angular
 
       static from(exercise = {}) {
         _.defaultsDeep(exercise, {
-          name: $filter('translate')('new_exercise'),
+          name: $translate('new_exercise'),
           type: ExerciseTypes.default(),
           editor: Editor.default().name,
           layout: Layouts.default().type()

@@ -103,6 +103,7 @@ angular
     locale: 'Locale',
     login: 'Log in',
     logout: 'Log out',
+    malformed_document: '{{fullName}}: Must be in {{format}} format',
     manual_evaluation: 'Manual Evaluation',
     multiple_choice: 'Multiple choice',
     name: 'Name',

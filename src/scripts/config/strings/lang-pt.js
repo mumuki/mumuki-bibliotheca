@@ -103,6 +103,7 @@ angular
     locale: 'Localidade',
     login: 'Entrar',
     logout: 'Sair',
+    malformed_document: '{{fullName}}: Deve estar em formato {{format}}',
     manual_evaluation: 'Avaliação manual',
     multiple_choice: 'Múltipla escolha',
     name: 'Nome',
