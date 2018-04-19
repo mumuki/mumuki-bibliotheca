@@ -168,10 +168,6 @@ angular
         return this.getLanguage() === 'text';
       }
 
-      isGobstonesLanguage() {
-        return this.getLanguage() === 'gobstones';
-      }
-
       getYamlTest() {
         try {
           return jsyaml.load(_.get(this, 'test', ''));
