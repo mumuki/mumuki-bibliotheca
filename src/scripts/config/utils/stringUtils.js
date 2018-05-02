@@ -1,3 +1,3 @@
 _.mixin({
-  withoutNonAsciiChars: (str) => str.replace(/[^\x00-\x7F]/g, "")
+  withoutNonAsciiChars: (str) => _.deburr(str).replace(/[^\x00-\x7F]/g, "")
 });
