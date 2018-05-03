@@ -9,9 +9,11 @@ angular
         Validator.notEmptyString(item, 'slug');
         return item.slug;
       }
+
+      const name = _.withoutNonAsciiChars(item.name);
       const translationTable = $translate.getTranslationTable(item.locale);
       const itemTranslated = _.deburr(translationTable[type].toLowerCase());
-      const kebabCase = _.kebabCase(item.name);
+      const kebabCase = _.kebabCase(name);
       const language = item.language ? `-${item.language}` : '';
       const organization = CurrentItem.getOrganization().toLowerCase();
       const content = `mumuki-${itemTranslated}${language}-${kebabCase}`;

@@ -18,7 +18,7 @@ editorTest('Slug Service', (mocks) => {
 
     context('when guide has not a slug', () => {
 
-      beforeSpec(() => guide = Guide.from({ name: 'túrn DöwnFòr What', language: 'haskell' }));
+      beforeSpec(() => guide = Guide.from({ name: 'túrn Döwn🚧🚧Fòr What', language: 'haskell' }));
 
       context('and organization is set', () => {
         beforeSpec((_CurrentItem_) => _CurrentItem_.setOrganization('Foo'));
