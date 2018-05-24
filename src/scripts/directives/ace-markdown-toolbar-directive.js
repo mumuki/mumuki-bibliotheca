@@ -13,7 +13,18 @@ angular
         const MU = 'ム';
         const translate = $filter('translate');
 
-        const insertText = (translationKey, prefix, suffix='') => {
+        const update = (modifyEditor) =>
+          (...args) => {
+            modifyEditor(...args);
+
+            const range = $scope.editor.selection.getRange();
+            $scope.editor.editorScope.content = $scope.editor.session.getValue();
+            setTimeout(() => {
+              $scope.editor.selection.setSelectionRange(range);
+            });
+          };
+
+        const insertText = update((translationKey, prefix, suffix='') => {
           const range = $scope.editor.selection.getRange();
           const text = $scope.editor.session.getTextRange(range) || translate(translationKey);
 
@@ -34,7 +45,8 @@ angular
             $scope.editor.focus();
             $scope.editor.selection.setSelectionRange(range);
           }
-        };
+        });
+
         const insertBefore = (translationKey, item) => {
           insertText(translationKey, item);
         };
@@ -68,7 +80,7 @@ angular
             insertText(filename, `<img src="${link}" alt="`, `" width="auto" height="auto">`);
           });
         };
-        $scope.link = (filename, filelink, prefix = '') => {
+        $scope.link = update((filename, filelink, prefix = '') => {
           const text = filename || translate('text');
           const link = filelink || translate('link');
           const range = $scope.editor.selection.getRange();
@@ -77,8 +89,8 @@ angular
           range.start.column += (1 + prefix.length);
           range.end.column = range.start.column + text.length;
           $scope.editor.selection.setSelectionRange(range);
-        };
-        $scope.code = () => {
+        });
+        $scope.code = update(() => {
           const range = $scope.editor.selection.getRange();
           const code = $scope.editor.session.getTextRange(range) || translate('code');
           const language = translate('language');
@@ -88,11 +100,11 @@ angular
           range.end.row = range.start.row;
           range.end.column = range.start.column + language.length + 4;
           $scope.editor.selection.setSelectionRange(range);
-        };
-        $scope.mumuki = () => {
+        });
+        $scope.mumuki = update(() => {
           $scope.editor.insert(MU);
           $scope.editor.focus();
-        };
+        });
 
         const bindCtrl = (letter) => {
           return {

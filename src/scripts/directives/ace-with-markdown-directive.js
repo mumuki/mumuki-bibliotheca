@@ -58,6 +58,7 @@ angular
           onChange: () => update(),
           onLoad: (editor) => {
             $scope.editor = editor;
+            $scope.editor.editorScope = $scope;
             AceEditor.onLoadDefault(editor);
             update();
             editor.setHighlightGutterLine(false);
