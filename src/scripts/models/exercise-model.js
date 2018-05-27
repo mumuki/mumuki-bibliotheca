@@ -148,6 +148,10 @@ angular
         return this.getType().needsHint(this);
       }
 
+      needsAssistanceRules() {
+        return this.getType().needsAssistanceRules(this);
+      }
+
       needsCorollary() {
         return this.getType().needsCorollary(this);
       }
