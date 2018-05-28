@@ -9,6 +9,7 @@ angular
     add_expectation: 'Agregar expectativa',
     add_smell: 'Ignorar mala práctica',
     appendix: 'Apéndice',
+    assistance_rules: 'Reglas de asistencia',
     authors: 'Autores',
     binding: 'Contexto',
     blockquote: 'Cita',
