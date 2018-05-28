@@ -28,12 +28,12 @@
       .exercise-detail-area-text
         ace-with-markdown(header='description', content='exercise.description')
         br
-        ace-with-markdown(header='hint,' content='exercise.hint', foldable='true', ng-if='exercise.needsHint()')
+        ace-with-markdown(header='hint', content='exercise.hint', foldable='true', ng-if='exercise.needsHint()')
         br
         ace-editor(
           header='assistance_rules',
           content='exercise.assistance_rules',
-          mode='yaml',
+          mode='"yaml"',
           placeholder='placeholder_assistance_rules',
           foldable='true',
           ng-if='exercise.needsAssistanceRules()')
