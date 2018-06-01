@@ -1,9 +1,9 @@
 div(ng-init="extraMode = 'Interpolation'")
   div(ng-if='exercise.usesCustomEditor()')
-    input(type="radio" ng-model="$parent.extraMode" value="Interpolation")#rbInterpolation
-    label(for="rbInterpolation") Interpolation
-    input(type="radio" ng-model="$parent.extraMode" value="Custom Editor")#rbCustom
-    label(for="rbCustom") Custom Editor
+    input(type="radio" ng-model="$parent.extraMode" value="Interpolation")#rb-interpolation
+    label(for="rb-interpolation") Interpolation
+    input(type="radio" ng-model="$parent.extraMode" value="Custom Editor")#rb-custom
+    label(for="rb-custom") Custom Editor
   div(ng-if='extraMode === "Custom Editor"')
     custom-editor(exercise="exercise", content='exercise.extra', extra-attributes="'teacher-mode=true'")
   div(ng-if='extraMode === "Interpolation"')
