@@ -51,6 +51,10 @@ angular
           },
         ];
 
+        $scope.extraMode = {
+          isCustom: $scope.exercise.usesCustomEditor()
+        };
+
         $scope.selectTab = (tab) => {
           $scope.tabs.forEach((t) => t.selected = false);
           tab.selected = true;

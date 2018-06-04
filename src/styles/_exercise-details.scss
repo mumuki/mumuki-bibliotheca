@@ -259,3 +259,16 @@ ul.results-list {
     bottom: 0;
   }
 }
+
+.extra-mode-input {
+  input[type="radio"] {
+    width: auto;
+  }
+
+  input[type="radio"] + label {
+    margin-left: 5px;
+    margin-right: 20px;
+  }
+}
+
+
