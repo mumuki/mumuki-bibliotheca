@@ -260,11 +260,15 @@ ul.results-list {
   }
 }
 
-input[type="radio"] {
-  width: auto;
+.extra-mode-input {
+  input[type="radio"] {
+    width: auto;
+  }
+
+  input[type="radio"] + label {
+    margin-left: 5px;
+    margin-right: 20px;
+  }
 }
 
-input[type="radio"] + label {
-  margin-left: 5px;
-  margin-right: 20px;
-}
+

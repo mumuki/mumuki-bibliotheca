@@ -1,18 +1,20 @@
-div(ng-init="extraMode = 'Interpolation'")
-  div(ng-if='exercise.usesCustomEditor()')
-    input(type="radio" ng-model="$parent.extraMode" value="Interpolation")#rb-interpolation
-    label(for="rb-interpolation") Interpolation
-    input(type="radio" ng-model="$parent.extraMode" value="Custom Editor")#rb-custom
+div(ng-if='exercise.usesCustomEditor()')
+  span.extra-mode-input
+    input(type="radio" ng-model="extraMode.isCustom" value=true)#rb-custom
     label(for="rb-custom") Custom Editor
-  div(ng-if='extraMode === "Custom Editor"')
-    custom-editor(exercise="exercise", content='exercise.extra', extra-attributes="'teacher-mode=true'")
-  div(ng-if='extraMode === "Interpolation"')
-    ace-with-toolbar-code(
-      content='exercise.extra',
-      mode='exercise.getAceMode()',
-      comment='exercise.getComment()',
-      placeholder='placeholder_extra_code',
-      from='extra')
+  span.extra-mode-input
+    input(type="radio" ng-model="extraMode.isCustom" value=false)#rb-interpolation
+    label(for="rb-interpolation") Interpolation
+div(ng-if='extraMode.isCustom')
+  custom-editor(exercise="exercise", content='exercise.extra', extra-attributes="'teacher-mode=true'")
+div(ng-if='!extraMode.isCustom')
+  ace-with-toolbar-code(
+    content='exercise.extra',
+    mode='exercise.getAceMode()',
+    comment='exercise.getComment()',
+    placeholder='placeholder_extra_code',
+    from='extra')
+  div(ng-if='exercise.usesCustomEditor()')
     div.checkbox.complementary.complementary-checkbox(ng-if='exercise.canChangeLayout()')
       input(type='checkbox', id='input-extra-visible', ng-model='exercise.extra_visible')
       label(for='input-extra-visible')
