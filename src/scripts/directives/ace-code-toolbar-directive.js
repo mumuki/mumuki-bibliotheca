@@ -52,7 +52,6 @@ angular
         $scope.relativeSolution = () => betweenLanguageComment('1', '...solution[-', ']...');
         $scope.previousSolution = () => betweenLanguageComment('previousSolution');
 
-        $scope.username = () => betweenLanguageComment('username');
         $scope.userEmail = () => betweenLanguageComment('user_email');
         $scope.userFirstName = () => betweenLanguageComment('user_first_name');
         $scope.userLastName = () => betweenLanguageComment('user_last_name');
