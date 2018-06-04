@@ -185,6 +185,9 @@ angular
     upload_text: 'Selecione uma imagem do seu computador clicando',
     upload_text_note: '* Lembre-se: o tamanho da imagem deve ser inferior a 256 KB.',
     upload: 'Subir arquivo',
+    user_email: 'Email do usuário',
+    user_first_name: 'Nome do usuário',
+    user_last_name: 'Sobrenome do usuário',
     verb: 'Verbo',
     yes: 'sim'
 

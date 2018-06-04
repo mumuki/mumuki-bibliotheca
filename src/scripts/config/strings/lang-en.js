@@ -185,6 +185,9 @@ angular
     upload_text_note: '* Remember: image size should be lower than 256 KB.',
     upload_text: 'Select an image from your computer clicking',
     upload: 'Upload file',
+    user_email: 'User\'s email',
+    user_first_name: 'User\'s first name',
+    user_last_name: 'User\'s last name',
     verb: 'Verb',
     yes: 'Yes',
 

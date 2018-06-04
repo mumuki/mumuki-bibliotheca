@@ -185,6 +185,9 @@ angular
     upload_text_note: '* Recordá que no puede superar los 256 KB.',
     upload_text: 'Buscá una imagen en tu computadora haciendo click',
     upload: 'Subir archivo',
+    user_email: 'Email del usuario',
+    user_first_name: 'Nombre del usuario',
+    user_last_name: 'Apellido del usuario',
     verb: 'Verbo',
     yes: 'Sí',
 
