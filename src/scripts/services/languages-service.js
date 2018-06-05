@@ -42,7 +42,7 @@ angular
         validateWithCustomEditor: (exercise) => {
           var test = exercise.getYamlTest();
           test.fullName = () => translate('test');
-          Validator.notForbiddenFields(test, ['subject', 'title', 'check_head_position']);
+          Validator.notForbiddenFields(test, ['subject', 'title']);
         },
         validate: () => {}
       },
