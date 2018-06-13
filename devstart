@@ -10,6 +10,12 @@ echo ' |______  /__||___  /____/__|\____/|__| |___|  /\___  >\___  >____  /'
 echo '        \/        \/                         \/     \/     \/     \/ '
 echo ''
 
+echo "[MumukiDevstart::Bibliotheca] Ensuring node version..."
+if [ $(cat .nvmrc) != $(node -v) ]; then
+  echo "Unsupported node version. Please run nvm install first. Aborting"
+  exit 1
+fi
+
 echo "[MumukiDevstart::Bibliotheca] Installing dependencies...."
 npm install
 

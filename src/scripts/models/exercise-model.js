@@ -148,6 +148,10 @@ angular
         return this.getType().needsHint(this);
       }
 
+      needsAssistanceRules() {
+        return this.getType().needsAssistanceRules(this);
+      }
+
       needsCorollary() {
         return this.getType().needsCorollary(this);
       }
@@ -210,7 +214,12 @@ angular
         if (!exercise.needsSolution()) delete exercise.solution;
         if (!exercise.needsExpectations()) delete exercise.expectations;
         if (!exercise.needsDefaultContent()) delete exercise.default_content;
+        exercise.assistance_rules = exercise.getYamlAssistanceRules()
         return exercise;
+      }
+
+      getYamlAssistanceRules() {
+        return jsyaml.load(_.last(this.assistance_rules.split(/rules:/)));
       }
 
       usesCustomEditor(){
@@ -224,6 +233,7 @@ angular
           editor: Editor.default().name,
           layout: Layouts.default().type()
         });
+        exercise.assistance_rules = 'rules:\n' + jsyaml.dump(exercise.assistance_rules, { skipInvalid: true });
         return new Exercise(exercise);
       }
 

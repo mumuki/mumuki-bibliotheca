@@ -17,6 +17,7 @@ angular
         needsExpectations: (exercise) => exercise.getEditor().needsExpectations(exercise),
         needsDefaultContent: (exercise) => exercise.getEditor().needsDefaultContent(exercise),
         needsHint: (exercise) => true,
+        needsAssistanceRules: (exercise) => true,
         needsCorollary: (exercise) => true,
       },
       playground: {
@@ -35,6 +36,7 @@ angular
         needsExpectations: (exercise) => false,
         needsDefaultContent: (exercise) => false,
         needsHint: (exercise) => true,
+        needsAssistanceRules: (exercise) => false,
         needsCorollary: (exercise) => false,
       },
       reading: {
@@ -51,6 +53,7 @@ angular
         needsExpectations: (exercise) => false,
         needsDefaultContent: (exercise) => false,
         needsHint: (exercise) => false,
+        needsAssistanceRules: (exercise) => false,
         needsCorollary: (exercise) => false,
       },
       interactive: {
@@ -70,6 +73,7 @@ angular
         needsExpectations: (exercise) => false,
         needsDefaultContent: (exercise) => false,
         needsHint: (exercise) => true,
+        needsAssistanceRules: (exercise) => false,
         needsCorollary: (exercise) => true,
       }
 

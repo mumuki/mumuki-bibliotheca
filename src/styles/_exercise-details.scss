@@ -97,7 +97,7 @@ $scroll-height: 1px;
     @include display-flex(column, flex-start, flex-start);
     width: 100%;
 
-    ace-with-markdown {
+    ace-with-markdown, ace-editor {
       width: 100%
     }
   }
