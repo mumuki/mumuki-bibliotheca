@@ -8,7 +8,7 @@ angular
 
     this.from = ($scope) => {
 
-      let _minimized = true;
+      let _minimized = !$scope.content;
 
       $scope.isMinimized = () => {
           return _minimized;
