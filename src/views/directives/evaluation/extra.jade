@@ -1,10 +1,10 @@
-include ./_mixins.jade
+include ./_mixins
 
 div(ng-if='exercise.usesCustomEditor()')
-  +custom-editor-interpolation-selector('extraMode')
-div(ng-if='extraMode.isCustom')
+  +custom-editor-interpolation-selector('extraEditor.mode')
+div(ng-if="extraEditor.mode === 'custom'")
   custom-editor(exercise="exercise", content='exercise.extra', extra-attributes="'teacher-mode=true'")
-div(ng-if='!extraMode.isCustom')
+div(ng-if="extraEditor.mode === 'interpolation'")
   ace-with-toolbar-code(
     content='exercise.extra',
     mode='exercise.getAceMode()',

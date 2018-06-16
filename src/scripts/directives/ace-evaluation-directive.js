@@ -51,9 +51,9 @@ angular
           },
         ];
 
-        $scope.extraMode = {
-          isCustom: $scope.exercise.usesCustomEditor()
-        };
+        const defaultMode = () => ({ mode: $scope.exercise.usesCustomEditor() ? 'custom' : 'interpolation' });
+        $scope.extraEditor = defaultMode();
+        $scope.contentEditor = defaultMode();
 
         $scope.selectTab = (tab) => {
           $scope.tabs.forEach((t) => t.selected = false);

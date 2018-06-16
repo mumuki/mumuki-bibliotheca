@@ -1,6 +1,10 @@
+include ./_mixins
+
 div(ng-if='exercise.usesCustomEditor()')
+  +custom-editor-interpolation-selector('contentEditor.mode')
+div(ng-if="contentEditor.mode === 'custom'")
   custom-editor(exercise="exercise", content="exercise.default_content")
-div(ng-if='!exercise.usesCustomEditor()')
+div(ng-if="contentEditor.mode === 'interpolation'")
   ace-with-toolbar-code(
     content='exercise.default_content',
     mode='exercise.getAceMode()',
