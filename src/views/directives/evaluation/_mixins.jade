@@ -1,0 +1,7 @@
+mixin custom-editor-interpolation-selector(mode)
+  span.extra-mode-input
+    input(type="radio" ng-model=mode+'.isCustom' value=true)#rb-custom
+    label(for="rb-custom") {{ 'custom_editor' | translate }}
+  span.extra-mode-input
+    input(type="radio" ng-model=mode+'.isCustom' value=false)#rb-interpolation
+    label(for="rb-interpolation") {{ 'interpolation' | translate }}

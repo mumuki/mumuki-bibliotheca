@@ -1,10 +1,7 @@
+include ./_mixins.jade
+
 div(ng-if='exercise.usesCustomEditor()')
-  span.extra-mode-input
-    input(type="radio" ng-model="extraMode.isCustom" value=true)#rb-custom
-    label(for="rb-custom") Custom Editor
-  span.extra-mode-input
-    input(type="radio" ng-model="extraMode.isCustom" value=false)#rb-interpolation
-    label(for="rb-interpolation") Interpolation
+  +custom-editor-interpolation-selector('extraMode')
 div(ng-if='extraMode.isCustom')
   custom-editor(exercise="exercise", content='exercise.extra', extra-attributes="'teacher-mode=true'")
 div(ng-if='!extraMode.isCustom')
