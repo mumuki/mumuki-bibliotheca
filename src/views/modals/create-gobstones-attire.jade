@@ -1,6 +1,8 @@
 .modal-content
   .modal-body
-    h1 Reglas
+    h1 Vestimenta
+
+    input#upload-image(type='file', accept='image/x-png,image/gif,image/jpeg', style='display: none')
 
     .row.gbs-attire-row
       .col-md-6
@@ -14,6 +16,12 @@
           strong.gbs-attire-rule-delete
             i.fa.fa-trash-o.pointer(ng-click="removeRule(rule)")
             span &nbsp;
+          strong.gbs-attire-rule-up
+            i.fa.fa-arrow-up.pointer(ng-click="moveRuleUp(rule)")
+            span &nbsp;
+          strong.gbs-attire-rule-down
+            i.fa.fa-arrow-down.pointer(ng-click="moveRuleDown(rule)")
+            span &nbsp;
           strong(style='color: red') ●&nbsp;
           input.gbs-attire-rule-input(ng-model="rule.when.red")
           strong(style='color: green') ●&nbsp;
@@ -23,10 +31,11 @@
           strong(style='color: black') ●&nbsp;
           input.gbs-attire-rule-input(ng-model="rule.when.black")
       .col-md-6
-        p
-          label
-            input#upload-image(type='file', accept='image/x-png,image/gif,image/jpeg', style='display: none')
+        p(ng-click="setImage(rule)")
+          label(ng-show="!rule.image")
             span.pointer subir
+          label(ng-show="rule.image")
+            img.gbs-attire-rule-image-preview.pointer(ng-src="{{rule.image}}")
 
     .row
       .col-md-12

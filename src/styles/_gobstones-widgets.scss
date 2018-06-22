@@ -8,11 +8,28 @@
   text-align: center;
 }
 
+.gbs-attire-rule-image-preview {
+  width: 32px;
+  height: 32px;
+}
+
 .gbs-attire-rule-delete {
   position: absolute;
-  left: 40px;
+  left: 10px;
+}
+
+.gbs-attire-rule-up {
+  position: absolute;
+  left: 30px;
+}
+
+.gbs-attire-rule-down {
+  position: absolute;
+  left: 50px;
 }
 
 .gbs-attire-rule-input {
   width: 40px;
+  margin-left: 10px;
+  margin-right: 10px;
 }

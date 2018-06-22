@@ -40,11 +40,13 @@ angular
       }
     });
 
-    this.createGobstonesAttire = () => $uibModal.open({
+    this.createGobstonesAttire = (onYesPromise) => $uibModal.open({
       templateUrl: 'views/modals/create-gobstones-attire.html',
       controller: 'CreateGobstonesAttireController',
       size: 'lg',
-      resolve: {}
+      resolve: {
+        onYesPromise: () => onYesPromise,
+      }
     });
 
     this.forkFromGithub = (title, text, onYesPromise) => $uibModal.open({

@@ -6,6 +6,7 @@ angular
                                                 $stateParams,
                                                 toastr,
                                                 $uibModalInstance,
+                                                onYesPromise,
                                                 Api) {
 
     const $translate = $filter('translate');
@@ -27,66 +28,66 @@ angular
 
     $scope.removeRule = (rule) => {
       const index = $scope.attire.rules.indexOf(rule);
-      if (index < 0) return;
-
       $scope.attire.rules.splice(index, 1);
+    };
+
+    $scope.moveRuleUp = (rule) => {
+      const index = $scope.attire.rules.indexOf(rule);
+      if (index === 0) return;
+      $scope.attire.rules.splice(index, 1);
+      $scope.attire.rules.splice(index - 1, 0, rule);
+    };
+
+    $scope.moveRuleDown = (rule) => {
+      const index = $scope.attire.rules.indexOf(rule);
+      if (index === $scope.attire.rules.length - 1) return;
+      $scope.attire.rules.splice(index, 1);
+      $scope.attire.rules.splice(index + 1, 0, rule);
     };
 
     $scope.addRule();
 
     let input;
-
-    const humanSize = (file) => {
-      return `${Math.round((file.size / 1024) * 100) / 100} KB`;
-    }
-
     $timeout(() => {
       input = document.querySelector('#upload-image');
-      input.onchange = () => {
-        const file = getFile();
-        $scope.description = file ? `${file.name} - ${humanSize(file)}` : '';
-        $scope.$apply();
-      }
     });
-
-    const getFile = () => input.files[0];
-
-    const doFailure = (err) => toastr.error($translate('upload_image_failed'));
 
     const fileToUpload = () => {
       const file = getFile();
-      return isValid(file) ? getBase64(file) : Promise.reject(new Error());
+      return isValid(file) ? getBase64(file) : Promise.reject(new Error('Invalid size'));
     }
-
+    const doFailure = (err) => toastr.error($translate('upload_image_failed'));
+    const isValid = (file) => {
+      const fileSize = _.get(file, 'size', 0);
+      return fileSize > 0 && fileSize <= MAX_FILE_SIZE;
+    };
     const getBase64 = (file) => {
       return new Promise((resolve, reject) => {
         const reader = new FileReader();
         reader.readAsDataURL(file);
-        reader.onload = () => resolve(reader.result.split('base64,')[1]);
+        reader.onload = () => { resolve(reader.result) };
         reader.onerror = (error) => reject(error);
       });
+    };
+    const getFile = () => input.files[0];
+    const humanSize = (file) => {
+      return `${Math.round((file.size / 1024) * 100) / 100} KB`;
     }
 
-    const isValid = (file) => {
-      const fileSize = _.get(file, 'size', 0);
-      return 0 < fileSize && fileSize <= MAX_FILE_SIZE;
-    }
+    $scope.setImage = (rule) => {
+      input.onchange = () => {
+        fileToUpload()
+          .then((base64) => {
+            rule.image = base64;
+            $timeout(() => { $scope.$apply(); });
+          })
+          .catch(doFailure);
+      };
 
-    $scope.upload = () => $scope.uploadImage();
+      $(input).trigger("click");
+    };
 
-    $scope.uploadURL = () => {
-      return Promise.resolve()
-        .then(() => onYesPromise('', $scope.image.url))
-        .then(() => $uibModalInstance.close())
-        .catch(() => doFailure());
-    }
+    $scope.upload = () => {
 
-    $scope.uploadImage = () => {
-      return fileToUpload()
-        .then((content) => Api.uploadImage($stateParams, { filename: getFile().name, content }))
-        .then((content) => onYesPromise(content.name, content.download_url))
-        .then(() => $uibModalInstance.close())
-        .catch(() => doFailure());
-    }
-
+    };
   });
