@@ -12,16 +12,16 @@ angular
     const $translate = $filter('translate');
 
     $scope.toolbox = `
-<category name="Comandos">
-  <block type="Poner"></block>
+<category name="${$translate('gobstones_toolbox_commands')}">
+  <block type="${$translate('gobstones_toolbox_put')}"></block>
 </category>
 <category name="Procedimientos primitivos">
 </category>
 <category name="Funciones primitivas">
 </category>
-<category name="Mis procedimientos" custom="PROCEDURE_CALLS">
+<category name="${$translate('gobstones_toolbox_my_procedures')}" custom="PROCEDURE_CALLS">
 </category>
-<category name="Mis funciones" custom="FUNCTION_CALLS">
+<category name="${$translate('gobstones_toolbox_my_functions')}" custom="FUNCTION_CALLS">
 </category>
 `;
 
