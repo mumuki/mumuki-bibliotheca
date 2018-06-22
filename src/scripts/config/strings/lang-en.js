@@ -94,6 +94,7 @@ angular
     import_guide_from_github: 'Enter organization and repository from github to import the guide',
     import: 'Import',
     insert_interpolation: 'Insert interpolation',
+    insert_url: 'Insert the URL',
     inspection: 'Inspection',
     inspections: 'Inspections',
     interactive: 'Interactive',

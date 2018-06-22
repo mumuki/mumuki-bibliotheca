@@ -93,6 +93,7 @@ angular
     import_guide_from_github: 'Insira a organização e o repositório do github para importar o guia',
     import: 'Importar',
     insert_interpolation: 'Inserir interpolação',
+    insert_url: 'Insira o URL',
     inspection: 'Inspeção',
     inspections: 'Inspeções',
     interactive: 'Interativo',

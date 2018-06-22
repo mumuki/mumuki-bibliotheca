@@ -15,12 +15,25 @@ angular
     const MAX_FILE_SIZE = 256 * 1024;
 
     $scope.borders = ['top', 'right', 'bottom', 'left', 'topRight', 'bottomRight', 'bottomLeft', 'topLeft'];
+    $scope.isImporting = false;
     $scope.attire = {
       enabled: true,
       rules: [],
       borders: {}
     };
 
+    $scope.importFromUrl = () => {
+      const url = prompt($translate('insert_url'));
+      if (!url) return;
+
+      $scope.isImporting = true;
+      $.getJSON(url).then((attire) => {
+        $scope.attire = attire;
+        $timeout(() => $scope.$apply());
+      }).always(() => {
+        $scope.isImporting = false;
+      });
+    };
     $scope.addRule = (red = "", green = "", blue = "", black = "") => {
       $scope.attire.rules.push({
         when: { red, green, blue, black },
@@ -60,7 +73,6 @@ angular
       input = document.querySelector('#upload-image');
     });
 
-    window.tuvieja = $scope.attire;
     const fileToUpload = () => {
       return !hasInvalidRules() ? getAttire() : Promise.reject(new Error('Invalid rules'));
     };
@@ -127,9 +139,7 @@ angular
     };
 
     $scope.setBorderImage = (border) => {
-      withUserImage((base64) => {
-        debugger;
-        $scope.attire.borders[border] = base64; });
+      withUserImage((base64) => { $scope.attire.borders[border] = base64; });
     }
 
     $scope.upload = () => {
