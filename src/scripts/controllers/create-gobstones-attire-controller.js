@@ -56,7 +56,7 @@ angular
       const file = getFile();
       return isValid(file) ? getBase64(file) : Promise.reject(new Error('Invalid size'));
     }
-    const doFailure = (err) => toastr.error($translate('upload_image_failed'));
+    const doFailure = (error) => toastr.error($translate(error));
     const isValid = (file) => {
       const fileSize = _.get(file, 'size', 0);
       return fileSize > 0 && fileSize <= MAX_FILE_SIZE;
@@ -81,13 +81,29 @@ angular
             rule.image = base64;
             $timeout(() => { $scope.$apply(); });
           })
-          .catch(doFailure);
+          .catch(() => doFailure('upload_image_failed'));
       };
 
       $(input).trigger("click");
     };
 
     $scope.upload = () => {
+      const hasInvalidRules = _.some($scope.attire.rules, (rule) =>
+        !rule.image || _.some(
+          ["red", "green", "blue", "black"],
+          (color) => {
+            const value = rule.when[color];
+            return !_.isFinite(parseInt(value)) && value !== "*" && value !== "+";
+          }
+        )
+      );
 
+      if (hasInvalidRules) {
+        doFailure("Algunas reglas de la vestimenta están incompletas");
+        return Promise.reject();
+      }
+
+      alert("Subiendo..."); // TODO: Convertir campos a int
+      return Promise.resolve();
     };
   });
