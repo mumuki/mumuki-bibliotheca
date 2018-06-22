@@ -14,6 +14,7 @@ angular
     const COLORS = ['red', 'green', 'blue', 'black'];
     const MAX_FILE_SIZE = 256 * 1024;
 
+    $scope.borders = ['top', 'right', 'bottom', 'left', 'topRight', 'bottomRight', 'bottomLeft', 'topLeft'];
     $scope.attire = {
       enabled: true,
       rules: [],
@@ -26,12 +27,18 @@ angular
         image: null
       });
     };
-
     $scope.removeRule = (rule) => {
       const index = $scope.attire.rules.indexOf(rule);
       $scope.attire.rules.splice(index, 1);
     };
-
+    $scope.addBorders = () => {
+      $scope.borders.forEach((border) => {
+        $scope.attire.borders[border] = null;
+      });
+    };
+    $scope.removeBorder = (border) => {
+      $scope.attire.borders[border] = undefined;
+    };
     $scope.moveRuleUp = (rule) => {
       const index = $scope.attire.rules.indexOf(rule);
       if (index === 0) return;
@@ -53,19 +60,35 @@ angular
       input = document.querySelector('#upload-image');
     });
 
+    window.tuvieja = $scope.attire;
     const fileToUpload = () => {
       return !hasInvalidRules() ? getAttire() : Promise.reject(new Error('Invalid rules'));
     };
     const hasInvalidRules = () => {
-      return _.some($scope.attire.rules, (rule) =>
-        !rule.image || _.some(
-          COLORS,
-          (color) => {
-            const value = rule.when[color];
-            return !_.isFinite(parseInt(value)) && value !== "*" && value !== "+";
-          }
-        )
+      return (
+        _.some($scope.attire.rules, (rule) =>
+          !rule.image || _.some(
+            COLORS,
+            (color) => {
+              const value = rule.when[color];
+              return !_.isFinite(parseInt(value)) && value !== "*" && value !== "+";
+            }
+          )
+        ) || _.some($scope.borders, (border) => $scope.attire.borders[border] === null)
       );
+    };
+    const withUserImage = (action) => {
+      input.onchange = () => {
+        fileToSet()
+          .then((base64) => {
+            action(base64);
+            $timeout(() => { $scope.$apply(); });
+          })
+          .catch(() => doFailure('upload_image_failed'))
+          .finally(() => { input.value = null });
+      };
+
+      $(input).trigger("click");
     };
     const fileToSet = () => {
       const file = getFile();
@@ -100,17 +123,14 @@ angular
     const getFile = () => input.files[0];
 
     $scope.setImage = (rule) => {
-      input.onchange = () => {
-        fileToSet()
-          .then((base64) => {
-            rule.image = base64;
-            $timeout(() => { $scope.$apply(); });
-          })
-          .catch(() => doFailure('upload_image_failed'));
-      };
-
-      $(input).trigger("click");
+      withUserImage((base64) => { rule.image = base64; });
     };
+
+    $scope.setBorderImage = (border) => {
+      withUserImage((base64) => {
+        debugger;
+        $scope.attire.borders[border] = base64; });
+    }
 
     $scope.upload = () => {
       return fileToUpload()

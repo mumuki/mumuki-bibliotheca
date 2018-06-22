@@ -1,12 +1,13 @@
 .modal-content
   .modal-body
+    div
     h1 {{ 'gobstones_attire' | translate }}
 
     input#upload-image(type='file', accept='image/x-png,image/gif,image/jpeg', style='display: none')
 
     .row.gbs-attire-row
       .col-md-6
-        h4 {{ 'gobstones_stones_combination' | translate }}
+        h4 {{ 'rule' | translate }}
       .col-dm-6
         h4 {{ 'tooltip_image' | translate }}
 
@@ -33,13 +34,29 @@
       .col-md-6
         p(ng-click="setImage(rule)")
           label(ng-show="!rule.image")
-            span.pointer {{ 'upload' | translate }}
+            span.pointer {{ 'upload_now' | translate }}
           label(ng-show="rule.image")
             img.gbs-attire-rule-image-preview.pointer(ng-src="{{rule.image}}")
+    .row.gbs-attire-row(ng-repeat="border in borders")
+      div(ng-show='attire.borders[border] !== undefined')
+        .col-md-6
+          p.gbs-attire-rule
+            strong.gbs-attire-rule-delete
+              i.fa.fa-trash-o.pointer(ng-click="removeBorder(border)")
+              span &nbsp;
+            strong {{ border }}
+        .col-md-6
+          p(ng-click="setBorderImage(border)")
+            label(ng-show="attire.borders[border] === null")
+              span.pointer {{ 'upload_now' | translate }}
+            label(ng-show="attire.borders[border] !== null")
+              img.gbs-attire-rule-image-preview.pointer(ng-src="{{attire.borders[border]}}")
+
 
     .row
       .col-md-12
-        button.btn.btn-sm.pull-right(type='button', ng-click="addRule()") {{ 'add_rule' | translate }}
+        button.btn.btn-sm.pull-right.gbs-attire-add-btn(type='button', ng-click="addBorders()") {{ 'add_borders' | translate }}
+        button.btn.btn-sm.pull-right.gbs-attire-add-btn(type='button', ng-click="addRule()") {{ 'add_combination' | translate }}
 
   .modal-footer
     .row
