@@ -1,13 +1,10 @@
+include ./_mixins
+
 div(ng-if='exercise.usesCustomEditor()')
-  span.extra-mode-input
-    input(type="radio" ng-model="extraMode.isCustom" value=true)#rb-custom
-    label(for="rb-custom") Custom Editor
-  span.extra-mode-input
-    input(type="radio" ng-model="extraMode.isCustom" value=false)#rb-interpolation
-    label(for="rb-interpolation") Interpolation
-div(ng-if='extraMode.isCustom')
+  +custom-editor-interpolation-selector('extraEditor.mode')
+div(ng-if="extraEditor.mode === 'custom'")
   custom-editor(exercise="exercise", content='exercise.extra', extra-attributes="'teacher-mode=true'")
-div(ng-if='!extraMode.isCustom')
+div(ng-if="extraEditor.mode === 'interpolation'")
   ace-with-toolbar-code(
     content='exercise.extra',
     mode='exercise.getAceMode()',
