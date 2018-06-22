@@ -114,7 +114,7 @@ angular
 
     $scope.upload = () => {
       return fileToUpload()
-        .then((content) => Api.uploadGist($stateParams, angular.toJson(content), "json"))
+        .then((content) => Api.uploadGist(angular.toJson(content), "json"))
         .then((content) => {
           console.log("DONE!");
           debugger;

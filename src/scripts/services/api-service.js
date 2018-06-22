@@ -109,9 +109,9 @@ angular
         .then((res) => res.data)
     }
 
-    this.uploadGist = ({ org, repo }, content, extension = 'txt') => {
+    this.uploadGist = (content, extension = 'txt') => {
       return HTTP
-        .call('post',`${API}/guides/${org}/${repo}/gists`, { content, extension }, defaultConfig())
+        .call('post',`${API}/gists`, { content, extension }, defaultConfig())
         .then((res) => res.data)
     }
 
