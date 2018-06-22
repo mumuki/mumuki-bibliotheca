@@ -11,6 +11,7 @@ angular
 
     const $translate = $filter('translate');
 
+    const BASE64_HEADER = 'data:image/png;base64,';
     const COLORS = ['red', 'green', 'blue', 'black'];
     const MAX_FILE_SIZE = 256 * 1024;
 
@@ -135,6 +136,8 @@ angular
         reader.onerror = (error) => reject(error);
       });
     };
+    const isBase64 = (url) => _.startsWith(url, BASE64_HEADER);
+    const stripBase64 = (url) => url.replace(BASE64_HEADER, '');
     const doFailure = (error) => toastr.error($translate(error));
     const getFile = () => input.files[0];
 
@@ -148,9 +151,20 @@ angular
 
     $scope.upload = () => {
       return fileToUpload()
-        .then((content) => Api.uploadAsset($stateParams, { filename: 'attires/config.json', content: btoa(JSON.stringify(content)) }))
+        .then((attire) => {
+          return Promise.each(attire.rules, (rule) => {
+            if (!isBase64(rule.image)) return;
+
+            return Api
+              .uploadAsset($stateParams, { filename: `attires/image.png`, content: stripBase64(rule.image) })
+              .get('download_url')
+              .then((url) => { rule.image = url });
+          }).then(() => {
+            return Api.uploadAsset($stateParams, { filename: 'attires/config.json', content: btoa(angular.toJson(attire)) });
+          });
+        })
         .then((content) => onYesPromise(content.download_url))
         .then(() => $uibModalInstance.close())
-        .catch(() => doFailure('gobstones_attire_incomplete'));
+        .catch((e) => doFailure('gobstones_attire_incomplete'));
     };
   });
