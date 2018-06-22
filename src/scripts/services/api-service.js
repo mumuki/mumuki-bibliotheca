@@ -103,15 +103,9 @@ angular
         .then((res) => res.data)
     }
 
-    this.uploadImage = ({ org, repo }, { content, filename }) => {
+    this.uploadAsset = ({ org, repo }, { content, filename }) => {
       return HTTP
-        .call('post',`${API}/guides/${org}/${repo}/images`, { content, filename }, defaultConfig())
-        .then((res) => res.data)
-    }
-
-    this.uploadGist = (content, extension = 'txt') => {
-      return HTTP
-        .call('post',`${API}/gists`, { content, extension }, defaultConfig())
+        .call('post',`${API}/guides/${org}/${repo}/assets`, { content, filename }, defaultConfig())
         .then((res) => res.data)
     }
 

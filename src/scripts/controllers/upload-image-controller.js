@@ -68,7 +68,7 @@ angular
 
     $scope.uploadImage = () => {
       return fileToUpload()
-        .then((content) => Api.uploadImage($stateParams, { filename: getFile().name, content }))
+        .then((content) => Api.uploadAsset($stateParams, { filename: getFile().name, content }))
         .then((content) => onYesPromise(content.name, content.download_url))
         .then(() => $uibModalInstance.close())
         .catch(() => doFailure());

@@ -3,6 +3,7 @@ angular
   .controller('CreateGobstonesAttireController', function($scope,
                                                 $filter,
                                                 $timeout,
+                                                $stateParams,
                                                 toastr,
                                                 $uibModalInstance,
                                                 onYesPromise,
@@ -74,19 +75,32 @@ angular
     const fileToUpload = () => {
       return !hasInvalidRules() ? getAttire() : Promise.reject(new Error('Invalid rules'));
     };
+    const fileToSet = () => {
+      const file = getFile();
+      return !hasInvalidSize(file) ? getBase64(file) : Promise.reject(new Error('Invalid size'));
+    };
+
     const hasInvalidRules = () => {
       return (
-        _.some($scope.attire.rules, (rule) =>
-          !rule.image || _.some(
-            COLORS,
-            (color) => {
-              const value = rule.when[color];
-              return !_.isFinite(parseInt(value)) && value !== "*" && value !== "+";
-            }
-          )
-        ) || _.some($scope.borders, (border) => $scope.attire.borders[border] === null)
+        _.some($scope.attire.rules, isInvalidRule) ||
+        _.some($scope.borders, isInvalidBorder)
       );
     };
+    const isInvalidRule = (rule) => !rule.image || hasInvalidValues(rule);
+    const isInvalidBorder = (border) => $scope.attire.borders[border] === null;
+    const hasInvalidValues = (rule) =>
+      _.some(
+        COLORS,
+        (color) => {
+          const value = rule.when[color];
+          return !_.isFinite(parseInt(value)) && value !== "*" && value !== "+";
+        }
+      );
+    const hasInvalidSize = (file) => {
+      const fileSize = _.get(file, 'size', 0);
+      return fileSize < 0 || fileSize > MAX_FILE_SIZE;
+    };
+
     const withUserImage = (action) => {
       input.onchange = () => {
         fileToSet()
@@ -99,14 +113,6 @@ angular
       };
 
       $(input).trigger("click");
-    };
-    const fileToSet = () => {
-      const file = getFile();
-      return !hasInvalidSize(file) ? getBase64(file) : Promise.reject(new Error('Invalid size'));
-    };
-    const hasInvalidSize = (file) => {
-      const fileSize = _.get(file, 'size', 0);
-      return fileSize < 0 || fileSize > MAX_FILE_SIZE;
     };
     const getAttire = () => {
       const attire = _.cloneDeep($scope.attire);
@@ -142,8 +148,8 @@ angular
 
     $scope.upload = () => {
       return fileToUpload()
-        .then((content) => Api.uploadGist(angular.toJson(content), "json"))
-        .then((content) => onYesPromise(content.raw_url))
+        .then((content) => Api.uploadAsset($stateParams, { filename: 'attires/config.json', content: btoa(JSON.stringify(content)) }))
+        .then((content) => onYesPromise(content.download_url))
         .then(() => $uibModalInstance.close())
         .catch(() => doFailure('gobstones_attire_incomplete'));
     };
