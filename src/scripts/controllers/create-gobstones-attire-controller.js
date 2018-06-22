@@ -121,6 +121,6 @@ angular
           onYesPromise(content.name, content.download_url)
         })
         .then(() => $uibModalInstance.close())
-        .catch(() => doFailure("Algunas reglas de la vestimenta están incompletas"));
+        .catch(() => doFailure('gobstones_attire_incomplete'));
     };
   });
