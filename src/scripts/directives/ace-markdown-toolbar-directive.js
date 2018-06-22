@@ -110,6 +110,11 @@ angular
             insertText('', `<gs-attire attire-url="${link}"></gs-attire>`);
           });
         };
+        $scope.gbsToolbox = () => {
+          Modal.createGobstonesToolbox((link) => {
+            insertText('', `<gs-toolbox toolbox-url="${link}"></gs-toolbox>`);
+          });
+        };
 
         const bindCtrl = (letter) => {
           return {

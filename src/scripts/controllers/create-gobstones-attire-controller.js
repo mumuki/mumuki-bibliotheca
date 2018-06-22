@@ -3,7 +3,6 @@ angular
   .controller('CreateGobstonesAttireController', function($scope,
                                                 $filter,
                                                 $timeout,
-                                                $stateParams,
                                                 toastr,
                                                 $uibModalInstance,
                                                 onYesPromise,
@@ -58,7 +57,6 @@ angular
       $scope.attire.rules.splice(index, 1);
       $scope.attire.rules.splice(index - 1, 0, rule);
     };
-
     $scope.moveRuleDown = (rule) => {
       const index = $scope.attire.rules.indexOf(rule);
       if (index === $scope.attire.rules.length - 1) return;
