@@ -29,9 +29,9 @@ angular
       $scope.isImporting = true;
       $.getJSON(url).then((attire) => {
         $scope.attire = attire;
-        $timeout(() => $scope.$apply());
       }).always(() => {
         $scope.isImporting = false;
+        $timeout(() => $scope.$apply());
       });
     };
     $scope.addRule = (red = "", green = "", blue = "", black = "") => {
@@ -145,11 +145,7 @@ angular
     $scope.upload = () => {
       return fileToUpload()
         .then((content) => Api.uploadGist(angular.toJson(content), "json"))
-        .then((content) => {
-          console.log("DONE!");
-          debugger;
-          onYesPromise(content.name, content.download_url)
-        })
+        .then((content) => onYesPromise(content.raw_url))
         .then(() => $uibModalInstance.close())
         .catch(() => doFailure('gobstones_attire_incomplete'));
     };

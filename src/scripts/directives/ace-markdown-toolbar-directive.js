@@ -106,8 +106,8 @@ angular
           $scope.editor.focus();
         });
         $scope.gbsAttire = () => {
-          Modal.createGobstonesAttire((filename, link) => {
-            insertText(filename, `<img src="${link}" alt="`, `" width="auto" height="auto">`);
+          Modal.createGobstonesAttire((link) => {
+            insertText('', `<gs-attire attire-url="${link}"></gs-attire>`);
           });
         };
 
