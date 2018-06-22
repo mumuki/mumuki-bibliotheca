@@ -156,7 +156,7 @@ angular
             if (!isBase64(rule.image)) return;
 
             return Api
-              .uploadAsset($stateParams, { filename: `attires/image.png`, content: stripBase64(rule.image) })
+              .uploadAsset($stateParams, { filename: 'attires/image.png', content: stripBase64(rule.image) })
               .get('download_url')
               .then((url) => { rule.image = url });
           }).then(() => {
@@ -165,6 +165,6 @@ angular
         })
         .then((content) => onYesPromise(content.download_url))
         .then(() => $uibModalInstance.close())
-        .catch((e) => doFailure('gobstones_attire_incomplete'));
+        .catch(() => doFailure('gobstones_attire_incomplete'));
     };
   });

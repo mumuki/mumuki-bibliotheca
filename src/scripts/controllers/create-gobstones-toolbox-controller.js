@@ -3,6 +3,7 @@ angular
   .controller('CreateGobstonesToolboxController', function($scope,
                                                 $filter,
                                                 $timeout,
+                                                $stateParams,
                                                 toastr,
                                                 $uibModalInstance,
                                                 onYesPromise,
@@ -25,8 +26,8 @@ angular
 `;
 
     $scope.upload = () => {
-      return Api.uploadGist($scope.toolbox, "xml")
-        .then((content) => onYesPromise(content.raw_url))
+      return Api.uploadAsset($stateParams, { filename: 'toolbox.xml', content: btoa($scope.toolbox) })
+        .then((content) => onYesPromise(content.download_url))
         .then(() => $uibModalInstance.close());
     };
   });
