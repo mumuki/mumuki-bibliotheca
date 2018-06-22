@@ -109,6 +109,12 @@ angular
         .then((res) => res.data)
     }
 
+    this.uploadGist = ({ org, repo }, content, extension = 'txt') => {
+      return HTTP
+        .call('post',`${API}/guides/${org}/${repo}/gists`, { content, extension }, defaultConfig())
+        .then((res) => res.data)
+    }
+
     this.fork = ({ org, repo }, organization) => {
       return HTTP
         .call('post',`${API}/guides/${org}/${repo}/fork`, { organization }, defaultConfig())

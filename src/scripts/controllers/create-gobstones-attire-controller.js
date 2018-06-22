@@ -11,6 +11,7 @@ angular
 
     const $translate = $filter('translate');
 
+    const COLORS = ['red', 'green', 'blue', 'black'];
     const MAX_FILE_SIZE = 256 * 1024;
 
     $scope.attire = {
@@ -53,13 +54,39 @@ angular
     });
 
     const fileToUpload = () => {
+      return !hasInvalidRules() ? getAttire() : Promise.reject(new Error('Invalid rules'));
+    };
+    const hasInvalidRules = () => {
+      return _.some($scope.attire.rules, (rule) =>
+        !rule.image || _.some(
+          COLORS,
+          (color) => {
+            const value = rule.when[color];
+            return !_.isFinite(parseInt(value)) && value !== "*" && value !== "+";
+          }
+        )
+      );
+    };
+    const fileToSet = () => {
       const file = getFile();
-      return isValid(file) ? getBase64(file) : Promise.reject(new Error('Invalid size'));
-    }
-    const doFailure = (error) => toastr.error($translate(error));
-    const isValid = (file) => {
+      return !hasInvalidSize(file) ? getBase64(file) : Promise.reject(new Error('Invalid size'));
+    };
+    const hasInvalidSize = (file) => {
       const fileSize = _.get(file, 'size', 0);
-      return fileSize > 0 && fileSize <= MAX_FILE_SIZE;
+      return fileSize < 0 || fileSize > MAX_FILE_SIZE;
+    };
+    const getAttire = () => {
+      const attire = _.cloneDeep($scope.attire);
+      const adaptValue = (value) => {
+        return value === '*' || value === '+' ? value : parseInt(value)
+      };
+      attire.rules.forEach((rule) => {
+        COLORS.forEach((color) => {
+          rule.when[color] = adaptValue(rule.when[color]);
+        });
+      });
+
+      return Promise.resolve(attire);
     };
     const getBase64 = (file) => {
       return new Promise((resolve, reject) => {
@@ -69,14 +96,12 @@ angular
         reader.onerror = (error) => reject(error);
       });
     };
+    const doFailure = (error) => toastr.error($translate(error));
     const getFile = () => input.files[0];
-    const humanSize = (file) => {
-      return `${Math.round((file.size / 1024) * 100) / 100} KB`;
-    }
 
     $scope.setImage = (rule) => {
       input.onchange = () => {
-        fileToUpload()
+        fileToSet()
           .then((base64) => {
             rule.image = base64;
             $timeout(() => { $scope.$apply(); });
@@ -88,22 +113,14 @@ angular
     };
 
     $scope.upload = () => {
-      const hasInvalidRules = _.some($scope.attire.rules, (rule) =>
-        !rule.image || _.some(
-          ["red", "green", "blue", "black"],
-          (color) => {
-            const value = rule.when[color];
-            return !_.isFinite(parseInt(value)) && value !== "*" && value !== "+";
-          }
-        )
-      );
-
-      if (hasInvalidRules) {
-        doFailure("Algunas reglas de la vestimenta están incompletas");
-        return Promise.reject();
-      }
-
-      alert("Subiendo..."); // TODO: Convertir campos a int
-      return Promise.resolve();
+      return fileToUpload()
+        .then((content) => Api.uploadGist($stateParams, angular.toJson(content), "json"))
+        .then((content) => {
+          console.log("DONE!");
+          debugger;
+          onYesPromise(content.name, content.download_url)
+        })
+        .then(() => $uibModalInstance.close())
+        .catch(() => doFailure("Algunas reglas de la vestimenta están incompletas"));
     };
   });
