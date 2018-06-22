@@ -168,6 +168,7 @@ angular
     tooltip_bold: 'Bold (ctrl+b)',
     tooltip_code: 'Code',
     tooltip_emojis: 'Emojis',
+    tooltip_gbs_attire: 'Gobstones Attire',
     tooltip_image: 'Image',
     tooltip_inline_code: 'Inline code',
     tooltip_italic: 'Italic (ctrl+i)',

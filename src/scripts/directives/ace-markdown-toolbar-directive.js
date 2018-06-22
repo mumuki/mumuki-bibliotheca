@@ -105,6 +105,11 @@ angular
           $scope.editor.insert(MU);
           $scope.editor.focus();
         });
+        $scope.gbsAttire = () => {
+          Modal.createGobstonesAttire((filename, link) => {
+            insertText(filename, `<img src="${link}" alt="`, `" width="auto" height="auto">`);
+          });
+        };
 
         const bindCtrl = (letter) => {
           return {

@@ -1,0 +1,17 @@
+.modal-content.upload-image
+  .modal-body
+    .row
+      .col-md-12
+        p
+          span {{ 'upload_text' | translate }}
+          label
+            input#upload-image(type='file', accept='image/x-png,image/gif,image/jpeg', style='display: none')
+            span {{ description || ('here' | translate) }}
+          span *.
+
+  .modal-footer
+    .row
+      .col-md-12.pull-right
+        small.pull-left {{ 'upload_text_note' | translate }}
+        button.btn.btn-default(type='button', ng-click='cancel()', data-dismiss='modal') {{ 'cancel' | translate }}
+        button.btn.btn-success(type='button', spin-on-click='upload()') {{ 'accept' | translate }}

@@ -40,6 +40,13 @@ angular
       }
     });
 
+    this.createGobstonesAttire = () => $uibModal.open({
+      templateUrl: 'views/modals/create-gobstones-attire.html',
+      controller: 'CreateGobstonesAttireController',
+      size: 'lg',
+      resolve: {}
+    });
+
     this.forkFromGithub = (title, text, onYesPromise) => $uibModal.open({
       templateUrl: 'views/modals/fork-guide-from-github-modal.html',
       controller: 'ForkGuideFromGithubController',

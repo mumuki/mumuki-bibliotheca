@@ -166,6 +166,7 @@ angular
     tooltip_bold: 'Negrito (ctrl + b)',
     tooltip_code: 'Código',
     tooltip_emojis: 'Emojis',
+    tooltip_gbs_attire: 'Vestimenta Gobstones',
     tooltip_image: 'Imagem',
     tooltip_inline_code: 'Código Inline',
     tooltip_italic: 'Itálico (ctrl + i)',
