@@ -12,7 +12,16 @@ angular
 
     const MAX_FILE_SIZE = 256 * 1024;
 
-    $scope.image = {}
+    $scope.attire = {
+      enabled: true,
+      rules: [
+        {
+          when: { red: "*", green: "*", blue: "*", black: "*" },
+          image: null
+        }
+      ],
+      borders: {}
+    };
 
     let input
 

@@ -1,17 +1,31 @@
-.modal-content.upload-image
+.modal-content
   .modal-body
-    .row
-      .col-md-12
+    h1 Reglas
+
+    .row.gbs-attire-row
+      .col-md-6
+        h4 Combinación de bolitas
+      .col-dm-6
+        h4 Imagen
+
+    .row.gbs-attire-row(ng-repeat="rule in attire.rules")
+      .col-md-6
+        p.gbs-attire-rule
+          strong(style='color: red') ●&nbsp;
+          input.gbs-attire-rule-input(ng-model="rule.when.red")
+          strong(style='color: green') ●&nbsp;
+          input.gbs-attire-rule-input(ng-model="rule.when.green")
+          strong(style='color: blue') ●&nbsp;
+          input.gbs-attire-rule-input(ng-model="rule.when.blue")
+          strong(style='color: black') ●&nbsp;
+          input.gbs-attire-rule-input(ng-model="rule.when.black")
+      .col-md-6
         p
-          span {{ 'upload_text' | translate }}
           label
             input#upload-image(type='file', accept='image/x-png,image/gif,image/jpeg', style='display: none')
-            span {{ description || ('here' | translate) }}
-          span *.
+            span.pointer subir
 
   .modal-footer
     .row
       .col-md-12.pull-right
-        small.pull-left {{ 'upload_text_note' | translate }}
-        button.btn.btn-default(type='button', ng-click='cancel()', data-dismiss='modal') {{ 'cancel' | translate }}
         button.btn.btn-success(type='button', spin-on-click='upload()') {{ 'accept' | translate }}
