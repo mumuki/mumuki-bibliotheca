@@ -11,6 +11,9 @@
     .row.gbs-attire-row(ng-repeat="rule in attire.rules")
       .col-md-6
         p.gbs-attire-rule
+          strong.gbs-attire-rule-delete
+            i.fa.fa-trash-o.pointer(ng-click="removeRule(rule)")
+            span &nbsp;
           strong(style='color: red') ●&nbsp;
           input.gbs-attire-rule-input(ng-model="rule.when.red")
           strong(style='color: green') ●&nbsp;
@@ -24,6 +27,10 @@
           label
             input#upload-image(type='file', accept='image/x-png,image/gif,image/jpeg', style='display: none')
             span.pointer subir
+
+    .row
+      .col-md-12
+        button.btn.btn-sm.pull-right(type='button', ng-click="addRule()") Agregar regla
 
   .modal-footer
     .row

@@ -14,16 +14,27 @@ angular
 
     $scope.attire = {
       enabled: true,
-      rules: [
-        {
-          when: { red: "*", green: "*", blue: "*", black: "*" },
-          image: null
-        }
-      ],
+      rules: [],
       borders: {}
     };
 
-    let input
+    $scope.addRule = (red = "", green = "", blue = "", black = "") => {
+      $scope.attire.rules.push({
+        when: { red, green, blue, black },
+        image: null
+      });
+    };
+
+    $scope.removeRule = (rule) => {
+      const index = $scope.attire.rules.indexOf(rule);
+      if (index < 0) return;
+
+      $scope.attire.rules.splice(index, 1);
+    };
+
+    $scope.addRule();
+
+    let input;
 
     const humanSize = (file) => {
       return `${Math.round((file.size / 1024) * 100) / 100} KB`;
