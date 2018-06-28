@@ -70,6 +70,7 @@ angular
       $scope.attire.rules.splice(index, 1);
       $scope.attire.rules.splice(index + 1, 0, rule);
     };
+    $scope.hasAttires = () => !_.isEmpty($scope.attire.borders);
 
     $scope.addRule();
 

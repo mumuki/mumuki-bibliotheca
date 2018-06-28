@@ -56,7 +56,7 @@
               span.pointer {{ border }}
             label(ng-show="attire.borders[border] !== null")
               img.gbs-attire-rule-image-preview.pointer(ng-src="{{attire.borders[border]}}")
-        i.fa.fa-times.pointer(ng-click='removeBorders()', ng-show='attire.borders[border] !== undefined')
+        i.fa.fa-times.pointer(ng-click='removeBorders()', ng-show='hasAttires()')
 
   .modal-footer
     .row
