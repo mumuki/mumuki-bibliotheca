@@ -15,7 +15,9 @@ angular
     const COLORS = ['red', 'green', 'blue', 'black'];
     const MAX_FILE_SIZE = 256 * 1024;
 
+    $scope.colors = COLORS;
     $scope.borders = ['top', 'right', 'bottom', 'left', 'topRight', 'bottomRight', 'bottomLeft', 'topLeft'];
+
     $scope.isImporting = false;
     $scope.attire = {
       enabled: true,
@@ -35,7 +37,7 @@ angular
         $timeout(() => $scope.$apply());
       });
     };
-    $scope.addRule = (red = "", green = "", blue = "", black = "") => {
+    $scope.addRule = (red = '0', green = '0', blue = '0', black = '0') => {
       $scope.attire.rules.push({
         when: { red, green, blue, black },
         image: null
@@ -94,7 +96,7 @@ angular
         COLORS,
         (color) => {
           const value = rule.when[color];
-          return !_.isFinite(parseInt(value)) && value !== "*" && value !== "+";
+          return !_.isFinite(parseInt(value)) && value !== '*' && value !== '+';
         }
       );
     const hasInvalidSize = (file) => {
@@ -113,7 +115,7 @@ angular
           .finally(() => { input.value = null });
       };
 
-      $(input).trigger("click");
+      $(input).trigger('click');
     };
     const getAttire = () => {
       const attire = _.cloneDeep($scope.attire);

@@ -10,60 +10,58 @@
     div.gbs-attire-row(ng-show="isImporting")
       i.fa.fa-spinner.fa-spin
 
-    div(ng-show="!isImporting")
+    div(ng-show="!isImporting", dnd-list='attire.rules')
       .row.gbs-attire-row
-        .col-md-6
+        .col-md-7
           h4 {{ 'rule' | translate }}
-        .col-dm-6
+        .col-md-5
           h4 {{ 'tooltip_image' | translate }}
 
-      .row.gbs-attire-row(ng-repeat="rule in attire.rules")
-        .col-md-6
-          p.gbs-attire-rule
-            strong.gbs-attire-rule-delete
-              i.fa.fa-trash-o.pointer(ng-click="removeRule(rule)")
-              span &nbsp;
-            strong.gbs-attire-rule-up
-              i.fa.fa-arrow-up.pointer(ng-click="moveRuleUp(rule)")
-              span &nbsp;
-            strong.gbs-attire-rule-down
-              i.fa.fa-arrow-down.pointer(ng-click="moveRuleDown(rule)")
-              span &nbsp;
-            strong(style='color: red') ●&nbsp;
-            input.gbs-attire-rule-input(ng-model="rule.when.red")
-            strong(style='color: green') ●&nbsp;
-            input.gbs-attire-rule-input(ng-model="rule.when.green")
-            strong(style='color: blue') ●&nbsp;
-            input.gbs-attire-rule-input(ng-model="rule.when.blue")
-            strong(style='color: black') ●&nbsp;
-            input.gbs-attire-rule-input(ng-model="rule.when.black")
-        .col-md-6
-          p(ng-click="setImage(rule)")
-            label(ng-show="!rule.image")
-              span.pointer {{ 'upload_now' | translate }}
+      .row.gbs-attire-row(
+            ng-repeat='rule in attire.rules'
+            dnd-draggable='rule',
+            dnd-moved='attire.rules.splice($index, 1)',
+            dnd-effect-allowed='move')
+
+        .col-md-7
+
+          .gbs-attire-rule
+
+            i.fa.fa-fw.fa-bars.pull-left.pointer
+
+            span.fa-stack.fa-lg(ng-repeat='color in colors')
+              i.fa.fa-circle.fa-stack-2x(style='color: {{color}}')
+              input.gbs-attire-rule-input.fa-stack-1x(placeholder='_', ng-model='rule.when[color]')
+
+        .col-md-5
+          span(ng-click="setImage(rule)")
+            button.btn-sm.btn-primary(ng-show="!rule.image")
+              i.fa.fa-fw.fa-upload
+              span {{ 'upload_now' | translate }}
             label(ng-show="rule.image")
               img.gbs-attire-rule-image-preview.pointer(ng-src="{{rule.image}}")
+
+          i.fa.fa-times.pull-right.pointer(ng-click="removeRule(rule)")
+
       .row.gbs-attire-row(ng-repeat="border in borders")
         div(ng-show='attire.borders[border] !== undefined')
-          .col-md-6
+          .col-md-7
             p.gbs-attire-rule
               strong.gbs-attire-rule-delete
                 i.fa.fa-trash-o.pointer(ng-click="removeBorder(border)")
                 span &nbsp;
               strong {{ border }}
-          .col-md-6
+          .col-md-5
             p(ng-click="setBorderImage(border)")
               label(ng-show="attire.borders[border] === null")
                 span.pointer {{ 'upload_now' | translate }}
               label(ng-show="attire.borders[border] !== null")
                 img.gbs-attire-rule-image-preview.pointer(ng-src="{{attire.borders[border]}}")
 
-      .row
-        .col-md-12
-          button.btn.btn-sm.pull-right.gbs-attire-add-btn(type='button', ng-click="addBorders()") {{ 'add_borders' | translate }}
-          button.btn.btn-sm.pull-right.gbs-attire-add-btn(type='button', ng-click="addRule()") {{ 'add_combination' | translate }}
-
   .modal-footer
     .row
-      .col-md-12.pull-right
-        button.btn.btn-success(type='button', spin-on-click='upload()', ng-disabled="isImporting") {{ 'accept' | translate }}
+      .col-md-7
+        button.btn.btn-primary.pull-left(type='button', ng-click="addRule()") {{ 'add_combination' | translate }}
+        button.btn.btn-primary.pull-left(type='button', ng-click="addBorders()") {{ 'add_borders' | translate }}
+      .col-md-5
+        button.btn.btn-success.pull-right(type='button', spin-on-click='upload()', ng-disabled="isImporting") {{ 'accept' | translate }}
