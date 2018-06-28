@@ -37,7 +37,7 @@ angular
         $timeout(() => $scope.$apply());
       });
     };
-    $scope.addRule = (red = '0', green = '0', blue = '0', black = '0') => {
+    $scope.addRule = (red = '', green = '', blue = '', black = '') => {
       $scope.attire.rules.push({
         when: { red, green, blue, black },
         image: null
@@ -54,6 +54,9 @@ angular
     };
     $scope.removeBorder = (border) => {
       $scope.attire.borders[border] = undefined;
+    };
+    $scope.removeBorders = () => {
+      $scope.attire.borders = {};
     };
     $scope.moveRuleUp = (rule) => {
       const index = $scope.attire.rules.indexOf(rule);
