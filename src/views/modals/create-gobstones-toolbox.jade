@@ -1,0 +1,14 @@
+.modal-content
+  .modal-body
+    div
+    h1
+      span {{ 'gobstones_toolbox' | translate }}&nbsp;
+
+    .row
+      .col-md-12
+        div.gbs-toolbox-editor(ui-ace="{ mode: 'xml' }", ng-model='toolbox')
+
+  .modal-footer
+    .row
+      .col-md-12.pull-right
+        button.btn.btn-success(type='button', spin-on-click='upload()') {{ 'accept' | translate }}

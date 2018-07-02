@@ -1,0 +1,67 @@
+.modal-content
+  .modal-body
+    div
+    h1
+      span {{ 'gobstones_attire' | translate }}&nbsp;
+      i.fa.fa-cloud-download.pointer(ng-click="importFromUrl()")
+
+    input#upload-image(type='file', accept='image/x-png,image/gif,image/jpeg', style='display: none')
+
+    div.gbs-attire-row(ng-show="isImporting")
+      i.fa.fa-spinner.fa-spin
+
+    div(ng-show="!isImporting")
+      .row.gbs-attire-row
+        .col-md-7
+          h4 {{ 'rule' | translate }}
+        .col-md-5
+          h4 {{ 'tooltip_image' | translate }}
+
+      .row(dnd-list='attire.rules')
+
+        .gbs-attire-row(
+              ng-repeat='rule in attire.rules'
+              dnd-draggable='rule',
+              dnd-moved='attire.rules.splice($index, 1)',
+              dnd-effect-allowed='move')
+
+          .col-md-7
+
+            .gbs-attire-rule
+
+              i.fa.fa-fw.fa-bars.pull-left.pointer
+
+              span.fa-stack.fa-lg(ng-repeat='color in colors')
+                i.fa.fa-circle.fa-stack-2x(style='color: {{color}}')
+                input.gbs-attire-rule-input.fa-stack-1x(placeholder='_', ng-model='rule.when[color]')
+
+          .col-md-5
+            span(ng-click="setImage(rule)")
+              button.btn-sm.btn-primary(ng-show="!rule.image")
+                i.fa.fa-fw.fa-upload
+                span {{ 'upload_now' | translate }}
+              label(ng-show="rule.image")
+                img.gbs-attire-rule-image-preview.pointer(ng-src="{{rule.image}}")
+
+            i.fa.fa-times.pull-right.pointer(ng-click="removeRule(rule)")
+
+    br
+
+    .row
+      .col-md-12.gbs-attire-row.borders
+        span(ng-repeat="border in borders", ng-show='attire.borders[border] !== undefined')
+          span(ng-click="setBorderImage(border)")
+            button.btn-sm.btn-link(ng-show="attire.borders[border] === null")
+              i.fa.fa-fw.fa-upload
+              span.pointer {{ border }}
+            label(ng-show="attire.borders[border] !== null")
+              img.gbs-attire-rule-image-preview.pointer(ng-src="{{attire.borders[border]}}")
+        i.fa.fa-times.pointer(ng-click='removeBorders()', ng-show='hasAttires()')
+
+  .modal-footer
+    .row
+      .col-md-7
+        button.btn.btn-primary.pull-left(type='button', ng-click="addRule()") {{ 'add_combination' | translate }}
+        button.btn.btn-primary.pull-left(type='button', ng-click="addBorders()") {{ 'add_borders' | translate }}
+      .col-md-5
+        button.btn.btn-success.pull-right(type='button', spin-on-click='upload()', ng-disabled="isImporting") {{ 'accept' | translate }}

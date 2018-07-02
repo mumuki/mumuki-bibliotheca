@@ -105,6 +105,16 @@ angular
           $scope.editor.insert(MU);
           $scope.editor.focus();
         });
+        $scope.gbsAttire = () => {
+          Modal.createGobstonesAttire((link) => {
+            insertText('', `<gs-attire attire-url="${link}"></gs-attire>`);
+          });
+        };
+        $scope.gbsToolbox = () => {
+          Modal.createGobstonesToolbox((link) => {
+            insertText('', `<gs-toolbox toolbox-url="${link}"></gs-toolbox>`);
+          });
+        };
 
         const bindCtrl = (letter) => {
           return {
