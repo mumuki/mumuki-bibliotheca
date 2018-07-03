@@ -34,7 +34,11 @@
           exercise='exercise',
           foldable='true',
           ng-if='exercise.needsAssistanceRules()')
-
+        br
+        randomizations(
+          exercise='exercise',
+          foldable='true',
+          ng-if='exercise.needsRandomizations()')
       .exercise-detail-area-editor
         ace-evaluation(exercise='exercise')
 

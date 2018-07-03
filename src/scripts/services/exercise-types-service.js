@@ -19,6 +19,7 @@ angular
         needsHint: (exercise) => true,
         needsAssistanceRules: (exercise) => true,
         needsCorollary: (exercise) => true,
+        needsRandomizations: (exercise) => true,
       },
       playground: {
         name: 'playground',
@@ -38,6 +39,7 @@ angular
         needsHint: (exercise) => true,
         needsAssistanceRules: (exercise) => false,
         needsCorollary: (exercise) => false,
+        needsRandomizations: (exercise) => true,
       },
       reading: {
         name: 'reading',
@@ -55,6 +57,7 @@ angular
         needsHint: (exercise) => false,
         needsAssistanceRules: (exercise) => false,
         needsCorollary: (exercise) => false,
+        needsRandomizations: (exercise) => false,
       },
       interactive: {
         name: 'interactive',
@@ -75,6 +78,7 @@ angular
         needsHint: (exercise) => true,
         needsAssistanceRules: (exercise) => false,
         needsCorollary: (exercise) => true,
+        needsRandomizations: (exercise) => true,
       }
 
     }
