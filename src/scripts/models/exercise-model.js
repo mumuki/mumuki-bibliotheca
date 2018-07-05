@@ -214,7 +214,8 @@ angular
         if (!exercise.needsSolution()) delete exercise.solution;
         if (!exercise.needsExpectations()) delete exercise.expectations;
         if (!exercise.needsDefaultContent()) delete exercise.default_content;
-        exercise.assistance_rules = exercise.getYamlAssistanceRules()
+        if (!exercise.needsAssistanceRules()) delete exercise.assistance_rules;
+        else exercise.assistance_rules = exercise.getYamlAssistanceRules()
         return exercise;
       }
 
