@@ -209,4 +209,18 @@ angular
     verb: 'Verbo',
     yes: 'Sí',
 
+    assistance_rule_content_empty: 'La solución es vacía',
+    assistance_rule_submission_errored: 'La solución no se pudo ejecutar',
+    assistance_rule_submission_failed: 'La solución no pasó las pruebas',
+    assistance_rule_submission_passed_with_warnings: 'La solución pasó pero puede mejorarse',
+    assistance_rule_error_contains: 'El mensaje de error contiene',
+    assistance_rule_these_tests_failed: 'Alguno de los siguientes tests falla',
+    assistance_rule_only_these_tests_failed: 'Solamente fallan los siguientes tests ',
+    assistance_rule_these_expectations_failed: 'Alguna de los siguientes expectativas falla',
+
+    add_rule: 'Agregar regla de asistencia',
+
+    when: 'Cuando',
+    then: 'Entonces',
+
   });

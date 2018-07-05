@@ -19,16 +19,19 @@ angular
 
         const translate = $filter('translate');
 
-        const RULES = [
-          { key: 'content_empty',                   value: null,  hasValue: false },
-          { key: 'submission_errored',              value: null,  hasValue: false },
-          { key: 'submission_failed',               value: null,  hasValue: false },
-          { key: 'submission_passed_with_warnings', value: null,  hasValue: false },
+        const SEP = ':<>:'
 
-          { key: 'error_contains',                  value: '',    hasValue: true },
-          { key: 'these_tests_failed',              value: [],    hasValue: true },
-          { key: 'only_these_tests_failed',         value: [],    hasValue: true },
-          { key: 'these_expectations_failed',       value: [],    hasValue: true },
+        const RULES = [
+          { key: 'content_empty',                   value: null,  needsValue: false, toValue: (v) => v, fromValue: (v) => v },
+          { key: 'submission_errored',              value: null,  needsValue: false, toValue: (v) => v, fromValue: (v) => v },
+          { key: 'submission_failed',               value: null,  needsValue: false, toValue: (v) => v, fromValue: (v) => v },
+          { key: 'submission_passed_with_warnings', value: null,  needsValue: false, toValue: (v) => v, fromValue: (v) => v },
+
+          { key: 'error_contains',                  value: '',    needsValue: true, toValue: (v) => v,            fromValue: (v) => v },
+
+          { key: 'these_tests_failed',              value: '',    needsValue: true, toValue: (v) => v.split(SEP), fromValue: (v) => v.join(SEP) },
+          { key: 'only_these_tests_failed',         value: '',    needsValue: true, toValue: (v) => v.split(SEP), fromValue: (v) => v.join(SEP) },
+          { key: 'these_expectations_failed',       value: '',    needsValue: true, toValue: (v) => v.split(SEP), fromValue: (v) => v.join(SEP) },
         ]
 
         const getPairKeyValueFrom = (when) => {
@@ -37,16 +40,19 @@ angular
 
         const toRule = (ar) => {
           const [key, value] = getPairKeyValueFrom(ar.when);
-          const hasValue = _.find(RULES, {key}).hasValue;
+          const supportedRule = _.find(RULES, {key});
+          const needsValue = supportedRule.needsValue;
+          const toValue = supportedRule.toValue;
+          const fromValue = supportedRule.fromValue;
           const then = ar.then;
           return {
-            selected: { key, value, hasValue, then },
+            selected: { key, needsValue, then, toValue, fromValue, value: fromValue(value) },
           }
         }
 
         const fromRule = (rule) => {
           const assistanceRule = {
-            when: rule.selected.hasValue ? { [rule.selected.key]: rule.selected.value } : rule.selected.key,
+            when: rule.selected.needsValue ? { [rule.selected.key]: rule.selected.toValue(rule.selected.value) } : rule.selected.key,
             then: rule.selected.then,
           }
           return assistanceRule;
@@ -66,7 +72,6 @@ angular
 
         $scope.$watch('rules', () => {
           $scope.exercise.assistance_rules = $scope.rules.map(fromRule);
-          console.log($scope.rules, $scope.exercise.assistance_rules);
         }, true);
 
       }
