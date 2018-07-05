@@ -19,19 +19,17 @@ angular
 
         const translate = $filter('translate');
 
-        const SEP = ':<>:'
-
         const RULES = [
-          { key: 'content_empty',                   value: null,  needsValue: false, toValue: (v) => v, fromValue: (v) => v },
-          { key: 'submission_errored',              value: null,  needsValue: false, toValue: (v) => v, fromValue: (v) => v },
-          { key: 'submission_failed',               value: null,  needsValue: false, toValue: (v) => v, fromValue: (v) => v },
-          { key: 'submission_passed_with_warnings', value: null,  needsValue: false, toValue: (v) => v, fromValue: (v) => v },
+          { key: 'content_empty',                   value: null,  needsValue: false },
+          { key: 'submission_errored',              value: null,  needsValue: false },
+          { key: 'submission_failed',               value: null,  needsValue: false },
+          { key: 'submission_passed_with_warnings', value: null,  needsValue: false },
 
-          { key: 'error_contains',                  value: '',    needsValue: true, toValue: (v) => v,            fromValue: (v) => v },
+          { key: 'error_contains',                  value: '',    needsValue: true },
 
-          { key: 'these_tests_failed',              value: '',    needsValue: true, toValue: (v) => v.split(SEP), fromValue: (v) => v.join(SEP) },
-          { key: 'only_these_tests_failed',         value: '',    needsValue: true, toValue: (v) => v.split(SEP), fromValue: (v) => v.join(SEP) },
-          { key: 'these_expectations_failed',       value: '',    needsValue: true, toValue: (v) => v.split(SEP), fromValue: (v) => v.join(SEP) },
+          { key: 'these_tests_failed',              value: [],    needsValue: true },
+          { key: 'only_these_tests_failed',         value: [],    needsValue: true },
+          { key: 'these_expectations_failed',       value: [],    needsValue: true },
         ]
 
         const getPairKeyValueFrom = (when) => {
@@ -46,13 +44,13 @@ angular
           const fromValue = supportedRule.fromValue;
           const then = ar.then;
           return {
-            selected: { key, needsValue, then, toValue, fromValue, value: fromValue(value) },
+            selected: { key, needsValue, then, toValue, fromValue, value },
           }
         }
 
         const fromRule = (rule) => {
           const assistanceRule = {
-            when: rule.selected.needsValue ? { [rule.selected.key]: rule.selected.toValue(rule.selected.value) } : rule.selected.key,
+            when: rule.selected.needsValue ? { [rule.selected.key]: rule.selected.value } : rule.selected.key,
             then: rule.selected.then,
           }
           return assistanceRule;
@@ -62,12 +60,28 @@ angular
 
         $scope.supportedRules = RULES;
 
+        $scope.isObjectValue = (value) => {
+          return value.needsValue && _.isString(value.value);
+        }
+
+        $scope.isArrayValue = (value) => {
+          return value.needsValue && _.isArray(value.value);
+        }
+
         $scope.addRule = () => {
           $scope.rules.push({ selected: _.clone(RULES[0]) });
         };
 
+        $scope.addTest = (rule) => {
+          rule.selected.value.push('');
+        };
+
         $scope.removeRule = (rule) => {
           _.remove($scope.rules, rule);
+        }
+
+        $scope.removeTest = (selected, index) => {
+          selected.value.splice(index, 1);
         }
 
         $scope.$watch('rules', () => {

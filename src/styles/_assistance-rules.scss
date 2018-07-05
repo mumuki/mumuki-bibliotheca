@@ -45,11 +45,24 @@ assistance-rules {
 
             input {
               margin-top: 5px;
-              padding: 10px 15px;
               width: 100%;
+              padding: 10px 15px;
               height: 51px;
               border: none;
               border-bottom: 1px solid $mu-color-content-editable;
+            }
+
+            .rule-value-object {
+              width: 100%;
+            }
+
+            .rule-value-array {
+              @include display-flex(row, flex-start, center);
+              width: 100%;
+              i {
+                cursor: pointer;
+                margin-right: 5px;
+              }
             }
           }
         }

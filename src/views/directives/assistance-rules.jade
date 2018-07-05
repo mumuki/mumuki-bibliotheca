@@ -26,13 +26,22 @@ h3
             ui-select-choices(repeat='supportedRule in supportedRules | filter:$select.search')
               small(ng-bind-html=' "assistance_rule_" + supportedRule.key | translate | highlight: $select.search')
 
-          input(ng-if='rule.selected.needsValue', ng-model='rule.selected.value')
+          .rule-value-object(ng-if='isObjectValue(rule.selected)')
+            input(ng-model='rule.selected.value', placeholder='{{ "message" | translate }}')
+
+          .rule-value-array(ng-if='isArrayValue(rule.selected)', ng-repeat='value in rule.selected.value track by $index')
+            i.fa.fa-fw.fa-times(ng-click='removeTest(rule.selected, value)')
+            input(ng-model='value', placeholder='{{ "message" | translate }}')
+
+          a(href='', ng-click='addTest(rule)', ng-if='isArrayValue(rule.selected)')
+            i.fa.fa-fw.fa-plus
+            span {{ 'add_item' | translate }}
 
       .rule-then
         .rule-key
           strong {{ 'then' | translate }}:
         .rule-value
-          input(ng-model='rule.selected.then', placeholder='{{ "message" | translate }}')
+          input(ng-model='rule.selected.then', placeholder='{{ "assistance_message" | translate }}')
 
   br
 

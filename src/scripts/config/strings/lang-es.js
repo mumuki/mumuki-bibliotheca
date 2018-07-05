@@ -219,8 +219,12 @@ angular
     assistance_rule_these_expectations_failed: 'Alguna de los siguientes expectativas falla',
 
     add_rule: 'Agregar regla de asistencia',
+    add_item: 'Agregar item',
 
     when: 'Cuando',
     then: 'Entonces',
+
+    message: 'Mensaje',
+    assistance_message: 'Mensaje de asistencia',
 
   });
