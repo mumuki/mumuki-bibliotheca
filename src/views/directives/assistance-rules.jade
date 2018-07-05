@@ -1,0 +1,42 @@
+h3
+  span {{ 'assistance_rules' | translate }}
+  i.pointer.fa.fa-fw(
+    ng-if='isFoldable',
+    ng-click='toggleMinimized()',
+    ng-class='{                             \
+      "fa-plus-square-o": isMinimized(),    \
+      "fa-minus-square-o": !isMinimized(),  \
+    }')
+
+.assistance-rules(ng-show='showMinimized()')
+
+  .rules(ng-repeat='rule in rules', style='display: flex')
+
+    .times
+      i.fa.fa-fw.fa-times(ng-click='removeRule(rule)')
+
+    .rule
+
+      .rule-when
+        .rule-key
+          span CUANDO:
+        .rule-value
+          ui-select(ng-model='rule.selected' theme='bootstrap' title='{{ "assistance_rule" | translate }}')
+            ui-select-match(placeholder='{{ "placeholder_assistance_rule" | translate }}') {{ "assistance_rule_" + $select.selected.key | translate }}
+            ui-select-choices(repeat='supportedRule in supportedRules | filter:$select.search')
+              small(ng-bind-html=' "assistance_rule_" + supportedRule.key | translate | highlight: $select.search')
+
+          input(ng-if='rule.selected.hasValue', ng-model='rule.selected.value')
+
+      .rule-then
+        .rule-key
+          span ENTONCES:
+        .rule-value
+          input(ng-model='rule.selected.then', placeholder='{{ "message" | translate }}')
+
+  br
+
+  a(href='', ng-click='addRule()')
+    i.fa.fa-fw.fa-plus
+    span {{ 'add_rule' | translate }}
+

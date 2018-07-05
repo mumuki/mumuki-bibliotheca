@@ -215,12 +215,7 @@ angular
         if (!exercise.needsExpectations()) delete exercise.expectations;
         if (!exercise.needsDefaultContent()) delete exercise.default_content;
         if (!exercise.needsAssistanceRules()) delete exercise.assistance_rules;
-        else exercise.assistance_rules = exercise.getYamlAssistanceRules();
         return exercise;
-      }
-
-      getYamlAssistanceRules() {
-        return jsyaml.load(_.last(this.assistance_rules.split(/rules:/)));
       }
 
       usesCustomEditor(){
@@ -233,9 +228,7 @@ angular
           type: ExerciseTypes.default(),
           editor: Editor.default().name,
           layout: Layouts.default().type(),
-          assistance_rules: []
         });
-        exercise.assistance_rules = 'rules:\n' + jsyaml.dump(exercise.assistance_rules, { skipInvalid: true });
         return new Exercise(exercise);
       }
 
