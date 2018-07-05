@@ -217,6 +217,7 @@ angular
     assistance_rule_these_tests_failed: 'Alguno de los siguientes tests falla',
     assistance_rule_only_these_tests_failed: 'Solamente fallan los siguientes tests ',
     assistance_rule_these_expectations_failed: 'Alguna de los siguientes expectativas falla',
+    error_assistance_rule_validation: '{{fullName}}: Tiene reglas de asistencia inválidas',
 
     add_rule: 'Agregar regla de asistencia',
     add_item: 'Agregar item',

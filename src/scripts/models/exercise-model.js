@@ -161,6 +161,7 @@ angular
         Validator.notEmptyString(this, 'type');
         Validator.notEmptyString(this, 'layout');
         Validator.notEmptyString(this, 'description');
+        Validator.validateAssistanceRules(this);
         this.getType().validate(this);
       }
 

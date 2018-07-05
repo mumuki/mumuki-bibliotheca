@@ -30,8 +30,8 @@ h3
             input(ng-model='rule.selected.value', placeholder='{{ "message" | translate }}')
 
           .rule-value-array(ng-if='isArrayValue(rule.selected)', ng-repeat='value in rule.selected.value track by $index')
-            i.fa.fa-fw.fa-times(ng-click='removeTest(rule.selected, value)')
-            input(ng-model='value', placeholder='{{ "message" | translate }}')
+            i.fa.fa-fw.fa-times(ng-click='removeTest(rule.selected, $index)')
+            input(ng-model='rule.selected.value[$index]', placeholder='{{ "message" | translate }}')
 
           a(href='', ng-click='addTest(rule)', ng-if='isArrayValue(rule.selected)')
             i.fa.fa-fw.fa-plus
