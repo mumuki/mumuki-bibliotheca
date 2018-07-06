@@ -1,0 +1,88 @@
+assistance-rules {
+
+  width: 100%;
+
+  .assistance-rules {
+
+    @include display-flex(column, flex-start, flex-start);
+
+    width: 100%;
+
+    .rules {
+      @include display-flex(row, flex-start, baseline);
+
+      width: 100%;
+      margin: 5px 0;
+
+      .times {
+        cursor: pointer;
+        margin-right: 5px;
+      }
+
+      .rule {
+        @include display-flex(column, flex-start, baseline);
+
+        width: 100%;
+
+        .rule-when,
+        .rule-then {
+          @include display-flex(row, flex-start, baseline);
+
+          width: 100%;
+
+          .rule-key {
+            width: 150px;
+          }
+
+          .rule-value {
+            @include display-flex(column, flex-start, flex-start);
+
+            width: 100%;
+
+            .ui-select-container {
+              width: 100%;
+            }
+
+            input {
+              margin-top: 5px;
+              width: 100%;
+              padding: 10px 15px;
+              height: 51px;
+              border: none;
+              border-bottom: 1px solid $mu-color-content-editable;
+            }
+
+            .rule-value-object {
+              width: 100%;
+            }
+
+            .rule-value-array {
+              @include display-flex(row, flex-start, center);
+              width: 100%;
+              i {
+                cursor: pointer;
+                margin-right: 5px;
+              }
+            }
+          }
+        }
+      }
+
+      .ui-select-container {
+        width: 100%;
+      }
+
+      .ui-select-toggle.btn.btn-default {
+        max-width: 100%;
+        border: none;
+        border-bottom: 1px solid $mu-color-content-editable;
+        &:focus, &:active {
+          outline: -webkit-focus-ring-color auto 5px;
+          outline-color: -webkit-focus-ring-color;
+          outline-style: auto;
+          outline-width: 5px;
+        }
+      }
+    }
+  }
+}

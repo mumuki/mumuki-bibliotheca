@@ -5,7 +5,7 @@ angular
     const translate = $filter('translate');
 
     this.isEmptyString = (object, field) => {
-      return _.chain(object).get(field).trim().isEmpty().value()
+      return _.chain(object).get(field).trim().isEmpty().value();
     }
 
     const isEmptyExpectation = (exercise, expectation) => {
@@ -21,6 +21,24 @@ angular
 
     const isIncompleteChoice = (choiceable) => {
       return (choice) => this.isEmptyString(choice, 'value');
+    }
+
+    const whenIsEmptyString = (rule) => {
+      return _.isString(rule.when) && this.isEmptyString(rule, 'when');
+    }
+
+    const whenIsObjectWithEmptyString = (rule) => {
+      const value = _.chain(rule.when).values().first().value();
+      return _.isObject(rule.when) && _.isString(value) && _.chain(value).trim().isEmpty().value();
+    }
+
+    const whenIsArrayWithEmptyStrings = (rule) => {
+      const values =_.chain(rule.when).values().first().value();
+      return _.isObject(rule.when) && _.isArray(values) && (values.length === 0 || _.chain(values).some((it) => _.isEmpty(it.trim())).value());
+    }
+
+    const isIncompleteAssistanceRule = (rule) => {
+      return this.isEmptyString(rule, 'then') || whenIsEmptyString(rule) || whenIsObjectWithEmptyString(rule) || whenIsArrayWithEmptyStrings(rule);
     }
 
     this.notEmptyString = (object, field) => {
@@ -75,6 +93,14 @@ angular
       if (_.some(choiceable.choices, isIncompleteChoice(choiceable))) {
         throw new Error(translate('error_choices_incomplete_validation', {
           fullName: choiceable.fullName(),
+        }))
+      }
+    }
+
+    this.validateAssistanceRules = (exercise) => {
+      if (exercise.needsAssistanceRules() && _.some(exercise.assistance_rules, isIncompleteAssistanceRule)) {
+        throw new Error(translate('error_assistance_rule_validation', {
+          fullName: exercise.fullName(),
         }))
       }
     }

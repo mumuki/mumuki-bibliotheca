@@ -30,13 +30,11 @@
         br
         ace-with-markdown(header='hint', content='exercise.hint', foldable='true', ng-if='exercise.needsHint()')
         br
-        ace-editor(
-          header='assistance_rules',
-          content='exercise.assistance_rules',
-          mode='"yaml"',
-          placeholder='placeholder_assistance_rules',
+        assistance-rules(
+          exercise='exercise',
           foldable='true',
           ng-if='exercise.needsAssistanceRules()')
+
       .exercise-detail-area-editor
         ace-evaluation(exercise='exercise')
 

@@ -1,0 +1,51 @@
+h3
+  span {{ 'assistance_rules' | translate }}
+  i.pointer.fa.fa-fw(
+    ng-if='isFoldable',
+    ng-click='toggleMinimized()',
+    ng-class='{                             \
+      "fa-plus-square-o": isMinimized(),    \
+      "fa-minus-square-o": !isMinimized(),  \
+    }')
+
+.assistance-rules(ng-show='showMinimized()')
+
+  .rules(ng-repeat='rule in rules', style='display: flex')
+
+    .times
+      i.fa.fa-fw.fa-times(ng-click='removeRule(rule)')
+
+    .rule
+
+      .rule-when
+        .rule-key
+          strong {{ 'when' | translate }}:
+        .rule-value
+          ui-select(ng-model='rule.selected' theme='bootstrap' title='{{ "assistance_rule" | translate }}')
+            ui-select-match(placeholder='{{ "placeholder_assistance_rule" | translate }}') {{ "assistance_rule_" + $select.selected.key | translate }}
+            ui-select-choices(repeat='supportedRule in supportedRules | filter:$select.search')
+              small(ng-bind-html=' "assistance_rule_" + supportedRule.key | translate | highlight: $select.search')
+
+          .rule-value-object(ng-if='isObjectValue(rule.selected)')
+            input(ng-model='rule.selected.value', placeholder='{{ "message" | translate }}')
+
+          .rule-value-array(ng-if='isArrayValue(rule.selected)', ng-repeat='value in rule.selected.value track by $index')
+            i.fa.fa-fw.fa-times(ng-click='removeTest(rule.selected, $index)')
+            input(ng-model='rule.selected.value[$index]', placeholder='{{ "message" | translate }}')
+
+          a(href='', ng-click='addTest(rule)', ng-if='isArrayValue(rule.selected)')
+            i.fa.fa-fw.fa-plus
+            span {{ 'add_item' | translate }}
+
+      .rule-then
+        .rule-key
+          strong {{ 'then' | translate }}:
+        .rule-value
+          input(ng-model='rule.selected.then', placeholder='{{ "assistance_message" | translate }}')
+
+  br
+
+  a(href='', ng-click='addRule()')
+    i.fa.fa-fw.fa-plus
+    span {{ 'add_rule' | translate }}
+
