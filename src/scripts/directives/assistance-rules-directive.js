@@ -20,16 +20,16 @@ angular
         const translate = $filter('translate');
 
         const RULES = [
-          { key: 'content_empty',                   value: null,  needsValue: false },
-          { key: 'submission_errored',              value: null,  needsValue: false },
-          { key: 'submission_failed',               value: null,  needsValue: false },
-          { key: 'submission_passed_with_warnings', value: null,  needsValue: false },
+          { key: 'content_empty',                   defaultValue: null,  needsValue: false },
+          { key: 'submission_errored',              defaultValue: null,  needsValue: false },
+          { key: 'submission_failed',               defaultValue: null,  needsValue: false },
+          { key: 'submission_passed_with_warnings', defaultValue: null,  needsValue: false },
 
-          { key: 'error_contains',                  value: '',    needsValue: true },
+          { key: 'error_contains',                  defaultValue: '',    needsValue: true },
 
-          { key: 'these_tests_failed',              value: [],    needsValue: true },
-          { key: 'only_these_tests_failed',         value: [],    needsValue: true },
-          { key: 'these_expectations_failed',       value: [],    needsValue: true },
+          { key: 'these_tests_failed',              defaultValue: [],    needsValue: true },
+          { key: 'only_these_tests_failed',         defaultValue: [],    needsValue: true },
+          { key: 'these_expectations_failed',       defaultValue: [],    needsValue: true },
         ]
 
         const getPairKeyValueFrom = (when) => {
@@ -38,19 +38,16 @@ angular
 
         const toRule = (ar) => {
           const [key, value] = getPairKeyValueFrom(ar.when);
-          const supportedRule = _.find(RULES, {key});
-          const needsValue = supportedRule.needsValue;
-          const toValue = supportedRule.toValue;
-          const fromValue = supportedRule.fromValue;
+          const type = _.find(RULES, {key});
           const then = ar.then;
           return {
-            selected: { key, needsValue, then, toValue, fromValue, value },
+            selected: { type, then, value },
           }
         }
 
         const fromRule = (rule) => {
           const assistanceRule = {
-            when: rule.selected.needsValue ? { [rule.selected.key]: rule.selected.value } : rule.selected.key,
+            when: rule.selected.type.needsValue ? { [rule.selected.type.key]: rule.selected.value } : rule.selected.type.key,
             then: rule.selected.then,
           }
           return assistanceRule;
@@ -61,11 +58,11 @@ angular
         $scope.supportedRules = RULES;
 
         $scope.isObjectValue = (value) => {
-          return value.needsValue && _.isString(value.value);
+          return value.type.needsValue && _.isString(value.value);
         }
 
         $scope.isArrayValue = (value) => {
-          return value.needsValue && _.isArray(value.value);
+          return value.type.needsValue && _.isArray(value.value);
         }
 
         $scope.addRule = () => {
@@ -78,6 +75,10 @@ angular
 
         $scope.removeRule = (rule) => {
           _.remove($scope.rules, rule);
+        }
+
+        $scope.initRule = (rule) => {
+          rule.value = _.clone(rule.type.defaultValue);
         }
 
         $scope.removeTest = (selected, index) => {
