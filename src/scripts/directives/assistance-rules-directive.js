@@ -66,7 +66,7 @@ angular
         }
 
         $scope.addRule = () => {
-          $scope.rules.push({ selected: _.clone(RULES[0]) });
+          $scope.rules.push({ selected: { type: RULES[0], then: '', value: RULES[0].defaultValue } });
         };
 
         $scope.addTest = (rule) => {

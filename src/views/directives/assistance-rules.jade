@@ -22,7 +22,7 @@ h3
           strong {{ 'when' | translate }}:
         .rule-value
           ui-select(ng-model='rule.selected.type' theme='bootstrap' title='{{ "assistance_rule" | translate }}' on-select='initRule(rule.selected)')
-            ui-select-match(placeholder='{{ "placeholder_assistance_rule" | translate }}') {{ "assistance_rule_" + $select.selected.key | translate }}
+            ui-select-match {{ "assistance_rule_" + $select.selected.key | translate }}
             ui-select-choices(repeat='supportedRule in supportedRules | filter:$select.search')
               small(ng-bind-html=' "assistance_rule_" + supportedRule.key | translate | highlight: $select.search')
 
