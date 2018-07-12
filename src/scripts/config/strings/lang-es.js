@@ -147,7 +147,6 @@ angular
     placeholder_add_complement: 'Agregar complemento',
     placeholder_add_lesson: 'Agregar lección',
     placeholder_appendix: '...Ingrese el apéndice...',
-    placeholder_assistance_rules: 'rules:\n - when: content_empty\n then: ...Ingrese aquí el mensaje personalizado...',
     placeholder_authors: '...Ingrese los autores...',
     placeholder_book_name: '...Nombre del libro...',
     placeholder_collaborators: '...Ingrese los créditos...',
