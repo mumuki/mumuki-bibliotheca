@@ -60,7 +60,7 @@ angular
           $scope.rules.push({ selected: { replace: '', type: RULES[0], value: _.clone(RULES[0].defaultValue) }});
         };
 
-        $scope.addTest = (rule) => {
+        $scope.addOption = (rule) => {
           rule.selected.value.push('');
         };
 
@@ -68,7 +68,7 @@ angular
           _.remove($scope.rules, rule);
         };
 
-        $scope.removeTest = (selected, index) => {
+        $scope.removeOption = (selected, index) => {
           selected.value.splice(index, 1);
         };
 

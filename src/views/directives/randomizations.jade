@@ -33,7 +33,7 @@ h3
               small(ng-bind-html=' "randomization_" + supportedRule.key | translate | highlight: $select.search')
 
           .rule-value-array(ng-if='isOneOf(rule.selected)', ng-repeat='value in rule.selected.value track by $index')
-            i.fa.fa-fw.fa-times(ng-click='removeTest(rule.selected, $index)')
+            i.fa.fa-fw.fa-times(ng-click='removeOption(rule.selected, $index)')
             input(ng-model='rule.selected.value[$index]', placeholder='{{ "placeholder_randomization_word" | translate }}')
 
           .rule-value-array(ng-if='isRange(rule.selected)')
@@ -42,7 +42,7 @@ h3
             strong {{ 'to' | translate }}:
             input(ng-model='rule.selected.value[1]', placeholder='10')
 
-          a(href='', ng-click='addTest(rule)', ng-if='isOneOf(rule.selected)')
+          a(href='', ng-click='addOption(rule)', ng-if='isOneOf(rule.selected)')
             i.fa.fa-fw.fa-plus
             span {{ 'add_item' | translate }}
 
