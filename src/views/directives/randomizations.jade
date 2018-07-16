@@ -1,0 +1,54 @@
+h3
+  span {{ 'randomizations' | translate }}
+  i.pointer.fa.fa-fw(
+  ng-if='isFoldable',
+  ng-click='toggleMinimized()',
+  ng-class='{                             \
+      "fa-plus-square-o": isMinimized(),    \
+      "fa-minus-square-o": !isMinimized(),  \
+    }')
+
+.randomizations(ng-show='showMinimized()')
+
+  .rules(ng-repeat='rule in rules', style='display: flex')
+
+    .times
+      i.fa.fa-fw.fa-times(ng-click='removeRule(rule)')
+
+    .rule
+
+      .rule-replace
+        .rule-key
+          strong {{ 'replace' | translate }}:
+        .rule-value
+          input(ng-model='rule.selected.replace', placeholder='{{ "placeholder_randomization_word" | translate }}')
+
+      .rule-with
+        .rule-key
+          strong {{ 'with' | translate }}:
+        .rule-value
+          ui-select(ng-model='rule.selected.type' theme='bootstrap' on-select='initRule(rule.selected)')
+            ui-select-match {{ "randomization_" + $select.selected.key | translate }}
+            ui-select-choices(repeat='supportedRule in supportedRules | filter:$select.search')
+              small(ng-bind-html=' "randomization_" + supportedRule.key | translate | highlight: $select.search')
+
+          .rule-value-array(ng-if='isOneOf(rule.selected)', ng-repeat='value in rule.selected.value track by $index')
+            i.fa.fa-fw.fa-times(ng-click='removeOption(rule.selected, $index)')
+            input(ng-model='rule.selected.value[$index]', placeholder='{{ "placeholder_randomization_word" | translate }}')
+
+          .rule-value-array(ng-if='isRange(rule.selected)')
+            strong {{ 'from' | translate }}:
+            input(ng-model='rule.selected.value[0]', placeholder='1')
+            strong {{ 'to' | translate }}:
+            input(ng-model='rule.selected.value[1]', placeholder='10')
+
+          a(href='', ng-click='addOption(rule)', ng-if='isOneOf(rule.selected)')
+            i.fa.fa-fw.fa-plus
+            span {{ 'add_item' | translate }}
+
+  br
+
+  a(href='', ng-click='addRule()')
+    i.fa.fa-fw.fa-plus
+    span {{ 'add_randomization' | translate }}
+

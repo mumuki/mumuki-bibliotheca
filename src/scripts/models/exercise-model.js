@@ -156,12 +156,17 @@ angular
         return this.getType().needsCorollary(this);
       }
 
+      needsRandomizations() {
+        return this.getType().needsRandomizations(this);
+      }
+
       validate() {
         Validator.notEmptyString(this, 'name');
         Validator.notEmptyString(this, 'type');
         Validator.notEmptyString(this, 'layout');
         Validator.notEmptyString(this, 'description');
         Validator.validateAssistanceRules(this);
+        Validator.validateRandomizations(this);
         this.getType().validate(this);
       }
 
@@ -216,6 +221,7 @@ angular
         if (!exercise.needsExpectations()) delete exercise.expectations;
         if (!exercise.needsDefaultContent()) delete exercise.default_content;
         if (!exercise.needsAssistanceRules()) delete exercise.assistance_rules;
+        if (!exercise.needsRandomizations()) delete exercise.randomizations;
         return exercise;
       }
 

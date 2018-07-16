@@ -4,13 +4,17 @@ angular
 
     const translate = $filter('translate');
 
-    this.isEmptyString = (object, field) => {
-      return _.chain(object).get(field).trim().isEmpty().value();
+    this.isEmptyString = (string) => {
+      return _.chain(string).trim().isEmpty().value();
+    }
+
+    this.isEmptyField = (object, field) => {
+      return this.isEmptyString(_.get(object, field));
     }
 
     const isEmptyExpectation = (exercise, expectation) => {
-      return this.isEmptyString(expectation, 'binding') ||
-             this.isEmptyString(expectation, 'inspection') ||
+      return this.isEmptyField(expectation, 'binding') ||
+             this.isEmptyField(expectation, 'inspection') ||
              _.startsWith(expectation.inspection, 'undefined') ||
              _.endsWith(expectation.inspection, ':');
     }
@@ -20,11 +24,11 @@ angular
     }
 
     const isIncompleteChoice = (choiceable) => {
-      return (choice) => this.isEmptyString(choice, 'value');
+      return (choice) => this.isEmptyField(choice, 'value');
     }
 
     const whenIsEmptyString = (rule) => {
-      return _.isString(rule.when) && this.isEmptyString(rule, 'when');
+      return _.isString(rule.when) && this.isEmptyField(rule, 'when');
     }
 
     const whenIsObjectWithEmptyString = (rule) => {
@@ -38,11 +42,19 @@ angular
     }
 
     const isIncompleteAssistanceRule = (rule) => {
-      return this.isEmptyString(rule, 'then') || whenIsEmptyString(rule) || whenIsObjectWithEmptyString(rule) || whenIsArrayWithEmptyStrings(rule);
+      return this.isEmptyField(rule, 'then') || whenIsEmptyString(rule) || whenIsObjectWithEmptyString(rule) || whenIsArrayWithEmptyStrings(rule);
+    }
+
+    const isIncompleteRandomizationValue = (value) => {
+      return this.isEmptyField(value, 'type') || value.value.length < 2 || _.some(value.value, this.isEmptyString);
+    }
+
+    const isIncompleteRandomization = (randomization) => {
+      return this.isEmptyString(randomization[0]) || isIncompleteRandomizationValue(randomization[1]);
     }
 
     this.notEmptyString = (object, field) => {
-      if (this.isEmptyString(object, field)) {
+      if (this.isEmptyField(object, field)) {
         throw new Error(translate('error_mandatory_field', {
           field: translate(field),
           fullName: object.fullName(),
@@ -100,6 +112,14 @@ angular
     this.validateAssistanceRules = (exercise) => {
       if (exercise.needsAssistanceRules() && _.some(exercise.assistance_rules, isIncompleteAssistanceRule)) {
         throw new Error(translate('error_assistance_rule_validation', {
+          fullName: exercise.fullName(),
+        }))
+      }
+    }
+
+    this.validateRandomizations = (exercise) => {
+      if (exercise.needsRandomizations() && _.some(_.toPairs(exercise.randomizations), isIncompleteRandomization)) {
+        throw new Error(translate('error_randomization_validation', {
           fullName: exercise.fullName(),
         }))
       }
