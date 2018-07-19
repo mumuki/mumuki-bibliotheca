@@ -11,7 +11,7 @@ div(ng-if="extraEditor.mode === 'interpolation'")
     comment='exercise.getComment()',
     placeholder='placeholder_extra_code',
     from='extra')
-  div(ng-if='exercise.usesCustomEditor()')
+  div(ng-if='!exercise.isKidsLayout()')
     div.checkbox.complementary.complementary-checkbox(ng-if='exercise.canChangeLayout()')
       input(type='checkbox', id='input-extra-visible', ng-model='exercise.extra_visible')
       label(for='input-extra-visible')
