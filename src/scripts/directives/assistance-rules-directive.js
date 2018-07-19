@@ -65,12 +65,24 @@ angular
           return value.type.needsValue && _.isArray(value.value);
         }
 
+        $scope.isExpectationRule = (value) => {
+          return value.type.key === 'these_expectations_failed';
+        }
+
+        $scope.humanExpectations = () => {
+          return $scope.exercise.expectations.map((expectation) => expectation.binding.trim() + ' ' + expectation.inspection.trim());
+        }
+
         $scope.addRule = () => {
           $scope.rules.push({ selected: { type: RULES[0], then: '', value: RULES[0].defaultValue } });
         };
 
         $scope.addTest = (rule) => {
-          rule.selected.value.push('');
+          if (!$scope.isExpectationRule(rule.selected)) {
+            rule.selected.value.push('');
+          } else {
+            rule.selected.value.push(_.first($scope.humanExpectations()));
+          }
         };
 
         $scope.removeRule = (rule) => {

@@ -29,9 +29,16 @@ h3
           .rule-value-object(ng-if='isObjectValue(rule.selected)')
             input(ng-model='rule.selected.value', placeholder='{{ "message" | translate }}')
 
-          .rule-value-array(ng-if='isArrayValue(rule.selected)', ng-repeat='value in rule.selected.value track by $index')
+          .rule-value-array(ng-if='isArrayValue(rule.selected) && !isExpectationRule(rule.selected)', ng-repeat='value in rule.selected.value track by $index')
             i.fa.fa-fw.fa-times(ng-click='removeTest(rule.selected, $index)')
             input(ng-model='rule.selected.value[$index]', placeholder='{{ "message" | translate }}')
+
+          .rule-value-array(ng-if='isArrayValue(rule.selected) && isExpectationRule(rule.selected)', ng-repeat='value in rule.selected.value track by $index')
+            i.fa.fa-fw.fa-times(ng-click='removeTest(rule.selected, $index)')
+            ui-select(ng-model='rule.selected.value[$index]' theme='bootstrap')
+              ui-select-match {{ $select.selected | translate }}
+              ui-select-choices(repeat='expectation in humanExpectations() | filter:$select.search')
+                small(ng-bind-html='expectation | highlight: $select.search')
 
           a(href='', ng-click='addTest(rule)', ng-if='isArrayValue(rule.selected)')
             i.fa.fa-fw.fa-plus
