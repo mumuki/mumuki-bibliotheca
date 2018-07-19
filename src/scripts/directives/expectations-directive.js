@@ -15,7 +15,7 @@ angular
 
         const emptyExpectation = () => {
           const inspection = {
-            verb: '',
+            verb: _.first($scope.expectations),
             scope: '',
             target: '',
             isSmell: false,
@@ -27,7 +27,7 @@ angular
 
         const emptySmell = () => {
           const inspection = {
-            verb: '',
+            verb: _.first($scope.smells),
             scope: '*',
             isSmell: true,
             needsArgument: () => false,
