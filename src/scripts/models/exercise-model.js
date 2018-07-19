@@ -229,6 +229,10 @@ angular
         return this.editor == "custom";
       }
 
+      isKidsLayout(){
+        return this.layout === Layouts.input_kids;
+      }
+
       static from(exercise = {}) {
         _.defaultsDeep(exercise, {
           name: $translate('new_exercise'),
