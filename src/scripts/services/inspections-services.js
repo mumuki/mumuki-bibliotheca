@@ -2,20 +2,20 @@ angular
   .module('editor')
   .service('Inspections', function (Api) {
 
-    this._inspections = [];
+    this._supportedInspections = [];
 
-    const getInspections = () => {
+    const getSupportedInspections = () => {
       return Api
-        .getInspections()
-        .tap((inspections) => this._inspections = inspections);
+        .getSupportedInspections()
+        .tap((inspections) => this._supportedInspections = inspections);
     }
 
     const hasInspections = () => {
-      return _.isEmpty(this._inspections);
+      return _.isEmpty(this._supportedInspections);
     }
 
     this.get = () => {
-      return hasInspections() ? getInspections() : Promise.resolve(this._inspections);
+      return hasInspections() ? getSupportedInspections() : Promise.resolve(this._supportedInspections);
     };
 
   });
