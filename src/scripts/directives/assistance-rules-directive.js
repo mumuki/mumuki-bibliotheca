@@ -1,7 +1,7 @@
 angular
   .module('editor')
-  .directive('assistanceRules', function ($filter,
-                                          $timeout,
+  .directive('assistanceRules', function (Inspection,
+                                          Inspections,
                                           Foldable) {
 
     return {
@@ -17,8 +17,6 @@ angular
 
         _.defaults($scope.exercise, {assistance_rules: []});
 
-        const translate = $filter('translate');
-
         const RULES = [
           { key: 'content_empty',                   defaultValue: null,  needsValue: false },
           { key: 'submission_errored',              defaultValue: null,  needsValue: false },
@@ -31,6 +29,11 @@ angular
           { key: 'only_these_tests_failed',         defaultValue: [],    needsValue: true },
           { key: 'these_expectations_failed',       defaultValue: [],    needsValue: true },
         ]
+
+        Inspections.get().then((expectations) => {
+          $scope.smells = expectations.smells;
+          $scope.expectations = expectations.expectations;
+        })
 
         const getPairKeyValueFrom = (when) => {
           return typeof when == 'string' ? [when, null] : [_.keys(when)[0], _.values(when)[0]];
@@ -53,6 +56,20 @@ angular
           return assistanceRule;
         }
 
+        const availableSmells = () => {
+          return _.chain($scope)
+                  .get('smells', [])
+                  .map((i) => Inspection.fromSupportedSmell(i).asString())
+                  .value();
+        }
+
+        const inspectionsStrings = () => {
+          return _.chain(Inspections.fromArray($scope.exercise.expectations))
+                  .sortBy('isSmell')
+                  .map((inspection) => inspection.asString())
+                  .value();
+        }
+
         $scope.rules = $scope.exercise.assistance_rules.map(toRule);
 
         $scope.supportedRules = RULES;
@@ -69,8 +86,11 @@ angular
           return value.type.key === 'these_expectations_failed';
         }
 
-        $scope.humanExpectations = () => {
-          return $scope.exercise.expectations.map((expectation) => expectation.binding.trim() + ' ' + expectation.inspection.trim());
+        $scope.humanInspections = () => {
+          return _.chain(inspectionsStrings())
+                  .filter((inspectionStr) => !availableSmells().includes(inspectionStr))
+                  .union(availableSmells().filter((inspectionStr) => !_.includes(inspectionsStrings(), inspectionStr)))
+                  .value();
         }
 
         $scope.addRule = () => {
@@ -81,7 +101,7 @@ angular
           if (!$scope.isExpectationRule(rule.selected)) {
             rule.selected.value.push('');
           } else {
-            rule.selected.value.push(_.first($scope.humanExpectations()));
+            rule.selected.value.push(_.first($scope.humanInspections()));
           }
         };
 

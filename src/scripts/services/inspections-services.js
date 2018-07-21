@@ -1,6 +1,7 @@
 angular
   .module('editor')
-  .service('Inspections', function (Api) {
+  .service('Inspections', function (Api,
+                                    Inspection) {
 
     this._supportedInspections = [];
 
@@ -18,4 +19,5 @@ angular
       return hasInspections() ? getSupportedInspections() : Promise.resolve(this._supportedInspections);
     };
 
+    this.fromArray = (expectations) => expectations.map(Inspection.fromServer);
   });

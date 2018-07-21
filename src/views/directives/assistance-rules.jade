@@ -37,8 +37,8 @@ h3
             i.fa.fa-fw.fa-times(ng-click='removeTest(rule.selected, $index)')
             ui-select(ng-model='rule.selected.value[$index]' theme='bootstrap')
               ui-select-match {{ $select.selected | translate }}
-              ui-select-choices(repeat='expectation in humanExpectations() | filter:$select.search')
-                small(ng-bind-html='expectation | highlight: $select.search')
+              ui-select-choices(repeat='inspection in humanInspections() | filter:$select.search')
+                small(ng-bind-html='inspection | highlight: $select.search')
 
           a(href='', ng-click='addTest(rule)', ng-if='isArrayValue(rule.selected)')
             i.fa.fa-fw.fa-plus
