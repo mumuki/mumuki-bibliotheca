@@ -20,4 +20,12 @@ angular
     };
 
     this.fromArray = (expectations) => expectations.map(Inspection.fromServer);
+
+    this.supportedSmells = () => {
+      return _.chain(this)
+              .get('_supportedInspections.smells', [])
+              .map((i) => Inspection.fromSupportedSmell(i))
+              .value();
+    }
+
   });

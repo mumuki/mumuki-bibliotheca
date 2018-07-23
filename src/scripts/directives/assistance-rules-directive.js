@@ -56,14 +56,15 @@ angular
           return assistanceRule;
         }
 
-        const availableSmells = () => {
-          return _.chain($scope)
-                  .get('smells', [])
-                  .map((i) => Inspection.fromSupportedSmell(i).asString())
-                  .value();
+        const supportedSmells = () => {
+          return Inspections.supportedSmells().map((inspection) => inspection.asString());
         }
 
-        const inspectionsStrings = () => {
+        const availableSmells = () => {
+          return supportedSmells().filter((inspectionStr) => !_.includes(inspectionsAsStrings(), inspectionStr))
+        }
+
+        const inspectionsAsStrings = () => {
           return _.chain(Inspections.fromArray($scope.exercise.expectations))
                   .sortBy('isSmell')
                   .map((inspection) => inspection.asString())
@@ -87,9 +88,9 @@ angular
         }
 
         $scope.humanInspections = () => {
-          return _.chain(inspectionsStrings())
-                  .filter((inspectionStr) => !availableSmells().includes(inspectionStr))
-                  .union(availableSmells().filter((inspectionStr) => !_.includes(inspectionsStrings(), inspectionStr)))
+          return _.chain(inspectionsAsStrings())
+                  .filter((inspectionStr) => !supportedSmells().includes(inspectionStr))
+                  .union(availableSmells())
                   .value();
         }
 
