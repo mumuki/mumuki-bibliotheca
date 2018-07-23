@@ -59,6 +59,7 @@ assistance-rules {
             .rule-value-array {
               @include display-flex(row, flex-start, center);
               width: 100%;
+              margin: 5px 0 10px;
               i {
                 cursor: pointer;
                 margin-right: 5px;

@@ -1,7 +1,7 @@
 angular
   .module('editor')
-  .directive('assistanceRules', function ($filter,
-                                          $timeout,
+  .directive('assistanceRules', function (Inspection,
+                                          Inspections,
                                           Foldable) {
 
     return {
@@ -17,8 +17,6 @@ angular
 
         _.defaults($scope.exercise, {assistance_rules: []});
 
-        const translate = $filter('translate');
-
         const RULES = [
           { key: 'content_empty',                   defaultValue: null,  needsValue: false },
           { key: 'submission_errored',              defaultValue: null,  needsValue: false },
@@ -31,6 +29,11 @@ angular
           { key: 'only_these_tests_failed',         defaultValue: [],    needsValue: true },
           { key: 'these_expectations_failed',       defaultValue: [],    needsValue: true },
         ]
+
+        Inspections.get().then((expectations) => {
+          $scope.smells = expectations.smells;
+          $scope.expectations = expectations.expectations;
+        })
 
         const getPairKeyValueFrom = (when) => {
           return typeof when == 'string' ? [when, null] : [_.keys(when)[0], _.values(when)[0]];
@@ -53,6 +56,21 @@ angular
           return assistanceRule;
         }
 
+        const supportedSmells = () => {
+          return Inspections.supportedSmells().map((inspection) => inspection.asString());
+        }
+
+        const availableSmells = () => {
+          return supportedSmells().filter((inspectionStr) => !_.includes(inspectionsAsStrings(), inspectionStr))
+        }
+
+        const inspectionsAsStrings = () => {
+          return _.chain(Inspections.fromArray($scope.exercise.expectations))
+                  .sortBy('isSmell')
+                  .map((inspection) => inspection.asString())
+                  .value();
+        }
+
         $scope.rules = $scope.exercise.assistance_rules.map(toRule);
 
         $scope.supportedRules = RULES;
@@ -65,12 +83,27 @@ angular
           return value.type.needsValue && _.isArray(value.value);
         }
 
+        $scope.isExpectationRule = (value) => {
+          return value.type.key === 'these_expectations_failed';
+        }
+
+        $scope.humanInspections = () => {
+          return _.chain(inspectionsAsStrings())
+                  .filter((inspectionStr) => !supportedSmells().includes(inspectionStr))
+                  .union(availableSmells())
+                  .value();
+        }
+
         $scope.addRule = () => {
           $scope.rules.push({ selected: { type: RULES[0], then: '', value: RULES[0].defaultValue } });
         };
 
         $scope.addTest = (rule) => {
-          rule.selected.value.push('');
+          if (!$scope.isExpectationRule(rule.selected)) {
+            rule.selected.value.push('');
+          } else {
+            rule.selected.value.push(_.first($scope.humanInspections()));
+          }
         };
 
         $scope.removeRule = (rule) => {
