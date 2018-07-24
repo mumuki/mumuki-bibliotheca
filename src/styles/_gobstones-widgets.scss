@@ -58,11 +58,29 @@
 
 
 .gbs-board-configuration {
+  position: relative;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
   margin-top: 10px;
   margin-bottom: 30px;
+  width: 100%;
+  .gbs-board-size,
+  .gbs-check-header {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .gbs-check-header {
+    label {
+      width: unset;
+      font-weight: bold;
+      &:after {
+        margin-top: -4px;
+      }
+    }
+  }
 }
 
 .size-separator {

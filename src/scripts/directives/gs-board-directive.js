@@ -1,6 +1,7 @@
 angular
   .module('editor')
-  .directive('gobstonesTest', function ($filter) {
+  .directive('gobstonesTest', function ($filter,
+                                        $timeout) {
 
     return {
 
@@ -11,19 +12,41 @@ angular
       },
       controller: ($scope) => {
 
+        const loadGbbReader = () => { if (!window.gbbReader) return $timeout(loadGbbReader);
+
         const translate = $filter('translate');
 
-        const TABLE = [[{}, {}], [{}, {}]];
-        const HEADER = [[{}, {}], [{}, {}]];
+        const GBB = [`|`,
+          `     GBB/1.0`,
+          `     size 2 2`,
+          `     head 0 0`,
+        ].join('\n')
 
-        const INIT_GBS_BOARD = [{ table: TABLE, header: HEADER, update: _.noop }]
+        const TEST = jsyaml.load($scope.exercise.test);
+        const getTestExample = () => _.get(TEST, 'examples[0]', [{initial_board: GBB, final_board: GBB}]);
+        const getTestCheckHeadPosition = () => _.get(TEST, 'check_head_position', false);
 
-        const INITIAL = 0;
-        const FINAL = 1;
+        const BOARDS = {
+          initial: gbbReader.fromString(getTestExample().initial_board),
+          final: gbbReader.fromString(getTestExample().final_board),
+        };
+
+        const INITIAL = {
+          index: 0,
+          table: BOARDS.initial.table,
+          header: BOARDS.final.head,
+          update: _.noop
+        };
+        const FINAL = {
+          index: 1,
+          table: BOARDS.final.table,
+          header: BOARDS.final.head,
+          update: _.noop
+        };
 
         const getGbsBoards = () => {
           const gbs = $('gs-board');
-          return (!_.isEmpty(gbs)) ? gbs : $(_.times(2, _.constant(INIT_GBS_BOARD)));
+          return (!_.isEmpty(gbs)) ? gbs : $([INITIAL, FINAL]);
         }
 
         const update = (gsBoard) => {
@@ -55,7 +78,7 @@ angular
           console.log($scope.exercise.test);
         }
 
-        const getCheckHeadPosition = () => true;
+        const getCheckHeadPosition = () => $scope.header.checkPosition;
         const getInitialBoardString = () => getBoardStringFrom(getInitialBoard());
         const getFinalBoardString = () => getBoardStringFrom(getFinalBoard());
 
@@ -75,28 +98,41 @@ angular
             .map((row, y) => row
               .map((cell, x) => getCellString(cell, x, y))
               .filter(_.flowRight(_.identity, _.trim))
-              .join('\n')
-            ).join('\n');
+              .join('\n'))
+            .filter(_.flowRight(_.identity, _.trim))
+            .join('\n');
         }
 
         const getCellString = (cell, x, y) => {
           if (_.isEmpty(cell)) return '';
-          let text = `     cell ${x} ${y} `;
-          _(cell).forIn((value, key) => text += `${_.upperFirst(key)} ${value} `);
+          let text = `     cell ${x} ${$scope.size.y - 1 - y} `;
+          _(cell).forIn((value, key) => text += `${_.upperFirst(translate(key))} ${value} `);
           return text;
         }
 
-        const getInitialBoard = () => getGbsBoards()[INITIAL];
-        const getFinalBoard = () => getGbsBoards()[FINAL];
+        const getInitialBoard = () => getGbsBoards()[INITIAL.index];
+        const getFinalBoard = () => getGbsBoards()[FINAL.index];
+
+        $scope.initial_board = INITIAL;
+        $scope.final_board = FINAL;
 
         $scope.size = {
-          x: 2,
-          y: 2,
+          x: BOARDS.initial.width,
+          y: BOARDS.initial.height,
         }
 
         $scope.header = {
-          initial: { x: 0, y: 0 },
-          final: { x: 0, y: 0 },
+          initial: BOARDS.initial.head,
+          final: BOARDS.final.head,
+          checkPosition: getTestCheckHeadPosition(),
+        }
+
+        $scope.getInitialState = () => {
+          return getTestExample().initial_board;
+        }
+
+        $scope.getFinalState = () => {
+          return getTestExample().final_board;
         }
 
         $scope.$watch('size', () => {
@@ -113,6 +149,12 @@ angular
         $scope.$watch(() => getInitialBoard().table, updateTest, true);
         $scope.$watch(() => getFinalBoard().table, updateTest, true);
 
+        updateSize();
+        updateHeader();
+
+        }
+
+        loadGbbReader();
       }
     }
 
