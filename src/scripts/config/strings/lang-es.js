@@ -239,4 +239,9 @@ angular
     with: 'Con',
     yes: 'Sí',
 
+    red: 'Rojo',
+    blue: 'Azul',
+    black: 'Negro',
+    green: 'Verde',
+
   });

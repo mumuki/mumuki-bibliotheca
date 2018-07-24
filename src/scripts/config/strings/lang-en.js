@@ -239,4 +239,9 @@ angular
     when: 'When',
     yes: 'Yes',
 
+    red: 'Red',
+    blue: 'Blue',
+    black: 'Black',
+    green: 'Green',
+
   });
