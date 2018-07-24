@@ -65,6 +65,10 @@ angular
         }
       }
 
+      contentSummary() {
+        return _.map(this.chapters, (chapter) => chapter.name).join(", ");
+      }
+
       static from(book = {}) {
         _.defaultsDeep(book, {
           locale: $injector.get('$translate').use(),

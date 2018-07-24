@@ -8,6 +8,7 @@ angular
     $scope.list = books;
     $scope.Model = Book;
     $scope.newState = 'editor.home.books.new';
+    $scope.isBooks = true;
 
     $scope.open = (book) => {
       $state.go('editor.home.books.detail', book.params());

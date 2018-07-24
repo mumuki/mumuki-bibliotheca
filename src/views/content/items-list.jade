@@ -14,3 +14,4 @@
       span.mu-list-group-item-data
         span {{ item.fullName() }}
         small {{ item.slug }}
+        small(ng-if='isBooks') {{ item.contentSummary() }}
