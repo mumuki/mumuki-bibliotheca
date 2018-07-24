@@ -1,0 +1,35 @@
+.gbs-board-configuration
+
+  .gbs-board-size
+    span.gbs-size
+      label {{ 'columns' | translate }}
+      input.form-control(ng-model='size.x', type='number', required, min='1' max='99')
+    span.size-separator x
+    span.gbs-size
+      input.form-control(ng-model='size.y', type='number', required, min='1' max='99')
+      label {{ 'rows' | translate }}
+
+.gbs-states
+  .gbs-state
+    label {{ 'initial_state' | translate }}
+    gs-board(options='{ "editable": true }')
+    .gbs-board-header
+      span.gbs-header
+        label {{ 'header_x' | translate }}
+        input.form-control(ng-model='header.initial.x', type='number', required, min='-1', max='{{ size.x - 1 }}')
+      span.size-separator x
+      span.gbs-header
+        input.form-control(ng-model='header.initial.y', type='number', required, min='-1', max='{{ size.y - 1 }}')
+        label {{ 'header_y' | translate }}
+
+  .gbs-state
+    label {{ 'final_state' | translate }}
+    gs-board(options='{ "editable": true }')
+    .gbs-board-header
+      span.gbs-header
+        label {{ 'header_x' | translate }}
+        input.form-control(ng-model='header.final.x', type='number', required, min='-1', max='{{ size.x - 1 }}')
+      span.size-separator x
+      span.gbs-header
+        input.form-control(ng-model='header.final.y', type='number', required, min='-1', max='{{ size.y - 1 }}')
+        label {{ 'header_y' | translate }}

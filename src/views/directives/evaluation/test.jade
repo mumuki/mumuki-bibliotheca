@@ -5,8 +5,12 @@ ace-with-toolbar-code(
   placeholder='placeholder_test',
   template='exercise.testTemplate()',
   from='test'
+  ng-if='!exercise.isKidsLayout()'
 )
-div.checkbox.complementary.complementary-checkbox
+
+gobstones-test(exercise='exercise', ng-if='exercise.isKidsLayout()')
+
+div.checkbox.complementary.complementary-checkbox(ng-if='!exercise.isKidsLayout()')
   input(type='checkbox', id='manual-evaluation', ng-model='exercise.manual_evaluation')
   label(for='manual-evaluation')
     input.border-white(type='text', value='{{ "manual_evaluation" | translate }}', readonly)

@@ -230,7 +230,7 @@ angular
       }
 
       isKidsLayout(){
-        return this.layout === Layouts.input_kids;
+        return this.getLayout() === Layouts.input_kids;
       }
 
       static from(exercise = {}) {
