@@ -66,7 +66,7 @@ angular
       }
 
       contentSummary() {
-        return _.map(this.chapters, (chapter) => chapter.name).join(", ");
+        return this.chapters.join(", ");
       }
 
       static from(book = {}) {

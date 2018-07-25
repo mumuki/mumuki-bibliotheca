@@ -52,17 +52,8 @@ angular
             controller: 'BooksController',
             resolve: {
               books: (Api) => {
-                return Api.getBooks()
-                  .tap((books) => {
-                    return Promise.map(books, (book) => {
-                      return Promise.map(book.chapters, (chapter) => {
-                        const [org, repo] = chapter.split('/');
-                        return Api.getTopic({ org, repo });
-                      })
-                      .then((chapters) => book.chapters = chapters);
-                    })
-                  });
-              },
+                return Api.getBooks();
+              }
             }
           }
         }
