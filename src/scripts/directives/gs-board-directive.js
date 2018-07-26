@@ -150,9 +150,6 @@ angular
           $scope.$watch(() => getInitialBoard().table, updateTest, true);
           $scope.$watch(() => getFinalBoard().table, updateTest, true);
 
-          updateSize();
-          updateHeader();
-
         }
 
         loadGbbReader();
