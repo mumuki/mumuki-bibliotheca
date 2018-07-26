@@ -1,6 +1,6 @@
 angular
   .module('editor')
-  .directive('gobstonesTest', function ($filter,
+  .directive('gobstonesTest', function ($translate,
                                         $timeout) {
 
     return {
@@ -12,10 +12,16 @@ angular
       },
       controller: ($scope) => {
 
+        let matches;
+        const gsAttire = $('gs-attire')[0];
+
+        if (_.isEmpty(gsAttire)) {
+          matches = $scope.exercise.description.match(/(<gs-attire\s*attire-url="\S*">\s*<\/gs-attire>)/gm);
+          $('body').append($(matches[0]));
+        }
+
         const loadGbbReader = () => {
           if (!window.gbbReader) return $timeout(loadGbbReader);
-
-          const translate = $filter('translate');
 
           const GBB = [`|`,
             `     GBB/1.0`,
@@ -35,7 +41,7 @@ angular
           const INITIAL = {
             index: 0,
             table: BOARDS.initial.table,
-            header: BOARDS.final.head,
+            header: BOARDS.initial.head,
             update: _.noop
           };
           const FINAL = {
@@ -75,7 +81,7 @@ angular
               `examples:`,
               ` - initial_board: ${getInitialBoardString()}`,
               `   final_board: ${getFinalBoardString()}`,
-            ].join('\n')
+            ].join('\n');
             console.log($scope.exercise.test);
           }
 
@@ -107,15 +113,30 @@ angular
           const getCellString = (cell, x, y) => {
             if (_.isEmpty(cell)) return '';
             let text = `     cell ${x} ${$scope.size.y - 1 - y} `;
-            _(cell).forIn((value, key) => text += `${_.upperFirst(translate(key))} ${value} `);
+            _(cell).forIn((value, key) => text += (value > 0 ? `${_.upperFirst(translate(key))} ${value} `: ''));
             return text;
           }
+
+          const translate = (key) => $translate.instant(key, {}, undefined, 'es');
 
           const getInitialBoard = () => getGbsBoards()[INITIAL.index];
           const getFinalBoard = () => getGbsBoards()[FINAL.index];
 
+          const updateAttires = () => {
+            const gsBoards = getGbsBoards();
+            gsBoards.each((index) => {
+              const gsBoard = gsBoards[index];
+              gsBoard.attire.enabled = $scope.attire.show;
+              update(gsBoard);
+            });
+          }
+
           $scope.initial_board = INITIAL;
           $scope.final_board = FINAL;
+
+          $scope.attire = {
+            show: true
+          }
 
           $scope.size = {
             x: BOARDS.initial.width,
@@ -128,13 +149,10 @@ angular
             checkPosition: getTestCheckHeadPosition(),
           }
 
-          $scope.getInitialState = () => {
-            return getTestExample().initial_board;
-          }
+          $scope.getInitialState = () => getTestExample().initial_board;
+          $scope.getFinalState = () => getTestExample().final_board;
 
-          $scope.getFinalState = () => {
-            return getTestExample().final_board;
-          }
+          $scope.$watch('attire.show', updateAttires);
 
           $scope.$watch('size', () => {
             updateSize(getGbsBoards(), $scope.size);
