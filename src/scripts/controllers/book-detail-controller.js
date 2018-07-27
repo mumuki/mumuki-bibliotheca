@@ -1,7 +1,9 @@
 angular
   .module('editor')
   .controller('BookDetailController', function ($scope,
+                                                $state,
                                                 $sce,
+                                                $stateParams,
                                                 $filter,
                                                 $controller,
                                                 book,
@@ -9,6 +11,7 @@ angular
                                                 topics,
                                                 toastr,
                                                 Guide,
+                                                Modal,
                                                 Api) {
 
     const translate = $filter('translate');
@@ -42,6 +45,20 @@ angular
     $scope.save = () => {
       return $scope.publish('book');
     };
+
+    $scope.fork = (book) => {
+      Modal.forkFromGithub(translate('copy_book'), translate('copy_book_text'), (organization) => {
+        return Api
+          .forkBook($stateParams, organization)
+          .then(() => $state.go('editor.home.books.detail', { org: organization, repo: $stateParams.repo }, {reload: true}))
+          .then(() => toastr.success(translate('book_forked_successfully', { fullName: book.name })))
+          .catch((response) => {
+            return (response.status == 400) ?
+              toastr.error(translate('book_already_exists', { fullName: book.name })) :
+              toastr.error(translate('book_fork_fails'));
+          })
+      });
+    }
 
     let _chapterSelected;
     let _complementSelected;
