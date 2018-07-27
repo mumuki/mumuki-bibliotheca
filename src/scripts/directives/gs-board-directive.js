@@ -12,12 +12,13 @@ angular
       },
       controller: ($scope) => {
 
-        let matches;
         const gsAttire = $('gs-attire')[0];
 
         if (_.isEmpty(gsAttire)) {
-          matches = $scope.exercise.description.match(/(<gs-attire\s*attire-url="\S*">\s*<\/gs-attire>)/gm);
-          $('body').append($(matches[0]));
+          const matches = $scope.exercise.description.match(/(<gs-attire\s*attire-url="\S*">\s*<\/gs-attire>)/gm);
+          if (!_.isEmpty(matches)) {
+            $('body').append($(matches[0]));
+          }
         }
 
         const loadGbbReader = () => {
@@ -36,6 +37,7 @@ angular
           const BOARDS = {
             initial: gbbReader.fromString(getTestExample().initial_board),
             final: gbbReader.fromString(getTestExample().final_board),
+            head: { x: 0, y: 0 }
           };
 
           const INITIAL = {
@@ -62,16 +64,36 @@ angular
 
           const updateSize = (gsBoards, size) => {
             gsBoards.each((index) => {
-              const gsBoard = gsBoards[index];
-              gsBoard.table = _.times(size.y, (ny) => {
-                return _.times(size.x, (nx) => _.get(gsBoard, `table[${ny}][${nx}]`, {}))
-              })
-              update(gsBoard);
+              updateGsBoardSize(gsBoards[index], size);
             });
           }
 
+          const updateGsBoardSize = (gsBoard, size) => {
+            updateGsBoardSizeY(gsBoard, size);
+            updateGsBoardSizeX(gsBoard, size);
+            update(gsBoard);
+          }
+
+          const updateGsBoardSizeY = (gsBoard, size) => {
+            if (gsBoard.table.length > size.y) {
+              _.times(gsBoard.table.length - size.y, () => gsBoard.table.shift());
+            } else {
+              _.times(size.y - gsBoard.table.length, () => gsBoard.table.unshift([]));
+            }
+          }
+
+          const updateGsBoardSizeX = (gsBoard, size) => {
+            gsBoard.table.forEach((row) => {
+              if (row.length > size.x) {
+                _.times(row.length - size.x, () => row.pop());
+              } else {
+                _.times(size.x - row.length, () => row.push({}));
+              }
+            })
+          }
+
           const updateHeader = (gsBoard, header) => {
-            gsBoard.header = _.omitBy(header, (value) => value < 0);
+            gsBoard.header = header;
             update(gsBoard);
           }
 
@@ -131,6 +153,13 @@ angular
             });
           }
 
+          const updateInputs = () => {
+            $scope.header.initial.x = Math.min($scope.size.x - 1, $scope.header.initial.x);
+            $scope.header.initial.y = Math.min($scope.size.y - 1, $scope.header.initial.y);
+            $scope.header.final.x = Math.min($scope.size.x - 1, $scope.header.final.x);
+            $scope.header.final.y = Math.min($scope.size.y - 1, $scope.header.final.y);
+          }
+
           $scope.initial_board = INITIAL;
           $scope.final_board = FINAL;
 
@@ -139,8 +168,12 @@ angular
           }
 
           $scope.size = {
-            x: BOARDS.initial.width,
-            y: BOARDS.initial.height,
+            _x: BOARDS.initial.width,
+            _y: BOARDS.initial.height,
+            get x() { return this._x },
+            get y() { return this._y },
+            set x(v) { console.log('x', v); this._x = v; updateInputs() },
+            set y(v) { console.log('y', v); this._y = v; updateInputs() },
           }
 
           $scope.header = {
