@@ -12,17 +12,17 @@ angular
       },
       controller: ($scope) => {
 
-        const gsAttire = $('gs-attire')[0];
-
-        if (_.isEmpty(gsAttire)) {
-          const matches = $scope.exercise.description.match(/(<gs-attire\s*attire-url="\S*">\s*<\/gs-attire>)/gm);
-          if (!_.isEmpty(matches)) {
-            $('body').append($(matches[0]));
-          }
-        }
-
         const loadGbbReader = () => {
           if (!window.gbbReader) return $timeout(loadGbbReader);
+
+          const gsAttire = $('gs-attire')[0];
+
+          if (_.isEmpty(gsAttire)) {
+            const matches = $scope.exercise.description.match(/(<gs-attire\s*attire-url="\S*">\s*<\/gs-attire>)/gm);
+            if (!_.isEmpty(matches)) {
+              $('body').append($(matches[0]));
+            }
+          }
 
           const GBB = [`|`,
             `     GBB/1.0`,
@@ -104,7 +104,6 @@ angular
               ` - initial_board: ${getInitialBoardString()}`,
               `   final_board: ${getFinalBoardString()}`,
             ].join('\n');
-            console.log($scope.exercise.test);
           }
 
           const getCheckHeadPosition = () => $scope.header.checkPosition;
@@ -172,8 +171,8 @@ angular
             _y: BOARDS.initial.height,
             get x() { return this._x },
             get y() { return this._y },
-            set x(v) { console.log('x', v); this._x = v; updateInputs() },
-            set y(v) { console.log('y', v); this._y = v; updateInputs() },
+            set x(v) { this._x = v; updateInputs() },
+            set y(v) { this._y = v; updateInputs() },
           }
 
           $scope.header = {
