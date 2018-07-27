@@ -35,7 +35,7 @@ angular
     $scope.fork = (guide) => {
       Modal.forkFromGithub(translate('copy_guide'), translate('copy_guide_text'), (organization) => {
         return Api
-          .fork($stateParams, organization)
+          .forkGuide($stateParams, organization)
           .then(() => $state.go('editor.home.guides.detail', { org: organization, repo: $stateParams.repo }, {reload: true}))
           .then(() => toastr.success(translate('guide_forked_successfully', { fullName: guide.fullName() })))
           .catch((response) => {

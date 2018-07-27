@@ -109,9 +109,13 @@ angular
         .then((res) => res.data)
     }
 
-    this.fork = ({ org, repo }, organization) => {
+    this.forkBook = (slug, organization) => this.fork('book', slug, organization);
+
+    this.forkGuide = (slug, organization) => this.fork('guides', slug, organization);
+
+    this.fork = (kind, { org, repo }, organization) => {
       return HTTP
-        .call('post',`${API}/guides/${org}/${repo}/fork`, { organization }, defaultConfig())
+        .call('post',`${API}/${kind}/${org}/${repo}/fork`, { organization }, defaultConfig())
         .then((res) => res.data)
     }
 

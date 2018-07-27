@@ -4,7 +4,9 @@
     div.text-center
       img(src='http://mumuki.io/logo-alt-large.png', alt='central - Mumuki', style='height: 75px')
       h1.pull-right.options
-        save-item(item='item', save='save()')
+        span
+          save-item(item='item', save='save()')
+          small.fork-button.pointer.text-primary: i.fa.fa-fw.fa-code-fork(ng-click='fork(item)')
         locale(item='item')
 
       h2.text-center
@@ -13,6 +15,7 @@
             ng-model='item.name',
             style='text-align: center',
             placeholder='{{ "placeholder_book_name" | translate }}')
+
 
     br
     ace-with-markdown(content='item.description', header='description')
