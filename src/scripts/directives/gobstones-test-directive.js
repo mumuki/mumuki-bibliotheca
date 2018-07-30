@@ -110,6 +110,8 @@ angular
           const getInitialBoardString = () => getBoardStringFrom(getInitialBoard());
           const getFinalBoardString = () => getBoardStringFrom(getFinalBoard());
 
+          const isEmptyGBBCell = (row = '') => row.trim().match(/^(cell \d+ \d+|)$/);
+
           const getBoardStringFrom = (gsBoard) => {
             return _([`|`,
               `     GBB/1.0`,
@@ -123,10 +125,11 @@ angular
 
           const getTableString = (table) => {
             return table
-              .map((row, y) => row
+              .map((row, y) => _.chain(row)
                 .map((cell, x) => getCellString(cell, x, y))
                 .filter(_.flowRight(_.identity, _.trim))
-                .join('\n'))
+                .join('\n')
+                .value())
               .filter(_.flowRight(_.identity, _.trim))
               .join('\n');
           }
@@ -135,6 +138,7 @@ angular
             if (_.isEmpty(cell)) return '';
             let text = `     cell ${x} ${$scope.size.y - 1 - y} `;
             _(cell).forIn((value, key) => text += (value > 0 ? `${_.upperFirst(translate(key))} ${value} `: ''));
+            if (isEmptyGBBCell(text)) text = '';
             return text;
           }
 
