@@ -151,7 +151,7 @@ angular
             const gsBoards = getGbsBoards();
             gsBoards.each((index) => {
               const gsBoard = gsBoards[index];
-              gsBoard.attire.enabled = $scope.attire.show;
+              gsBoard.attire && (gsBoard.attire.enabled = $scope.attire.show);
               update(gsBoard);
             });
           }
