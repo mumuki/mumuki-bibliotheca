@@ -174,12 +174,16 @@ angular
         this.fullLanguage().validateWithCustomEditor(this);
       }
 
+      isLanguage(language) {
+        return this.getLanguage() === language;
+      }
+
       isTextLanguage() {
-        return this.getLanguage() === 'text';
+        return this.isLanguage('text');
       }
 
       isGobstonesLanguage() {
-        return this.getLanguage() === 'gobstones';
+        return this.isLanguage('gobstones');
       }
 
       getYamlTest() {
