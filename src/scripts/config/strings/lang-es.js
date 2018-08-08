@@ -244,4 +244,12 @@ angular
     black: 'Negro',
     green: 'Verde',
 
+    columns: 'Columnas',
+    rows: 'Filas',
+    check_header_position: 'Verificar posición del cabezal',
+    initial_state: 'Estado Inicial',
+    final_state: 'Estado Final',
+    header_x: 'Posición X',
+    header_y: 'Posición Y',
+
   });

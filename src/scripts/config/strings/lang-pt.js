@@ -239,9 +239,19 @@ angular
     with: 'Com',
     yes: 'sim',
 
-    red: 'Rojo',
+    assistance_rules: 'Regras de Assistência',
+
+    red: 'Vermelho',
     blue: 'Azul',
-    black: 'Negro',
+    black: 'Preto',
     green: 'Verde',
+
+    columns: 'Colunas',
+    rows: 'Linhas',
+    check_header_position: 'Verifique a posição da cabeça',
+    initial_state: 'Estado Inicial',
+    final_state: 'Estado Final',
+    header_x: 'Posição X',
+    header_y: 'Posição Y',
 
   });
