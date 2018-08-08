@@ -8,7 +8,7 @@ ace-with-toolbar-code(
   ng-if='!exercise.isKidsLayout()'
 )
 
-gobstones-test(exercise='exercise', ng-if='exercise.isKidsLayout()')
+gobstones-test.mu-kids-states(exercise='exercise', ng-if='exercise.isKidsLayout()')
 
 div.checkbox.complementary.complementary-checkbox(ng-if='!exercise.isKidsLayout()')
   input(type='checkbox', id='manual-evaluation', ng-model='exercise.manual_evaluation')

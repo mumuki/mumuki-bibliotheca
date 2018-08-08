@@ -7,12 +7,11 @@
     span.gbs-size
       input.form-control(ng-model='size.y', type='number', required, min='1' max='99')
       label {{ 'rows' | translate }}
+  .gbs-check-attire
+    gs-attire-toggle-button
   .gbs-check-header.checkbox.complementary.complementary-checkbox
     input(type='checkbox', id='input-check-header', ng-model='header.checkPosition')
     label(for='input-check-header') {{ 'check_header_position' | translate }}
-  .gbs-check-attire.checkbox.complementary.complementary-checkbox
-    input(type='checkbox', id='input-check-attire', ng-model='attire.show')
-    label(for='input-check-attire') {{ 'show_attire' | translate }}
 
 hr
 
