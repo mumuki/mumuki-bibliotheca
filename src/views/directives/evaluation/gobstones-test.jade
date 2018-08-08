@@ -18,7 +18,8 @@ hr
 .gbs-states
   .gbs-state
     label {{ 'initial_state' | translate }}
-    gs-board(options='{ "editable": true }', table='{{ initial_board.table }}')
+    .gbs-board-table
+      gs-board(options='{ "editable": true }', table='{{ initial_board.table }}')
     .gbs-board-header
       span.gbs-header
         label {{ 'header_x' | translate }}
@@ -30,7 +31,8 @@ hr
 
   .gbs-state
     label {{ 'final_state' | translate }}
-    gs-board(options='{ "editable": true }', table='{{ final_board.table }}')
+    .gbs-board-table
+      gs-board(options='{ "editable": true }', table='{{ final_board.table }}')
     .gbs-board-header
       span.gbs-header
         label {{ 'header_x' | translate }}

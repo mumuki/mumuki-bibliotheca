@@ -16,6 +16,7 @@ angular
           if (!window.gbbReader) return $timeout(loadGbbReader);
 
           const gsAttire = $('gs-attire')[0];
+          const gsBoardContainers = $('.gbs-board-table');
 
           if (_.isEmpty(gsAttire)) {
             const matches = $scope.exercise.description.match(/(<gs-attire\s*attire-url="\S*">\s*<\/gs-attire>)/gm);
@@ -23,6 +24,12 @@ angular
               $('body').append($(matches[0]));
             }
           }
+
+          gsBoardContainers.each((i) => {
+            const gsBoard = $(gsBoardContainers[i]);
+            gsBoard.width(gsBoard.parent().width() - 90);
+            gsBoard.height(gsBoard.width());
+          });
 
           const GBB = [`|`,
             `     GBB/1.0`,
@@ -97,6 +104,20 @@ angular
             update(gsBoard);
           }
 
+          const updateScale = () => {
+            gsBoardContainers.each((i) => {
+              const gsBoardContainer = $(gsBoardContainers[i]);
+              scale(gsBoardContainer);
+            });
+          }
+
+          const scale = (gsBoardContainer) => {
+            const board = gsBoardContainer.children('gs-board');
+            board.css('transform', 'scale(1)');
+            const boardSize = Math.max(board.width(), board.height());
+            board.css('transform', `scale(${(gsBoardContainer.width() - 100) / boardSize})`);
+          }
+
           const updateTest = () => {
             $scope.exercise.test = [
               `check_head_position: ${getCheckHeadPosition()}`,
@@ -104,6 +125,7 @@ angular
               ` - initial_board: ${getInitialBoardString()}`,
               `   final_board: ${getFinalBoardString()}`,
             ].join('\n');
+            updateScale();
           }
 
           const getCheckHeadPosition = () => $scope.header.checkPosition;
@@ -147,15 +169,6 @@ angular
           const getInitialBoard = () => getGbsBoards()[INITIAL.index];
           const getFinalBoard = () => getGbsBoards()[FINAL.index];
 
-          const updateAttires = () => {
-            const gsBoards = getGbsBoards();
-            gsBoards.each((index) => {
-              const gsBoard = gsBoards[index];
-              gsBoard.attire && (gsBoard.attire.enabled = $scope.attire.show);
-              update(gsBoard);
-            });
-          }
-
           const updateInputs = () => {
             $scope.header.initial.x = Math.min($scope.size.x - 1, $scope.header.initial.x);
             $scope.header.initial.y = Math.min($scope.size.y - 1, $scope.header.initial.y);
@@ -187,8 +200,6 @@ angular
 
           $scope.getInitialState = () => getTestExample().initial_board;
           $scope.getFinalState = () => getTestExample().final_board;
-
-          $scope.$watch('attire.show', updateAttires);
 
           $scope.$watch('size', () => {
             updateSize(getGbsBoards(), $scope.size);
