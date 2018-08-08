@@ -1,4 +1,4 @@
-.dropdown.markdown-panel
+.dropdown.markdown-panel(ng-if='exercises.isGobstones()', ng-init='ui = exercise.isKidsLayout()')
   a(href='', data-toggle='dropdown')
     span {{ 'gobstones_test_input' | translate }}
     i.fa.fa-fw.fa-caret-down
@@ -16,7 +16,7 @@ ace-with-toolbar-code(
   ng-if='!ui'
 )
 
-gobstones-test.mu-kids-states(exercise='exercise', ng-if='ui')
+gobstones-test.mu-kids-states(exercise='exercise', ng-if='ui && exercises.isGobstones()')
 
 div.checkbox.complementary.complementary-checkbox(ng-if='!ui')
   input(type='checkbox', id='manual-evaluation', ng-model='exercise.manual_evaluation')
