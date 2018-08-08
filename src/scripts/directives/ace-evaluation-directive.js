@@ -121,6 +121,24 @@ angular
           }
         ]
 
+        let isTestUI = $scope.exercise.isGobstonesLanguage() && $scope.exercise.isKidsLayout();
+
+        $scope.isTestUI = () => {
+          return isTestUI;
+        }
+
+        $scope.enableTestUI = () => {
+          isTestUI = true;
+        }
+
+        $scope.disableTestUI = () => {
+          isTestUI = false;
+        }
+
+        $scope.isEnabledTestUI = () => {
+          return $scope.exercise.isGobstonesLanguage() && $scope.isTestUI();
+        }
+
         $scope.has = (field) => {
            return _.chain($scope)
             .get('exercise.goal', {})
