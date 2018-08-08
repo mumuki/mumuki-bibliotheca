@@ -1,3 +1,11 @@
+.dropdown.markdown-panel
+  a(href='', data-toggle='dropdown')
+    span {{ 'gobstones_test_input' | translate }}
+    i.fa.fa-fw.fa-caret-down
+  ul.dropdown-menu(aria-labelledby='dropdownTestUI')
+    li: a(href='', ng-click='ui = true') UI
+    li: a(href='', ng-click='ui = false') YAML
+
 ace-with-toolbar-code(
   content='exercise.test',
   mode='exercise.getAceMode()',
@@ -5,12 +13,12 @@ ace-with-toolbar-code(
   placeholder='placeholder_test',
   template='exercise.testTemplate()',
   from='test'
-  ng-if='!exercise.isKidsLayout()'
+  ng-if='!ui'
 )
 
-gobstones-test.mu-kids-states(exercise='exercise', ng-if='exercise.isKidsLayout()')
+gobstones-test.mu-kids-states(exercise='exercise', ng-if='ui')
 
-div.checkbox.complementary.complementary-checkbox(ng-if='!exercise.isKidsLayout()')
+div.checkbox.complementary.complementary-checkbox(ng-if='!ui')
   input(type='checkbox', id='manual-evaluation', ng-model='exercise.manual_evaluation')
   label(for='manual-evaluation')
     input.border-white(type='text', value='{{ "manual_evaluation" | translate }}', readonly)

@@ -104,6 +104,7 @@ angular
     goal: 'Objetivo',
     gobstones_attire_incomplete: 'Algunas reglas de la vestimenta están incompletas',
     gobstones_attire: 'Vestimenta',
+    gobstones_test_input: 'Forma de ingreso de test',
     gobstones_toolbox_commands: 'Comandos',
     gobstones_toolbox_my_functions: 'Mis funciones',
     gobstones_toolbox_my_procedures: 'Mis procedimientos',
