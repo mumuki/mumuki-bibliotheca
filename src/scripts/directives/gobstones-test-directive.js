@@ -27,7 +27,7 @@ angular
 
           gsBoardContainers.each((i) => {
             const gsBoard = $(gsBoardContainers[i]);
-            gsBoard.width(gsBoard.parent().width() - 90);
+            gsBoard.width(gsBoard.parent().width() * 2/3);
             gsBoard.height(gsBoard.width());
           });
 
