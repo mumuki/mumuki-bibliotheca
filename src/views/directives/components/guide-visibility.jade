@@ -1,0 +1,15 @@
+div.dropdown
+  small.pointer.locale.text-primary(
+  id='ddGuideVisibility',
+  data-toggle='dropdown',
+  aria-expanded='true')
+    i.fa-fw.fa(class='{{ visibilityIcon() }}', title='{{ visibilityTitle() | translate }}')
+  ul.dropdown-menu.dropdown-menu-right(aria-labelledby='ddGuideVisibility')
+    li(ng-click='guide.private = false')
+      a(href='')
+        i(class='fa fa-fw fa-unlock')
+        span {{ 'public' | translate }}
+    li(ng-click='guide.private = true')
+      a(href='')
+        i(class='fa fa-fw fa-lock')
+        span {{ 'private' | translate }}
