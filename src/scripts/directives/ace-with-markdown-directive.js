@@ -13,6 +13,7 @@ angular
       scope: Foldable.scope({
         header: '@',
         content: '=',
+        exercise: '=',
       }),
       controller: ($scope) => {
 

@@ -26,7 +26,7 @@
 
     .exercise-detail-area(class='{{ exercise.getLayout().type() }}')
       .exercise-detail-area-text
-        ace-with-markdown(header='description', content='exercise.description')
+        ace-with-markdown(header='description', content='exercise.description', exercise='exercise')
         br
         ace-with-markdown(header='hint', content='exercise.hint', foldable='true', ng-if='exercise.needsHint()')
         br

@@ -17,7 +17,7 @@
 
   .tab-content(ng-show='showMinimized()')
     .tab-pane(ng-class='activeWriteClass()')
-      ace-markdown-toolbar(editor='editor')
+      ace-markdown-toolbar(editor='editor', exercise='exercise')
       .markdown(ui-ace='aceEditor', ng-model='content')
     .tab-pane(ng-class='activePreviewClass()')
       .markdown-rendered(ng-bind-html='html()')
