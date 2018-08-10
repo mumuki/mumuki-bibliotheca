@@ -50,12 +50,12 @@ angular
         case "oneOf":
           return _.some(value.value, this.isEmptyString);
         case "range":
-          return _.some(value.value, _.isNumber(value));
+          return !_.every(value.value, _.isNumber);
       }
     }
 
     const isIncompleteRandomizationValue = (value) => {
-      return this.isEmptyField(value, 'type') || value.value.length < 2 || _.some(value.value, isInvalidRandomizationValue);
+      return this.isEmptyField(value, 'type') || value.value.length < 2 || isInvalidRandomizationValue(value);
     }
 
     const isIncompleteRandomization = (randomization) => {

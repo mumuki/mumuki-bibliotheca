@@ -67,6 +67,7 @@ angular
     error_forbidden_field: '{{ fullName }}: Can\'t include {{ field }}',
     error_mandatory_field: '{{ fullName }}: Field {{ field }} is mandatory',
     error_queriable_language_validation: '{{ exercise }}: Language {{ language }} does not support playground exercises',
+    error_randomization_validation: '{{ fullName }}: Has incomplete randomizations',
     error_triable_language_validation: '{{ exercise }}: Language {{ language }} does not support interactive exercises',
     errored: "Oops, your solution doesn't work",
     evaluation: 'Evaluation',
