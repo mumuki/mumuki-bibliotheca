@@ -45,8 +45,17 @@ angular
       return this.isEmptyField(rule, 'then') || whenIsEmptyString(rule) || whenIsObjectWithEmptyString(rule) || whenIsArrayWithEmptyStrings(rule);
     }
 
+    const isInvalidRandomizationValue = (value) => {
+      switch(value.type){
+        case "oneOf":
+          return _.some(value.value, this.isEmptyString);
+        case "range":
+          return !_.every(value.value, _.isNumber);
+      }
+    }
+
     const isIncompleteRandomizationValue = (value) => {
-      return this.isEmptyField(value, 'type') || value.value.length < 2 || _.some(value.value, this.isEmptyString);
+      return this.isEmptyField(value, 'type') || value.value.length < 2 || isInvalidRandomizationValue(value);
     }
 
     const isIncompleteRandomization = (randomization) => {
