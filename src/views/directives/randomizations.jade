@@ -38,9 +38,9 @@ h3
 
           .rule-value-array(ng-if='isRange(rule.selected)')
             strong {{ 'from' | translate }}:
-            input(ng-model='rule.selected.value[0]', placeholder='1')
+            input(type="number" ng-model='rule.selected.value[0]', placeholder='1')
             strong {{ 'to' | translate }}:
-            input(ng-model='rule.selected.value[1]', placeholder='10')
+            input(type="number" ng-model='rule.selected.value[1]', placeholder='10')
 
           a(href='', ng-click='addOption(rule)', ng-if='isOneOf(rule.selected)')
             i.fa.fa-fw.fa-plus
