@@ -46,7 +46,8 @@ angular
     const omitByDeep = (item, criteria) => {
       const newItem = plainCloneDeep(_.omitBy(item, criteria));
       omitNewItemValues(newItem, criteria);
-      omitBooleanItemValues(item, newItem);
+      omitNonEmptyItemValues(item, newItem, _.isBoolean);
+      omitNonEmptyItemValues(item, newItem, _.isNumber);
       return newItem;
     };
 
@@ -60,10 +61,10 @@ angular
       });
     };
 
-    const omitBooleanItemValues = (item, newItem) => {
+    const omitNonEmptyItemValues = (item, newItem, condition) => {
       _.forOwn(item, (value, key) => {
-        if (_.isBoolean(value)) {
-          newItem[key] = (!!item[key]).toString();
+        if (condition(value)) {
+          newItem[key] = value.toString();
         }
       });
     };
