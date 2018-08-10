@@ -55,9 +55,6 @@ angular
         $scope.userEmail = () => betweenLanguageComment('user_email');
         $scope.userFirstName = () => betweenLanguageComment('user_first_name');
         $scope.userLastName = () => betweenLanguageComment('user_last_name');
-      },
-      link: (scope, element) => {
-        element.find(`#${scope.from}`).hide();
       }
     }
 

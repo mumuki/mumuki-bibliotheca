@@ -7,7 +7,10 @@ angular
 
       restrict: 'E',
       templateUrl: 'views/directives/ace-markdown-toolbar.html',
-      scope: { editor: '=' },
+      scope: {
+        editor: '=',
+        exercise: '=',
+      },
       controller: ($scope) => {
 
         const MU = 'ム';

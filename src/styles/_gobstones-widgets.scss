@@ -55,3 +55,81 @@
 .gbs-toolbox-editor {
   height: 300px;
 }
+
+
+.gbs-board-configuration {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 30px;
+  width: 100%;
+  .gbs-board-size,
+  .gbs-check-attire,
+  .gbs-check-header {
+    width: 33.33%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .gbs-check-attire,
+  .gbs-check-header {
+    label {
+      width: unset;
+      font-weight: bold;
+      &:after {
+        margin-top: -4px;
+      }
+    }
+  }
+}
+
+.size-separator {
+  margin: 2px 15px 0px 15px;
+}
+
+.gbs-board-size,
+.gbs-board-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .gbs-size,
+  .gbs-header, {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    label,
+    span {
+      margin: 2px 10px 0px 10px;
+    }
+    input {
+      width: 75px;
+      text-align: center;
+      padding-right: 0;
+    }
+  }
+}
+.gbs-states {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  .gbs-state {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 50%;
+  }
+}
+
+.gbs-board-header {
+  margin: 15px 0 0;
+}
+
+.gbs-board-table {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

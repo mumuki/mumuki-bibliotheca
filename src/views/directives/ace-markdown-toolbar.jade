@@ -19,8 +19,8 @@ div.markdown-panel
     i.fa.fa-quote-right
   a.pointer(ng-click='mumuki()', title='{{ "tooltip_mumuki" | translate }}')
     i.da.da-mumuki
-  a.pointer(ng-click='gbsAttire()', title='{{ "tooltip_gbs_attire" | translate }}')
+  a.pointer(ng-click='gbsAttire()', title='{{ "tooltip_gbs_attire" | translate }}', ng-if='exercise.isGobstonesLanguage()')
     i.fa.fa-th
-  a.pointer(ng-click='gbsToolbox()', title='{{ "tooltip_gbs_toolbox" | translate }}')
+  a.pointer(ng-click='gbsToolbox()', title='{{ "tooltip_gbs_toolbox" | translate }}', ng-if='exercise.isGobstonesLanguage()')
     i.fa.fa-puzzle-piece
   emojis(emoji-click='insertEmoji')

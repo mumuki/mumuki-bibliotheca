@@ -174,8 +174,16 @@ angular
         this.fullLanguage().validateWithCustomEditor(this);
       }
 
+      isLanguage(language) {
+        return this.getLanguage() === language;
+      }
+
       isTextLanguage() {
-        return this.getLanguage() === 'text';
+        return this.isLanguage('text');
+      }
+
+      isGobstonesLanguage() {
+        return this.isLanguage('gobstones');
       }
 
       getYamlTest() {
@@ -230,7 +238,7 @@ angular
       }
 
       isKidsLayout(){
-        return this.layout === Layouts.input_kids;
+        return this.getLayout() === Layouts.input_kids;
       }
 
       static from(exercise = {}) {
