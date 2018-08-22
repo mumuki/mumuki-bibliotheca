@@ -10,6 +10,8 @@ angular
       item: exercise.guide()
     });
 
+    exercise.initializeEditor();
+
     $scope.exercise = exercise;
 
     $scope.getItem = () => $scope.item.getItem();

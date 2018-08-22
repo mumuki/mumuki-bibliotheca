@@ -41,6 +41,8 @@ angular
       gobstones: {
         validateWithCustomEditor: (exercise) => {
           var test = exercise.getYamlTest();
+          if (!test) throw new Error("The test is not a valid YAML");
+
           test.fullName = () => translate('test');
           Validator.notForbiddenFields(test, ['subject', 'title']);
         },

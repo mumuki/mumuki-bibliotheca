@@ -102,6 +102,10 @@ angular
 
       setEditor(editor) {
         this.editor = editor;
+        this.initializeEditor();
+      }
+
+      initializeEditor() {
         this.layout = this.getEditor().initialLayout(this);
         this.setLanguage(this.getEditor().initialLanguage(this));
       }

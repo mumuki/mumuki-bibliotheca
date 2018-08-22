@@ -38,6 +38,7 @@ angular
             name: 'extra',
             templateUrl: 'views/directives/evaluation/extra.html',
             isVisible: () => $scope.exercise.needsExtra(),
+            shouldRenderFirst: $scope.exercise.usesCustomEditor()
           },
           {
             name: 'default_content',
@@ -61,6 +62,8 @@ angular
         }
 
         $scope.selectTab(firstTabVisible());
+        const firstTab = $scope.tabs.find((it) => it.shouldRenderFirst);
+        if (firstTab) { setTimeout(() => $scope.selectTab(firstTab)); }
 
         $scope.$watch(() => $scope.exercise.getType(), () => $scope.selectTab(firstTabVisible()));
         $scope.$watch(() => $scope.exercise.getEditor(), () => $scope.selectTab(firstTabVisible()));
