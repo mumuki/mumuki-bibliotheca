@@ -120,6 +120,16 @@ angular
         }
       }
 
+      hasInterpolations(content) {
+        const comment = this.getComment();
+
+        return new RegExp(
+          _.escapeForRegExp(comment.start) +
+          "\.\.\.\\w+\.\.\." +
+          _.escapeForRegExp(comment.end)
+        ).test(content);
+      }
+
       needsGoal() {
         return this.getType().needsGoal(this);
       }

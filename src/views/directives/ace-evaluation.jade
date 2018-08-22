@@ -15,7 +15,7 @@
 
   .tab-content.margin-top
     .tab-pane(
-        ng-if='t.isVisible() && t.selected',
+        ng-if='t.isVisible() && t.selected'
         ng-repeat='t in tabs',
         ng-class='{ "active": t.selected }')
       div(ng-include="t.templateUrl")

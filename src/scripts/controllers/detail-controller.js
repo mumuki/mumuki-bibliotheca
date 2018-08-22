@@ -27,10 +27,7 @@ angular
         .tap((item) => CurrentItem.set(item))
         .tap((item) => callback(item))
         .tap((item) => toastr.success(translate(`${type}_saved_successfully`)))
-        .catch(Error, (error) => {
-          debugger;
-          return toastr.error(`${error.message}`)
-        })
+        .catch(Error, (error) => toastr.error(`${error.message}`))
         .catch((res) => toastr.error(`${res.data.message}`));
     });
 
