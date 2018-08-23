@@ -38,6 +38,7 @@ angular
             name: 'extra',
             templateUrl: 'views/directives/evaluation/extra.html',
             isVisible: () => $scope.exercise.needsExtra(),
+            shouldRenderFirst: $scope.exercise.usesCustomEditor()
           },
           {
             name: 'default_content',
@@ -51,9 +52,13 @@ angular
           },
         ];
 
-        const defaultMode = () => ({ mode: $scope.exercise.usesCustomEditor() ? 'custom' : 'interpolation' });
-        $scope.extraEditor = defaultMode();
-        $scope.contentEditor = defaultMode();
+        const defaultMode = (content) => ({
+          mode: $scope.exercise.usesCustomEditor() && !$scope.exercise.hasInterpolations(content)
+            ? 'custom'
+            : 'interpolation'
+        });
+        $scope.extraEditor = defaultMode($scope.exercise.extra);
+        $scope.contentEditor = defaultMode($scope.exercise.default_content);
 
         $scope.selectTab = (tab) => {
           $scope.tabs.forEach((t) => t.selected = false);
@@ -61,6 +66,8 @@ angular
         }
 
         $scope.selectTab(firstTabVisible());
+        const firstTab = $scope.tabs.find((it) => it.shouldRenderFirst);
+        if (firstTab) { setTimeout(() => $scope.selectTab(firstTab)); }
 
         $scope.$watch(() => $scope.exercise.getType(), () => $scope.selectTab(firstTabVisible()));
         $scope.$watch(() => $scope.exercise.getEditor(), () => $scope.selectTab(firstTabVisible()));

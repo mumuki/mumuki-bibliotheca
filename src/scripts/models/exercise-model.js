@@ -102,6 +102,10 @@ angular
 
       setEditor(editor) {
         this.editor = editor;
+        this.initializeEditor();
+      }
+
+      initializeEditor() {
         this.layout = this.getEditor().initialLayout(this);
         this.setLanguage(this.getEditor().initialLanguage(this));
       }
@@ -114,6 +118,16 @@ angular
         if (this.canChangeLayout()) {
           this.layout = this.getLayout().next().type();
         }
+      }
+
+      hasInterpolations(content) {
+        const comment = this.getComment();
+
+        return new RegExp(
+          _.escapeForRegExp(comment.start) +
+          "\.\.\.\\w+\.\.\." +
+          _.escapeForRegExp(comment.end)
+        ).test(content);
       }
 
       needsGoal() {
