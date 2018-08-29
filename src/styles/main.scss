@@ -21,6 +21,7 @@ $da-font-path: '../fonts';
 @import 'randomizations';
 @import 'emojis';
 @import 'gobstones-widgets';
+@import '../bower_components/ng-tags-input/ng-tags-input.bootstrap.min';
 
 html {
   height: 100%;

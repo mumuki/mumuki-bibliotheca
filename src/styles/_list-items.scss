@@ -44,3 +44,19 @@ $filter-height: 40px;
 
   }
 }
+
+tags-input div.host div.tags {
+  border-radius: 4px;
+  padding: 4px 2px;
+  border: 1px solid #dce4ec;
+  &.focused {
+    border-color: $brand-primary;
+    box-shadow: unset;
+  }
+  .tag-list .tag-item {
+    background-color: $mu-color-primary-lighter;
+    .remove-button {
+      color: white;
+    }
+  }
+}
