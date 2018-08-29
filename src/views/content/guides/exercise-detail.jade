@@ -42,5 +42,10 @@
       .exercise-detail-area-editor
         ace-evaluation(exercise='exercise')
 
+    h3
+      span {{ 'tags' | translate }}
+
+    tags-input(class="ti-input-lg", ng-model="exercise.tag_list", placeholder="{{ 'add_tag' | translate }}")
+
     br
     ace-with-markdown(header='corollary', content='exercise.corollary', foldable='true', ng-if='exercise.needsCorollary()')

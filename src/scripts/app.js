@@ -13,4 +13,5 @@ angular
     'ui.select',
     'ui.bootstrap',
     'angularLazyImg',
+    'ngTagsInput'
   ]).run(Organization => Organization.load());
