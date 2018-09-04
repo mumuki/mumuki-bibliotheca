@@ -17,7 +17,7 @@ $.protocol = $.stringReplace(/https?:\/\//g, '//');
 module.exports = (done) => {
   process.env.NODE_ENV = 'production';
   runs('prod:clean', 'prod:build', 'prod:views', 'prod:release', done);
-}
+};
 
 
 gulp.task('prod:build', (done) => {
@@ -59,7 +59,7 @@ gulp.task('prod:fonts', function () {
   const fonts = [
     `${srcFolder}/fonts/**/*`,
     `${srcFolder}/bower_components/mumuki-styles/dist/fonts/**/*`
-  ]
+  ];
   return gulp.src(fonts)
     .pipe(gulp.dest(`${outFolder}/fonts`));
 });

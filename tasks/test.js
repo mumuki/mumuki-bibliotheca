@@ -8,7 +8,7 @@ const specFolder = 'specs';
 module.exports = (done) => {
   process.env.NODE_ENV = 'test';
   runs('test:karma', done);
-}
+};
 
 
 gulp.task('test:karma', (done) => {

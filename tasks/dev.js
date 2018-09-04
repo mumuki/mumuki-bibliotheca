@@ -13,7 +13,7 @@ const configFolder = 'config';
 module.exports = (done) => {
   process.env.NODE_ENV = 'development';
   runs('dev:build', 'dev:watch', 'dev:serve', done);
-}
+};
 
 
 gulp.task('dev:build', (done) => {
@@ -75,7 +75,7 @@ gulp.task('dev:fonts', function () {
   const fonts = [
     `${srcFolder}/fonts/**/*`,
     `${srcFolder}/bower_components/mumuki-styles/dist/fonts/**/*`
-  ]
+  ];
   return gulp.src(fonts)
     .pipe(gulp.dest(`${outFolder}/fonts`));
 });
