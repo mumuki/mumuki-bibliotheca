@@ -39,6 +39,7 @@ gulp.task('prod:scripts', ['prod:config'], function () {
 gulp.task('prod:config', function () {
   return gulp.src(`${configFolder}/${process.env.NODE_ENV}.js`)
     .pipe($.replaceEnvVar('MUMUKI_BIBLIOTHECA_API_URL'))
+    .pipe($.replaceEnvVar('MUMUKI_LABORATORY_URL'))
     .pipe($.replaceEnvVar('MUMUKI_COOKIES_DOMAIN'))
     .pipe($.concat('config.js'))
     .pipe(gulp.dest(`${srcFolder}/scripts/config`));
