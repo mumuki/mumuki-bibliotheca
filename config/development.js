@@ -6,6 +6,10 @@ angular
       url: 'http://localhost:3004'
     },
 
+    laboratory: {
+      url: 'http://localhost:3000'
+    },
+
     cookie: {
       domain: 'localhost',
     }

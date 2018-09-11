@@ -26,13 +26,13 @@ angular
     };
 
     this.signin = (callback) => {
-      document.location.href = $injector.get('Api').getLoginUrl();
+      document.location.href = $injector.get('Login').getLoginUrl();
     };
 
     this.signout = () => {
       profile = null;
       store.remove('permissions');
-      document.location.href = $injector.get('Api').getLogoutUrl();
+      document.location.href = $injector.get('Login').getLogoutUrl();
     };
 
     this.checkProfile = () => {
