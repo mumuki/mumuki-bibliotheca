@@ -1,7 +1,6 @@
-
 editorTest('Foldable Service', (mocks) => {
 
-  var Foldable, $scope;
+  let Foldable, $scope;
 
   beforeSpec((_Foldable_, _$rootScope_) => {
     Foldable = _Foldable_;
@@ -23,4 +22,3 @@ editorTest('Foldable Service', (mocks) => {
   });
 
 });
-

@@ -16,8 +16,13 @@ if [ $(cat .nvmrc) != $(node -v) ]; then
   exit 1
 fi
 
+if ! [ -x "$(command -v yarn)" ]; then
+  echo 'Error: yarn was not found. Please install it first. Aborting' >&2
+  exit 1
+fi
+
 echo "[MumukiDevstart::Bibliotheca] Installing dependencies...."
-npm install
+yarn install
 
 echo "[MumukiDevstart::Bibliotheca] Starting server...."
-npm start
+yarn start
