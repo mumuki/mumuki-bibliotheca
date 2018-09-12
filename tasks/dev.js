@@ -2,6 +2,8 @@ const del = require('del');
 const gulp = require('gulp');
 const runs = require('run-sequence');
 const glps = require('gulp-load-plugins');
+const webpack = require('webpack-stream');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const $ = glps();
 
@@ -48,9 +50,12 @@ gulp.task('dev:clean', (done) => {
 gulp.task('dev:scripts', ['dev:config'], function () {
   return gulp.src(`${srcFolder}/scripts/**/*.js`)
     .pipe($.sourcemaps.init())
-      .pipe($.babel({ presets: ['latest'] }))
-      .pipe($.ngAnnotate())
-      .pipe($.concat('main.js'))
+    .pipe($.babel({ presets: ['latest'] }))
+    .pipe($.ngAnnotate())
+    .pipe(webpack({
+      mode: process.env.NODE_ENV
+    }))
+    .pipe($.concat('main.js'))
     .pipe($.sourcemaps.write('.'))
     .pipe(gulp.dest(`${outFolder}/scripts`));
 });
@@ -62,8 +67,30 @@ gulp.task('dev:config', function () {
 });
 
 gulp.task('dev:styles', function () {
-  return gulp.src(`${srcFolder}/styles/**/*.scss`)
-    .pipe($.sass.sync())
+  return gulp.src(`${srcFolder}/styles/**/[^_]*.scss`)
+    .pipe(webpack({
+      mode: process.env.NODE_ENV,
+      module: {
+        rules: [{
+          test: /\.scss$/,
+          use: [
+            MiniCssExtractPlugin.loader,
+            "css-loader", // translates CSS into CommonJS
+            "sass-loader" // compiles Sass to CSS, using Node Sass by default
+          ]
+        }, {
+          test: /\.woff2?$|\.ttf$|\.eot$|\.svg$/,
+          use: [{
+            loader: "file-loader"
+          }]
+        }]
+      },
+      plugins: [
+        new MiniCssExtractPlugin({
+          filename: "main.css"
+        })
+      ]
+    }))
     .pipe(gulp.dest(`${outFolder}/styles`));
 });
 
@@ -74,7 +101,7 @@ gulp.task('dev:views', (done) => {
 gulp.task('dev:fonts', function () {
   const fonts = [
     `${srcFolder}/fonts/**/*`,
-    `${srcFolder}/bower_components/mumuki-styles/dist/fonts/**/*`
+    `node_modules/@bower-components/mumuki-styles/dist/fonts/**/*`
   ];
   return gulp.src(fonts)
     .pipe(gulp.dest(`${outFolder}/fonts`));
@@ -88,7 +115,6 @@ gulp.task('dev:assets', function () {
 gulp.task('dev:views:index', () => {
   return gulp.src(`${srcFolder}/index.jade`)
     .pipe($.pug({ pretty: true }))
-    .pipe($.wiredep({ includeSelf: true }))
     .pipe($.usemin({
       js: [],
       css: [],
@@ -110,6 +136,6 @@ gulp.task('dev:images', function () {
 });
 
 gulp.task('dev:flags', function () {
-  return gulp.src(`${srcFolder}/bower_components/flag-icon-css/flags/**/*`)
+  return gulp.src(`node_modules/flag-icon-css/flags/**/*`)
     .pipe(gulp.dest(`${outFolder}/flags`));
 });

@@ -5,7 +5,7 @@ angular
       this.organization = org;
       $rootScope.customJsUrl = org.extension_javascript_url;
       $rootScope.customCssUrl = org.theme_stylesheet_url;
-    }
+    };
 
     this.load = () => {
       return this.organization

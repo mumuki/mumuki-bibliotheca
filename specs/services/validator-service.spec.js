@@ -1,4 +1,3 @@
-
 editorTest('Validator Service', (mocks) => {
 
   let exercise;

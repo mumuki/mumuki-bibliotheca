@@ -1,8 +1,8 @@
-$icon-font-path: '../fonts/bootstrap';
-$fa-font-path: '../fonts';
-$da-font-path: '../fonts';
+$icon-font-path: '~@bower-components/mumuki-styles/dist/fonts/bootstrap/';
+$fa-font-path: '~@bower-components/mumuki-styles/dist/fonts/';
+$da-font-path: '~@bower-components/mumuki-styles/dist/fonts/';
 
-@import '../bower_components/mumuki-styles/dist/scss/mumuki-styles.scss';
+@import '~@bower-components/mumuki-styles/dist/scss/mumuki-styles';
 @import 'mixines';
 @import 'home';
 @import 'cloak';
