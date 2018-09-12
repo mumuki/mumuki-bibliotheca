@@ -15,7 +15,7 @@ $filter-height: 40px;
     height: $filter-height;
   }
   .form-control {
-    width: calc(100% - $filter-width);
+    width: calc(100% - #{$filter-width});
     height: $filter-height;
   }
 }
