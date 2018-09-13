@@ -21,7 +21,7 @@ $da-font-path: '~@bower-components/mumuki-styles/dist/fonts/';
 @import 'randomizations';
 @import 'emojis';
 @import 'gobstones-widgets';
-@import '../bower_components/ng-tags-input/ng-tags-input.bootstrap.min';
+@import '~ng-tags-input/build/ng-tags-input.bootstrap.min';
 
 html {
   height: 100%;
