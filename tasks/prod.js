@@ -24,7 +24,7 @@ module.exports = (done) => {
 };
 
 gulp.task('prod:build', (done) => {
-  runs(['prod:scripts', 'prod:styles', 'prod:fonts', 'prod:images', 'prod:assets', 'prod:flags'], done);
+  runs(['prod:scripts', 'prod:styles', 'prod:images', 'prod:assets', 'prod:flags'], done);
 });
 
 gulp.task('prod:clean', (done) => {
@@ -65,7 +65,11 @@ gulp.task('prod:styles', function () {
         }, {
           test: /\.woff2?$|\.ttf$|\.eot$|\.svg$/,
           use: [{
-            loader: "file-loader"
+            loader: "file-loader",
+            options: {
+              name: '[name].[ext]',
+              outputPath: "../fonts/"
+            }
           }]
         }]
       },
@@ -80,21 +84,11 @@ gulp.task('prod:styles', function () {
         })
       ]
     }))
-    // .pipe($.sass.sync({outputStyle: 'compressed'}))
     .pipe(gulp.dest(`${outFolder}/styles`));
 });
 
 gulp.task('prod:views', (done) => {
   runs(['prod:views:index', 'prod:views:jade'], done);
-});
-
-gulp.task('prod:fonts', function () {
-  const fonts = [
-    `${srcFolder}/fonts/**/*`,
-    `node_modules/@bower-components/mumuki-styles/dist/fonts/**/*`
-  ];
-  return gulp.src(fonts)
-    .pipe(gulp.dest(`${outFolder}/fonts`));
 });
 
 gulp.task('prod:assets', function () {
