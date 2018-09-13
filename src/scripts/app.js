@@ -19,7 +19,7 @@ import "angular-ui-bootstrap"
 import "@bower-components/angular-lazy-img/release/angular-lazy-img.min"
 import "angular-cookies"
 import "js-yaml"
-import "nsTagsInput"
+import "ng-tags-input"
 
 angular
   .module('editor', [

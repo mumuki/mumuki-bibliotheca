@@ -71,6 +71,7 @@
     "lolex": "1.5.1",
     "mini-css-extract-plugin": "^0.4.2",
     "mocha": "5.2.0",
+    "ng-tags-input": "^3.2.0",
     "node-sass": "^4.9.3",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
     "phantomjs": "2.1.7",
