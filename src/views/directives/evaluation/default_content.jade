@@ -5,9 +5,13 @@ div(ng-if='exercise.usesCustomEditor()')
 div(ng-if="contentEditor.mode === 'custom'")
   custom-editor(exercise="exercise", content="exercise.default_content")
 div(ng-if="contentEditor.mode === 'interpolation'")
-  ace-with-toolbar-code(
-    content='exercise.default_content',
-    mode='exercise.getAceMode()',
-    comment='exercise.getComment()',
-    placeholder='placeholder_default_content',
-    from='content')
+
+  div(ng-if="!exercise.isMultifile()")
+    ace-with-toolbar-code(
+      content='exercise.default_content',
+      mode='exercise.getAceMode()',
+      comment='exercise.getComment()',
+      placeholder='placeholder_default_content',
+      from='content')
+
+  multiple-files(ng-if="exercise.isMultifile()", exercise="exercise")

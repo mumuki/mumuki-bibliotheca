@@ -35,6 +35,27 @@ angular
           }
         }
       },
+      multiple_files: {
+        name: 'multiple_files',
+        isMultifile: true,
+        icon: () => 'fa fa-files-o',
+        needsExtra: (exercise) => true,
+        needsTests: (exercise) => true,
+        needsChoices: (exercise) => false,
+        needsSolution: (exercise) => true,
+        needsExpectations: (exercise) => true,
+        needsDefaultContent: (exercise) => true,
+        canChangeLayout: (exercise) => true,
+        initialLayout: (exercise) => exercise.layout,
+        canChangeLanguage: (exercise) => true,
+        initialLanguage: (exercise) => exercise.language,
+        validate: (exercise) => {
+          Validator.notIncompleteExpectations(exercise);
+          if (!hasEvaluation(exercise)) {
+            throwError('error_editor_code_validation', { fullName: exercise.fullName() });
+          }
+        }
+      },
       multiple_choice: {
         name: 'multiple_choice',
         icon: () => 'fa fa-check-square-o',

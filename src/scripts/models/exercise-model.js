@@ -80,6 +80,10 @@ angular
           Editor.from('none');
       }
 
+      isMultifile() {
+        return !!this.getEditor().isMultifile;
+      }
+
       getType() {
         return ExerciseTypes.fromName(this.type);
       }
