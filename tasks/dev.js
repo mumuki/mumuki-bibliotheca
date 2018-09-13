@@ -49,14 +49,26 @@ gulp.task('dev:clean', (done) => {
 
 gulp.task('dev:scripts', ['dev:config'], function () {
   return gulp.src(`${srcFolder}/scripts/**/*.js`)
-    .pipe($.sourcemaps.init())
-    .pipe($.babel({ presets: ['latest'] }))
-    .pipe($.ngAnnotate())
     .pipe(webpack({
-      mode: process.env.NODE_ENV
+      mode: process.env.NODE_ENV,
+      output: { filename: "main.js" },
+      module: {
+        rules: [
+          {
+            test: /\.js$/,
+            exclude: /(node_modules|bower_components)/,
+            use: {
+              loader: 'babel-loader',
+              options: {
+                presets: ['@babel/preset-env'],
+                plugins: ["angularjs-annotate"]
+              }
+            }
+          }
+        ]
+      },
+      devtool: 'source-map'
     }))
-    .pipe($.concat('main.js'))
-    .pipe($.sourcemaps.write('.'))
     .pipe(gulp.dest(`${outFolder}/scripts`));
 });
 

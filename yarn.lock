@@ -578,9 +578,9 @@
   dependencies:
     "@types/babel-types" "*"
 
-"@uirouter/angularjs@0.3.1":
-  version "0.3.1"
-  resolved "https://registry.yarnpkg.com/@uirouter/angularjs/-/angularjs-0.3.1.tgz#f50bb66d97c9d78709614750534e9b736477d529"
+"@uirouter/angularjs@0.4.3":
+  version "0.4.3"
+  resolved "https://registry.yarnpkg.com/@uirouter/angularjs/-/angularjs-0.4.3.tgz#7e2630c59b2bd69ca485ff124f53b0169edddf39"
   dependencies:
     angular "^1.0.8"
 
@@ -877,8 +877,8 @@ angular@1.6.2:
   resolved "https://registry.yarnpkg.com/angular/-/angular-1.6.10.tgz#eed3080a34d29d0f681ff119b18ce294e3f74826"
 
 angular@^1.0.8:
-  version "1.7.3"
-  resolved "https://registry.yarnpkg.com/angular/-/angular-1.7.3.tgz#0f25a661d079fc84d5ccc877a2ef9d7178575ddb"
+  version "1.7.4"
+  resolved "https://registry.yarnpkg.com/angular/-/angular-1.7.4.tgz#c1bf4884c2d470c06907737a1bf0835a9f646f31"
 
 ansi-colors@^1.0.1:
   version "1.1.0"
@@ -1286,6 +1286,14 @@ babel-messages@^6.23.0:
   resolved "https://registry.yarnpkg.com/babel-messages/-/babel-messages-6.23.0.tgz#f3cdf4703858035b2a2951c6ec5edf6c62f2630e"
   dependencies:
     babel-runtime "^6.22.0"
+
+babel-plugin-angularjs-annotate@^0.9.0:
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/babel-plugin-angularjs-annotate/-/babel-plugin-angularjs-annotate-0.9.0.tgz#5c499bb04d9ae5802b31e1068aedb8b2286a83af"
+  dependencies:
+    babel-code-frame "^6.26.0"
+    babel-types "^6.26.0"
+    simple-is "~0.2.0"
 
 babel-plugin-check-es2015-constants@^6.22.0:
   version "6.22.0"
