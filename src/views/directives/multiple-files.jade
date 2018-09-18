@@ -1,9 +1,14 @@
 .tabbable(ng-if='exercise.isMultifile()')
   ul.nav.nav-tabs.nav-tabs-inline
     li(ng-repeat='(key, value) in exercise.default_content track by key', ng-click='select(key)', ng-class="{ 'active': isActive(key) }")
-      a(href='', data-toggle='tab') {{ key }} #[i.fa.fa-fw.fa-times(ng-click='removeFile(key)')]
+      a.pointer(data-toggle='tab')
+        span {{ key }}
+        span &nbsp;&nbsp;
+        i.fa.fa-fw.fa-pencil.pointer(ng-click='changeFileName(key)')
+        span &nbsp;&nbsp;
+        i.fa.fa-fw.fa-times.pointer(ng-click='removeFile(key)')
 
-    li(ng-click="addFile()"): a(href=''): i.fa.fa-fw.fa-plus
+    li(ng-click="addFile()"): a.pointer: i.fa.fa-fw.fa-plus
 
   .tab-content.margin-top
     .tab-pane(ng-repeat='(key, value) in exercise.default_content track by key', ng-class="{ 'active': isActive(key) }")
