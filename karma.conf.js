@@ -26,14 +26,8 @@ module.exports = (config) => {
     // - PhantomJS
     // - IE (only Windows)
     browsers: [
-      'PhantomJS'
+      'ChromeHeadless'
     ],
-    customLaunchers: {
-      'PhantomJS_custom': {
-        base: 'PhantomJS',
-        debug: true,
-      },
-    },
 
     preprocessors: {
       "src/scripts/**/*.js": ['webpack'],
