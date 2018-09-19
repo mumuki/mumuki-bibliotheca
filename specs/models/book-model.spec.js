@@ -1,4 +1,3 @@
-
 editorTest('Book Model', () => {
 
   let book;
@@ -18,7 +17,7 @@ editorTest('Book Model', () => {
   context('#params', () => {
     let params;
 
-    beforeSpec(() => params = Book.from({ slug: 'foo/bar' }).params())
+    beforeSpec(() => params = Book.from({ slug: 'foo/bar' }).params());
 
     spec(() => params.org.should.be.eql('foo'));
     spec(() => params.repo.should.be.eql('bar'));

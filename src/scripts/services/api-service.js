@@ -13,13 +13,13 @@ angular
     const defaultConfig = (requestOptions = {}) => _.defaultsDeep(requestOptions, {
       headers: { },
       withCredentials: true
-    })
+    });
 
     this.getOrganization = () => {
       return HTTP
         .call('get', `${API}/organization`, defaultConfig())
         .then((res) => res.data)
-    }
+    };
 
     this.getItems = (type, Model) => () => {
       return HTTP
@@ -45,7 +45,7 @@ angular
     this.saveItem = (type) => (item) => {
       return HTTP
         .call('post',`${API}/${type}s`, item, defaultConfig());
-    }
+    };
     this.saveBook = this.saveItem('book');
     this.saveTopic = this.saveItem('topic');
     this.saveGuide = this.saveItem('guide');
@@ -91,19 +91,19 @@ angular
         expectations: 'Assigns Assigns: Calls Calls: Declares Declares: DeclaresAttribute DeclaresAttribute: DeclaresClass DeclaresClass: DeclaresComputation DeclaresComputation: DeclaresComputationWithArity DeclaresComputationWithArity0: DeclaresComputationWithArity1: DeclaresComputationWithArity2: DeclaresComputationWithArity3: DeclaresComputationWithArity4: DeclaresComputationWithArity5: DeclaresEntryPoint DeclaresEntryPoint: DeclaresEnumeration DeclaresEnumeration: DeclaresFact DeclaresFact: DeclaresFunction DeclaresFunction: DeclaresInterface DeclaresInterface: DeclaresMethod DeclaresMethod: DeclaresObject DeclaresObject: DeclaresPredicate DeclaresPredicate: DeclaresProcedure DeclaresProcedure: DeclaresRecursively DeclaresRecursively: DeclaresRule DeclaresRule: DeclaresStyle DeclaresStyle: DeclaresSuperclass DeclaresSuperclass: DeclaresTag DeclaresTag: DeclaresTypeAlias DeclaresTypeAlias: DeclaresTypeSignature DeclaresTypeSignature: DeclaresVariable DeclaresVariable: Implements Implements: Includes Includes: Inherits Inherits: Instantiates Instantiates: Not:Assigns Not:Assigns: Not:Calls Not:Calls: Not:Declares Not:Declares: Not:DeclaresAttribute Not:DeclaresAttribute: Not:DeclaresClass Not:DeclaresClass: Not:DeclaresComputation Not:DeclaresComputation: Not:DeclaresComputationWithArity Not:DeclaresComputationWithArity0: Not:DeclaresComputationWithArity1: Not:DeclaresComputationWithArity2: Not:DeclaresComputationWithArity3: Not:DeclaresComputationWithArity4: Not:DeclaresComputationWithArity5: Not:DeclaresEntryPoint Not:DeclaresEntryPoint: Not:DeclaresEnumeration Not:DeclaresEnumeration: Not:DeclaresFact Not:DeclaresFact: Not:DeclaresFunction Not:DeclaresFunction: Not:DeclaresInterface Not:DeclaresInterface: Not:DeclaresMethod Not:DeclaresMethod: Not:DeclaresObject Not:DeclaresObject: Not:DeclaresPredicate Not:DeclaresPredicate: Not:DeclaresProcedure Not:DeclaresProcedure: Not:DeclaresRecursively Not:DeclaresRecursively: Not:DeclaresRule Not:DeclaresRule: Not:DeclaresSuperclass Not:DeclaresSuperclass: Not:DeclaresTag Not:DeclaresTag: Not:DeclaresTypeAlias Not:DeclaresTypeAlias: Not:DeclaresTypeSignature Not:DeclaresTypeSignature: Not:DeclaresVariable Not:DeclaresVariable: Not:Implements Not:Implements: Not:Includes Not:Includes: Not:Inherits Not:Inherits: Not:Instantiates Not:Instantiates: Not:Raises Not:Raises: Not:Rescues Not:Rescues: Not:SourceContains: Not:SourceEquals: Not:SourceEqualsIgnoreSpaces: Not:SourceRepeats: Not:TypesAs: Not:TypesAttributeAs: Not:TypesParameterAs: Not:TypesReturnAs: Not:TypesVariableAs: Not:Uses Not:Uses: Not:UsesAnonymousVariable Not:UsesComposition Not:UsesComprehensions Not:UsesConditional Not:UsesExceptionHandling Not:UsesExceptions Not:UsesFindall Not:UsesForall Not:UsesForeach Not:UsesGuards Not:UsesIf Not:UsesInheritance Not:UsesLambda Not:UsesMixins Not:UsesNot Not:UsesPatternMatching Not:UsesRepeat Not:UsesSwitch Not:UsesWhile Raises Raises: Rescues Rescues: SourceContains: SourceEquals: SourceEqualsIgnoreSpaces: SourceRepeats: TypesAs: TypesAttributeAs: TypesParameterAs: TypesReturnAs: TypesVariableAs: Uses Uses: UsesAnonymousVariable UsesComposition UsesComprehensions UsesConditional UsesExceptionHandling UsesExceptions UsesFindall UsesForall UsesForeach UsesGuards UsesIf UsesInheritance UsesLambda UsesMixins UsesNot UsesPatternMatching UsesRepeat UsesSwitch UsesWhile'.split(' '),
         smells: 'DiscardsExceptions DoesConsolePrint DoesNullTest DoesTypeTest HasAssignmentReturn HasCodeDuplication HasMisspelledIdentifiers HasRedundantBooleanComparison HasRedundantGuards HasRedundantIf HasRedundantLambda HasRedundantLocalVariableReturn HasRedundantParameter HasRedundantReduction HasTooShortIdentifiers HasUnreachableCode HasWrongCaseIdentifiers IsLongCode ReturnsNull UsesCut UsesFail UsesUnificationOperator'.split(' ')
       });
-    }
+    };
 
     this.importGuide = ({ organization, content }) => {
       return HTTP
         .call('post',`${API}/guides/import/${organization}/${content}`, {}, defaultConfig())
         .then((res) => res.data)
-    }
+    };
 
     this.uploadAsset = ({ org, repo }, { content, filename }) => {
       return HTTP
         .call('post',`${API}/guides/${org}/${repo}/assets`, { content, filename }, defaultConfig())
         .then((res) => res.data)
-    }
+    };
 
     this.forkBook = (slug, organization) => this.fork('book', slug, organization);
 

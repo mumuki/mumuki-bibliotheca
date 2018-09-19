@@ -1,6 +1,6 @@
 editorTest('Books Controller', (mocks) => {
 
-  let $scope = {}
+  let $scope = {};
 
   beforeSpec((_$controller_) => _$controller_('BooksController', { $scope: $scope, books: [] }));
 

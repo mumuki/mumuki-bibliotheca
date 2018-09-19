@@ -1,3 +1,6 @@
+const path = require("path");
+process.env.CHROME_BIN = require('puppeteer').executablePath();
+
 module.exports = (config) => {
   config.set({
     // enable / disable watching file and executing tests whenever any file changes
@@ -23,14 +26,36 @@ module.exports = (config) => {
     // - Safari (only Mac)
     // - PhantomJS
     // - IE (only Windows)
-    browsers: [
-      'PhantomJS'
-    ],
+    browsers: ['HeadlessChrome'],
+    customLaunchers:{
+      HeadlessChrome:{
+        base: 'ChromeHeadless',
+        flags: ['--no-sandbox']
+      }
+    },
 
     preprocessors: {
-      'specs/context.js ': ['babel'],
-      'specs/**/*.spec.js ': ['babel'],
-      'src/scripts/**/*.js ': ['babel']
+      "src/scripts/**/*.js": ['webpack'],
+      "specs/context.js": ['babel'],
+      'specs/**/*.spec.js': ['babel'],
+    },
+
+    webpack: {
+      mode: "development",
+      module: {
+        rules: [
+          {
+            test: /\.js$/,
+            exclude: /(node_modules|bower_components)/,
+            use: {
+              loader: 'babel-loader',
+              options: {
+                presets: ['@babel/preset-env']
+              }
+            }
+          }
+        ]
+      }
     },
 
     babelPreprocessor: {
@@ -51,6 +76,7 @@ module.exports = (config) => {
     // Continuous Integration mode
     // if true, it capture browsers, run tests and exit
     singleRun: true,
+    debug: true,
 
     colors: true,
 
