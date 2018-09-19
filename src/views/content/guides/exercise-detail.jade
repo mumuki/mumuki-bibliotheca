@@ -45,7 +45,8 @@
     h3
       span {{ 'tags' | translate }}
 
-    tags-input(class="ti-input-lg", ng-model="exercise.tag_list", placeholder="{{ 'add_tag' | translate }}")
+    tags-input(class="ti-input-lg", use-strings="true", ng-model="exercise.tag_list", placeholder="{{ 'add_tag' | translate }}")
+      auto-complete(source="guideTags")
 
     br
     ace-with-markdown(header='corollary', content='exercise.corollary', foldable='true', ng-if='exercise.needsCorollary()')

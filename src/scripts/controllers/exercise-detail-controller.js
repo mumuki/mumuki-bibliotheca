@@ -18,6 +18,8 @@ angular
 
     $scope.addExercise = () => GuideSaver.addExercise($scope.item);
 
+    $scope.guideTags = _.uniq(_.flatten($scope.getItem().exercises.map(e => e.tag_list)));
+
     $scope.moveExerciseTo = function (index, exercise) {
       $scope.item.moveExerciseTo(index, exercise);
       return true;
