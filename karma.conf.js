@@ -1,4 +1,5 @@
 const path = require("path");
+process.env.CHROME_BIN = require('puppeteer').executablePath();
 
 module.exports = (config) => {
   config.set({
@@ -25,9 +26,13 @@ module.exports = (config) => {
     // - Safari (only Mac)
     // - PhantomJS
     // - IE (only Windows)
-    browsers: [
-      'ChromeHeadless'
-    ],
+    browsers: ['HeadlessChrome'],
+    customLaunchers:{
+      HeadlessChrome:{
+        base: 'ChromeHeadless',
+        flags: ['--no-sandbox']
+      }
+    },
 
     preprocessors: {
       "src/scripts/**/*.js": ['webpack'],

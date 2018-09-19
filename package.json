@@ -71,6 +71,7 @@
     "ng-tags-input": "^3.2.0",
     "node-sass": "^4.9.3",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
+    "puppeteer": "^1.8.0",
     "run-sequence": "1.2.2",
     "sass-loader": "^7.1.0",
     "sinon": "1.17.6",
