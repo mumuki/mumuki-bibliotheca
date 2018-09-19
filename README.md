@@ -24,8 +24,8 @@ This will install your dependencies and boot the client.
 Just install and start the client using `npm`:
 
 ```bash
-npm install
-npm start
+yarn install
+yarn start
 ```
 
 # See also
