@@ -11,6 +11,11 @@ angular
 
     const $translate = $filter('translate');
 
+    _.mixin({
+      match: (string, regexp) => string.match(regexp),
+      flipTransform: (object, value, func) => _.transform(object, func, value),
+    });
+
     class Exercise {
 
       constructor(exercise) {
@@ -263,10 +268,9 @@ angular
       }
 
       toMultifileString(object, field) {
-        const {start, end} = this.getComment();
         object[field] =  _.chain(object)
                           .get(field, {})
-                          .transform((res, value, key) => res.push(`${start}<${key}#${end}${value}${start}#${key}>${end}`), [])
+                          .flipTransform([], (res, value, key) => this.toFile(res, value, key, this.getComment()))
                           .join('\n')
                           .value();
       }
@@ -274,11 +278,20 @@ angular
       fromMultifileString(object, field) {
         const {start, end} = _.mapValues(this.getComment(), _.escapeRegExp);
         const regexpString = `${start}<(.+?)#${end}((\\\s|\\\S)*?)${start}#(.+?)>${end}`
-        const captures = _.get(object, field, '').match(new RegExp(regexpString, 'gm'));
-        object[field] = _.transform(captures, (result, capture) => {
-          const [_, key, value, __, confirmKey] = capture.match(new RegExp(regexpString));
-          if (key === confirmKey) result[key] = value;
-        }, {});
+        object[field] =  _.chain(object)
+                          .get(field, '')
+                          .match(new RegExp(regexpString, 'gm'))
+                          .flipTransform({}, (res, capture) => this.fromFile(res, capture, new RegExp(regexpString)))
+                          .value();
+      }
+
+      toFile(result, value, key, {start, end}) {
+        result.push(`${start}<${key}#${end}${value}${start}#${key}>${end}`);
+      }
+
+      fromFile(result, capture, regexp) {
+        const [_, key, value, __, confirmKey] = capture.match(regexp);
+        if (key === confirmKey) result[key] = value;
       }
 
       static from(exercise = {}) {
