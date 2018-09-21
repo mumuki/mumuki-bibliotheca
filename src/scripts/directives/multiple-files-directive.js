@@ -15,7 +15,6 @@ angular
         let activeTab;
 
         const translate = $filter('translate');
-        const isInvalidMultiFile = () => [_.isString, _.isEmpty].some((f) => f($scope.exercise.default_content));
         const selectFirstTab = () => activeTab = _.chain($scope.exercise.default_content).keys().first().value();
         const extension = (key) => _.chain(key).split('.').last().value();
         const getKey = () => `file_${_.keys($scope.exercise.default_content).length + 1}.${$scope.exercise.fullLanguage().extension}`;
@@ -54,8 +53,7 @@ angular
           return Languages.getCommentFromExtension(extension(key));
         }
 
-        if (isInvalidMultiFile()) {
-          $scope.exercise.default_content = {};
+        if (_.isEmpty($scope.exercise.default_content)) {
           $scope.addFile();
         }
 

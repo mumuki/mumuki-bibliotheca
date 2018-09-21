@@ -13,7 +13,7 @@
   .tab-content.margin-top
     .tab-pane(ng-repeat='(key, value) in exercise.default_content track by key', ng-class="{ 'active': isActive(key) }")
       ace-with-toolbar-code(
-        content='value',
+        content='exercise.default_content[key]',
         mode='getAceModeFromExtension(key)',
         comment='getCommentFromExtension(key)',
         placeholder='placeholder_default_content')

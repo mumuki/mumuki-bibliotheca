@@ -112,6 +112,8 @@ angular
       initializeEditor() {
         this.layout = this.getEditor().initialLayout(this);
         this.setLanguage(this.getEditor().initialLanguage(this));
+        this.getEditor().transformFromServer(this);
+        this.getEditor().setDefaultContent(this);
       }
 
       number() {
@@ -128,9 +130,9 @@ angular
         const comment = this.getComment();
 
         return new RegExp(
-          _.escapeForRegExp(comment.start) +
+          _.escape(comment.start) +
           "\.\.\.\\w+\.\.\." +
-          _.escapeForRegExp(comment.end)
+          _.escape(comment.end)
         ).test(content);
       }
 
@@ -248,6 +250,7 @@ angular
         if (!exercise.needsDefaultContent()) delete exercise.default_content;
         if (!exercise.needsAssistanceRules()) delete exercise.assistance_rules;
         if (!exercise.needsRandomizations()) delete exercise.randomizations;
+        exercise.getEditor().transformToServer(exercise);
         return exercise;
       }
 
@@ -257,6 +260,25 @@ angular
 
       isKidsLayout(){
         return this.getLayout() === Layouts.input_kids;
+      }
+
+      toMultifileString(object, field) {
+        const {start, end} = this.getComment();
+        object[field] =  _.chain(object)
+                          .get(field, {})
+                          .transform((res, value, key) => res.push(`${start}<${key}#${end}${value}${start}#${key}>${end}`), [])
+                          .join('\n')
+                          .value();
+      }
+
+      fromMultifileString(object, field) {
+        const {start, end} = _.mapValues(this.getComment(), _.escapeRegExp);
+        const regexpString = `${start}<(.+?)#${end}((\\\s|\\\S)*?)${start}#(.+?)>${end}`
+        const captures = _.get(object, field, '').match(new RegExp(regexpString, 'gm'));
+        object[field] = _.transform(captures, (result, capture) => {
+          const [_, key, value, __, confirmKey] = capture.match(new RegExp(regexpString));
+          if (key === confirmKey) result[key] = value;
+        }, {});
       }
 
       static from(exercise = {}) {
