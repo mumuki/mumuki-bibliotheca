@@ -285,3 +285,9 @@ ul.results-list {
     color: $mu-color-primary;
   }
 }
+
+.nav.nav-tabs {
+  .active {
+    a { background-color: lighten($mu-color-disabled, 30%) };
+  }
+}
