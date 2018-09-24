@@ -39,7 +39,7 @@ angular
 
         $scope.changeFileName = (key) => {
           var newName = prompt(translate('multiple_files_new_name'), key);
-          if (!_.isEmpty(newName)) {
+          if (!_.isEmpty(newName) && newName !== key) {
             $scope.addFile(newName, $scope.exercise.default_content[key]);
             delete $scope.exercise.default_content[key];
           }
