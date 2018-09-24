@@ -18,6 +18,7 @@ angular
         const selectFirstTab = () => activeTab = _.chain($scope.exercise.default_content).keys().first().value();
         const extension = (key) => _.chain(key).split('.').last().value();
         const getKey = () => `file_${_.keys($scope.exercise.default_content).length + 1}.${$scope.exercise.fullLanguage().extension}`;
+        const removeKey = (key) => delete $scope.exercise.default_content[key];
 
         $scope.select = (key) => {
           activeTab = key
@@ -33,7 +34,7 @@ angular
         }
 
         $scope.removeFile = (key) => {
-          delete $scope.exercise.default_content[key];
+          removeKey(key);
           selectFirstTab();
         }
 
@@ -41,7 +42,7 @@ angular
           var newName = prompt(translate('multiple_files_new_name'), key);
           if (!_.isEmpty(newName) && newName !== key) {
             $scope.addFile(newName, $scope.exercise.default_content[key]);
-            delete $scope.exercise.default_content[key];
+            removeKey(key);
           }
         }
 
