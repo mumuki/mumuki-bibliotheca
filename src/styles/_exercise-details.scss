@@ -272,3 +272,22 @@ ul.results-list {
 }
 
 
+
+.add-file {
+  justify-self: flex-end;
+  a {
+    color: $mu-color-primary;
+  }
+}
+
+.file {
+  .fa {
+    color: $mu-color-primary;
+  }
+}
+
+.nav.nav-tabs {
+  .active {
+    a { background-color: lighten($mu-color-disabled, 30%) };
+  }
+}

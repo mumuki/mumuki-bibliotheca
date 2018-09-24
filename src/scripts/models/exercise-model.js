@@ -11,11 +11,17 @@ angular
 
     const $translate = $filter('translate');
 
+    _.mixin({
+      match: (string, regexp) => string.match(regexp),
+      flipTransform: (object, value, func) => _.transform(object, func, value),
+    });
+
     class Exercise {
 
       constructor(exercise) {
         _.defaultsDeep(this, exercise);
         this.useTestOrTemplate();
+        this.transformFromServer();
       }
 
       useTestOrTemplate() {
@@ -80,6 +86,10 @@ angular
           Editor.from('none');
       }
 
+      isMultifile() {
+        return !!this.getEditor().isMultifile;
+      }
+
       getType() {
         return ExerciseTypes.fromName(this.type);
       }
@@ -108,6 +118,12 @@ angular
       initializeEditor() {
         this.layout = this.getEditor().initialLayout(this);
         this.setLanguage(this.getEditor().initialLanguage(this));
+        this.transformFromServer();
+        this.getEditor().setDefaultContent(this);
+      }
+
+      transformFromServer() {
+        this.getEditor().transformFromServer(this);
       }
 
       number() {
@@ -121,13 +137,12 @@ angular
       }
 
       hasInterpolations(content) {
-        const comment = this.getComment();
+        const {start, end} = this.escapedComment();
+        return new RegExp(`${start}\.\.\.\\w+\.\.\.${end}`).test(content);
+      }
 
-        return new RegExp(
-          _.escapeForRegExp(comment.start) +
-          "\.\.\.\\w+\.\.\." +
-          _.escapeForRegExp(comment.end)
-        ).test(content);
+      escapedComment() {
+        return _.mapValues(this.getComment(), _.escapeRegExp);
       }
 
       needsGoal() {
@@ -244,6 +259,7 @@ angular
         if (!exercise.needsDefaultContent()) delete exercise.default_content;
         if (!exercise.needsAssistanceRules()) delete exercise.assistance_rules;
         if (!exercise.needsRandomizations()) delete exercise.randomizations;
+        exercise.getEditor().transformToServer(exercise);
         return exercise;
       }
 
@@ -253,6 +269,37 @@ angular
 
       isKidsLayout(){
         return this.getLayout() === Layouts.input_kids;
+      }
+
+      toMultifileString(object, field) {
+        if (!_.isString(object[field])) {
+          object[field] =  _.chain(object)
+                            .get(field, {})
+                            .flipTransform([], (res, value, key) => this.toFile(res, value, key, this.getComment()))
+                            .join('\n')
+                            .value();
+        }
+      }
+
+      fromMultifileString(object, field) {
+        const {start, end} = this.escapedComment();
+        const regexpString = `${start}<(.+?)#${end}((\\\s|\\\S)*?)${start}#(.+?)>${end}`
+        if (!_.isPlainObject(object[field])) {
+          object[field] =  _.chain(object)
+                            .get(field, '')
+                            .match(new RegExp(regexpString, 'gm'))
+                            .flipTransform({}, (res, capture) => this.fromFile(res, capture, new RegExp(regexpString)))
+                            .value();
+        }
+      }
+
+      toFile(result, value, key, {start, end}) {
+        result.push(`${start}<${key}#${end}${value}${start}#${key}>${end}`);
+      }
+
+      fromFile(result, capture, regexp) {
+        const [_, key, value, __, confirmKey] = capture.match(regexp);
+        if (key === confirmKey) result[key] = value;
       }
 
       static from(exercise = {}) {

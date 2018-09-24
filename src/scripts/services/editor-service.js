@@ -14,6 +14,14 @@ angular
       return exercise.manual_evaluation || exercise.hasTest() || exercise.hasExpectations();
     }
 
+    const defaultContentString = (exercise) => {
+      exercise.default_content = _.isString(exercise.default_content) ? exercise.default_content : '';
+    }
+
+    const defaultContentHash = (exercise) => {
+      exercise.default_content = _.isPlainObject(exercise.default_content) ? exercise.default_content : {};
+    }
+
     const editorType = {
       code: {
         name: 'code',
@@ -28,6 +36,33 @@ angular
         initialLayout: (exercise) => exercise.layout,
         canChangeLanguage: (exercise) => true,
         initialLanguage: (exercise) => exercise.language,
+        setDefaultContent: (exercise) => defaultContentString(exercise),
+        transformToServer: (exercise) => {},
+        transformFromServer: (exercise) => {},
+        validate: (exercise) => {
+          Validator.notIncompleteExpectations(exercise);
+          if (!hasEvaluation(exercise)) {
+            throwError('error_editor_code_validation', { fullName: exercise.fullName() });
+          }
+        }
+      },
+      multiple_files: {
+        name: 'multiple_files',
+        isMultifile: true,
+        icon: () => 'fa fa-files-o',
+        needsExtra: (exercise) => true,
+        needsTests: (exercise) => true,
+        needsChoices: (exercise) => false,
+        needsSolution: (exercise) => true,
+        needsExpectations: (exercise) => true,
+        needsDefaultContent: (exercise) => true,
+        canChangeLayout: (exercise) => true,
+        initialLayout: (exercise) => exercise.layout,
+        canChangeLanguage: (exercise) => true,
+        initialLanguage: (exercise) => exercise.language,
+        setDefaultContent: (exercise) => defaultContentHash(exercise),
+        transformToServer: (exercise) => { exercise.toMultifileString(exercise, 'default_content') },
+        transformFromServer: (exercise) => { exercise.fromMultifileString(exercise, 'default_content') },
         validate: (exercise) => {
           Validator.notIncompleteExpectations(exercise);
           if (!hasEvaluation(exercise)) {
@@ -48,6 +83,9 @@ angular
         initialLayout: (exercise) => exercise.layout,
         canChangeLanguage: (exercise) => false,
         initialLanguage: (exercise) => 'text',
+        setDefaultContent: (exercise) => {},
+        transformToServer: (exercise) => {},
+        transformFromServer: (exercise) => {},
         validate: (exercise) => {
           Validator.notEmptyChoices(exercise);
           Validator.notIncompleteChoices(exercise);
@@ -69,6 +107,9 @@ angular
         initialLayout: (exercise) => exercise.layout,
         canChangeLanguage: (exercise) => true,
         initialLanguage: (exercise) => exercise.language,
+        setDefaultContent: (exercise) => editorType.single_choice.needsDefaultContent(exercise) && defaultContentString(exercise),
+        transformToServer: (exercise) => {},
+        transformFromServer: (exercise) => {},
         validate: (exercise) => {
           Validator.notEmptyChoices(exercise);
           Validator.notIncompleteChoices(exercise);
@@ -99,6 +140,9 @@ angular
         initialLayout: (exercise) => Layouts.input_bottom.type(),
         canChangeLanguage: (exercise) => true,
         initialLanguage: (exercise) => exercise.language,
+        setDefaultContent: (exercise) => {},
+        transformToServer: (exercise) => {},
+        transformFromServer: (exercise) => {},
         validate: (exercise) => {
           if (!exercise.hasTest() || !exercise.hasCorollary()) {
             throwError('error_editor_hidden_validation', { fullName: exercise.fullName() });
@@ -118,6 +162,9 @@ angular
         initialLayout: (exercise) => exercise.layout,
         canChangeLanguage: (exercise) => true,
         initialLanguage: (exercise) => exercise.language,
+        setDefaultContent: (exercise) => {},
+        transformToServer: (exercise) => {},
+        transformFromServer: (exercise) => {},
         validate: (exercise) => {
           Validator.notIncompleteExpectations(exercise);
           if (!hasEvaluation(exercise)) {
@@ -138,6 +185,9 @@ angular
         initialLayout: (exercise) => Layouts.input_bottom.type(),
         canChangeLanguage: (exercise) => true,
         initialLanguage: (exercise) => exercise.language,
+        setDefaultContent: (exercise) => {},
+        transformToServer: (exercise) => {},
+        transformFromServer: (exercise) => {},
         validate: (exercise) => {
           Validator.notIncompleteExpectations(exercise);
           if (!hasEvaluation(exercise)) {
@@ -158,6 +208,9 @@ angular
         initialLayout: (exercise) => exercise.layout,
         canChangeLanguage: (exercise) => true,
         initialLanguage: (exercise) => exercise.language,
+        setDefaultContent: (exercise) => defaultContentString(exercise),
+        transformToServer: (exercise) => {},
+        transformFromServer: (exercise) => {},
         validate: (exercise) => {
           exercise.validateWithCustomEditor();
           Validator.notIncompleteExpectations(exercise);
@@ -173,7 +226,10 @@ angular
         canChangeLayout: (exercise) => exercise.getType().isPlayground(),
         initialLayout: (exercise) => Layouts.input_bottom.type(),
         canChangeLanguage: (exercise) => true,
-        initialLanguage: (exercise) => exercise.language
+        initialLanguage: (exercise) => exercise.language,
+        setDefaultContent: (exercise) => {},
+        transformToServer: (exercise) => {},
+        transformFromServer: (exercise) => {},
       },
     }
 

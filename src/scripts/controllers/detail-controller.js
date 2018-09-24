@@ -24,6 +24,7 @@ angular
         .tap((item) => Slug.create(item, type))
         .call('getItem')
         .tap((item) => Api.saveItem(type)(item))
+        .then((item) => item.constructor.from(item))
         .tap((item) => CurrentItem.set(item))
         .tap((item) => callback(item))
         .tap((item) => toastr.success(translate(`${type}_saved_successfully`)))

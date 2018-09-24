@@ -33,6 +33,20 @@ angular
       return _default.name;
     }
 
+    this.findFromExtension = (extension) => {
+      return _.find(this.get(), { extension });
+    }
+
+    this.getAceModeFromExtension = (extension) => {
+      const language = this.findFromExtension(extension);
+      return _.get(language, 'ace_mode') || _.get(language, 'name', 'plain');
+    }
+
+    this.getCommentFromExtension = (extension) => {
+      const language = this.findFromExtension(extension);
+      return _.get(language, 'comment_type', 'cpp');
+    }
+
     this.fromName = (name) => {
       return Language.from(_.find(this.get(), { name }));
     }
