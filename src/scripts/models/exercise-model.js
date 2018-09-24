@@ -137,13 +137,12 @@ angular
       }
 
       hasInterpolations(content) {
-        const comment = this.getComment();
+        const {start, end} = this.escapedComment();
+        return new RegExp(`${start}\.\.\.\\w+\.\.\.${end}`).test(content);
+      }
 
-        return new RegExp(
-          _.escape(comment.start) +
-          "\.\.\.\\w+\.\.\." +
-          _.escape(comment.end)
-        ).test(content);
+      escapedComment() {
+        return _.mapValues(this.getComment(), _.escapeRegExp);
       }
 
       needsGoal() {
@@ -283,7 +282,7 @@ angular
       }
 
       fromMultifileString(object, field) {
-        const {start, end} = _.mapValues(this.getComment(), _.escapeRegExp);
+        const {start, end} = this.escapedComment();
         const regexpString = `${start}<(.+?)#${end}((\\\s|\\\S)*?)${start}#(.+?)>${end}`
         if (!_.isPlainObject(object[field])) {
           object[field] =  _.chain(object)
