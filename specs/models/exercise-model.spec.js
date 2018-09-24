@@ -41,7 +41,7 @@ editorTest('Exercise Model', () => {
 
   context('#validation', () => {
     context('#default', () => {
-      beforeSpec((_Editor_) => sinon.stub(_Editor_, 'default', () => ({ validate: () => {} })));
+      beforeSpec((_Editor_) => sinon.stub(_Editor_, 'default', () => ({ transformFromServer: () => {}, validate: () => {} })));
       beforeSpec(() => exercise = Exercise.from({
         name: 'example',
         type: 'problem',
