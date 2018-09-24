@@ -288,6 +288,8 @@ ul.results-list {
 
 .nav.nav-tabs {
   .active {
-    a { background-color: lighten($mu-color-disabled, 30%) };
+    a {
+      background-color: lighten($mu-color-disabled, 30%)
+    };
   }
 }

@@ -22,23 +22,38 @@ angular
       exercise.default_content = _.isPlainObject(exercise.default_content) ? exercise.default_content : {};
     }
 
-    const editorType = {
-      code: {
-        name: 'code',
-        icon: () => 'fa fa-code',
+    const editorDefault = {
+        name: 'default',
+        isDisabled: false,
+        isInvisible: false,
+        isMultifile: false,
+        icon: () => 'fa fa-smile-o',
         needsExtra: (exercise) => true,
         needsTests: (exercise) => true,
-        needsChoices: (exercise) => false,
+        needsChoices: (exercise) => true,
         needsSolution: (exercise) => true,
         needsExpectations: (exercise) => true,
         needsDefaultContent: (exercise) => true,
         canChangeLayout: (exercise) => true,
-        initialLayout: (exercise) => exercise.layout,
         canChangeLanguage: (exercise) => true,
+        initialLayout: (exercise) => exercise.layout,
         initialLanguage: (exercise) => exercise.language,
         setDefaultContent: (exercise) => defaultContentString(exercise),
         transformToServer: (exercise) => {},
         transformFromServer: (exercise) => {},
+        validate: (exercise) => {
+          Validator.notIncompleteExpectations(exercise);
+          if (!hasEvaluation(exercise)) {
+            throwError('error_editor_code_validation', { fullName: exercise.fullName() });
+          }
+        }
+    }
+
+    const editorType = {
+      code: {
+        name: 'code',
+        icon: () => 'fa fa-code',
+        needsChoices: (exercise) => false,
         validate: (exercise) => {
           Validator.notIncompleteExpectations(exercise);
           if (!hasEvaluation(exercise)) {
@@ -50,16 +65,7 @@ angular
         name: 'multiple_files',
         isMultifile: true,
         icon: () => 'fa fa-files-o',
-        needsExtra: (exercise) => true,
-        needsTests: (exercise) => true,
         needsChoices: (exercise) => false,
-        needsSolution: (exercise) => true,
-        needsExpectations: (exercise) => true,
-        needsDefaultContent: (exercise) => true,
-        canChangeLayout: (exercise) => true,
-        initialLayout: (exercise) => exercise.layout,
-        canChangeLanguage: (exercise) => true,
-        initialLanguage: (exercise) => exercise.language,
         setDefaultContent: (exercise) => defaultContentHash(exercise),
         transformToServer: (exercise) => { exercise.toMultifileString(exercise, 'default_content') },
         transformFromServer: (exercise) => { exercise.fromMultifileString(exercise, 'default_content') },
@@ -75,17 +81,11 @@ angular
         icon: () => 'fa fa-check-square-o',
         needsExtra: (exercise) => false,
         needsTests: (exercise) => false,
-        needsChoices: (exercise) => true,
         needsSolution: (exercise) => false,
         needsExpectations: (exercise) => false,
         needsDefaultContent: (exercise) => false,
-        canChangeLayout: (exercise) => true,
-        initialLayout: (exercise) => exercise.layout,
         canChangeLanguage: (exercise) => false,
         initialLanguage: (exercise) => 'text',
-        setDefaultContent: (exercise) => {},
-        transformToServer: (exercise) => {},
-        transformFromServer: (exercise) => {},
         validate: (exercise) => {
           Validator.notEmptyChoices(exercise);
           Validator.notIncompleteChoices(exercise);
@@ -99,17 +99,10 @@ angular
         icon: () => 'fa fa-check-circle-o',
         needsExtra: (exercise) => !exercise.isTextLanguage(),
         needsTests: (exercise) => !exercise.isTextLanguage(),
-        needsChoices: (exercise) => true,
         needsSolution: (exercise) => false,
         needsExpectations: (exercise) => !exercise.isTextLanguage(),
         needsDefaultContent: (exercise) => !exercise.isTextLanguage(),
-        canChangeLayout: (exercise) => true,
-        initialLayout: (exercise) => exercise.layout,
-        canChangeLanguage: (exercise) => true,
-        initialLanguage: (exercise) => exercise.language,
         setDefaultContent: (exercise) => editorType.single_choice.needsDefaultContent(exercise) && defaultContentString(exercise),
-        transformToServer: (exercise) => {},
-        transformFromServer: (exercise) => {},
         validate: (exercise) => {
           Validator.notEmptyChoices(exercise);
           Validator.notIncompleteChoices(exercise);
@@ -130,19 +123,12 @@ angular
       hidden: {
         name: 'hidden',
         icon: () => 'fa fa-eye-slash',
-        needsExtra: (exercise) => true,
-        needsTests: (exercise) => true,
         needsChoices: (exercise) => false,
         needsSolution: (exercise) => false,
         needsExpectations: (exercise) => false,
         needsDefaultContent: (exercise) => false,
         canChangeLayout: (exercise) => false,
         initialLayout: (exercise) => Layouts.input_bottom.type(),
-        canChangeLanguage: (exercise) => true,
-        initialLanguage: (exercise) => exercise.language,
-        setDefaultContent: (exercise) => {},
-        transformToServer: (exercise) => {},
-        transformFromServer: (exercise) => {},
         validate: (exercise) => {
           if (!exercise.hasTest() || !exercise.hasCorollary()) {
             throwError('error_editor_hidden_validation', { fullName: exercise.fullName() });
@@ -152,19 +138,8 @@ angular
       text: {
         name: 'text',
         icon: () => 'fa fa-file-text-o',
-        needsExtra: (exercise) => true,
-        needsTests: (exercise) => true,
         needsChoices: (exercise) => false,
-        needsSolution: (exercise) => true,
-        needsExpectations: (exercise) => true,
         needsDefaultContent: (exercise) => false,
-        canChangeLayout: (exercise) => true,
-        initialLayout: (exercise) => exercise.layout,
-        canChangeLanguage: (exercise) => true,
-        initialLanguage: (exercise) => exercise.language,
-        setDefaultContent: (exercise) => {},
-        transformToServer: (exercise) => {},
-        transformFromServer: (exercise) => {},
         validate: (exercise) => {
           Validator.notIncompleteExpectations(exercise);
           if (!hasEvaluation(exercise)) {
@@ -175,19 +150,10 @@ angular
       upload: {
         name: 'upload',
         icon: () => 'fa fa-upload',
-        needsExtra: (exercise) => true,
-        needsTests: (exercise) => true,
         needsChoices: (exercise) => false,
-        needsSolution: (exercise) => true,
-        needsExpectations: (exercise) => true,
         needsDefaultContent: (exercise) => false,
         canChangeLayout: (exercise) => false,
         initialLayout: (exercise) => Layouts.input_bottom.type(),
-        canChangeLanguage: (exercise) => true,
-        initialLanguage: (exercise) => exercise.language,
-        setDefaultContent: (exercise) => {},
-        transformToServer: (exercise) => {},
-        transformFromServer: (exercise) => {},
         validate: (exercise) => {
           Validator.notIncompleteExpectations(exercise);
           if (!hasEvaluation(exercise)) {
@@ -198,19 +164,7 @@ angular
       custom: {
         name: 'custom',
         icon: () => 'fa fa-terminal',
-        needsExtra: (exercise) => true,
-        needsTests: (exercise) => true,
         needsChoices: (exercise) => false,
-        needsSolution: (exercise) => true,
-        needsExpectations: (exercise) => true,
-        needsDefaultContent: (exercise) => true,
-        canChangeLayout: (exercise) => true,
-        initialLayout: (exercise) => exercise.layout,
-        canChangeLanguage: (exercise) => true,
-        initialLanguage: (exercise) => exercise.language,
-        setDefaultContent: (exercise) => defaultContentString(exercise),
-        transformToServer: (exercise) => {},
-        transformFromServer: (exercise) => {},
         validate: (exercise) => {
           exercise.validateWithCustomEditor();
           Validator.notIncompleteExpectations(exercise);
@@ -225,13 +179,12 @@ angular
         icon: () => 'fa fa-ban',
         canChangeLayout: (exercise) => exercise.getType().isPlayground(),
         initialLayout: (exercise) => Layouts.input_bottom.type(),
-        canChangeLanguage: (exercise) => true,
-        initialLanguage: (exercise) => exercise.language,
-        setDefaultContent: (exercise) => {},
-        transformToServer: (exercise) => {},
-        transformFromServer: (exercise) => {},
       },
     }
+
+    _.forOwn(editorType, (value, key) => {
+      editorType[key] = _.defaultsDeep(value, editorDefault);
+    })
 
     this.default = () => {
       return editorType.code;
