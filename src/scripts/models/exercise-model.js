@@ -21,6 +21,7 @@ angular
       constructor(exercise) {
         _.defaultsDeep(this, exercise);
         this.useTestOrTemplate();
+        this.transformFromServer();
       }
 
       useTestOrTemplate() {
@@ -117,8 +118,12 @@ angular
       initializeEditor() {
         this.layout = this.getEditor().initialLayout(this);
         this.setLanguage(this.getEditor().initialLanguage(this));
-        this.getEditor().transformFromServer(this);
+        this.transformFromServer();
         this.getEditor().setDefaultContent(this);
+      }
+
+      transformFromServer() {
+        this.getEditor().transformFromServer(this);
       }
 
       number() {
@@ -268,21 +273,25 @@ angular
       }
 
       toMultifileString(object, field) {
-        object[field] =  _.chain(object)
-                          .get(field, {})
-                          .flipTransform([], (res, value, key) => this.toFile(res, value, key, this.getComment()))
-                          .join('\n')
-                          .value();
+        if (!_.isString(object[field])) {
+          object[field] =  _.chain(object)
+                            .get(field, {})
+                            .flipTransform([], (res, value, key) => this.toFile(res, value, key, this.getComment()))
+                            .join('\n')
+                            .value();
+        }
       }
 
       fromMultifileString(object, field) {
         const {start, end} = _.mapValues(this.getComment(), _.escapeRegExp);
         const regexpString = `${start}<(.+?)#${end}((\\\s|\\\S)*?)${start}#(.+?)>${end}`
-        object[field] =  _.chain(object)
-                          .get(field, '')
-                          .match(new RegExp(regexpString, 'gm'))
-                          .flipTransform({}, (res, capture) => this.fromFile(res, capture, new RegExp(regexpString)))
-                          .value();
+        if (!_.isPlainObject(object[field])) {
+          object[field] =  _.chain(object)
+                            .get(field, '')
+                            .match(new RegExp(regexpString, 'gm'))
+                            .flipTransform({}, (res, capture) => this.fromFile(res, capture, new RegExp(regexpString)))
+                            .value();
+        }
       }
 
       toFile(result, value, key, {start, end}) {
