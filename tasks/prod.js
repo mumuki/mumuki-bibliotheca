@@ -23,8 +23,8 @@ module.exports = (done) => {
   runs('prod:clean', 'prod:build', 'prod:views', 'prod:release', done);
 };
 
-gulp.task('prod:build', (done) => {
-  runs(['prod:scripts', 'prod:styles', 'prod:images', 'prod:assets', 'prod:flags'], done);
+gulp.task('prod:build', ['prod:clean'], (done) => {
+  runs('prod:scripts', ['prod:styles', 'prod:images', 'prod:assets', 'prod:flags'], done);
 });
 
 gulp.task('prod:clean', (done) => {
@@ -33,10 +33,24 @@ gulp.task('prod:clean', (done) => {
 
 gulp.task('prod:scripts', ['prod:config'], function () {
   return gulp.src(`${srcFolder}/scripts/**/*.js`)
-    .pipe($.babel({ presets: ['latest'] }))
-    .pipe($.ngAnnotate())
     .pipe(webpack({
-      mode: process.env.NODE_ENV
+      mode: process.env.NODE_ENV,
+      output: { filename: "main.js" },
+      module: {
+        rules: [
+          {
+            test: /\.js$/,
+            exclude: /(node_modules|bower_components)/,
+            use: {
+              loader: 'babel-loader',
+              options: {
+                presets: ['@babel/preset-env'],
+                plugins: ["angularjs-annotate"]
+              }
+            }
+          }
+        ]
+      }
     }))
     .pipe($.concat('main.js'))
     .pipe(gulp.dest(`${outFolder}/scripts`));
@@ -134,7 +148,7 @@ gulp.task('prod:release:clean', function () {
   return del(`${releaseFolder}`, { force: true });
 });
 
-gulp.task('prod:serve', () => {
+gulp.task('prod:serve', ["prod:release:build"], () => {
   gulp
     .src(`${releaseFolder}`)
     .pipe($.webserver({
@@ -143,4 +157,8 @@ gulp.task('prod:serve', () => {
       host: 'bibliotheca.localmumuki.io',
       livereload: true
     }));
+});
+
+gulp.task('prod:release:build', (done) => {
+  runs('prod:build', 'prod:views', 'prod:release', done);
 });
