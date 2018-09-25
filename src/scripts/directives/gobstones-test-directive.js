@@ -1,3 +1,5 @@
+import jsyaml from "js-yaml"
+
 angular
   .module('editor')
   .directive('gobstonesTest', function ($translate,
