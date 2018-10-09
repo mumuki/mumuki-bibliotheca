@@ -57,13 +57,13 @@ gulp.task('dev:scripts', ['dev:config'], function () {
           {
             test: /\.js$/,
             exclude: /(node_modules|bower_components)/,
-            use: {
+            use: [{
               loader: 'babel-loader',
               options: {
                 presets: ['@babel/preset-env'],
                 plugins: ["angularjs-annotate"]
               }
-            }
+            }]
           }
         ]
       },
