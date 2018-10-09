@@ -52,7 +52,6 @@ gulp.task('prod:scripts', ['prod:config'], function () {
         ]
       }
     }))
-    .pipe($.concat('main.js'))
     .pipe(gulp.dest(`${outFolder}/scripts`));
 });
 
