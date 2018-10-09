@@ -20,6 +20,7 @@ import "@bower-components/angular-lazy-img/release/angular-lazy-img.min"
 import "angular-cookies"
 import "js-yaml"
 import "ng-tags-input"
+import "./config/ace-mode-imports"
 
 angular
   .module('editor', [

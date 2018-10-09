@@ -23,20 +23,21 @@ angular
         const translate = $filter('translate');
 
         const modes = {
+          bash: 'sh',
           c: 'c_cpp',
           cpp: 'c_cpp',
           text: 'plain',
           qsim: 'assembly_x86',
-        }
+        };
 
         const update = () => {
-          const placeholderKey = $scope.placeholder || `placeholder_${$scope.header}`
+          const placeholderKey = $scope.placeholder || `placeholder_${$scope.header}`;
           AceEditor.update($scope.editor, translate(placeholderKey));
-        }
+        };
 
         const getMode = () => {
           return modes[$scope.mode] || $scope.mode;
-        }
+        };
 
         $scope.content = $scope.content || '';
 
@@ -62,4 +63,4 @@ angular
 
     }
 
-  })
+  });
