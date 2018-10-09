@@ -3,6 +3,7 @@ $fa-font-path: '~@bower-components/mumuki-styles/dist/fonts/';
 $da-font-path: '~@bower-components/mumuki-styles/dist/fonts/';
 
 @import '~@bower-components/mumuki-styles/dist/scss/mumuki-styles';
+@import '~angular-toastr/dist/angular-toastr.min.css';
 @import 'mixines';
 @import 'home';
 @import 'cloak';
