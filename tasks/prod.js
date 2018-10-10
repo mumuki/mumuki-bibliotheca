@@ -24,7 +24,7 @@ module.exports = (done) => {
 };
 
 gulp.task('prod:build', ['prod:clean'], (done) => {
-  runs('prod:scripts', ['prod:styles', 'prod:images', 'prod:assets', 'prod:flags'], done);
+  runs('prod:scripts', ['prod:styles', 'prod:images', 'prod:assets'], done);
 });
 
 gulp.task('prod:clean', (done) => {
@@ -56,6 +56,7 @@ gulp.task('prod:scripts', ['prod:config'], function () {
 });
 
 gulp.task('prod:config', function () {
+  process.env.NODE_ENV = 'production';
   return gulp.src(`${configFolder}/${process.env.NODE_ENV}.js`)
     .pipe($.replaceEnvVar('MUMUKI_BIBLIOTHECA_API_URL'))
     .pipe($.replaceEnvVar('MUMUKI_LABORATORY_URL'))
@@ -82,7 +83,7 @@ gulp.task('prod:styles', function () {
             loader: "file-loader",
             options: {
               name: '[name].[ext]',
-              outputPath: "../fonts/"
+              outputPath: "fonts/"
             }
           }]
         }]
@@ -131,11 +132,6 @@ gulp.task('prod:views:jade', () => {
 gulp.task('prod:images', function () {
   return gulp.src(`${srcFolder}/images/**/*`)
     .pipe(gulp.dest(`${outFolder}/images`));
-});
-
-gulp.task('prod:flags', function () {
-  return gulp.src(`node_modules/flag-icon-css/flags/**/*`)
-    .pipe(gulp.dest(`${outFolder}/flags`));
 });
 
 gulp.task('prod:release', ['prod:release:clean'], function () {
