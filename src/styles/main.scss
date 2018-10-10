@@ -1,9 +1,20 @@
 $icon-font-path: '~@bower-components/mumuki-styles/dist/fonts/bootstrap/';
 $fa-font-path: '~@bower-components/mumuki-styles/dist/fonts/';
 $da-font-path: '~@bower-components/mumuki-styles/dist/fonts/';
+$flag-icon-css-path: '~flag-icon-css/';
+$flag-icon-rect-path: '~flag-icon-css/flags/4x3';
+$flag-icon-square-path: '~flag-icon-css/flags/1x1';
 
+//Dependency imports
 @import '~@bower-components/mumuki-styles/dist/scss/mumuki-styles';
 @import '~angular-toastr/dist/angular-toastr.min.css';
+@import '~ui-select/dist/select.min.css';
+@import '~angular-hotkeys/build/hotkeys.min.css';
+@import '~angular-ui-bootstrap/dist/ui-bootstrap-csp.css';
+@import '~awesome-bootstrap-checkbox/awesome-bootstrap-checkbox';
+@import '~ng-tags-input/build/ng-tags-input.bootstrap.min';
+@import '~flag-icon-css/sass/flag-icon.scss';
+
 @import 'mixines';
 @import 'home';
 @import 'cloak';
@@ -22,7 +33,6 @@ $da-font-path: '~@bower-components/mumuki-styles/dist/fonts/';
 @import 'randomizations';
 @import 'emojis';
 @import 'gobstones-widgets';
-@import '~ng-tags-input/build/ng-tags-input.bootstrap.min';
 
 html {
   height: 100%;

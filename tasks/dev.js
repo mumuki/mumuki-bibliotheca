@@ -19,7 +19,7 @@ module.exports = (done) => {
 
 
 gulp.task('dev:build', (done) => {
-  runs('dev:clean', 'dev:scripts', 'dev:styles', 'dev:views', 'dev:images', 'dev:assets', 'dev:flags', done);
+  runs('dev:clean', 'dev:scripts', 'dev:styles', 'dev:views', 'dev:images', 'dev:assets', done);
 });
 
 gulp.task('dev:watch', () => {
@@ -96,7 +96,7 @@ gulp.task('dev:styles', function () {
             loader: "file-loader",
             options: {
               name: '[name].[ext]',
-              outputPath: "../fonts/"
+              outputPath: "fonts/"
             }
           }]
         }]
@@ -140,9 +140,4 @@ gulp.task('dev:views:jade', () => {
 gulp.task('dev:images', function () {
   return gulp.src(`${srcFolder}/images/**/*`)
     .pipe(gulp.dest(`${outFolder}/images`));
-});
-
-gulp.task('dev:flags', function () {
-  return gulp.src(`node_modules/flag-icon-css/flags/**/*`)
-    .pipe(gulp.dest(`${outFolder}/flags`));
 });
