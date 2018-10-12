@@ -15,6 +15,11 @@ angular
 
         $scope.tabs = [
           {
+            name: 'free_form',
+            templateUrl: 'views/directives/evaluation/free-form.html',
+            isVisible: () => $scope.exercise.needsFreeForm(),
+          },
+          {
             name: 'choices',
             templateUrl: 'views/directives/evaluation/choices.html',
             isVisible: () => $scope.exercise.needsChoices(),

@@ -151,6 +151,10 @@ angular
         return this.getType().needsGoal(this);
       }
 
+      needsFreeForm() {
+        return this.getType().needsFreeForm(this);
+      }
+
       needsTests() {
         return this.getType().needsTests(this);
       }

@@ -31,6 +31,7 @@ angular
         needsExtra: (exercise) => true,
         needsTests: (exercise) => true,
         needsChoices: (exercise) => true,
+        needsFreeForm: (exercise) => false,
         needsSolution: (exercise) => true,
         needsExpectations: (exercise) => true,
         needsDefaultContent: (exercise) => true,
@@ -171,6 +172,22 @@ angular
           if (!hasEvaluation(exercise)) {
             throwError('error_editor_code_validation', { fullName: exercise.fullName() });
           }
+        }
+      },
+      free_form: {
+        name: 'free_form',
+        icon: () => 'fa fa-list-alt',
+        needsExtra: (exercise) => false,
+        needsChoices: (exercise) => false,
+        needsSolution: (exercise) => false,
+        needsFreeForm: (exercise) => true,
+        needsDefaultContent: (exercise) => false,
+        needsExpectations: (exercise) => false,
+        canChangeLanguage: (exercise) => false,
+        initialLanguage: (exercise) => 'text',
+        initialLayout: (exercise) => exercise.layout,
+        validate: (exercise) => {
+          Validator.notEmptyString(exercise, 'free_form_editor');
         }
       },
       none: {
