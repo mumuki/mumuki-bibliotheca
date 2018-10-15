@@ -187,7 +187,7 @@ angular
         initialLanguage: (exercise) => 'text',
         initialLayout: (exercise) => exercise.layout,
         validate: (exercise) => {
-          Validator.notEmptyString(exercise, 'free_form_editor');
+          Validator.notEmptyString(exercise, 'free_form_editor_source');
         }
       },
       none: {
