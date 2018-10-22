@@ -11,7 +11,7 @@ angular
       if (!_.isEmpty(object)) {
         return object.fullName();
       }
-    }
+    };
 
     this._list = [{
         name: () => translate('books'),
@@ -51,7 +51,7 @@ angular
 
     this.list = () => {
       return this._list.filter((crumb) => $state.includes(crumb.state))
-    }
+    };
 
     this.go = (state, reload) => {
       $state.go(state, $stateParams, { reload: !!reload });

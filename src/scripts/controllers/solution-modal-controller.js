@@ -18,7 +18,7 @@ angular
         case 'failed': case 'errored': return 'danger';
         default:                       return 'default';
       }
-    }
+    };
 
     $scope.visibleExpectations = () => _.reject(solution.expectation_results, {result: 'passed'});
 

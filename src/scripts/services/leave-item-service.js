@@ -19,11 +19,11 @@ angular
 
       const isLeavingState = (to, from) => {
         return _.includes(from.state.name, '.new') || !_.isEqual(params(to), params(from));
-      }
+      };
 
       const needsModal = (to, from) => {
         return !$scope.isNew && isLeavingState(to, from) && CurrentItem.hasChanges($scope.getItem());
-      }
+      };
 
       const destroyer = $rootScope.$on('$stateChangeStart', (event, toState, toParams, fromState, fromParams) => {
         const to = { state: toState, params: toParams };
@@ -31,7 +31,7 @@ angular
 
         if (needsModal(to, from)) {
           event.preventDefault();
-          Modal.showLeaveItemConfirmation('Mumuki', message, () => {
+          Modal.confirmYesNo('Mumuki', message, () => {
             destroyer();
             return $state.go(toState, toParams, { reload: true });
           });

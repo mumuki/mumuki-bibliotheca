@@ -5,13 +5,14 @@
   i.pointer.input-group-addon.fa.fa-upload(ng-if='isGuides', ng-click='import()')
 
 .list-group.mu-list-group
-  button.list-group-item.mu-list-group-item(
-      ng-repeat='item in list | orderBy:Model.sortBy() | filter:listSearch',
-      ng-click='open(item)')
-    i.mu-list-item-icon(class='{{ item.icon() }}')
-    div.divider-vertical
-    span.text-primary
-      span.mu-list-group-item-data
-        span {{ item.fullName() }}
-        small {{ item.slug }}
-        small(ng-if='isBooks') {{ item.contentSummary() }}
+  .mu-list-group-item-container(ng-repeat='item in list | orderBy:Model.sortBy() | filter:listSearch')
+    button.list-group-item.mu-list-group-item.main-item(ng-click='open(item)')
+      i.mu-list-item-icon(class='{{ item.icon() }}')
+      div.divider-vertical
+      span.text-primary
+        span.mu-list-group-item-data
+          span {{ item.fullName() }}
+          small {{ item.slug }}
+          small(ng-if='isBooks') {{ item.contentSummary() }}
+    button.list-group-item.mu-list-group-item(ng-click='delete(item)', title='{{"delete" | translate}}')
+      i.mu-list-item-icon.mu-modal-close-button.fa.fa-close
