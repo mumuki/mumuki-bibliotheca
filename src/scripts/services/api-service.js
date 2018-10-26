@@ -11,7 +11,7 @@ angular
     const HTTP = Promise.resolve($http);
 
     const defaultConfig = (requestOptions = {}) => _.defaultsDeep(requestOptions, {
-      headers: { },
+      headers: {},
       withCredentials: true
     });
 
@@ -23,7 +23,7 @@ angular
 
     this.getItems = (type, Model) => () => {
       return HTTP
-        .call('get',`${API}/${type}/writable`, defaultConfig())
+        .call('get', `${API}/${type}/writable`, defaultConfig())
         .then((res) => res.data[type])
         .map((item) => Model.from(item));
     };
@@ -34,7 +34,7 @@ angular
 
     this.getItem = (type, Model) => ({ org, repo }) => {
       return HTTP
-        .call('get',`${API}/${type}s/${org}/${repo}`, defaultConfig())
+        .call('get', `${API}/${type}s/${org}/${repo}`, defaultConfig())
         .then((res) => Model.from(res.data));
     };
     this.getBook = this.getItem('book', Book);
@@ -44,16 +44,27 @@ angular
 
     this.saveItem = (type) => (item) => {
       return HTTP
-        .call('post',`${API}/${type}s`, item, defaultConfig());
+        .call('post', `${API}/${type}s`, item, defaultConfig());
     };
     this.saveBook = this.saveItem('book');
     this.saveTopic = this.saveItem('topic');
     this.saveGuide = this.saveItem('guide');
 
+    this.deleteItem = (type) => ({ org, repo }) => {
+      return HTTP
+        .call('delete', `${API}/${type}s/${org}/${repo}`, defaultConfig())
+    };
+
+    this.deleteBook = this.deleteItem('book');
+    this.deleteTopic = this.deleteItem('topic');
+    this.deleteGuide = (id) => {
+      return HTTP
+        .call('delete', `${API}/guides/${id}`, defaultConfig())
+    };
 
     this.getAllItems = (type, Model) => () => {
       return HTTP
-        .call('get',`${API}/${type}`, defaultConfig())
+        .call('get', `${API}/${type}`, defaultConfig())
         .then((res) => res.data[type])
         .map((item) => Model.from(item));
     };
@@ -64,25 +75,25 @@ angular
 
     this.getLanguages = () => {
       return HTTP
-        .call('get',`${API}/languages`, defaultConfig())
+        .call('get', `${API}/languages`, defaultConfig())
         .then((res) => res.data.languages);
     };
 
     this.renderMarkdown = (markdown) => {
       return HTTP
-        .call('post',`${API}/markdown`, { markdown }, defaultConfig())
+        .call('post', `${API}/markdown`, { markdown }, defaultConfig())
         .then((res) => res.data.markdown);
     };
 
-    this.getPermissions = (markdown) => {
+    this.getPermissions = () => {
       return HTTP
-        .call('get',`${API}/permissions`, defaultConfig())
+        .call('get', `${API}/permissions`, defaultConfig())
         .then((res) => res.data.permissions);
     };
 
     this.testSolution = (guideId, exerciseId, language, solution) => {
       return HTTP
-        .call('post',`${API}/guides/${guideId}/exercises/${exerciseId}/test`, {language, solution}, defaultConfig())
+        .call('post', `${API}/guides/${guideId}/exercises/${exerciseId}/test`, { language, solution }, defaultConfig())
         .then((res) => res.data)
     };
 
@@ -95,13 +106,13 @@ angular
 
     this.importGuide = ({ organization, content }) => {
       return HTTP
-        .call('post',`${API}/guides/import/${organization}/${content}`, {}, defaultConfig())
+        .call('post', `${API}/guides/import/${organization}/${content}`, {}, defaultConfig())
         .then((res) => res.data)
     };
 
     this.uploadAsset = ({ org, repo }, { content, filename }) => {
       return HTTP
-        .call('post',`${API}/guides/${org}/${repo}/assets`, { content, filename }, defaultConfig())
+        .call('post', `${API}/guides/${org}/${repo}/assets`, { content, filename }, defaultConfig())
         .then((res) => res.data)
     };
 
@@ -111,7 +122,7 @@ angular
 
     this.fork = (kind, { org, repo }, organization) => {
       return HTTP
-        .call('post',`${API}/${kind}/${org}/${repo}/fork`, { organization }, defaultConfig())
+        .call('post', `${API}/${kind}/${org}/${repo}/fork`, { organization }, defaultConfig())
         .then((res) => res.data)
     }
 

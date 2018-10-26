@@ -30,7 +30,7 @@ angular
       return $scope.publish('guide', (item) => {
         $scope.item = item;
       });
-    }
+    };
 
     $scope.fork = (guide) => {
       Modal.forkFromGithub(translate('copy_guide'), translate('copy_guide_text'), (organization) => {

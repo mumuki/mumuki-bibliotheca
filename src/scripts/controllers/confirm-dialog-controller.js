@@ -13,11 +13,11 @@ angular
     $scope.yes = (...params) => {
       return onYesPromise(...params)
         .then(() => $uibModalInstance.close());
-    }
+    };
 
     $scope.no = () => {
       $uibModalInstance.close();
-    }
+    };
 
     $scope.trust = (html) => $sce.trustAsHtml(html);
   });

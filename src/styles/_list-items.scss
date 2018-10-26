@@ -1,5 +1,7 @@
 $filter-width: 45px;
 $filter-height: 40px;
+@import "colors";
+@import "mixines";
 
 .mu-list-item-icon {
   margin: 0 5px;
@@ -24,6 +26,7 @@ $filter-height: 40px;
   @include display-flex(column, flex-start, center);
 
   .mu-list-group-item {
+    width: initial;
 
     padding: 5px 15px;
 
@@ -31,6 +34,10 @@ $filter-height: 40px;
 
     .divider-vertical {
       padding: 25px 0;
+    }
+
+    &.main-item {
+      flex-grow: 1;
     }
 
     .mu-list-group-item-data {
@@ -41,7 +48,13 @@ $filter-height: 40px;
         color: $mu-color-disabled;
       }
     }
+  }
 
+  .mu-list-group-item-container {
+    width: 100%;
+    padding: 0;
+    @include display-flex(row, flex-start, center);
+    align-items: stretch;
   }
 }
 

@@ -289,7 +289,7 @@ angular
 
       fromMultifileString(object, field) {
         const {start, end} = this.escapedComment();
-        const regexpString = `${start}<(.+?)#${end}((\\\s|\\\S)*?)${start}#(.+?)>${end}`
+        const regexpString = `${start}<(.+?)#${end}((\\\s|\\\S)*?)${start}#(.+?)>${end}`;
         if (!_.isPlainObject(object[field])) {
           object[field] =  _.chain(object)
                             .get(field, '')
