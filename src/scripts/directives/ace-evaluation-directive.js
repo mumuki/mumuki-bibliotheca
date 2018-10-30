@@ -68,11 +68,13 @@ angular
         $scope.selectTab = (tab) => {
           $scope.tabs.forEach((t) => t.selected = false);
           tab.selected = true;
-        }
+        };
 
         $scope.selectTab(firstTabVisible());
         const firstTab = $scope.tabs.find((it) => it.shouldRenderFirst);
-        if (firstTab) { setTimeout(() => $scope.selectTab(firstTab)); }
+        if (firstTab) {
+          setTimeout(() => $scope.selectTab(firstTab));
+        }
 
         $scope.$watch(() => $scope.exercise.getType(), () => $scope.selectTab(firstTabVisible()));
         $scope.$watch(() => $scope.exercise.getEditor(), () => $scope.selectTab(firstTabVisible()));
@@ -81,15 +83,15 @@ angular
         $scope.addChoice = () => {
           $scope.exercise.choices = $scope.exercise.choices || [];
           $scope.exercise.choices.push({ value: '', checked: false });
-        }
+        };
 
         $scope.removeChoice = (choice) => {
           _.remove($scope.exercise.choices, choice);
-        }
+        };
 
         $scope.someIsVisible = () => {
           return _.some($scope.tabs, (t) => t.isVisible());
-        }
+        };
 
         $scope.goals = [
           {
@@ -131,35 +133,32 @@ angular
             query: '',
             output: ''
           }
-        ]
+        ];
 
         let isTestUI = $scope.exercise.isGobstonesLanguage() && $scope.exercise.isKidsLayout();
 
         $scope.isTestUI = () => {
           return isTestUI;
-        }
+        };
 
         $scope.enableTestUI = () => {
           isTestUI = true;
-        }
+        };
 
         $scope.disableTestUI = () => {
           isTestUI = false;
-        }
+        };
 
         $scope.isEnabledTestUI = () => {
           return $scope.exercise.isGobstonesLanguage() && $scope.isTestUI();
-        }
+        };
 
         $scope.has = (field) => {
-           return _.chain($scope)
+          return _.chain($scope)
             .get('exercise.goal', {})
             .has(field)
             .value();
         };
-
       }
-
     }
-
-  })
+  });

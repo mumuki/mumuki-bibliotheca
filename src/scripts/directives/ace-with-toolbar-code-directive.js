@@ -5,7 +5,6 @@ angular
                                              AceEditor) {
 
     return {
-
       restrict: 'E',
       templateUrl: 'views/directives/ace-with-toolbar-code.html',
       scope: {
@@ -37,9 +36,6 @@ angular
         $scope.resetContent = () => {
           $scope.content = $scope.template
         }
-
       }
-
     }
-
-  })
+  });

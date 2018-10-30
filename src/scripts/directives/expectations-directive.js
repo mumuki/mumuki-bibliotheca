@@ -17,7 +17,7 @@ angular
         Inspections.get().then((expectations) => {
           $scope.smells = expectations.smells;
           $scope.expectations = expectations.expectations;
-        })
+        });
 
         $scope.inspections = Inspections.fromArray($scope.exercise.expectations);
 
@@ -31,7 +31,7 @@ angular
 
         $scope.removeInspection = (inspection) => {
           _.remove($scope.inspections, inspection);
-        }
+        };
 
         $scope.$watch('inspections', () => {
           $scope.exercise.expectations = $scope.inspections.map((inspection) => inspection.asBindingInspection());
