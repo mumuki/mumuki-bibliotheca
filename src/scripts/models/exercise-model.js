@@ -2,14 +2,14 @@ import jsyaml from "js-yaml"
 
 angular
   .module('editor')
-  .factory('Exercise', function($filter,
-                                CurrentItem,
-                                Layouts,
-                                Editor,
-                                Comment,
-                                Languages,
-                                ExerciseTypes,
-                                Validator) {
+  .factory('Exercise', function ($filter,
+                                 CurrentItem,
+                                 Layouts,
+                                 Editor,
+                                 Comment,
+                                 Languages,
+                                 ExerciseTypes,
+                                 Validator) {
 
     const $translate = $filter('translate');
 
@@ -112,6 +112,11 @@ angular
         }
       }
 
+      changeLanguage(language) {
+        this.setLanguage(language);
+        if (language) this.test = Languages.fromName(language).testTemplate();
+      }
+
       setEditor(editor) {
         this.editor = editor;
         this.initializeEditor();
@@ -139,7 +144,7 @@ angular
       }
 
       hasInterpolations(content) {
-        const {start, end} = this.escapedComment();
+        const { start, end } = this.escapedComment();
         return new RegExp(`${start}\.\.\.\\w+\.\.\.${end}`).test(content);
       }
 
@@ -269,37 +274,37 @@ angular
         return exercise;
       }
 
-      usesCustomEditor(){
+      usesCustomEditor() {
         return this.editor == "custom";
       }
 
-      isKidsLayout(){
+      isKidsLayout() {
         return this.getLayout() === Layouts.input_kids;
       }
 
       toMultifileString(object, field) {
         if (!_.isString(object[field])) {
-          object[field] =  _.chain(object)
-                            .get(field, {})
-                            .flipTransform([], (res, value, key) => this.toFile(res, value, key, this.getComment()))
-                            .join('\n')
-                            .value();
+          object[field] = _.chain(object)
+            .get(field, {})
+            .flipTransform([], (res, value, key) => this.toFile(res, value, key, this.getComment()))
+            .join('\n')
+            .value();
         }
       }
 
       fromMultifileString(object, field) {
-        const {start, end} = this.escapedComment();
+        const { start, end } = this.escapedComment();
         const regexpString = `${start}<(.+?)#${end}((\\\s|\\\S)*?)${start}#(.+?)>${end}`;
         if (!_.isPlainObject(object[field])) {
-          object[field] =  _.chain(object)
-                            .get(field, '')
-                            .match(new RegExp(regexpString, 'gm'))
-                            .flipTransform({}, (res, capture) => this.fromFile(res, capture, new RegExp(regexpString)))
-                            .value();
+          object[field] = _.chain(object)
+            .get(field, '')
+            .match(new RegExp(regexpString, 'gm'))
+            .flipTransform({}, (res, capture) => this.fromFile(res, capture, new RegExp(regexpString)))
+            .value();
         }
       }
 
-      toFile(result, value, key, {start, end}) {
+      toFile(result, value, key, { start, end }) {
         result.push(`${start}<${key}#${end}${value}${start}#${key}>${end}`);
       }
 

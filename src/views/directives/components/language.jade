@@ -7,8 +7,7 @@ div.dropdown
       data-toggle='dropdown',
       aria-expanded='true')
   ul.dropdown-menu.dropdown-menu-right(aria-labelledby='ddLanguage')
-    li(ng-repeat='language in languages.get()', ng-click='item.setLanguage(language.name)')
+    li(ng-repeat='language in languages.get()', ng-click='item.changeLanguage(language.name)')
       a(href='', ng-if='language.name')
         i(class='{{ language.icon() }}')
         span {{ language.name }}
-
