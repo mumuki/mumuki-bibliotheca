@@ -29,7 +29,7 @@ angular
     };
 
     this.getOrganization = () => {
-      return _organization;
+      return _organization || "";
     };
 
     this.setOrganization = (organization) => {
