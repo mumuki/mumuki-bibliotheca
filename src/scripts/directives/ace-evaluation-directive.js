@@ -67,8 +67,8 @@ angular
 
         $scope.selectTab = (tab) => {
           $scope.tabs.forEach((t) => t.selected = false);
-          tab.selected = true;
-        }
+          tab && (tab.selected = true);
+        };
 
         $scope.selectTab(firstTabVisible());
         const firstTab = $scope.tabs.find((it) => it.shouldRenderFirst);
