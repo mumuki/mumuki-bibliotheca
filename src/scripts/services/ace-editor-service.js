@@ -10,15 +10,19 @@ angular
         editor.renderer.emptyMessageNode = null;
       } else if (shouldShow && !node) {
         node = editor.renderer.emptyMessageNode = document.createElement('div');
-        node.textContent = placeholder
-        node.className = 'ace_invisible ace_emptyMessage'
-        node.style.padding = '0 4px'
+        node.textContent = placeholder;
+        node.className = 'ace_invisible ace_emptyMessage';
+        node.style.padding = '0 4px';
         editor.renderer.scroller.appendChild(node);
       }
     };
 
+    this.setMode = (editor, newMode) => {
+      editor.getSession().setMode("ace/mode/" + newMode);
+    };
+
     this.onLoadDefault = (editor) => {
-      editor.$blockScrolling = 'Infinity',
+      editor.$blockScrolling = 'Infinity';
       editor.setFontSize(17);
       editor.setShowPrintMargin(false);
       editor.session.setTabSize(2);
@@ -35,5 +39,4 @@ angular
         }
       });
     };
-
   });
