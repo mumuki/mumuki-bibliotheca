@@ -7,9 +7,7 @@ html.no-js(lang='es')
     title Mumuki - Bibliotheca
     link(rel='icon', href='assets/favicon.ico')
 
-    // build:scss(build) styles/main.css
     link(rel='stylesheet', href='styles/main.css')
-    // endbuild
 
   body(ng-app='editor')
     link(rel='stylesheet', ng-href='{{ customCssUrl }}')
@@ -27,6 +25,4 @@ html.no-js(lang='es')
 
     div.ng-cloak.container.mu-page(ui-view)
 
-    // build:es6(build) scripts/main.js
     script(type='text/javascript', src='scripts/main.js')
-    // endbuild

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "node_modules/.bin/gulp test",
-    "start": "node_modules/.bin/gulp dev",
+    "start": "webpack-dev-server --config webpack.dev.js",
     "build": "node_modules/.bin/gulp prod"
   },
   "author": "Federico Scarpa",
@@ -32,8 +32,8 @@
     "jquery": "^3.3.1",
     "js-yaml": "^3.11.0",
     "lodash": "4.17.5",
-    "ui-select": "0.19.6",
-    "ng-tags-input": "^3.2.0"
+    "ng-tags-input": "^3.2.0",
+    "ui-select": "0.19.6"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
@@ -43,9 +43,12 @@
     "babel-plugin-angularjs-annotate": "^0.9.0",
     "babel-preset-latest": "6.16.0",
     "chai": "3.5.0",
+    "clean-webpack-plugin": "^1.0.0",
+    "copy-webpack-plugin": "^4.6.0",
     "css-loader": "^1.0.0",
     "del": "2.2.2",
     "expose-loader": "^0.7.5",
+    "extract-loader": "^3.0.0",
     "file-loader": "^2.0.0",
     "gulp": "3.9.1",
     "gulp-babel": "6.1.2",
@@ -59,6 +62,7 @@
     "gulp-uglify-es": "^1.0.4",
     "gulp-usemin": "0.3.25",
     "gulp-webserver": "0.9.1",
+    "html-loader": "^0.5.5",
     "karma": "^3.0.0",
     "karma-babel-preprocessor": "6.0.1",
     "karma-chrome-launcher": "^2.2.0",
@@ -71,6 +75,7 @@
     "mocha": "5.2.0",
     "node-sass": "^4.9.3",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
+    "pug-html-loader": "^1.1.5",
     "puppeteer": "^1.8.0",
     "run-sequence": "1.2.2",
     "sass-loader": "^7.1.0",
@@ -78,7 +83,11 @@
     "sinon-chai": "2.8.0",
     "style-loader": "^0.23.0",
     "webpack": "^4.17.2",
-    "webpack-stream": "^5.1.1"
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.10",
+    "webpack-merge": "^4.1.4",
+    "webpack-stream": "^5.1.1",
+    "write-file-webpack-plugin": "^4.4.1"
   },
   "engines": {
     "yarn": ">= 1.0.0"

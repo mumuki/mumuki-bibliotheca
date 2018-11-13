@@ -1,3 +1,6 @@
+import "../styles/main.scss"
+import "../index.jade"
+
 import 'expose-loader?$!jquery';
 import 'expose-loader?jQuery!jquery';
 import angular from "angular";
@@ -20,7 +23,10 @@ import "@bower-components/angular-lazy-img/release/angular-lazy-img.min"
 import "angular-cookies"
 import "js-yaml"
 import "ng-tags-input"
-import "./config/ace-mode-imports"
+
+//Load all views and scripts
+function requireAll(r) { r.keys().forEach(r); }
+requireAll(require.context('../views', true, /\.jade$/));
 
 angular
   .module('editor', [
@@ -39,3 +45,5 @@ angular
     'angularLazyImg',
     'ngTagsInput'
   ]).run(Organization => Organization.load());
+
+requireAll(require.context('./', true, /\.js$/));
