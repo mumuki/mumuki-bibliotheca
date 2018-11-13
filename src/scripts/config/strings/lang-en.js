@@ -245,7 +245,7 @@ angular
     transitive: 'Transitive',
     type: 'Type',
     unmeet_expectations: 'Goals that weren\'t met',
-    upload_image_failed: 'You did not select any images or exceed 256 KB',
+    upload_image_failed: 'You did not select any images or the selected image exceeds 256 KB',
     upload_image_placeholder: 'Insert image URL',
     upload_now: 'upload',
     upload_text_note: '* Remember: image size should be lower than 256 KB.',
