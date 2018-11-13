@@ -33,6 +33,12 @@ angular
           }
         });
 
+        $scope.$watch(function () {
+          return $scope.mode;
+        }, function (newMode) {
+          AceEditor.setMode($scope.editor, newMode);
+        });
+
         $scope.resetContent = () => {
           $scope.content = $scope.template
         }

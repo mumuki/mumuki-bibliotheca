@@ -1,7 +1,6 @@
 angular
   .module('editor')
   .directive('aceEvaluation', function () {
-
     return {
 
       restrict: 'E',
@@ -11,7 +10,7 @@ angular
       },
       controller: ($scope) => {
 
-        const firstTabVisible = () => _.find($scope.tabs, (t) => t.isVisible());
+        const getFirstVisibleTab = () => _.find($scope.tabs, (t) => t.isVisible());
 
         $scope.tabs = [
           {
@@ -70,15 +69,15 @@ angular
           tab && (tab.selected = true);
         };
 
-        $scope.selectTab(firstTabVisible());
+        $scope.selectTab(getFirstVisibleTab());
         const firstTab = $scope.tabs.find((it) => it.shouldRenderFirst);
         if (firstTab) {
           setTimeout(() => $scope.selectTab(firstTab));
         }
 
-        $scope.$watch(() => $scope.exercise.getType(), () => $scope.selectTab(firstTabVisible()));
-        $scope.$watch(() => $scope.exercise.getEditor(), () => $scope.selectTab(firstTabVisible()));
-        $scope.$watch(() => $scope.exercise.getLanguage(), () => $scope.selectTab(firstTabVisible()));
+        $scope.$watch(() => $scope.exercise.getType(), () => $scope.selectTab(getFirstVisibleTab()));
+        $scope.$watch(() => $scope.exercise.getEditor(), () => $scope.selectTab(getFirstVisibleTab()));
+        $scope.$watch(() => $scope.exercise.getLanguage(), () => $scope.selectTab(getFirstVisibleTab()));
 
         $scope.addChoice = () => {
           $scope.exercise.choices = $scope.exercise.choices || [];
