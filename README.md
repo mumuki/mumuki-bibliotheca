@@ -21,12 +21,20 @@ This will install your dependencies and boot the client.
 
 ### Manual start
 
-Just install and start the client using `npm`:
+Just install and start the client using `yarn`:
 
 ```bash
 yarn install
 yarn start
 ```
+
+### Building for release
+
+To build the client for release just execute: 
+```bash
+yarn build
+```
+And a `release` folder will be generated.
 
 # See also
 [Bibliotheca API](https://github.com/mumuki/mumuki-bibliotheca-api)
