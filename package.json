@@ -4,13 +4,13 @@
   "description": "Mumuki Bibliotheca",
   "main": "index.js",
   "scripts": {
-    "test": "set \"NODE_ENV=test\" && karma start karma.conf.js",
+    "test": "cross-env NODE_ENV=test karma start karma.conf.js",
     "start": "start:dev",
     "build": "build:prod",
-    "start:dev": "set \"NODE_ENV=development\" && webpack-dev-server --config webpack.dev.js",
-    "build:dev": "set \"NODE_ENV=development\" && webpack --config webpack.dev.js",
-    "start:prod": "set \"NODE_ENV=production\" && webpack-dev-server --config webpack.prod.js",
-    "build:prod": "set \"NODE_ENV=production\" && webpack --config webpack.prod.js"
+    "start:dev": "cross-env NODE_ENV=development webpack-dev-server --config webpack.dev.js",
+    "build:dev": "cross-env NODE_ENV=development webpack --config webpack.dev.js",
+    "start:prod": "cross-env NODE_ENV=production webpack-dev-server --config webpack.prod.js",
+    "build:prod": "cross-env NODE_ENV=production webpack --config webpack.prod.js"
   },
   "author": "Federico Scarpa",
   "license": "ISC",
@@ -49,6 +49,7 @@
     "chai": "3.5.0",
     "clean-webpack-plugin": "^1.0.0",
     "copy-webpack-plugin": "^4.6.0",
+    "cross-env": "^5.2.0",
     "css-loader": "^1.0.0",
     "del": "2.2.2",
     "dotenv-webpack": "^1.5.7",
