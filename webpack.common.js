@@ -1,5 +1,9 @@
 const path = require('path');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+
+//Set up config file
+require('fs').copyFileSync(`config/${process.env.NODE_ENV}.js`, 'src/scripts/config/config.js');
 
 module.exports = {
   context: path.resolve(__dirname, 'src'),
@@ -54,6 +58,9 @@ module.exports = {
   plugins: [
     new MiniCssExtractPlugin({
       filename: "styles/main.css"
-    })
+    }),
+    new CopyWebpackPlugin([
+      { from: 'assets', to: 'assets' }
+    ])
   ]
 };

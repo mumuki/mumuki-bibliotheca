@@ -22,5 +22,5 @@ gulp.task('test:karma', (done) => {
       { pattern: `${specFolder}/context.js`, watched: false },
       { pattern: `${specFolder}/**/*.spec.js`, watched: false }
     ]
-  }, done).start();
+  }).start();
 });
