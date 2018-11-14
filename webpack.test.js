@@ -9,8 +9,5 @@ module.exports = merge(common, {
     new CopyWebpackPlugin([
       { from: 'assets', to: 'assets' }
     ])
-  ],
-
-  //Prevent entry points as they conflict with karma ones
-  entry: {}
+  ]
 });

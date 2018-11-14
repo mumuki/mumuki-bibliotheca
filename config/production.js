@@ -3,14 +3,14 @@ angular
   .constant('CONFIG', {
 
     bibliotheca: {
-      url: '<MUMUKI_BIBLIOTHECA_API_URL>'
+      url: process.env.MUMUKI_BIBLIOTHECA_API_URL
     },
 
     laboratory: {
-      url: '<MUMUKI_LABORATORY_URL>'
+      url: process.env.MUMUKI_LABORATORY_URL
     },
 
     cookie: {
-      domain: '<MUMUKI_COOKIES_DOMAIN>'
+      domain: process.env.MUMUKI_COOKIES_DOMAIN
     }
   });
