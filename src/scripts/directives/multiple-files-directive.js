@@ -11,7 +11,8 @@ angular
         data: '=',
         defaultData: '&',
         getExtension: '&',
-        aceModes: '='
+        aceModes: '=',
+        extraOptions: '='
       },
       controller: ($scope) => {
         let activeTab;
@@ -51,10 +52,6 @@ angular
         $scope.getAceModeFromExtension = (key) => {
           const modes = $scope.aceModes;
           return modes && modes[key] || Languages.getAceModeFromExtension(extension(key));
-        }
-
-        $scope.getCommentFromExtension = (key) => {
-          return Languages.getCommentFromExtension(extension(key));
         }
 
         if (_.isEmpty($scope.data)) {

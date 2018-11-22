@@ -9,11 +9,11 @@ angular
       scope: {
         editor: '=',
         comment: '=',
-        from: '='
+        from: '=',
+        extraOptions: '='
       },
       controller: ($scope) => {
-
-        const insertText = (content, prefix, suffix='') => {
+        const insertText = (content, prefix='', suffix='') => {
           const range = $scope.editor.selection.getRange();
           const text = $scope.editor.session.getTextRange(range) || content;
 
@@ -55,6 +55,8 @@ angular
         $scope.userEmail = () => betweenLanguageComment('user_email');
         $scope.userFirstName = () => betweenLanguageComment('user_first_name');
         $scope.userLastName = () => betweenLanguageComment('user_last_name');
+
+        $scope.insertText = insertText;
       }
     }
 

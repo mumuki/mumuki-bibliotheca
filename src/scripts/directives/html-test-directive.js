@@ -22,6 +22,17 @@ angular
           tests: 'javascript',
           options: 'yaml'
         };
+
+        $scope.extraOptions = [
+          "_last_alert_message_",
+          "_last_confirm_message_",
+          "_last_prompt_message_",
+          "_confirm_response_ = ...",
+          "_prompt_response_ = ...",
+          "_dispatch_(event, node)",
+          "_wait_for_(condition, callback)",
+          "_nock_(url)"
+        ];
       }
     }
   })
