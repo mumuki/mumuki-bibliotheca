@@ -191,7 +191,7 @@ angular
     playground: 'Juego',
     portuguese: 'Portugués (Br)',
     practice: 'Práctica',
-    previous_solution_directive: 'Solucion del ejericio anterior',
+    previous_solution_directive: 'Solución del ejercicio anterior',
     private: 'Oculta',
     problem: 'Problema',
     public: 'Visible',
