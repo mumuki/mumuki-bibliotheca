@@ -226,6 +226,10 @@ angular
         return this.isLanguage('gobstones');
       }
 
+      isHtmlLanguage() {
+        return this.isLanguage('html');
+      }
+
       getYamlTest() {
         try {
           return jsyaml.load(_.get(this, 'test', ''));
