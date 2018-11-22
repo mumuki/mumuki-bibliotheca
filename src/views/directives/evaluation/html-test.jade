@@ -1,1 +1,7 @@
-multiple-files(exercise="exercise", data="exercise.test", get-extension="PRUEBA")
+multiple-files(
+  exercise="exercise",
+  data="exercise.test",
+  get-extension="exercise.fullLanguage().extension"
+  default-data="{ 'output': '', 'tests': '', 'options': 'output_ignore_scripts: true\noutput_ignore_styles: true' }"
+  ace-modes="{ 'output': 'html', 'tests': 'javascript', 'options': 'yaml' }"
+)

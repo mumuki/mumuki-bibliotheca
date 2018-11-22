@@ -9,11 +9,14 @@ angular
       templateUrl: 'views/directives/multiple-files.html',
       scope: {
         data: '=',
-        getExtension: '&'
+        defaultData: '&',
+        getExtension: '&',
+        aceModes: '='
       },
       controller: ($scope) => {
         let activeTab;
 
+        const defaultExtension = _.invoke($scope, 'getExtension');
         const translate = $filter('translate');
         const selectFirstTab = () => activeTab = _.chain($scope.data).keys().first().value();
         const extension = (key) => _.chain(key).split('.').last().value();
@@ -47,7 +50,8 @@ angular
         }
 
         $scope.getAceModeFromExtension = (key) => {
-          return Languages.getAceModeFromExtension(extension(key));
+          const modes = $scope.aceModes;
+          return modes && modes[key] || Languages.getAceModeFromExtension(extension(key));
         }
 
         $scope.getCommentFromExtension = (key) => {
@@ -55,7 +59,8 @@ angular
         }
 
         if (_.isEmpty($scope.data)) {
-          $scope.addFile();
+          if ($scope.defaultData) $scope.data = $scope.defaultData();
+          else $scope.addFile();
         }
 
         selectFirstTab();

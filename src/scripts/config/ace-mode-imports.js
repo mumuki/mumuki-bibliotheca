@@ -17,6 +17,7 @@ import "ace-builds/src-noconflict/mode-sh"
 import "ace-builds/src-noconflict/mode-sql"
 import "ace-builds/src-noconflict/mode-wollok"
 import "ace-builds/src-noconflict/mode-xml"
+import "ace-builds/src-noconflict/mode-yaml"
 
 ace.config.setModuleUrl('ace/mode/html_worker', "scripts/" + require('file-loader!ace-builds/src-noconflict/worker-html.js'));
 ace.config.setModuleUrl('ace/mode/javascript_worker', "scripts/" + require('file-loader!ace-builds/src-noconflict/worker-javascript.js'));
