@@ -9,8 +9,10 @@ angular
       templateUrl: 'views/directives/multiple-files.html',
       scope: {
         data: '=',
+        defaultExtension: '&',
+
+        // optional:
         defaultData: '&',
-        getExtension: '&',
         aceModes: '=',
         extraOptions: '='
       },
@@ -20,7 +22,7 @@ angular
         const translate = $filter('translate');
         const selectFirstTab = () => activeTab = _.chain($scope.data).keys().first().value();
         const extension = (key) => _.chain(key).split('.').last().value();
-        const getKey = () => `file_${_.keys($scope.data).length + 1}.${$scope.getExtension()}`;
+        const getKey = () => `file_${_.keys($scope.data).length + 1}.${$scope.defaultExtension()}`;
         const removeKey = (key) => delete $scope.data[key];
 
         $scope.select = (key) => {
