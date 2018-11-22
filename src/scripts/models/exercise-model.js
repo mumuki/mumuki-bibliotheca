@@ -2,7 +2,6 @@ import jsyaml from "js-yaml"
 
 const LANGUAGES_WITH_TEST_UI = [
   { name: "gobstones", uiOption: "UI", textOption: "YAML" },
-  { name: "html", uiOption: "DOM & Scripts", textOption: "HTML" },
 ];
 
 angular
@@ -235,12 +234,12 @@ angular
         return this.isLanguage('html');
       }
 
-      getTestUI() {
+      getTestUIOptions() {
         return _.find(LANGUAGES_WITH_TEST_UI, { name: this.getLanguage() });
       }
 
       hasTestUI() {
-        return this.getTestUI() != null;
+        return this.getTestUIOptions() != null;
       }
 
       getYamlTest() {
@@ -256,7 +255,9 @@ angular
       }
 
       hasTest() {
-        return !_.isEmpty(_.get(this, 'test', '').trim());
+        let test = _.get(this, 'test', '');
+        if (_.isString(test)) test = test.trim();
+        return !_.isEmpty(test);
       }
 
       hasExpectations() {

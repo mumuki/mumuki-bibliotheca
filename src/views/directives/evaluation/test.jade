@@ -3,25 +3,25 @@
     span {{ 'test_input_method' | translate }}
     i.fa.fa-fw.fa-caret-down
   ul.dropdown-menu(aria-labelledby='dropdownTestUI')
-    li: a(href='', ng-click='enableTestUI()') {{ exercise.getTestUI().uiOption }}
-    li: a(href='', ng-click='disableTestUI()') {{ exercise.getTestUI().textOption }}
+    li: a(href='', ng-click='enableTestUI()') {{ exercise.getTestUIOptions().uiOption }}
+    li: a(href='', ng-click='disableTestUI()') {{ exercise.getTestUIOptions().textOption }}
 
-div(ng-switch='isEnabledTestUI()')
-  div(ng-switch-when='true')
-    div(ng-switch='exercise.getLanguage()')
-      div(ng-switch-when='gobstones')
-        gobstones-test.mu-kids-states(exercise='exercise')
-      div(ng-switch-when='html')
-        html-test(exercise='exercise')
-  div(ng-switch-default)
-    ace-with-toolbar-code(
-      content='exercise.test',
-      mode='exercise.getAceMode()',
-      comment='exercise.getComment()',
-      placeholder='placeholder_test',
-      template='exercise.testTemplate()',
-      from='test'
-    )
+div(ng-if='isEnabledTestUI() && exercise.isGobstonesLanguage()')
+  gobstones-test.mu-kids-states(exercise='exercise')
+
+div(ng-if='!isEnabledTestUI()')
+  div(ng-switch='exercise.isMultifile() && exercise.isHtmlLanguage()')
+    div(ng-switch-when='true')
+      html-test(exercise='exercise')
+    div(ng-switch-default)
+      ace-with-toolbar-code(
+        content='exercise.test',
+        mode='exercise.getAceMode()',
+        comment='exercise.getComment()',
+        placeholder='placeholder_test',
+        template='exercise.testTemplate()',
+        from='test'
+      )
 
 div.checkbox.complementary.complementary-checkbox(ng-if='!exercise.isKidsLayout()')
   input(type='checkbox', id='manual-evaluation', ng-model='exercise.manual_evaluation')
