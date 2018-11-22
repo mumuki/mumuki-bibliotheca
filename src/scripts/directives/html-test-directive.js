@@ -11,7 +11,17 @@ angular
         exercise: '='
       },
       controller: ($scope) => {
-        // TODO
+        $scope.defaultData = {
+          output: '',
+          tests: '',
+          options: 'output_ignore_scripts: true\noutput_ignore_styles: true'
+        };
+
+        $scope.aceModes = {
+          output: 'html',
+          tests: 'javascript',
+          options: 'yaml'
+        };
       }
     }
   })
