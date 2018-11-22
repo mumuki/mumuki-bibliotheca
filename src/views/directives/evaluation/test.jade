@@ -8,7 +8,11 @@
 
 div(ng-switch='isEnabledTestUI()')
   div(ng-switch-when='true')
-    gobstones-test.mu-kids-states(exercise='exercise')
+    div(ng-switch='exercise.getLanguage()')
+      div(ng-switch-when='gobstones')
+        gobstones-test.mu-kids-states(exercise='exercise')
+      div(ng-switch-when='html')
+        html-test(exercise='exercise')
   div(ng-switch-default)
     ace-with-toolbar-code(
       content='exercise.test',
