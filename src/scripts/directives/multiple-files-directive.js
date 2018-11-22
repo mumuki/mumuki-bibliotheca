@@ -8,17 +8,17 @@ angular
       restrict: 'E',
       templateUrl: 'views/directives/multiple-files.html',
       scope: {
-        exercise: '='
+        data: '=',
+        getExtension: '&'
       },
       controller: ($scope) => {
-
         let activeTab;
 
         const translate = $filter('translate');
-        const selectFirstTab = () => activeTab = _.chain($scope.exercise.default_content).keys().first().value();
+        const selectFirstTab = () => activeTab = _.chain($scope.data).keys().first().value();
         const extension = (key) => _.chain(key).split('.').last().value();
-        const getKey = () => `file_${_.keys($scope.exercise.default_content).length + 1}.${$scope.exercise.fullLanguage().extension}`;
-        const removeKey = (key) => delete $scope.exercise.default_content[key];
+        const getKey = () => `file_${_.keys($scope.data).length + 1}.${$scope.getExtension()}`;
+        const removeKey = (key) => delete $scope.data[key];
 
         $scope.select = (key) => {
           activeTab = key
@@ -29,7 +29,7 @@ angular
         }
 
         $scope.addFile = (key = getKey(), content = '') => {
-          $scope.exercise.default_content[key] = content;
+          $scope.data[key] = content;
           $scope.select(key);
         }
 
@@ -41,7 +41,7 @@ angular
         $scope.changeFileName = (key) => {
           var newName = prompt(translate('multiple_files_new_name'), key);
           if (!_.isEmpty(newName) && newName !== key) {
-            $scope.addFile(newName, $scope.exercise.default_content[key]);
+            $scope.addFile(newName, $scope.data[key]);
             removeKey(key);
           }
         }
@@ -54,7 +54,7 @@ angular
           return Languages.getCommentFromExtension(extension(key));
         }
 
-        if (_.isEmpty($scope.exercise.default_content)) {
+        if (_.isEmpty($scope.data)) {
           $scope.addFile();
         }
 
