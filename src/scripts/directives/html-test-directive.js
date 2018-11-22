@@ -1,5 +1,3 @@
-import jsyaml from "js-yaml"
-
 angular
   .module('editor')
   .directive('htmlTest', function ($translate,
