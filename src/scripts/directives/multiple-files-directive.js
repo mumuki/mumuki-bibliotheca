@@ -9,6 +9,7 @@ angular
       templateUrl: 'views/directives/multiple-files.html',
       scope: {
         data: '=',
+        comment: '&',
         defaultExtension: '&',
 
         // optional:
@@ -62,7 +63,7 @@ angular
         }
 
         selectFirstTab();
-
+        $scope.commentStyle = $scope.comment();
       }
 
     }

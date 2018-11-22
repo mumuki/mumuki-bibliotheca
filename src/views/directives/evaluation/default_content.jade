@@ -17,5 +17,6 @@ div(ng-if="contentEditor.mode === 'interpolation'")
   multiple-files(
     ng-if="exercise.isMultifile()",
     data="exercise.default_content",
+    comment="exercise.getComment()",
     default-extension="exercise.fullLanguage().extension"
   )
