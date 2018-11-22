@@ -2,7 +2,7 @@ import jsyaml from "js-yaml"
 
 const LANGUAGES_WITH_TEST_UI = [
   { name: "gobstones", uiOption: "UI", textOption: "YAML" },
-  { name: "html", uiOption: "Scripts", textOption: "HTML" },
+  { name: "html", uiOption: "DOM & Scripts", textOption: "HTML" },
 ];
 
 angular
