@@ -1,4 +1,4 @@
-.tabbable(ng-if='exercise.isMultifile()')
+.tabbable
   ul.nav.nav-tabs.nav-tabs-inline
     li.file(ng-repeat='(key, value) in exercise.default_content track by key', ng-click='select(key)', ng-class="{ 'active': isActive(key) }")
       a.pointer(data-toggle='tab')
