@@ -1,5 +1,10 @@
 import jsyaml from "js-yaml"
 
+const LANGUAGES_WITH_TEST_UI = [
+  { name: "gobstones", uiOption: "UI", textOption: "YAML" },
+  { name: "html", uiOption: "Scripts", textOption: "HTML" },
+];
+
 angular
   .module('editor')
   .factory('Exercise', function ($filter,
@@ -226,8 +231,12 @@ angular
         return this.isLanguage('gobstones');
       }
 
-      isHtmlLanguage() {
-        return this.isLanguage('html');
+      getTestUI() {
+        return _.find(LANGUAGES_WITH_TEST_UI, { name: this.getLanguage() });
+      }
+
+      hasTestUI() {
+        return this.getTestUI() != null;
       }
 
       getYamlTest() {
