@@ -16,7 +16,6 @@ angular
       controller: ($scope) => {
         let activeTab;
 
-        const defaultExtension = _.invoke($scope, 'getExtension');
         const translate = $filter('translate');
         const selectFirstTab = () => activeTab = _.chain($scope.data).keys().first().value();
         const extension = (key) => _.chain(key).split('.').last().value();
@@ -59,7 +58,7 @@ angular
         }
 
         if (_.isEmpty($scope.data)) {
-          if ($scope.defaultData) $scope.data = $scope.defaultData();
+          if ($scope.defaultData()) $scope.data = $scope.defaultData();
           else $scope.addFile();
         }
 
