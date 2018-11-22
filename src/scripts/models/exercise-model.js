@@ -231,6 +231,10 @@ angular
         return this.isLanguage('gobstones');
       }
 
+      isHtmlLanguage() {
+        return this.isLanguage('html');
+      }
+
       getTestUI() {
         return _.find(LANGUAGES_WITH_TEST_UI, { name: this.getLanguage() });
       }
