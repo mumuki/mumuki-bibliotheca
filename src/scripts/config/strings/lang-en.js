@@ -155,6 +155,8 @@ angular
     manual_evaluation: 'Manual Evaluation',
     message: 'Message',
     multiple_choice: 'Multiple choice',
+    multiple_files_new_name: 'Insert a file name',
+    multiple_files: "Multiple files",
     name: 'Name',
     negated: 'Negated',
     new_book: 'New book',

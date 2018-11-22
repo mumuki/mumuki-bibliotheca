@@ -154,6 +154,8 @@ angular
     manual_evaluation: 'Evaluación Manual',
     message: 'Mensaje',
     multiple_choice: 'Selección múltiple',
+    multiple_files_new_name: 'Ingresá un nombre de archivo',
+    multiple_files: "Múltiples archivos",
     name: 'Nombre',
     negated: 'Negado',
     new_book: 'Nuevo libro',
