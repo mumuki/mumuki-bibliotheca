@@ -149,7 +149,7 @@ angular
         };
 
         $scope.isEnabledTestUI = () => {
-          return $scope.exercise.isGobstonesLanguage() && $scope.isTestUI();
+          return $scope.exercise.hasTestUI() && $scope.isTestUI();
         };
 
         $scope.has = (field) => {

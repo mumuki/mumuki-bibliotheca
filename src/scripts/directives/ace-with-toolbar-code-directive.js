@@ -13,7 +13,8 @@ angular
         comment: '=',
         content: '=',
         template: '=',
-        placeholder: '='
+        placeholder: '=',
+        extraOptions: '='
       },
       controller: ($scope) => {
 

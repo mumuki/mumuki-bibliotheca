@@ -3,6 +3,9 @@ div.dropdown.markdown-panel
     span {{ 'insert_interpolation' | translate }}
     i.fa.fa-fw.fa-caret-down
   ul.dropdown-menu
+    li: a.pointer(ng-repeat="text in extraOptions" ng-click="insertText(text)", title='{{text}}') {{text}}
+    li.divider(ng-if="extraOptions", role='separator')
+
     li: a#test.pointer(ng-click='test()', title='{{ "test_directive" | translate }}') {{ "test_directive" | translate }}
     li: a#extra.pointer(ng-click='extra()', title='{{ "extra_directive" | translate }}') {{ "extra_directive" | translate }}
     li: a#content.pointer(ng-click='content()', title='{{ "content_directive" | translate }}') {{ "content_directive" | translate }}
@@ -17,5 +20,3 @@ div.dropdown.markdown-panel
     li.divider(ng-if='from === "extra"', role='separator')
     li(ng-if='from === "extra"')
       a.pointer(ng-click='ignoreContentOnQuery()', title='{{ "ignore_content_directive" | translate }}') {{ "ignore_content_directive" | translate }}
-
-

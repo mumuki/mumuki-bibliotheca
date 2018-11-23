@@ -14,11 +14,11 @@ angular
       return exercise.manual_evaluation || exercise.hasTest() || exercise.hasExpectations();
     }
 
-    const defaultContentString = (exercise) => {
+    const setDefaultContentString = (exercise) => {
       exercise.default_content = _.isString(exercise.default_content) ? exercise.default_content : '';
     }
 
-    const defaultContentHash = (exercise) => {
+    const setDefaultContentHash = (exercise) => {
       exercise.default_content = _.isPlainObject(exercise.default_content) ? exercise.default_content : {};
     }
 
@@ -39,7 +39,7 @@ angular
         canChangeLanguage: (exercise) => true,
         initialLayout: (exercise) => exercise.layout,
         initialLanguage: (exercise) => exercise.language,
-        setDefaultContent: (exercise) => defaultContentString(exercise),
+        setDefaultContent: (exercise) => setDefaultContentString(exercise),
         transformToServer: (exercise) => {},
         transformFromServer: (exercise) => {},
         validate: (exercise) => {
@@ -67,9 +67,15 @@ angular
         isMultifile: true,
         icon: () => 'fa fa-files-o',
         needsChoices: (exercise) => false,
-        setDefaultContent: (exercise) => defaultContentHash(exercise),
-        transformToServer: (exercise) => { exercise.toMultifileString(exercise, 'default_content') },
-        transformFromServer: (exercise) => { exercise.fromMultifileString(exercise, 'default_content') },
+        setDefaultContent: (exercise) => setDefaultContentHash(exercise),
+        transformToServer: (exercise) => {
+          exercise.toMultifileString(exercise, 'default_content');
+          if (exercise.isHtmlLanguage()) exercise.toMultifileString(exercise, 'test');
+        },
+        transformFromServer: (exercise) => {
+          exercise.fromMultifileString(exercise, 'default_content');
+          if (exercise.isHtmlLanguage()) exercise.fromMultifileString(exercise, 'test');
+        },
         validate: (exercise) => {
           Validator.notIncompleteExpectations(exercise);
           if (!hasEvaluation(exercise)) {
@@ -103,7 +109,7 @@ angular
         needsSolution: (exercise) => false,
         needsExpectations: (exercise) => !exercise.isTextLanguage(),
         needsDefaultContent: (exercise) => !exercise.isTextLanguage(),
-        setDefaultContent: (exercise) => editorType.single_choice.needsDefaultContent(exercise) && defaultContentString(exercise),
+        setDefaultContent: (exercise) => editorType.single_choice.needsDefaultContent(exercise) && setDefaultContentString(exercise),
         validate: (exercise) => {
           Validator.notEmptyChoices(exercise);
           Validator.notIncompleteChoices(exercise);
