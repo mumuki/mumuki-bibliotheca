@@ -172,6 +172,10 @@ $scroll-height: 1px;
   border: 1px solid $brand-complementary;
 }
 
+.complementary input {
+  width: initial;
+}
+
 .border-white {
   border: 1px solid white;
 }

@@ -6,44 +6,44 @@ angular
 
     this.isEmptyString = (string) => {
       return _.chain(string).trim().isEmpty().value();
-    }
+    };
 
     this.isEmptyField = (object, field) => {
       return this.isEmptyString(_.get(object, field));
-    }
+    };
 
     const isEmptyExpectation = (exercise, expectation) => {
       return this.isEmptyField(expectation, 'binding') ||
              this.isEmptyField(expectation, 'inspection') ||
              _.startsWith(expectation.inspection, 'undefined') ||
              _.endsWith(expectation.inspection, ':');
-    }
+    };
 
     const isIncompleteExpectation = (expectationable) => {
       return (expectation) => isEmptyExpectation(expectationable, expectation);
-    }
+    };
 
     const isIncompleteChoice = (choiceable) => {
       return (choice) => this.isEmptyField(choice, 'value');
-    }
+    };
 
     const whenIsEmptyString = (rule) => {
       return _.isString(rule.when) && this.isEmptyField(rule, 'when');
-    }
+    };
 
     const whenIsObjectWithEmptyString = (rule) => {
       const value = _.chain(rule.when).values().first().value();
       return _.isObject(rule.when) && _.isString(value) && _.chain(value).trim().isEmpty().value();
-    }
+    };
 
     const whenIsArrayWithEmptyStrings = (rule) => {
       const values =_.chain(rule.when).values().first().value();
       return _.isObject(rule.when) && _.isArray(values) && (values.length === 0 || _.chain(values).some((it) => _.isEmpty(it.trim())).value());
-    }
+    };
 
     const isIncompleteAssistanceRule = (rule) => {
       return this.isEmptyField(rule, 'then') || whenIsEmptyString(rule) || whenIsObjectWithEmptyString(rule) || whenIsArrayWithEmptyStrings(rule);
-    }
+    };
 
     const isInvalidRandomizationValue = (value) => {
       switch(value.type){
@@ -52,15 +52,15 @@ angular
         case "range":
           return !_.every(value.value, _.isNumber);
       }
-    }
+    };
 
     const isIncompleteRandomizationValue = (value) => {
       return this.isEmptyField(value, 'type') || value.value.length < 2 || isInvalidRandomizationValue(value);
-    }
+    };
 
     const isIncompleteRandomization = (randomization) => {
       return this.isEmptyString(randomization[0]) || isIncompleteRandomizationValue(randomization[1]);
-    }
+    };
 
     this.notEmptyString = (object, field) => {
       if (this.isEmptyField(object, field)) {
@@ -69,11 +69,11 @@ angular
           fullName: object.fullName(),
         }));
       }
-    }
+    };
 
     this.notForbiddenFields = (object, fields) => {
       fields.forEach(field => this.notForbiddenField(object, field));
-    }
+    };
 
     this.notForbiddenField = (object, field) => {
       if(object && object.hasOwnProperty(field)){
@@ -82,7 +82,7 @@ angular
           fullName: object.fullName()
         }));
       }
-    }
+    };
 
     this.notEmptyChoices = (choiceable) => {
       if (_.get(choiceable, 'choices', []).length < 2) {
@@ -90,7 +90,7 @@ angular
           fullName: choiceable.fullName(),
         }));
       }
-    }
+    };
 
     this.languageSupport = (exercise, type) => {
       const language = exercise.fullLanguage();
@@ -100,7 +100,7 @@ angular
           language: language.name
         }))
       }
-    }
+    };
 
     this.notIncompleteExpectations = (expectationable) => {
       if (_.some(expectationable.expectations, isIncompleteExpectation(expectationable))) {
@@ -108,7 +108,7 @@ angular
           fullName: expectationable.fullName(),
         }))
       }
-    }
+    };
 
     this.notIncompleteChoices = (choiceable) => {
       if (_.some(choiceable.choices, isIncompleteChoice(choiceable))) {
@@ -116,7 +116,7 @@ angular
           fullName: choiceable.fullName(),
         }))
       }
-    }
+    };
 
     this.validateAssistanceRules = (exercise) => {
       if (exercise.needsAssistanceRules() && _.some(exercise.assistance_rules, isIncompleteAssistanceRule)) {
@@ -124,7 +124,7 @@ angular
           fullName: exercise.fullName(),
         }))
       }
-    }
+    };
 
     this.validateRandomizations = (exercise) => {
       if (exercise.needsRandomizations() && _.some(_.toPairs(exercise.randomizations), isIncompleteRandomization)) {
