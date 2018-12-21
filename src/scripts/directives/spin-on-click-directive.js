@@ -9,7 +9,12 @@ angular
       link: (scope, element, attr) => {
 
         let html;
-        const click = $parse(attr.spinOnClick);
+
+        element.on('click', () => {
+          html = element.html();
+          addSpinClass();
+          scope.submit().then(removeSpinClass, removeSpinClass);
+        });
 
         const removeSpinClass = (result) => {
           element.html(html);
@@ -23,13 +28,6 @@ angular
           element.prop('disabled', true);
         };
 
-        scope.$on('$destroy', () => {
-          element.on('click', () => {
-            html = element.html();
-            addSpinClass();
-            scope.submit().then(removeSpinClass, removeSpinClass);
-          });
-        });
       }
     };
   });
