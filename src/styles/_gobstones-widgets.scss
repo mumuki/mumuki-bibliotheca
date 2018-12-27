@@ -68,7 +68,6 @@
   .gbs-board-size,
   .gbs-check-attire,
   .gbs-check-header {
-    width: 33.33%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -95,7 +94,7 @@
   justify-content: center;
   align-items: center;
   .gbs-size,
-  .gbs-header, {
+  .gbs-header {
     display: flex;
     justify-content: flex-start;
     align-items: center;

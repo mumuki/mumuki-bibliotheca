@@ -8,19 +8,19 @@ angular
 
     const throwError = (...args) => {
       throw new Error(translate(...args));
-    }
+    };
 
     const hasEvaluation = (exercise) => {
       return exercise.manual_evaluation || exercise.hasTest() || exercise.hasExpectations();
-    }
+    };
 
     const setDefaultContentString = (exercise) => {
       exercise.default_content = _.isString(exercise.default_content) ? exercise.default_content : '';
-    }
+    };
 
     const setDefaultContentHash = (exercise) => {
       exercise.default_content = _.isPlainObject(exercise.default_content) ? exercise.default_content : {};
-    }
+    };
 
     const editorDefault = {
         name: 'default',
@@ -38,7 +38,7 @@ angular
         canChangeLayout: (exercise) => true,
         canChangeLanguage: (exercise) => true,
         initialLayout: (exercise) => exercise.layout,
-        initialLanguage: (exercise) => exercise.language,
+        initialLanguage: (exercise) => exercise.getLanguage(),
         setDefaultContent: (exercise) => setDefaultContentString(exercise),
         transformToServer: (exercise) => {},
         transformFromServer: (exercise) => {},
@@ -48,7 +48,7 @@ angular
             throwError('error_editor_code_validation', { fullName: exercise.fullName() });
           }
         }
-    }
+    };
 
     const editorType = {
       code: {
@@ -203,19 +203,19 @@ angular
         canChangeLayout: (exercise) => exercise.getType().isPlayground(),
         initialLayout: (exercise) => Layouts.input_bottom.type(),
       },
-    }
+    };
 
     _.forOwn(editorType, (value, key) => {
       editorType[key] = _.defaultsDeep(value, editorDefault);
-    })
+    });
 
     this.default = () => {
       return editorType.code;
-    }
+    };
 
     this.types = () => {
       return _.keys(editorType);
-    }
+    };
 
     this.from = (type) => {
       return editorType[type] || this.default();
