@@ -219,7 +219,7 @@ angular
     target: 'Subject',
     teacher_info: 'Teacher information',
     test_directive: 'Tests',
-    test_input_method: 'Gobstones test input',
+    test_input_method: 'Test input method',
     test_results: 'Tests results',
     test_template_group_description: 'Group description',
     test_template_sample_description: 'Sample description',

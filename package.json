@@ -32,8 +32,9 @@
     "jquery": "^3.3.1",
     "js-yaml": "^3.11.0",
     "lodash": "4.17.5",
-    "ui-select": "0.19.6",
-    "ng-tags-input": "^3.2.0"
+    "ng-tags-input": "^3.2.0",
+    "oclazyload": "^1.1.0",
+    "ui-select": "0.19.6"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",

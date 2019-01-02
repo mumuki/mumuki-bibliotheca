@@ -21,6 +21,7 @@ import "angular-cookies"
 import "js-yaml"
 import "ng-tags-input"
 import "./config/ace-mode-imports"
+import "oclazyload"
 
 angular
   .module('editor', [
@@ -37,5 +38,6 @@ angular
     'ui.select',
     'ui.bootstrap',
     'angularLazyImg',
-    'ngTagsInput'
+    'ngTagsInput',
+    'oc.lazyLoad'
   ]).run(Organization => Organization.load());

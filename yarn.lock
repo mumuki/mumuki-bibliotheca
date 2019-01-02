@@ -6637,6 +6637,11 @@ object.values@^1.0.4:
     function-bind "^1.1.0"
     has "^1.0.1"
 
+oclazyload@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/oclazyload/-/oclazyload-1.1.0.tgz#a9807322f190820a81c022f2ef1701d036d83e87"
+  integrity sha1-qYBzIvGQggqBwCLy7xcB0DbYPoc=
+
 on-finished@2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/on-finished/-/on-finished-2.1.0.tgz#0c539f09291e8ffadde0c8a25850fb2cedc7022d"
