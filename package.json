@@ -9,7 +9,7 @@
     "build": "node_modules/.bin/gulp prod"
   },
   "author": "Federico Scarpa",
-  "license": "ISC",
+  "license": "AGPL-3.0",
   "dependencies": {
     "@bower-components/angular-lazy-img": "Pentiado/angular-lazy-img#1.2.2",
     "@bower-components/mumuki-styles": "mumuki/mumuki-styles#1.18.2",
