@@ -15,7 +15,7 @@
     "@bower-components/mumuki-styles": "mumuki/mumuki-styles#1.18.2",
     "@uirouter/angularjs": "0.4.3",
     "ace-builds": "1.4.1",
-    "angular": "1.6.2",
+    "angular": "1.8.0",
     "angular-cookies": "1.4.9",
     "angular-drag-and-drop-lists": "1.4.0",
     "angular-hotkeys": "1.7.0",
